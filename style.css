@@ -1,21 +1,32 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
 
 :root {
-  --primary-gradient: linear-gradient(135deg, #2CD9FF 0%, #7B3FF2 100%);
-  --secondary-gradient: linear-gradient(135deg, #E88AD9 0%, #7B3FF2 100%);
-  --accent-gradient: linear-gradient(135deg, #2CD9FF 0%, #E88AD9 100%);
+  /* CloakID Brand Colors */
+  --brand-teal-dark: #0A7B83;
+  --brand-teal-medium: #2AA5A0;
+  --brand-teal-light: #7DD3DB;
+  --brand-teal-lighter: #A8E5E9;
+  --brand-gray-light: #D1D5DB;
+  
+  /* Gradients */
+  --primary-gradient: linear-gradient(135deg, #7DD3DB 0%, #0A7B83 100%);
+  --secondary-gradient: linear-gradient(135deg, #A8E5E9 0%, #2AA5A0 100%);
+  --accent-gradient: linear-gradient(135deg, #2AA5A0 0%, #0A7B83 100%);
+  --hero-gradient: linear-gradient(180deg, rgba(125, 211, 219, 0.1) 0%, rgba(10, 123, 131, 0.05) 100%);
+  
+  /* Base Colors */
   --dark-bg: #0a0a0a;
   --dark-surface: #1a1a1a;
   --light-surface: #f8fafc;
-  --primary-blue: #2CD9FF;
-  --primary-purple: #7B3FF2;
-  --accent-pink: #E88AD9;
+  --primary-color: #2AA5A0;
+  --primary-dark: #0A7B83;
+  --primary-light: #7DD3DB;
   --text-primary: #ffffff;
   --text-secondary: #a3a3a3;
   --text-dark: #1a1a1a;
   --border-light: rgba(255, 255, 255, 0.1);
   --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-  --shadow-glow: 0 0 30px rgba(44, 217, 255, 0.3);
+  --shadow-glow: 0 0 30px rgba(125, 211, 219, 0.3);
 }
 
 * {
@@ -67,13 +78,29 @@ nav {
 }
 
 .logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+}
+
+.logo img {
+  height: 40px;
+  width: auto;
+  transition: transform 0.3s ease;
+}
+
+.logo:hover img {
+  transform: scale(1.05);
+}
+
+.logo-text {
   font-size: 1.75rem;
   font-weight: 800;
   background: var(--primary-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  text-decoration: none;
   letter-spacing: -0.02em;
 }
 
@@ -114,7 +141,7 @@ nav {
   display: flex;
   align-items: center;
   position: relative;
-  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  background: var(--hero-gradient), linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
   overflow: hidden;
   margin-top: 60px;
 }
@@ -126,7 +153,7 @@ nav {
   right: -50%;
   width: 200%;
   height: 200%;
-  background: radial-gradient(circle, rgba(44, 217, 255, 0.1) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(125, 211, 219, 0.15) 0%, transparent 70%);
   animation: float 20s ease-in-out infinite;
 }
 
@@ -137,7 +164,7 @@ nav {
   left: -50%;
   width: 200%;
   height: 200%;
-  background: radial-gradient(circle, rgba(232, 138, 217, 0.1) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(42, 165, 160, 0.1) 0%, transparent 70%);
   animation: float 20s ease-in-out infinite reverse;
 }
 
@@ -151,6 +178,19 @@ nav {
   position: relative;
   z-index: 1;
   text-align: center;
+}
+
+.hero-mascot {
+  margin: 2rem auto;
+  max-width: 300px;
+  opacity: 0;
+  animation: fadeInUp 1s ease-out 0.6s both, float 6s ease-in-out infinite 1.6s;
+}
+
+.hero-mascot img {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 20px 40px rgba(10, 123, 131, 0.15));
 }
 
 h1 {
@@ -204,12 +244,12 @@ h1 {
 .btn-primary {
   background: var(--primary-gradient);
   color: var(--text-primary);
-  box-shadow: 0 4px 15px rgba(44, 217, 255, 0.3);
+  box-shadow: 0 4px 15px rgba(125, 211, 219, 0.3);
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(44, 217, 255, 0.4);
+  box-shadow: 0 8px 25px rgba(125, 211, 219, 0.4);
 }
 
 .btn-primary::before {
@@ -229,7 +269,7 @@ h1 {
 
 .btn-secondary {
   background: transparent;
-  color: var(--primary-blue);
+  color: var(--primary-color);
   border: 2px solid transparent;
   background-image: linear-gradient(white, white), var(--primary-gradient);
   background-origin: border-box;
@@ -240,7 +280,7 @@ h1 {
   background: var(--primary-gradient);
   color: var(--text-primary);
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(44, 217, 255, 0.3);
+  box-shadow: 0 8px 25px rgba(125, 211, 219, 0.3);
 }
 
 /* Sections */
@@ -328,7 +368,7 @@ h3 {
   justify-content: center;
   margin-bottom: 1.5rem;
   font-size: 32px;
-  box-shadow: 0 8px 16px rgba(123, 63, 242, 0.2);
+  box-shadow: 0 8px 16px rgba(42, 165, 160, 0.2);
 }
 
 /* Feature Lists */
@@ -383,7 +423,7 @@ h3 {
   font-weight: 700;
   font-size: 1.25rem;
   margin-bottom: 1.5rem;
-  box-shadow: 0 8px 16px rgba(44, 217, 255, 0.3);
+  box-shadow: 0 8px 16px rgba(125, 211, 219, 0.3);
 }
 
 /* CTA Section */
@@ -395,7 +435,7 @@ h3 {
   border-radius: 32px;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 20px 40px rgba(123, 63, 242, 0.2);
+  box-shadow: 0 20px 40px rgba(10, 123, 131, 0.2);
 }
 
 .cta-section::before {
@@ -429,7 +469,7 @@ h3 {
 
 .cta-section .btn {
   background: white;
-  color: var(--primary-purple);
+  color: var(--primary-dark);
   font-weight: 700;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
@@ -477,7 +517,7 @@ footer {
 }
 
 .footer-links a:hover {
-  color: var(--primary-blue);
+  color: var(--primary-color);
   padding-left: 5px;
 }
 
@@ -562,7 +602,7 @@ footer {
   background: linear-gradient(white, white) padding-box,
               var(--primary-gradient) border-box;
   transform: scale(1.05);
-  box-shadow: 0 20px 40px rgba(123, 63, 242, 0.15);
+  box-shadow: 0 20px 40px rgba(10, 123, 131, 0.15);
 }
 
 .pricing-card:hover {
@@ -719,10 +759,10 @@ footer {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(135deg, #2CD9FF 0%, #7B3FF2 100%);
+  background: var(--primary-gradient);
   border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(135deg, #7B3FF2 0%, #2CD9FF 100%);
+  background: var(--accent-gradient);
 }
