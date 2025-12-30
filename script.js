@@ -51,3 +51,41 @@ document.querySelectorAll('.card, .section').forEach(el => {
     el.classList.add('animate-on-scroll');
     observer.observe(el);
 });
+
+// Beta signup form handler
+const betaForm = document.getElementById('beta-form');
+const betaSuccess = document.getElementById('beta-success');
+
+if (betaForm) {
+    betaForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const emailInput = betaForm.querySelector('input[type="email"]');
+        const email = emailInput.value;
+        const button = betaForm.querySelector('button');
+        const originalText = button.textContent;
+
+        button.textContent = 'Joining...';
+        button.disabled = true;
+
+        try {
+            const response = await fetch('/.netlify/functions/signup', {
+                method: 'POST',
+                body: JSON.stringify({ email }),
+                headers: { 'Content-Type': 'application/json' }
+            });
+
+            if (response.ok) {
+                betaForm.style.display = 'none';
+                const microcopy = document.querySelector('.beta-microcopy');
+                if (microcopy) microcopy.style.display = 'none';
+                betaSuccess.style.display = 'block';
+            } else {
+                throw new Error('Signup failed');
+            }
+        } catch (error) {
+            button.textContent = 'Try Again';
+            button.disabled = false;
+            alert('Something went wrong. Please try again or email us at support@cloakid.app');
+        }
+    });
+}
