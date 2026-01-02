@@ -2,6 +2,36 @@ const { Resend } = require('resend');
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
+const AIRTABLE_API_KEY = process.env.AIRTABLE_API_KEY;
+const AIRTABLE_BASE_ID = 'appp5kjLRr0PCIhaC';
+const AIRTABLE_TABLE_NAME = 'Signups';
+
+async function addToAirtable(email) {
+    const response = await fetch(`https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_TABLE_NAME}`, {
+        method: 'POST',
+        headers: {
+            'Authorization': `Bearer ${AIRTABLE_API_KEY}`,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            records: [{
+                fields: {
+                    'Email Address': email,
+                    'Signup Date': new Date().toISOString().split('T')[0]
+                }
+            }]
+        })
+    });
+
+    if (!response.ok) {
+        const error = await response.text();
+        console.error('Airtable error:', error);
+        throw new Error('Failed to add to Airtable');
+    }
+
+    return response.json();
+}
+
 exports.handler = async (event) => {
     // Only allow POST requests
     if (event.httpMethod !== 'POST') {
@@ -65,6 +95,9 @@ exports.handler = async (event) => {
                 </div>
             `
         });
+
+        // Add to Airtable
+        await addToAirtable(email);
 
         return {
             statusCode: 200,
