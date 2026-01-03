@@ -54,7 +54,7 @@ async function verifyRecaptcha(token) {
     return data;
 }
 
-async function addToAirtable(email) {
+async function addToAirtable(email, recaptchaScore, clientIP) {
     const response = await fetch(`https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_TABLE_NAME}`, {
         method: 'POST',
         headers: {
@@ -65,7 +65,9 @@ async function addToAirtable(email) {
             records: [{
                 fields: {
                     'Email Address': email,
-                    'Signup Date': new Date().toISOString().split('T')[0]
+                    'Signup Date': new Date().toISOString().split('T')[0],
+                    'reCAPTCHA Score': recaptchaScore || 0,
+                    'IP Address': clientIP
                 }
             }]
         })
@@ -208,7 +210,7 @@ exports.handler = async (event) => {
         });
 
         // Add to Airtable
-        await addToAirtable(email);
+        await addToAirtable(email, recaptchaResult.score, clientIP);
 
         return {
             statusCode: 200,
