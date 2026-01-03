@@ -55,6 +55,7 @@ document.querySelectorAll('.card, .section').forEach(el => {
 // Beta signup form handler
 const betaForm = document.getElementById('beta-form');
 const betaSuccess = document.getElementById('beta-success');
+const RECAPTCHA_SITE_KEY = '6LfI9T4sAAAAANxTvpRvO43zLwRBw_hfUJKjljDR';
 
 if (betaForm) {
     betaForm.addEventListener('submit', async (e) => {
@@ -68,24 +69,31 @@ if (betaForm) {
         button.disabled = true;
 
         try {
+            // Get reCAPTCHA token
+            const recaptchaToken = await grecaptcha.execute(RECAPTCHA_SITE_KEY, { action: 'signup' });
+
             const response = await fetch('/.netlify/functions/signup', {
                 method: 'POST',
-                body: JSON.stringify({ email }),
+                body: JSON.stringify({ email, recaptchaToken }),
                 headers: { 'Content-Type': 'application/json' }
             });
+
+            const data = await response.json();
 
             if (response.ok) {
                 betaForm.style.display = 'none';
                 const microcopy = document.querySelector('.beta-microcopy');
                 if (microcopy) microcopy.style.display = 'none';
                 betaSuccess.style.display = 'block';
+            } else if (response.status === 429) {
+                throw new Error('Too many requests. Please try again later.');
             } else {
-                throw new Error('Signup failed');
+                throw new Error(data.error || 'Signup failed');
             }
         } catch (error) {
             button.textContent = 'Try Again';
             button.disabled = false;
-            alert('Something went wrong. Please try again or email us at support@cloakid.app');
+            alert(error.message || 'Something went wrong. Please try again or email us at support@cloakid.app');
         }
     });
 }

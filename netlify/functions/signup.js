@@ -5,6 +5,54 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 const AIRTABLE_API_KEY = process.env.AIRTABLE_API_KEY;
 const AIRTABLE_BASE_ID = 'appp5kjLRr0PCIhaC';
 const AIRTABLE_TABLE_NAME = 'Signups';
+const RECAPTCHA_SECRET_KEY = process.env.RECAPTCHA_SECRET_KEY;
+
+// Simple in-memory rate limiting (resets on function cold start)
+// For production, consider using Netlify Edge Functions with KV or Redis
+const rateLimitMap = new Map();
+const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000; // 1 hour
+const MAX_REQUESTS_PER_WINDOW = 5; // 5 signups per hour per IP
+
+function isRateLimited(ip) {
+    const now = Date.now();
+    const record = rateLimitMap.get(ip);
+
+    if (!record) {
+        rateLimitMap.set(ip, { count: 1, windowStart: now });
+        return false;
+    }
+
+    // Reset window if expired
+    if (now - record.windowStart > RATE_LIMIT_WINDOW_MS) {
+        rateLimitMap.set(ip, { count: 1, windowStart: now });
+        return false;
+    }
+
+    // Check if over limit
+    if (record.count >= MAX_REQUESTS_PER_WINDOW) {
+        return true;
+    }
+
+    // Increment count
+    record.count++;
+    return false;
+}
+
+async function verifyRecaptcha(token) {
+    if (!RECAPTCHA_SECRET_KEY) {
+        console.warn('RECAPTCHA_SECRET_KEY not configured, skipping verification');
+        return { success: true, score: 1.0 };
+    }
+
+    const response = await fetch('https://www.google.com/recaptcha/api/siteverify', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: `secret=${RECAPTCHA_SECRET_KEY}&response=${token}`
+    });
+
+    const data = await response.json();
+    return data;
+}
 
 async function addToAirtable(email) {
     const response = await fetch(`https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_TABLE_NAME}`, {
@@ -41,13 +89,74 @@ exports.handler = async (event) => {
         };
     }
 
+    // Get client IP for rate limiting
+    const clientIP = event.headers['x-forwarded-for']?.split(',')[0]?.trim()
+        || event.headers['client-ip']
+        || 'unknown';
+
+    // Check rate limit
+    if (isRateLimited(clientIP)) {
+        console.log(`Rate limited: ${clientIP}`);
+        return {
+            statusCode: 429,
+            body: JSON.stringify({ error: 'Too many requests. Please try again later.' })
+        };
+    }
+
     try {
-        const { email } = JSON.parse(event.body);
+        const { email, recaptchaToken } = JSON.parse(event.body);
 
         if (!email) {
             return {
                 statusCode: 400,
                 body: JSON.stringify({ error: 'Email is required' })
+            };
+        }
+
+        // Validate email format
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            return {
+                statusCode: 400,
+                body: JSON.stringify({ error: 'Invalid email format' })
+            };
+        }
+
+        // Block obvious spam domains
+        const spamDomains = ['valvesoftware.com', 'example.com', 'test.com'];
+        const emailDomain = email.split('@')[1]?.toLowerCase();
+        if (spamDomains.includes(emailDomain)) {
+            console.log(`Blocked spam domain: ${email}`);
+            return {
+                statusCode: 400,
+                body: JSON.stringify({ error: 'Please use a valid email address' })
+            };
+        }
+
+        // Verify reCAPTCHA
+        if (!recaptchaToken) {
+            return {
+                statusCode: 400,
+                body: JSON.stringify({ error: 'reCAPTCHA verification required' })
+            };
+        }
+
+        const recaptchaResult = await verifyRecaptcha(recaptchaToken);
+
+        if (!recaptchaResult.success) {
+            console.log('reCAPTCHA failed:', recaptchaResult);
+            return {
+                statusCode: 400,
+                body: JSON.stringify({ error: 'reCAPTCHA verification failed' })
+            };
+        }
+
+        // Check reCAPTCHA score (v3 returns 0.0 - 1.0, higher is more likely human)
+        if (recaptchaResult.score !== undefined && recaptchaResult.score < 0.5) {
+            console.log(`Low reCAPTCHA score (${recaptchaResult.score}) for: ${email}`);
+            return {
+                statusCode: 400,
+                body: JSON.stringify({ error: 'Verification failed. Please try again.' })
             };
         }
 
@@ -90,7 +199,9 @@ exports.handler = async (event) => {
                     <h2 style="color: #0f172a;">New Beta Signup</h2>
                     <p style="color: #4b5563; font-size: 16px;">
                         <strong>Email:</strong> ${email}<br>
-                        <strong>Time:</strong> ${new Date().toISOString()}
+                        <strong>Time:</strong> ${new Date().toISOString()}<br>
+                        <strong>IP:</strong> ${clientIP}<br>
+                        <strong>reCAPTCHA Score:</strong> ${recaptchaResult.score || 'N/A'}
                     </p>
                 </div>
             `
