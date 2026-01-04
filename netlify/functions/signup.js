@@ -259,31 +259,80 @@ exports.handler = async (event) => {
         await resend.emails.send({
             from: 'CloakID <noreply@cloakid.app>',
             to: email,
-            subject: "Verify your CloakID beta application",
+            subject: "Verify your email to join CloakID beta",
             html: `
-                <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 600px; margin: 0 auto; padding: 40px 20px;">
-                    <div style="text-align: center; margin-bottom: 30px;">
-                        <h1 style="color: #0f172a; font-size: 28px; margin-bottom: 10px;">Verify Your Email</h1>
-                        <p style="color: #64748b; font-size: 16px;">One more step to complete your application</p>
-                    </div>
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <meta charset="utf-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                </head>
+                <body style="margin: 0; padding: 0; background-color: #f1f5f9; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;">
+                    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color: #f1f5f9;">
+                        <tr>
+                            <td align="center" style="padding: 40px 20px;">
+                                <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="max-width: 480px; background: white; border-radius: 16px; box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);">
+                                    <!-- Header with logo -->
+                                    <tr>
+                                        <td style="padding: 32px 32px 0; text-align: center;">
+                                            <img src="https://cloakid.app/images/cloakid-icon-black.png" alt="CloakID" width="48" height="48" style="display: block; margin: 0 auto 16px;">
+                                            <h1 style="margin: 0; font-size: 24px; font-weight: 700; color: #0f172a;">Verify your email</h1>
+                                        </td>
+                                    </tr>
 
-                    <div style="background: #f8fafc; border-radius: 12px; padding: 30px; margin-bottom: 30px;">
-                        <p style="color: #4b5563; font-size: 16px; line-height: 1.6; margin: 0;">
-                            Thanks for your interest in CloakID! Please click the button below to verify your email and complete your beta application.
-                        </p>
-                        <div style="text-align: center; margin-top: 25px;">
-                            <a href="${verificationUrl}" style="display: inline-block; background: #00C853; color: white; font-weight: 700; padding: 14px 32px; border-radius: 100px; text-decoration: none; font-size: 16px;">Verify Email</a>
-                        </div>
-                        <p style="color: #9ca3af; font-size: 14px; margin-top: 20px; text-align: center;">
-                            This link expires in 24 hours.
-                        </p>
-                    </div>
+                                    <!-- Main content -->
+                                    <tr>
+                                        <td style="padding: 24px 32px;">
+                                            <p style="margin: 0 0 24px; font-size: 16px; line-height: 1.6; color: #4b5563; text-align: center;">
+                                                Thanks for your interest in CloakID! Click the button below to verify your email and complete your beta application.
+                                            </p>
 
-                    <div style="text-align: center; color: #64748b; font-size: 14px;">
-                        <p style="margin: 0;">If you didn't request this, you can ignore this email.</p>
-                        <p style="margin: 10px 0 0 0;">Niobium LLC</p>
-                    </div>
-                </div>
+                                            <!-- CTA Button -->
+                                            <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
+                                                <tr>
+                                                    <td align="center" style="padding: 8px 0 24px;">
+                                                        <a href="${verificationUrl}" style="display: inline-block; background: linear-gradient(135deg, #00C853 0%, #00a843 100%); color: white; font-weight: 600; font-size: 16px; padding: 14px 40px; border-radius: 100px; text-decoration: none; box-shadow: 0 4px 14px rgba(0, 200, 83, 0.4);">Verify Email Address</a>
+                                                    </td>
+                                                </tr>
+                                            </table>
+
+                                            <!-- Link expires notice -->
+                                            <p style="margin: 0; font-size: 13px; color: #94a3b8; text-align: center;">
+                                                This link expires in 24 hours
+                                            </p>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Divider -->
+                                    <tr>
+                                        <td style="padding: 0 32px;">
+                                            <hr style="border: none; border-top: 1px solid #e2e8f0; margin: 0;">
+                                        </td>
+                                    </tr>
+
+                                    <!-- Footer -->
+                                    <tr>
+                                        <td style="padding: 24px 32px 32px; text-align: center;">
+                                            <p style="margin: 0 0 8px; font-size: 13px; color: #94a3b8;">
+                                                Didn't request this? You can safely ignore this email.
+                                            </p>
+                                            <p style="margin: 0; font-size: 13px; color: #94a3b8;">
+                                                © ${new Date().getFullYear()} Niobium LLC · <a href="https://cloakid.app" style="color: #1ba3c6; text-decoration: none;">cloakid.app</a>
+                                            </p>
+                                        </td>
+                                    </tr>
+                                </table>
+
+                                <!-- Fallback link -->
+                                <p style="margin: 24px 0 0; font-size: 12px; color: #94a3b8; text-align: center;">
+                                    Button not working? Copy and paste this link:<br>
+                                    <a href="${verificationUrl}" style="color: #1ba3c6; word-break: break-all;">${verificationUrl}</a>
+                                </p>
+                            </td>
+                        </tr>
+                    </table>
+                </body>
+                </html>
             `
         });
 
