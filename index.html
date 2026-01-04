@@ -40,15 +40,21 @@
             <p class="subtitle">Get real phone numbers for different parts of your life. AI screens calls so spam never reaches you. Important people always get through.</p>
             <p style="margin-top: 1rem; font-weight: 500; color: var(--primary-dark);">Each persona is a real, carrier-grade phone number.</p>
 
+            <div class="beta-notice">
+                <p>CloakID is in private beta. We're approving users manually.</p>
+            </div>
+
             <form class="beta-signup-form" id="beta-form">
                 <input type="email" name="email" placeholder="Enter your email" required>
-                <button type="submit" class="btn btn-accent">Get Early Access</button>
+                <textarea name="why" placeholder="Why do you want CloakID? (1-2 sentences)" required minlength="20" rows="2"></textarea>
+                <input type="text" name="website" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
+                <button type="submit" class="btn btn-accent">Request Beta Access</button>
             </form>
             <p class="beta-microcopy">No spam, ever. Unsubscribe anytime.</p>
 
             <div class="beta-success" id="beta-success">
                 <span class="success-icon">&#10003;</span>
-                <p>You're in! Check your inbox for confirmation.</p>
+                <p>Check your email to verify and complete your application.</p>
             </div>
         </div>
     </section>

@@ -771,6 +771,7 @@ footer {
 /* Beta Signup Form */
 .beta-signup-form {
   display: flex;
+  flex-direction: column;
   gap: 0.75rem;
   justify-content: center;
   max-width: 500px;
@@ -778,7 +779,54 @@ footer {
   animation: fadeInUp 0.8s ease-out 0.4s both;
 }
 
-.beta-signup-form input {
+.beta-signup-form .form-row {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.beta-signup-form textarea {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  border: 2px solid #e5e7eb;
+  border-radius: 16px;
+  font-size: 1rem;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  resize: none;
+  min-height: 70px;
+}
+
+.beta-signup-form textarea:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(27, 163, 198, 0.1);
+}
+
+.beta-signup-form textarea::placeholder {
+  color: #9ca3af;
+}
+
+/* Beta notice */
+.beta-notice {
+  background: linear-gradient(135deg, rgba(27, 163, 198, 0.08) 0%, rgba(0, 125, 145, 0.08) 100%);
+  border: 1px solid rgba(27, 163, 198, 0.2);
+  border-radius: 12px;
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 1.5rem;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  animation: fadeInUp 0.8s ease-out 0.35s both;
+}
+
+.beta-notice p {
+  color: var(--primary-dark);
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin: 0;
+}
+
+.beta-signup-form input[type="email"] {
   flex: 1;
   padding: 1rem 1.5rem;
   border: 2px solid #e5e7eb;
@@ -787,6 +835,15 @@ footer {
   font-family: inherit;
   outline: none;
   transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+/* Honeypot field - hidden from humans */
+.hp-field {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
 }
 
 .beta-signup-form input:focus {

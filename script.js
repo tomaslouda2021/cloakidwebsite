@@ -72,9 +72,21 @@ if (betaForm) {
             // Get reCAPTCHA token
             const recaptchaToken = await grecaptcha.execute(RECAPTCHA_SITE_KEY, { action: 'signup' });
 
+            const why = betaForm.querySelector('[name="why"]').value;
+
+            // Client-side validation for "why" field
+            if (why.length < 20) {
+                throw new Error('Please tell us more about why you want CloakID (at least 20 characters).');
+            }
+
             const response = await fetch('/.netlify/functions/signup', {
                 method: 'POST',
-                body: JSON.stringify({ email, recaptchaToken }),
+                body: JSON.stringify({
+                    email,
+                    recaptchaToken,
+                    why,
+                    website: betaForm.querySelector('[name="website"]').value
+                }),
                 headers: { 'Content-Type': 'application/json' }
             });
 

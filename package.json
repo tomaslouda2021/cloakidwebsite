@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "CloakID - Professional Identity Management",
   "dependencies": {
+    "@netlify/blobs": "^8.1.0",
     "resend": "^2.0.0"
   }
 }

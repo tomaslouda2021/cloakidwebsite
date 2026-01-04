@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Your Application - CloakID</title>
+    <meta name="description" content="Complete your CloakID beta application">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="images/cloakid-icon-black.png">
+    <link rel="apple-touch-icon" href="images/cloakid-icon-black.png">
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="index.html" class="logo">
+                <img src="images/cloakid-icon-black.png" alt="CloakID Logo">
+                <span class="logo-text">CloakID</span>
+            </a>
+        </nav>
+    </header>
+
+    <section class="hero" style="min-height: 100vh;">
+        <div class="container">
+            <div class="confirm-card" id="confirm-form-container">
+                <div class="success-icon" style="background: var(--primary-color);">&#10003;</div>
+                <h1 style="font-size: 1.75rem; margin-bottom: 0.5rem;">Email Verified!</h1>
+                <p style="color: #64748b; margin-bottom: 2rem;">One last step to complete your application</p>
+
+                <form id="confirm-form" class="confirm-form">
+                    <div class="form-group">
+                        <label>Which problem are you trying to solve?</label>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="problem" value="Spam calls" required>
+                                <span>Spam calls</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="problem" value="Strangers">
+                                <span>Giving my number to strangers</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="problem" value="Business">
+                                <span>Business / clients</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="problem" value="Dating">
+                                <span>Dating</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="problem" value="Other">
+                                <span>Other</span>
+                            </label>
+                        </div>
+                        <input type="text" name="otherProblem" id="other-problem" placeholder="Please specify..." class="other-input" style="display: none;">
+                    </div>
+
+                    <div class="form-group">
+                        <label>How painful is this problem for you?</label>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="painLevel" value="Mild" required>
+                                <span>Mild annoyance</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="painLevel" value="Regular">
+                                <span>Regular frustration</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="painLevel" value="Severe">
+                                <span>Actively hurting me</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-accent" style="width: 100%; margin-top: 1rem;">Complete Application</button>
+                </form>
+            </div>
+
+            <div class="confirm-card" id="confirm-success" style="display: none;">
+                <div class="success-icon">&#10003;</div>
+                <h1 style="font-size: 1.75rem; margin-bottom: 0.5rem;">Application Complete!</h1>
+                <p style="color: #64748b; margin-bottom: 1.5rem;">Thank you for your interest in CloakID.</p>
+                <div style="background: #f8fafc; border-radius: 12px; padding: 1.5rem; text-align: left;">
+                    <p style="color: #4b5563; font-size: 0.95rem; line-height: 1.6; margin: 0;">
+                        <strong>What happens next?</strong><br><br>
+                        We're onboarding 10-20 users per week. You'll hear from us if selected for beta access.
+                    </p>
+                </div>
+                <a href="index.html" class="btn" style="margin-top: 1.5rem;">Back to Home</a>
+            </div>
+
+            <div class="confirm-card" id="confirm-error" style="display: none;">
+                <div class="success-icon" style="background: #ef4444;">!</div>
+                <h1 style="font-size: 1.75rem; margin-bottom: 0.5rem;">Something went wrong</h1>
+                <p style="color: #64748b; margin-bottom: 1.5rem;">Please try again or contact support.</p>
+                <a href="index.html" class="btn">Back to Home</a>
+            </div>
+        </div>
+    </section>
+
+    <style>
+        .confirm-card {
+            background: white;
+            border-radius: 24px;
+            padding: 2.5rem;
+            max-width: 500px;
+            margin: 0 auto;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            text-align: center;
+        }
+
+        .confirm-form {
+            text-align: left;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label:first-child {
+            display: block;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 0.75rem;
+        }
+
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: normal;
+        }
+
+        .radio-option:hover {
+            border-color: var(--primary-color);
+            background: rgba(27, 163, 198, 0.03);
+        }
+
+        .radio-option input[type="radio"] {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--primary-color);
+        }
+
+        .radio-option input[type="radio"]:checked + span {
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+
+        .radio-option:has(input:checked) {
+            border-color: var(--primary-color);
+            background: rgba(27, 163, 198, 0.05);
+        }
+
+        .other-input {
+            margin-top: 0.5rem;
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-family: inherit;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .other-input:focus {
+            border-color: var(--primary-color);
+        }
+    </style>
+
+    <script>
+        const token = new URLSearchParams(window.location.search).get('token');
+        const form = document.getElementById('confirm-form');
+        const formContainer = document.getElementById('confirm-form-container');
+        const successContainer = document.getElementById('confirm-success');
+        const errorContainer = document.getElementById('confirm-error');
+        const otherProblemInput = document.getElementById('other-problem');
+        const problemRadios = document.querySelectorAll('input[name="problem"]');
+
+        // Show/hide "other" input
+        problemRadios.forEach(radio => {
+            radio.addEventListener('change', (e) => {
+                otherProblemInput.style.display = e.target.value === 'Other' ? 'block' : 'none';
+                if (e.target.value === 'Other') {
+                    otherProblemInput.focus();
+                }
+            });
+        });
+
+        // Handle no token
+        if (!token) {
+            formContainer.style.display = 'none';
+            errorContainer.style.display = 'block';
+        }
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const formData = new FormData(form);
+            const problem = formData.get('problem');
+            const painLevel = formData.get('painLevel');
+            const otherProblem = formData.get('otherProblem');
+
+            const button = form.querySelector('button');
+            button.textContent = 'Submitting...';
+            button.disabled = true;
+
+            try {
+                const response = await fetch('/.netlify/functions/confirm', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        token,
+                        problemCategory: problem,
+                        otherProblemText: problem === 'Other' ? otherProblem : null,
+                        painLevel
+                    })
+                });
+
+                if (response.ok) {
+                    formContainer.style.display = 'none';
+                    successContainer.style.display = 'block';
+                } else {
+                    throw new Error('Submission failed');
+                }
+            } catch (error) {
+                button.textContent = 'Try Again';
+                button.disabled = false;
+                alert('Something went wrong. Please try again.');
+            }
+        });
+    </script>
+</body>
+</html>
