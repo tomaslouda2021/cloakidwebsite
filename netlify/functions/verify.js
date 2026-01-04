@@ -8,25 +8,30 @@ const AIRTABLE_TABLE_NAME = 'Signups';
 
 async function findRecordByToken(token) {
     const filterFormula = encodeURIComponent(`{Verification Token} = "${token}"`);
-    const response = await fetch(
-        `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_TABLE_NAME}?filterByFormula=${filterFormula}`,
-        {
-            headers: {
-                'Authorization': `Bearer ${AIRTABLE_API_KEY}`,
-                'Content-Type': 'application/json'
-            }
+    const url = `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_TABLE_NAME}?filterByFormula=${filterFormula}`;
+    console.log('Querying Airtable:', url);
+
+    const response = await fetch(url, {
+        headers: {
+            'Authorization': `Bearer ${AIRTABLE_API_KEY}`,
+            'Content-Type': 'application/json'
         }
-    );
+    });
 
     if (!response.ok) {
-        throw new Error('Failed to query Airtable');
+        const errorText = await response.text();
+        console.error('Airtable query error:', response.status, errorText);
+        throw new Error(`Failed to query Airtable: ${response.status}`);
     }
 
     const data = await response.json();
+    console.log('Found records:', data.records.length);
     return data.records[0] || null;
 }
 
 async function updateRecordStatus(recordId, status) {
+    console.log('Updating record:', recordId, 'to status:', status);
+
     const response = await fetch(
         `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_TABLE_NAME}/${recordId}`,
         {
@@ -45,9 +50,12 @@ async function updateRecordStatus(recordId, status) {
     );
 
     if (!response.ok) {
-        throw new Error('Failed to update Airtable record');
+        const errorText = await response.text();
+        console.error('Airtable update error:', response.status, errorText);
+        throw new Error(`Failed to update Airtable record: ${response.status}`);
     }
 
+    console.log('Record updated successfully');
     return response.json();
 }
 
