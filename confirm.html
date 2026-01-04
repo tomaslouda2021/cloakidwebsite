@@ -34,32 +34,32 @@
 
                 <form id="confirm-form" class="confirm-form">
                     <div class="form-group">
-                        <label class="form-label">Which problem are you trying to solve?</label>
-                        <div class="radio-group">
-                            <label class="radio-option">
-                                <input type="radio" name="problem" value="Spam calls" required>
-                                <span class="radio-checkmark"></span>
-                                <span class="radio-text">Spam calls are driving me crazy</span>
+                        <label class="form-label">Which problems are you trying to solve? <span class="label-hint">(select all that apply)</span></label>
+                        <div class="checkbox-group">
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="problem" value="Spam calls">
+                                <span class="checkbox-checkmark"></span>
+                                <span class="checkbox-text">Spam calls are driving me crazy</span>
                             </label>
-                            <label class="radio-option">
-                                <input type="radio" name="problem" value="Strangers">
-                                <span class="radio-checkmark"></span>
-                                <span class="radio-text">I don't want to give my number to strangers</span>
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="problem" value="Strangers">
+                                <span class="checkbox-checkmark"></span>
+                                <span class="checkbox-text">I don't want to give my number to strangers</span>
                             </label>
-                            <label class="radio-option">
-                                <input type="radio" name="problem" value="Business">
-                                <span class="radio-checkmark"></span>
-                                <span class="radio-text">Separating business from personal</span>
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="problem" value="Business">
+                                <span class="checkbox-checkmark"></span>
+                                <span class="checkbox-text">Separating business from personal</span>
                             </label>
-                            <label class="radio-option">
-                                <input type="radio" name="problem" value="Dating">
-                                <span class="radio-checkmark"></span>
-                                <span class="radio-text">Protecting my privacy while dating</span>
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="problem" value="Dating">
+                                <span class="checkbox-checkmark"></span>
+                                <span class="checkbox-text">Protecting my privacy while dating</span>
                             </label>
-                            <label class="radio-option">
-                                <input type="radio" name="problem" value="Other">
-                                <span class="radio-checkmark"></span>
-                                <span class="radio-text">Something else</span>
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="problem" value="Other">
+                                <span class="checkbox-checkmark"></span>
+                                <span class="checkbox-text">Something else</span>
                             </label>
                         </div>
                         <input type="text" name="otherProblem" id="other-problem" placeholder="Tell us more..." class="other-input">
@@ -196,12 +196,20 @@
             font-size: 0.95rem;
         }
 
+        .label-hint {
+            font-weight: 400;
+            color: #94a3b8;
+            font-size: 0.85rem;
+        }
+
+        .checkbox-group,
         .radio-group {
             display: flex;
             flex-direction: column;
             gap: 0.625rem;
         }
 
+        .checkbox-option,
         .radio-option {
             display: flex;
             align-items: center;
@@ -215,11 +223,13 @@
             position: relative;
         }
 
+        .checkbox-option:hover,
         .radio-option:hover {
             border-color: var(--primary-color);
             background: rgba(27, 163, 198, 0.04);
         }
 
+        .checkbox-option input[type="checkbox"],
         .radio-option input[type="radio"] {
             position: absolute;
             opacity: 0;
@@ -227,6 +237,56 @@
             height: 0;
         }
 
+        /* Checkbox styles */
+        .checkbox-checkmark {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #d1d5db;
+            border-radius: 6px;
+            flex-shrink: 0;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .checkbox-checkmark::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 6px;
+            width: 5px;
+            height: 10px;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg) scale(0);
+            transition: transform 0.2s ease;
+        }
+
+        .checkbox-option input[type="checkbox"]:checked + .checkbox-checkmark {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        .checkbox-option input[type="checkbox"]:checked + .checkbox-checkmark::after {
+            transform: rotate(45deg) scale(1);
+        }
+
+        .checkbox-option:has(input:checked) {
+            border-color: var(--primary-color);
+            background: rgba(27, 163, 198, 0.06);
+        }
+
+        .checkbox-option:has(input:checked) .checkbox-text {
+            color: var(--primary-dark);
+            font-weight: 500;
+        }
+
+        .checkbox-text {
+            color: #4b5563;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        /* Radio styles */
         .radio-checkmark {
             width: 20px;
             height: 20px;
@@ -378,18 +438,17 @@
         const successContainer = document.getElementById('confirm-success');
         const errorContainer = document.getElementById('confirm-error');
         const otherProblemInput = document.getElementById('other-problem');
-        const problemRadios = document.querySelectorAll('input[name="problem"]');
+        const problemCheckboxes = document.querySelectorAll('input[name="problem"]');
+        const otherCheckbox = document.querySelector('input[name="problem"][value="Other"]');
 
-        // Show/hide "other" input
-        problemRadios.forEach(radio => {
-            radio.addEventListener('change', (e) => {
-                if (e.target.value === 'Other') {
-                    otherProblemInput.classList.add('visible');
-                    otherProblemInput.focus();
-                } else {
-                    otherProblemInput.classList.remove('visible');
-                }
-            });
+        // Show/hide "other" input based on checkbox
+        otherCheckbox.addEventListener('change', (e) => {
+            if (e.target.checked) {
+                otherProblemInput.classList.add('visible');
+                otherProblemInput.focus();
+            } else {
+                otherProblemInput.classList.remove('visible');
+            }
         });
 
         // Handle no token
@@ -401,10 +460,20 @@
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
 
+            // Get all checked problems
+            const checkedProblems = Array.from(problemCheckboxes)
+                .filter(cb => cb.checked)
+                .map(cb => cb.value);
+
             const formData = new FormData(form);
-            const problem = formData.get('problem');
             const painLevel = formData.get('painLevel');
             const otherProblem = formData.get('otherProblem');
+
+            // Validate at least one problem selected
+            if (checkedProblems.length === 0) {
+                alert('Please select at least one problem.');
+                return;
+            }
 
             const button = form.querySelector('button');
             button.textContent = 'Submitting...';
@@ -416,8 +485,8 @@
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         token,
-                        problemCategory: problem,
-                        otherProblemText: problem === 'Other' ? otherProblem : null,
+                        problemCategory: checkedProblems.join(', '),
+                        otherProblemText: checkedProblems.includes('Other') ? otherProblem : null,
                         painLevel
                     })
                 });
