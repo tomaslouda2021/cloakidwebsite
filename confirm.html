@@ -19,81 +19,107 @@
         </nav>
     </header>
 
-    <section class="hero" style="min-height: 100vh;">
+    <section class="confirm-section">
         <div class="container">
             <div class="confirm-card" id="confirm-form-container">
-                <div class="success-icon" style="background: var(--primary-color);">&#10003;</div>
-                <h1 style="font-size: 1.75rem; margin-bottom: 0.5rem;">Email Verified!</h1>
-                <p style="color: #64748b; margin-bottom: 2rem;">One last step to complete your application</p>
+                <div class="confirm-header">
+                    <div class="confirm-icon confirm-icon-success">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                    </div>
+                    <h1>Email Verified!</h1>
+                    <p>One last step to complete your application</p>
+                </div>
 
                 <form id="confirm-form" class="confirm-form">
                     <div class="form-group">
-                        <label>Which problem are you trying to solve?</label>
+                        <label class="form-label">Which problem are you trying to solve?</label>
                         <div class="radio-group">
                             <label class="radio-option">
                                 <input type="radio" name="problem" value="Spam calls" required>
-                                <span>Spam calls</span>
+                                <span class="radio-checkmark"></span>
+                                <span class="radio-text">Spam calls are driving me crazy</span>
                             </label>
                             <label class="radio-option">
                                 <input type="radio" name="problem" value="Strangers">
-                                <span>Giving my number to strangers</span>
+                                <span class="radio-checkmark"></span>
+                                <span class="radio-text">I don't want to give my number to strangers</span>
                             </label>
                             <label class="radio-option">
                                 <input type="radio" name="problem" value="Business">
-                                <span>Business / clients</span>
+                                <span class="radio-checkmark"></span>
+                                <span class="radio-text">Separating business from personal</span>
                             </label>
                             <label class="radio-option">
                                 <input type="radio" name="problem" value="Dating">
-                                <span>Dating</span>
+                                <span class="radio-checkmark"></span>
+                                <span class="radio-text">Protecting my privacy while dating</span>
                             </label>
                             <label class="radio-option">
                                 <input type="radio" name="problem" value="Other">
-                                <span>Other</span>
+                                <span class="radio-checkmark"></span>
+                                <span class="radio-text">Something else</span>
                             </label>
                         </div>
-                        <input type="text" name="otherProblem" id="other-problem" placeholder="Please specify..." class="other-input" style="display: none;">
+                        <input type="text" name="otherProblem" id="other-problem" placeholder="Tell us more..." class="other-input">
                     </div>
 
                     <div class="form-group">
-                        <label>How painful is this problem for you?</label>
-                        <div class="radio-group">
-                            <label class="radio-option">
+                        <label class="form-label">How much does this problem affect you?</label>
+                        <div class="radio-group pain-level-group">
+                            <label class="radio-option pain-option">
                                 <input type="radio" name="painLevel" value="Mild" required>
-                                <span>Mild annoyance</span>
+                                <span class="pain-indicator mild"></span>
+                                <span class="radio-text">Mild annoyance</span>
                             </label>
-                            <label class="radio-option">
+                            <label class="radio-option pain-option">
                                 <input type="radio" name="painLevel" value="Regular">
-                                <span>Regular frustration</span>
+                                <span class="pain-indicator regular"></span>
+                                <span class="radio-text">Regular frustration</span>
                             </label>
-                            <label class="radio-option">
+                            <label class="radio-option pain-option">
                                 <input type="radio" name="painLevel" value="Severe">
-                                <span>Actively hurting me</span>
+                                <span class="pain-indicator severe"></span>
+                                <span class="radio-text">It's seriously affecting me</span>
                             </label>
                         </div>
                     </div>
 
-                    <button type="submit" class="btn btn-accent" style="width: 100%; margin-top: 1rem;">Complete Application</button>
+                    <button type="submit" class="btn btn-accent confirm-submit">Complete Application</button>
                 </form>
             </div>
 
             <div class="confirm-card" id="confirm-success" style="display: none;">
-                <div class="success-icon">&#10003;</div>
-                <h1 style="font-size: 1.75rem; margin-bottom: 0.5rem;">Application Complete!</h1>
-                <p style="color: #64748b; margin-bottom: 1.5rem;">Thank you for your interest in CloakID.</p>
-                <div style="background: #f8fafc; border-radius: 12px; padding: 1.5rem; text-align: left;">
-                    <p style="color: #4b5563; font-size: 0.95rem; line-height: 1.6; margin: 0;">
-                        <strong>What happens next?</strong><br><br>
-                        We're onboarding 10-20 users per week. You'll hear from us if selected for beta access.
-                    </p>
+                <div class="confirm-header">
+                    <div class="confirm-icon confirm-icon-success">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                    </div>
+                    <h1>You're on the list!</h1>
+                    <p>Thank you for your interest in CloakID</p>
                 </div>
-                <a href="index.html" class="btn" style="margin-top: 1.5rem;">Back to Home</a>
+                <div class="next-steps">
+                    <h3>What happens next?</h3>
+                    <p>We're carefully onboarding 10-20 users per week to ensure the best experience. If selected, you'll receive an email with next steps.</p>
+                </div>
+                <a href="index.html" class="btn confirm-home-btn">Back to Home</a>
             </div>
 
             <div class="confirm-card" id="confirm-error" style="display: none;">
-                <div class="success-icon" style="background: #ef4444;">!</div>
-                <h1 style="font-size: 1.75rem; margin-bottom: 0.5rem;">Something went wrong</h1>
-                <p style="color: #64748b; margin-bottom: 1.5rem;">Please try again or contact support.</p>
-                <a href="index.html" class="btn">Back to Home</a>
+                <div class="confirm-header">
+                    <div class="confirm-icon confirm-icon-error">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="8" x2="12" y2="12"></line>
+                            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                        </svg>
+                    </div>
+                    <h1>Something went wrong</h1>
+                    <p>Please try again or contact support</p>
+                </div>
+                <a href="index.html" class="btn confirm-home-btn">Back to Home</a>
             </div>
         </div>
     </section>
