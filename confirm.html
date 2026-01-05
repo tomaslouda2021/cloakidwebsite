@@ -495,12 +495,13 @@
                     formContainer.style.display = 'none';
                     successContainer.style.display = 'block';
                 } else {
-                    throw new Error('Submission failed');
+                    const data = await response.json().catch(() => ({}));
+                    throw new Error(data.error || 'Submission failed');
                 }
             } catch (error) {
                 button.textContent = 'Try Again';
                 button.disabled = false;
-                alert('Something went wrong. Please try again.');
+                alert(error.message || 'Something went wrong. Please try again.');
             }
         });
     </script>

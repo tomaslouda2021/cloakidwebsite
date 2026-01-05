@@ -82,16 +82,21 @@ exports.handler = async (event) => {
 
         // Find record by token
         const record = await findRecordByToken(token);
+        console.log('Record lookup result:', record ? 'found' : 'not found');
 
         if (!record) {
+            console.log('No record found for token:', token);
             return {
                 statusCode: 400,
                 body: JSON.stringify({ error: 'Invalid token' })
             };
         }
 
+        console.log('Record status:', record.fields['Status']);
+
         // Verify the record is in verified status
         if (record.fields['Status'] !== 'verified') {
+            console.log('Status check failed. Expected "verified", got:', record.fields['Status']);
             return {
                 statusCode: 400,
                 body: JSON.stringify({ error: 'Please verify your email first' })
