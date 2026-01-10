@@ -141,7 +141,7 @@ nav {
   position: relative;
   background: #fafbfc;
   overflow: hidden;
-  padding: 100px 0 60px;
+  padding: 100px 0 40px;
 }
 
 
@@ -158,8 +158,8 @@ nav {
 }
 
 .hero-mascot {
-  margin: 1rem auto 1.5rem;
-  max-width: 160px;
+  margin: 0 auto 0.5rem;
+  max-width: 140px;
   opacity: 0;
   animation: fadeInUp 0.8s ease-out 0.4s both;
 }
@@ -194,7 +194,7 @@ h1 {
 .subtitle {
   font-size: clamp(0.95rem, 1.5vw, 1.1rem);
   color: #64748b;
-  margin-bottom: 2rem;
+  margin-bottom: 0.5rem;
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
@@ -713,7 +713,7 @@ footer {
   }
   
   .hero {
-    padding: 80px 0 40px;
+    padding: 90px 0 40px;
   }
 
   .section {
@@ -810,7 +810,8 @@ footer {
   border: 1px solid rgba(27, 163, 198, 0.2);
   border-radius: 12px;
   padding: 0.75rem 1.25rem;
-  margin-bottom: 1.5rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
   max-width: 500px;
   margin-left: auto;
   margin-right: auto;
