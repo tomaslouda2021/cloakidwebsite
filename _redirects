@@ -1,0 +1,2 @@
+# Proxy share landing pages to API server
+/p/*  https://api.cloakid.app/p/:splat  200
