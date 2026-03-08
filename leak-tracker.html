@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leak Tracker - I Gave 10 Companies 10 Different Phone Numbers | CloakID</title>
+    <meta name="description" content="CloakID lets you give every company a different phone number. When spam appears, you know exactly where it came from. Follow our live experiment.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="images/_CloakID_icon_white.png">
+    <link rel="apple-touch-icon" href="images/_CloakID_icon_white.png">
+
+    <!-- Open Graph / Social Sharing -->
+    <meta property="og:title" content="I gave 10 companies 10 different phone numbers. Let's see who leaks them.">
+    <meta property="og:description" content="CloakID lets you give every company a different phone number. When spam appears, you know exactly where it came from.">
+    <meta property="og:image" content="https://cloakid.app/images/leak-tracker-preview.png">
+    <meta property="og:url" content="https://cloakid.app/leak-tracker">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="I gave 10 companies 10 different phone numbers. Let's see who leaks them.">
+    <meta name="twitter:description" content="CloakID lets you give every company a different phone number. When spam appears, you know exactly where it came from.">
+    <meta name="twitter:image" content="https://cloakid.app/images/leak-tracker-preview.png">
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="index.html" class="logo">
+                <img src="images/_CloakID_logo_1.png" alt="CloakID Logo">
+            </a>
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="index.html#features">How It Works</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <h1>I gave 10 companies 10 different phone numbers.<br>Let's see who leaks them.</h1>
+            <p class="subtitle" style="font-weight: 600; color: var(--text-dark); margin-bottom: 0.25rem;">Your phone number has quietly become your universal ID.</p>
+            <p class="subtitle">Most people give the same phone number to everyone. CloakID lets you give a different one to each relationship — so when spam starts, you know where it came from.</p>
+            <div style="margin-top: 1.5rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="index.html#beta-form" class="btn btn-primary">Get CloakID</a>
+                <a href="#results" class="btn btn-secondary">View Live Results</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experiment Status -->
+    <section class="section">
+        <div class="container">
+            <div class="experiment-status">
+                <div class="experiment-status-item">
+                    <span class="experiment-status-label">Experiment Started</span>
+                    <span class="experiment-status-value">March 8, 2026</span>
+                </div>
+                <div class="experiment-status-item">
+                    <span class="experiment-status-label">Companies Enrolled</span>
+                    <span class="experiment-status-value">10</span>
+                </div>
+                <div class="experiment-status-item">
+                    <span class="experiment-status-label">Leaks Detected</span>
+                    <span class="experiment-status-value">0</span>
+                </div>
+                <div class="experiment-status-item">
+                    <span class="experiment-status-label">Last Updated</span>
+                    <span class="experiment-status-value">March 8, 2026</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="section bg-gradient">
+        <div class="container">
+            <h2>How the Experiment Works</h2>
+            <div class="grid grid-3">
+                <div class="card animate-on-scroll">
+                    <div class="step-number">1</div>
+                    <h3>Each company gets a unique number</h3>
+                    <p>CloakID lets you create different phone numbers for different parts of your life. Each company only sees its own number.</p>
+                </div>
+                <div class="card animate-on-scroll">
+                    <div class="step-number">2</div>
+                    <h3>Calls are tracked automatically</h3>
+                    <p>Every incoming call is logged. If a robocall, spam caller, or telemarketer appears, we know which number they called.</p>
+                </div>
+                <div class="card animate-on-scroll">
+                    <div class="step-number">3</div>
+                    <h3>Spam reveals the leak</h3>
+                    <p>Because every company received a different number, spam tells us exactly where the exposure happened.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The 10 Companies -->
+    <section class="section">
+        <div class="container">
+            <h2>The 10 Companies</h2>
+            <p style="text-align: center; color: #4b5563; max-width: 700px; margin: -0.5rem auto 2rem;">Each company received a unique CloakID phone number. If spam appears on that number, we'll know exactly which identity was exposed.</p>
+
+            <div class="tracker-table-wrapper">
+                <table class="tracker-table">
+                    <thead>
+                        <tr>
+                            <th>Company</th>
+                            <th>Persona</th>
+                            <th>Number Ends In</th>
+                            <th>Spam Calls</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Amazon</td>
+                            <td>Shopping</td>
+                            <td>4821</td>
+                            <td>0</td>
+                            <td><span class="status-clean">Clean</span></td>
+                        </tr>
+                        <tr>
+                            <td>Delta Airlines</td>
+                            <td>Travel</td>
+                            <td>9934</td>
+                            <td>0</td>
+                            <td><span class="status-clean">Clean</span></td>
+                        </tr>
+                        <tr>
+                            <td>AT&T</td>
+                            <td>Telecom</td>
+                            <td>5512</td>
+                            <td>0</td>
+                            <td><span class="status-clean">Clean</span></td>
+                        </tr>
+                        <tr>
+                            <td>Bank of America</td>
+                            <td>Banking</td>
+                            <td>7743</td>
+                            <td>0</td>
+                            <td><span class="status-clean">Clean</span></td>
+                        </tr>
+                        <tr>
+                            <td>Home Depot</td>
+                            <td>Contractor</td>
+                            <td>6127</td>
+                            <td>0</td>
+                            <td><span class="status-clean">Clean</span></td>
+                        </tr>
+                        <tr>
+                            <td>Uber</td>
+                            <td>Ride Apps</td>
+                            <td>3901</td>
+                            <td>0</td>
+                            <td><span class="status-clean">Clean</span></td>
+                        </tr>
+                        <tr>
+                            <td>CVS</td>
+                            <td>Pharmacy</td>
+                            <td>8804</td>
+                            <td>0</td>
+                            <td><span class="status-clean">Clean</span></td>
+                        </tr>
+                        <tr>
+                            <td>DoorDash</td>
+                            <td>Delivery</td>
+                            <td>1455</td>
+                            <td>0</td>
+                            <td><span class="status-clean">Clean</span></td>
+                        </tr>
+                        <tr>
+                            <td>LinkedIn</td>
+                            <td>Professional</td>
+                            <td>6678</td>
+                            <td>0</td>
+                            <td><span class="status-clean">Clean</span></td>
+                        </tr>
+                        <tr>
+                            <td>Newsletter signup</td>
+                            <td>Spam Trap</td>
+                            <td>2289</td>
+                            <td>0</td>
+                            <td><span class="status-clean">Clean</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p style="text-align: center; color: #94a3b8; font-size: 0.85rem; margin-top: 1rem;">Results update weekly.</p>
+        </div>
+    </section>
+
+    <!-- Live Results -->
+    <section class="section bg-gradient" id="results">
+        <div class="container">
+            <h2>Live Results</h2>
+            <div class="grid grid-3" style="max-width: 900px; margin: 0 auto;">
+                <div class="card animate-on-scroll">
+                    <h3>Shopping</h3>
+                    <div class="result-bar-container">
+                        <div class="result-bar" style="width: 0%;"></div>
+                    </div>
+                    <p style="margin-top: 0.5rem; font-weight: 600;">0 spam calls</p>
+                </div>
+                <div class="card animate-on-scroll">
+                    <h3>Travel</h3>
+                    <div class="result-bar-container">
+                        <div class="result-bar" style="width: 0%;"></div>
+                    </div>
+                    <p style="margin-top: 0.5rem; font-weight: 600;">0 spam calls</p>
+                </div>
+                <div class="card animate-on-scroll">
+                    <h3>Telecom</h3>
+                    <div class="result-bar-container">
+                        <div class="result-bar" style="width: 0%;"></div>
+                    </div>
+                    <p style="margin-top: 0.5rem; font-weight: 600;">0 spam calls</p>
+                </div>
+                <div class="card animate-on-scroll">
+                    <h3>Banking</h3>
+                    <div class="result-bar-container">
+                        <div class="result-bar" style="width: 0%;"></div>
+                    </div>
+                    <p style="margin-top: 0.5rem; font-weight: 600;">0 spam calls</p>
+                </div>
+                <div class="card animate-on-scroll">
+                    <h3>Contractor</h3>
+                    <div class="result-bar-container">
+                        <div class="result-bar" style="width: 0%;"></div>
+                    </div>
+                    <p style="margin-top: 0.5rem; font-weight: 600;">0 spam calls</p>
+                </div>
+                <div class="card animate-on-scroll">
+                    <h3>Ride Apps</h3>
+                    <div class="result-bar-container">
+                        <div class="result-bar" style="width: 0%;"></div>
+                    </div>
+                    <p style="margin-top: 0.5rem; font-weight: 600;">0 spam calls</p>
+                </div>
+                <div class="card animate-on-scroll">
+                    <h3>Pharmacy</h3>
+                    <div class="result-bar-container">
+                        <div class="result-bar" style="width: 0%;"></div>
+                    </div>
+                    <p style="margin-top: 0.5rem; font-weight: 600;">0 spam calls</p>
+                </div>
+                <div class="card animate-on-scroll">
+                    <h3>Delivery</h3>
+                    <div class="result-bar-container">
+                        <div class="result-bar" style="width: 0%;"></div>
+                    </div>
+                    <p style="margin-top: 0.5rem; font-weight: 600;">0 spam calls</p>
+                </div>
+                <div class="card animate-on-scroll">
+                    <h3>Professional</h3>
+                    <div class="result-bar-container">
+                        <div class="result-bar" style="width: 0%;"></div>
+                    </div>
+                    <p style="margin-top: 0.5rem; font-weight: 600;">0 spam calls</p>
+                </div>
+            </div>
+            <p style="text-align: center; color: #64748b; margin-top: 2rem; font-size: 0.9rem;">Last spam event detected: <strong>None yet</strong></p>
+        </div>
+    </section>
+
+    <!-- Why This Matters -->
+    <section class="section">
+        <div class="container">
+            <h2>Why This Matters</h2>
+            <div class="highlight-box" style="max-width: 800px; margin: 0 auto;">
+                <p style="font-size: 1.05rem; line-height: 1.8; color: #4b5563;">Your phone number was never meant to become your identity. But today it is used to identify you, track you, authenticate you, market to you, and sell your data. And once it spreads, you can't take it back.</p>
+                <p style="font-size: 1.05rem; line-height: 1.8; color: #4b5563; margin-top: 1rem;"><strong>CloakID changes the model.</strong> Instead of one number for everything, you get one identity per relationship. When something goes wrong, you can block it, rotate it, or delete it — without affecting the rest of your life.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- What CloakID Does -->
+    <section class="section bg-gradient">
+        <div class="container" style="max-width: 800px;">
+            <h2>What CloakID Does</h2>
+            <p style="text-align: center; color: #4b5563; margin-bottom: 2rem;">Think of it as a firewall for your identity.</p>
+            <ul class="features-list">
+                <li>Create separate phone identities for separate relationships</li>
+                <li>Control who can reach each number</li>
+                <li>Block, rotate, or remove exposed identities</li>
+                <li>Stop spam before it reaches you</li>
+                <li>Know exactly where your number leaked</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Disclaimer -->
+    <section class="section">
+        <div class="container" style="max-width: 800px;">
+            <p style="text-align: center; color: #94a3b8; font-size: 0.85rem; line-height: 1.6;">This experiment is directional and observational. Spam on a number may result from sharing, resale, reuse, or other downstream exposure, and is not by itself proof of wrongdoing by any specific company.</p>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section">
+        <div class="container">
+            <div class="cta-section">
+                <h2>Follow the Results</h2>
+                <p>We'll publish updates as the experiment unfolds. If a company leaks the number, you'll see it here first.</p>
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <a href="index.html#beta-form" class="btn">Get CloakID</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Product</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html#features">Features</a></li>
+                        <li><a href="pricing.html">Pricing</a></li>
+                        <li><a href="about.html">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul class="footer-links">
+                        <li><a href="support.html">Help Center</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="mailto:support@cloakid.app">support@cloakid.app</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="terms-of-service.html">Terms of Service</a></li>
+                        <li><a href="sms-disclosure.html">SMS Opt-in Disclosure</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Niobium LLC</a></li>
+                        <li><a href="mailto:hello@cloakid.app">hello@cloakid.app</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 0.5rem;">CloakID phone numbers are intended for personal and business communications initiated by the user. We do not support unsolicited messaging or spam.</p>
+                <p>&copy; 2025 Niobium LLC. All rights reserved. CloakID is a product of Niobium LLC.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,2 +1,5 @@
 # Proxy share landing pages to API server
 /p/*  https://api.cloakid.app/p/:splat  200
+
+# Clean URL for leak tracker campaign page
+/leak-tracker  /leak-tracker.html  200
