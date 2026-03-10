@@ -997,10 +997,20 @@ footer {
 }
 
 /* Leak Tracker - Status Badges */
-.status-clean {
+.status-monitoring {
   display: inline-block;
-  background: rgba(0, 200, 83, 0.1);
-  color: #059669;
+  background: rgba(148, 163, 184, 0.15);
+  color: #64748b;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.2rem 0.75rem;
+  border-radius: 100px;
+}
+
+.status-active {
+  display: inline-block;
+  background: rgba(59, 130, 246, 0.1);
+  color: #2563eb;
   font-size: 0.8rem;
   font-weight: 600;
   padding: 0.2rem 0.75rem;

@@ -1,7 +1,7 @@
 # Leak Tracker — Internal Log
 
 > This is an internal log for the CloakID Leak Tracker experiment.
-> It is NOT published on the website. It tracks all activity across the 10 personas
+> It is NOT published on the website. It tracks all activity across the 11 personas
 > to maintain a credible, auditable dataset.
 
 ## Experiment Rules
@@ -35,6 +35,7 @@
 | Travel            | Southwest Airlines             | 6208           | 46      |
 | Public Listing    | Craigslist Listing (Control)   | 9291           | 46      |
 | Education         | Arizona State University Online| 9245           | 46      |
+| Medical Subscriptions | CVS                        | 1016           | 46      |
 
 ---
 
@@ -46,7 +47,8 @@
 - **SMS** 2:04 PM from +19495709546 (Unknown lender): "Hi John, I just received your inquiry about obtaining a new property and I look forward to working with you..."
 - **CALL** 2:20 PM from +15125002528 (Austin VoIP block 512-500): Missed, 3 seconds, screened out. Predictive dialer pattern — connected, heard screening TTS, auto-disconnected. The 512-500 block is widely used by VoIP carriers serving mortgage brokers, insurance lead buyers, solar sales, and home service dialers. Dialer detected IVR/screening and dropped the call.
 - **SMS** 3:07 PM from +19127129937 (Tomo Mortgage): "Hey John - did you take a look at your quote? Any questions on it? I'd love to lock you in..."
-- **CALL** 5:17 PM from +15127207735 (Austin VoIP block 512-720): Missed, <1 second (256ms), screened out. Same predictive dialer pattern as previous call — connected, heard screening TTS, auto-disconnected instantly. Second dialer hit on Mortgage number.
+- **CALL** 4:26 PM from +19495709546 (Irvine, CA — same lender who texted at 2:04 PM): 87 seconds, connected and forwarded to personal number. This lender both texted AND called. CDR confirms inbound 16:26:05 UTC, answered 16:26:07, ended 16:27:34. Outbound forwarding leg: 39 seconds to personal.
+- **CALL** 5:17 PM from +15127207735 (Austin VoIP block 512-720): Missed, <1 second (256ms), screened out. Same predictive dialer pattern as previous call — connected, heard screening TTS, auto-disconnected instantly. Third dialer/lender hit on Mortgage number.
 - **Classification:** Likely a LendingTree partner lender using a predictive dialer. LendingTree distributes leads to multiple lenders, so dialers calling from VoIP blocks is expected behavior. Not counted as spam — but this is the pattern that precedes leaks when leads get resold downstream.
 - **Verdict:** Expected (lead marketplace partner). Not a leak.
 
@@ -83,15 +85,54 @@
 | Apartments.com | 9528 | 0 | 0 | No activity |
 | EnergySage | 0884 | 0 | 0 | No activity |
 | Angi | 9454 | 0 | 0 | No activity |
-| LendingTree | 8417 | 6 | 0 | 3 SMS (Tomo Mortgage), 1 SMS (unknown lender), 2 calls (dialers, both screened out) |
+| LendingTree | 8417 | 7 | 0 | 3 SMS (Tomo), 1 SMS (Irvine lender), 3 calls (Irvine lender connected 87s, 2 dialers screened out) |
 | HealthMarkets | 2843 | 0 | 0 | No activity |
 | Toyota of Cedar Park | 1579 | 1 | 0 | 1 SMS (dealership opt-in) |
 | Southwest Airlines | 6208 | 0 | 0 | No activity |
 | Craigslist | 9291 | 2 | 0 | 2 calls (Danielle West — 1st cancelled, 2nd left voicemail re: Craigslist ad) |
 | ASU Online | 9245 | 1 | 0 | 1 call (ASU admissions, screened ALLOW) |
 
-- **Total legitimate responses:** 10 (6 Mortgage + 1 Car Buying + 1 Education + 2 Craigslist)
+- **Total legitimate responses:** 11 (7 Mortgage + 1 Car Buying + 1 Education + 2 Craigslist)
 - **Total spam detected:** 0
 - **Leaks detected:** 0
 - **Experiment status:** Clean. Numbers are active and receiving expected responses.
-- **CDR verified:** All activity cross-referenced against Telnyx CDR export (8 CDR rows, 4 distinct inbound calls).
+- **CDR verified:** All activity cross-referenced against Telnyx CDR export (9 CDR rows: 6 inbound to experiment numbers, 2 outbound forwarding legs, 1 non-experiment inbound to Food Delivery persona).
+
+---
+
+## Day 2 — March 10, 2026
+
+### All Personas
+- Moving (9399): No activity
+- Apartment Search (9528): No activity
+- Solar (0884): No activity
+- Home Contractor (9454): No activity
+- Mortgage (8417): No activity
+- Insurance (2843): No activity
+- Car Buying (1579): No activity
+- Travel (6208): No activity
+- Public Listing (9291): No activity
+- Education (9245): No activity
+- Medical Subscriptions (1016): No activity (newly added)
+
+### Day 2 Summary
+
+| Company | Number | Legit | Spam | Notes |
+|---------|--------|-------|------|-------|
+| Moving.com | 9399 | 0 | 0 | No activity |
+| Apartments.com | 9528 | 0 | 0 | No activity |
+| EnergySage | 0884 | 0 | 0 | No activity |
+| Angi | 9454 | 0 | 0 | No activity |
+| LendingTree | 8417 | 0 | 0 | No activity (quiet after Day 1 burst) |
+| HealthMarkets | 2843 | 0 | 0 | No activity |
+| Toyota of Cedar Park | 1579 | 0 | 0 | No activity |
+| Southwest Airlines | 6208 | 0 | 0 | No activity |
+| Craigslist | 9291 | 0 | 0 | No activity |
+| ASU Online | 9245 | 0 | 0 | No activity |
+| CVS | 1016 | 0 | 0 | New persona added Day 2 |
+
+- **Total legitimate responses today:** 0
+- **Total spam detected today:** 0
+- **Leaks detected (cumulative):** 0
+- **Experiment status:** Clean. Day 2 quiet so far — still early (checked ~3 AM CT). Will update EOD.
+- **Note:** CVS (Medical Subscriptions) persona added. 11 personas now tracked.
