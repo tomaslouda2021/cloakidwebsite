@@ -55,29 +55,20 @@ async function updateRecordIntent(recordId, problemCategory, otherProblemText, p
     return response.json();
 }
 
-exports.handler = async (event) => {
-    if (event.httpMethod !== 'POST') {
-        return {
-            statusCode: 405,
-            body: JSON.stringify({ error: 'Method not allowed' })
-        };
+module.exports = async function handler(req, res) {
+    if (req.method !== 'POST') {
+        return res.status(405).json({ error: 'Method not allowed' });
     }
 
     try {
-        const { token, problemCategory, otherProblemText, painLevel } = JSON.parse(event.body);
+        const { token, problemCategory, otherProblemText, painLevel } = req.body;
 
         if (!token) {
-            return {
-                statusCode: 400,
-                body: JSON.stringify({ error: 'Token is required' })
-            };
+            return res.status(400).json({ error: 'Token is required' });
         }
 
         if (!problemCategory || !painLevel) {
-            return {
-                statusCode: 400,
-                body: JSON.stringify({ error: 'Please complete all fields' })
-            };
+            return res.status(400).json({ error: 'Please complete all fields' });
         }
 
         // Find record by token
@@ -86,10 +77,7 @@ exports.handler = async (event) => {
 
         if (!record) {
             console.log('No record found for token:', token);
-            return {
-                statusCode: 400,
-                body: JSON.stringify({ error: 'Invalid token' })
-            };
+            return res.status(400).json({ error: 'Invalid token' });
         }
 
         console.log('Record status:', record.fields['Status']);
@@ -97,10 +85,7 @@ exports.handler = async (event) => {
         // Verify the record is in verified status
         if (record.fields['Status'] !== 'verified') {
             console.log('Status check failed. Expected "verified", got:', record.fields['Status']);
-            return {
-                statusCode: 400,
-                body: JSON.stringify({ error: 'Please verify your email first' })
-            };
+            return res.status(400).json({ error: 'Please verify your email first' });
         }
 
         // Update record with intent data
@@ -133,16 +118,10 @@ exports.handler = async (event) => {
 
         console.log(`Application complete: ${email}`);
 
-        return {
-            statusCode: 200,
-            body: JSON.stringify({ success: true })
-        };
+        return res.status(200).json({ success: true });
 
     } catch (error) {
         console.error('Confirmation error:', error);
-        return {
-            statusCode: 500,
-            body: JSON.stringify({ error: 'Failed to process confirmation' })
-        };
+        return res.status(500).json({ error: 'Failed to process confirmation' });
     }
 };

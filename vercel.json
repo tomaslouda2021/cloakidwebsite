@@ -1,0 +1,7 @@
+{
+  "rewrites": [
+    { "source": "/p/:path*", "destination": "https://api.cloakid.app/p/:path*" },
+    { "source": "/leak-tracker", "destination": "/leak-tracker.html" },
+    { "source": "/.netlify/functions/verify", "destination": "/api/verify" }
+  ]
+}

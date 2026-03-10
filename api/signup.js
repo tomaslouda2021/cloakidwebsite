@@ -1,5 +1,4 @@
 const { Resend } = require('resend');
-const { getStore } = require('@netlify/blobs');
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -8,41 +7,26 @@ const AIRTABLE_BASE_ID = 'appp5kjLRr0PCIhaC';
 const AIRTABLE_TABLE_NAME = 'Signups';
 const RECAPTCHA_SECRET_KEY = process.env.RECAPTCHA_SECRET_KEY;
 
-// Rate limiting configuration
+// Rate limiting configuration (in-memory, best-effort — reCAPTCHA is the real protection)
 const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000; // 1 hour
 const MAX_REQUESTS_PER_WINDOW = 5; // 5 signups per hour per IP
+const rateLimitMap = new Map();
 
-async function isRateLimited(ip) {
+function isRateLimited(ip) {
     const now = Date.now();
+    const record = rateLimitMap.get(ip);
 
-    try {
-        const store = getStore('rate-limits');
-        const record = await store.get(ip, { type: 'json' });
-
-        if (!record) {
-            await store.setJSON(ip, { count: 1, windowStart: now });
-            return false;
-        }
-
-        // Reset window if expired
-        if (now - record.windowStart > RATE_LIMIT_WINDOW_MS) {
-            await store.setJSON(ip, { count: 1, windowStart: now });
-            return false;
-        }
-
-        // Check if over limit
-        if (record.count >= MAX_REQUESTS_PER_WINDOW) {
-            return true;
-        }
-
-        // Increment count
-        await store.setJSON(ip, { count: record.count + 1, windowStart: record.windowStart });
-        return false;
-    } catch (error) {
-        // If Blobs unavailable, allow request (fail open)
-        console.error('Rate limit check failed:', error);
+    if (!record || now - record.windowStart > RATE_LIMIT_WINDOW_MS) {
+        rateLimitMap.set(ip, { count: 1, windowStart: now });
         return false;
     }
+
+    if (record.count >= MAX_REQUESTS_PER_WINDOW) {
+        return true;
+    }
+
+    record.count++;
+    return false;
 }
 
 async function verifyRecaptcha(token) {
@@ -101,55 +85,40 @@ function generateVerificationToken() {
     });
 }
 
-exports.handler = async (event) => {
+module.exports = async function handler(req, res) {
     // Only allow POST requests
-    if (event.httpMethod !== 'POST') {
-        return {
-            statusCode: 405,
-            body: JSON.stringify({ error: 'Method not allowed' })
-        };
+    if (req.method !== 'POST') {
+        return res.status(405).json({ error: 'Method not allowed' });
     }
 
     // Get client IP for rate limiting
-    const clientIP = event.headers['x-forwarded-for']?.split(',')[0]?.trim()
-        || event.headers['client-ip']
+    const clientIP = req.headers['x-forwarded-for']?.split(',')[0]?.trim()
+        || req.headers['x-real-ip']
         || 'unknown';
 
     // Check rate limit
-    if (await isRateLimited(clientIP)) {
+    if (isRateLimited(clientIP)) {
         console.log(`Rate limited: ${clientIP}`);
-        return {
-            statusCode: 429,
-            body: JSON.stringify({ error: 'Too many requests. Please try again later.' })
-        };
+        return res.status(429).json({ error: 'Too many requests. Please try again later.' });
     }
 
     try {
-        const { email, recaptchaToken, why, website } = JSON.parse(event.body);
+        const { email, recaptchaToken, why, website } = req.body;
 
         // Honeypot check - silently reject bots (return fake success)
         if (website) {
             console.log(`Honeypot triggered: ${email} from ${clientIP}`);
-            return {
-                statusCode: 200,
-                body: JSON.stringify({ success: true, message: 'Signup successful' })
-            };
+            return res.status(200).json({ success: true, message: 'Signup successful' });
         }
 
         if (!email) {
-            return {
-                statusCode: 400,
-                body: JSON.stringify({ error: 'Email is required' })
-            };
+            return res.status(400).json({ error: 'Email is required' });
         }
 
         // Validate email format
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(email)) {
-            return {
-                statusCode: 400,
-                body: JSON.stringify({ error: 'Invalid email format' })
-            };
+            return res.status(400).json({ error: 'Invalid email format' });
         }
 
         // Block spam and disposable email domains
@@ -189,68 +158,47 @@ exports.handler = async (event) => {
         const emailDomain = email.split('@')[1]?.toLowerCase();
         if (spamDomains.includes(emailDomain)) {
             console.log(`Blocked spam domain: ${email}`);
-            return {
-                statusCode: 400,
-                body: JSON.stringify({ error: 'Please use a valid email address' })
-            };
+            return res.status(400).json({ error: 'Please use a valid email address' });
         }
 
         // Validate "why" field
         if (!why || why.trim().length < 20) {
-            return {
-                statusCode: 400,
-                body: JSON.stringify({ error: 'Please tell us why you want CloakID (at least 20 characters)' })
-            };
+            return res.status(400).json({ error: 'Please tell us why you want CloakID (at least 20 characters)' });
         }
 
         // Reject URLs in "why" field (spam indicator)
         if (/https?:\/\//i.test(why)) {
             console.log(`URL in why field rejected: ${email}`);
-            return {
-                statusCode: 400,
-                body: JSON.stringify({ error: 'Please provide a genuine response without URLs' })
-            };
+            return res.status(400).json({ error: 'Please provide a genuine response without URLs' });
         }
 
         // Reject repeated characters (spam indicator like "aaaaaaaaaa")
         if (/(.)\1{5,}/.test(why)) {
             console.log(`Repeated chars in why field rejected: ${email}`);
-            return {
-                statusCode: 400,
-                body: JSON.stringify({ error: 'Please provide a genuine response' })
-            };
+            return res.status(400).json({ error: 'Please provide a genuine response' });
         }
 
         // Verify reCAPTCHA
         if (!recaptchaToken) {
-            return {
-                statusCode: 400,
-                body: JSON.stringify({ error: 'reCAPTCHA verification required' })
-            };
+            return res.status(400).json({ error: 'reCAPTCHA verification required' });
         }
 
         const recaptchaResult = await verifyRecaptcha(recaptchaToken);
 
         if (!recaptchaResult.success) {
             console.log('reCAPTCHA failed:', recaptchaResult);
-            return {
-                statusCode: 400,
-                body: JSON.stringify({ error: 'reCAPTCHA verification failed' })
-            };
+            return res.status(400).json({ error: 'reCAPTCHA verification failed' });
         }
 
         // Check reCAPTCHA score (v3 returns 0.0 - 1.0, higher is more likely human)
         if (recaptchaResult.score !== undefined && recaptchaResult.score < 0.7) {
             console.log(`Low reCAPTCHA score (${recaptchaResult.score}) for: ${email}`);
-            return {
-                statusCode: 400,
-                body: JSON.stringify({ error: 'Verification failed. Please try again.' })
-            };
+            return res.status(400).json({ error: 'Verification failed. Please try again.' });
         }
 
         // Generate verification token
         const verificationToken = generateVerificationToken();
-        const verificationUrl = `https://cloakid.app/.netlify/functions/verify?token=${verificationToken}`;
+        const verificationUrl = `https://cloakid.app/api/verify?token=${verificationToken}`;
 
         // Add to Airtable first (with unverified status)
         await addToAirtable(email, recaptchaResult.score, clientIP, why, verificationToken);
@@ -356,16 +304,10 @@ exports.handler = async (event) => {
             `
         });
 
-        return {
-            statusCode: 200,
-            body: JSON.stringify({ success: true, message: 'Signup successful' })
-        };
+        return res.status(200).json({ success: true, message: 'Signup successful' });
 
     } catch (error) {
         console.error('Signup error:', error);
-        return {
-            statusCode: 500,
-            body: JSON.stringify({ error: 'Failed to process signup' })
-        };
+        return res.status(500).json({ error: 'Failed to process signup' });
     }
 };

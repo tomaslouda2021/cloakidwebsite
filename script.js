@@ -79,7 +79,7 @@ if (betaForm) {
                 throw new Error('Please tell us more about why you want CloakID (at least 20 characters).');
             }
 
-            const response = await fetch('/.netlify/functions/signup', {
+            const response = await fetch('/api/signup', {
                 method: 'POST',
                 body: JSON.stringify({
                     email,

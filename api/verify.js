@@ -59,14 +59,11 @@ async function updateRecordStatus(recordId, status) {
     return response.json();
 }
 
-exports.handler = async (event) => {
-    const token = event.queryStringParameters?.token;
+module.exports = async function handler(req, res) {
+    const token = req.query.token;
 
     if (!token) {
-        return {
-            statusCode: 302,
-            headers: { Location: '/?error=missing_token' }
-        };
+        return res.redirect(302, '/?error=missing_token');
     }
 
     try {
@@ -75,18 +72,12 @@ exports.handler = async (event) => {
 
         if (!record) {
             console.log(`Invalid token: ${token}`);
-            return {
-                statusCode: 302,
-                headers: { Location: '/?error=invalid_token' }
-            };
+            return res.redirect(302, '/?error=invalid_token');
         }
 
         // Check if already verified
         if (record.fields['Status'] === 'verified') {
-            return {
-                statusCode: 302,
-                headers: { Location: `/confirm.html?token=${token}` }
-            };
+            return res.redirect(302, `/confirm.html?token=${token}`);
         }
 
         // Update status to verified
@@ -114,16 +105,10 @@ exports.handler = async (event) => {
         console.log(`Verified: ${email}`);
 
         // Redirect to confirmation page
-        return {
-            statusCode: 302,
-            headers: { Location: `/confirm.html?token=${token}` }
-        };
+        return res.redirect(302, `/confirm.html?token=${token}`);
 
     } catch (error) {
         console.error('Verification error:', error);
-        return {
-            statusCode: 302,
-            headers: { Location: '/?error=verification_failed' }
-        };
+        return res.redirect(302, '/?error=verification_failed');
     }
 };
