@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /p/
+Disallow: /handshake/
+Disallow: /api/
+Disallow: /manage-61d5c83b/
