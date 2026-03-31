@@ -4,10 +4,174 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Support Center - CloakID Help & Resources</title>
-    <meta name="description" content="Get help with CloakID. Access guides, FAQs, and contact our support team.">
+    <meta name="description" content="Get help with CloakID. Quick-start guides, FAQs, troubleshooting, and direct support for your phone identity management.">
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/png" href="images/_CloakID_icon_white.png">
     <link rel="apple-touch-icon" href="images/_CloakID_icon_white.png">
+    <style>
+        /* FAQ Accordion */
+        .faq-item {
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            margin-bottom: 0.75rem;
+            overflow: hidden;
+            transition: box-shadow 0.2s ease;
+        }
+        .faq-item:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+        }
+        .faq-question {
+            width: 100%;
+            background: #ffffff;
+            border: none;
+            padding: 1.25rem 1.5rem;
+            text-align: left;
+            font-family: inherit;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #0f172a;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            transition: background 0.2s ease;
+        }
+        .faq-question:hover {
+            background: #f8fafc;
+        }
+        .faq-question::after {
+            content: '+';
+            font-size: 1.5rem;
+            font-weight: 300;
+            color: #94a3b8;
+            flex-shrink: 0;
+            transition: transform 0.25s ease;
+        }
+        .faq-item.open .faq-question::after {
+            content: '\2212';
+            color: var(--primary-color);
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+        .faq-item.open .faq-answer {
+            max-height: 500px;
+        }
+        .faq-answer-inner {
+            padding: 0 1.5rem 1.25rem;
+            color: #4b5563;
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        /* Topic cards with icon */
+        .topic-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, rgba(27, 163, 198, 0.08) 0%, rgba(0, 125, 145, 0.08) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        /* Step cards */
+        .step-card {
+            display: flex;
+            gap: 1.25rem;
+            align-items: flex-start;
+        }
+        .step-card .step-number {
+            flex-shrink: 0;
+            width: 40px;
+            height: 40px;
+            font-size: 1rem;
+            margin-bottom: 0;
+        }
+        .step-card .step-content h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.05rem;
+        }
+        .step-card .step-content p {
+            font-size: 0.9rem;
+            color: #4b5563;
+            line-height: 1.6;
+        }
+
+        /* FAQ category tabs */
+        .faq-tabs {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+        .faq-tab {
+            padding: 0.5rem 1.25rem;
+            border-radius: 100px;
+            border: 1px solid #e5e7eb;
+            background: #ffffff;
+            font-family: inherit;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #64748b;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .faq-tab:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+        .faq-tab.active {
+            background: var(--primary-gradient);
+            color: white;
+            border-color: transparent;
+        }
+        .faq-category {
+            display: none;
+        }
+        .faq-category.active {
+            display: block;
+        }
+
+        /* Troubleshooting callout */
+        .troubleshoot-item {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+            padding: 1.25rem 0;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        .troubleshoot-item:last-child {
+            border-bottom: none;
+        }
+        .troubleshoot-icon {
+            flex-shrink: 0;
+            width: 32px;
+            height: 32px;
+            background: rgba(27, 163, 198, 0.08);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+        }
+        .troubleshoot-text h4 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 0.25rem;
+        }
+        .troubleshoot-text p {
+            font-size: 0.88rem;
+            color: #4b5563;
+            line-height: 1.5;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -27,159 +191,462 @@
         </nav>
     </header>
 
-    <section class="section">
+    <section class="section" style="padding-top: 6rem;">
         <div class="container">
             <h1>Support Center</h1>
-            <p class="subtitle">Get the help you need to make the most of CloakID</p>
+            <p class="subtitle">Everything you need to get started, manage your personas, and make the most of CloakID.</p>
 
+            <!-- Quick Access Cards -->
             <div class="grid grid-3" style="margin-top: 3rem;">
                 <div class="card">
-                    <div class="icon">📚</div>
-                    <h3>Getting Started Guide</h3>
-                    <p>New to CloakID? Learn how to set up your account, create personas, and configure your preferences.</p>
-                    <a href="#" style="color: var(--primary-blue); font-weight: 600;">Read the Guide →</a>
+                    <div class="topic-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+                    </div>
+                    <h3>Quick Start Guide</h3>
+                    <p>New to CloakID? Get set up in under five minutes with your first persona and phone number.</p>
+                    <a href="#quick-start" style="color: var(--primary-color); font-weight: 600; display: inline-block; margin-top: 0.75rem;">Get Started &rarr;</a>
                 </div>
                 <div class="card">
-                    <div class="icon">❓</div>
+                    <div class="topic-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                    </div>
                     <h3>Frequently Asked Questions</h3>
-                    <p>Find quick answers to common questions about features, billing, security, and more.</p>
-                    <a href="#faq" style="color: var(--primary-blue); font-weight: 600;">Browse FAQs →</a>
+                    <p>Quick answers to common questions about personas, call screening, billing, and privacy.</p>
+                    <a href="#faq" style="color: var(--primary-color); font-weight: 600; display: inline-block; margin-top: 0.75rem;">Browse FAQs &rarr;</a>
                 </div>
                 <div class="card">
-                    <div class="icon">📧</div>
+                    <div class="topic-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                    </div>
                     <h3>Contact Support</h3>
-                    <p>Can't find what you're looking for? Our support team is here to help you succeed.</p>
-                    <a href="mailto:support@cloakid.app" style="color: var(--primary-blue); font-weight: 600;">Email Support →</a>
+                    <p>Can't find what you need? Our team typically responds within 4 hours.</p>
+                    <a href="mailto:support@cloakid.app" style="color: var(--primary-color); font-weight: 600; display: inline-block; margin-top: 0.75rem;">Email Support &rarr;</a>
                 </div>
             </div>
 
+            <!-- Quick Start Guide -->
+            <div id="quick-start" style="margin-top: 4rem;">
+                <h2>Quick Start Guide</h2>
+                <p style="text-align: center; color: #64748b; max-width: 600px; margin: -0.5rem auto 2.5rem;">From download to your first protected call in under five minutes.</p>
+
+                <div style="display: grid; gap: 1.5rem; max-width: 700px; margin: 0 auto;">
+                    <div class="card">
+                        <div class="step-card">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h3>Download the app</h3>
+                                <p>CloakID is available on the App Store (iOS) and Google Play (Android). Create your account with your phone number &mdash; it stays private and is never shared.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="step-card">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h3>Create your first persona</h3>
+                                <p>Tap "Create Persona" and choose a name and area code. CloakID assigns a real phone number that you can give out instead of your personal number.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="step-card">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h3>Set up call screening</h3>
+                                <p>Tell CloakID who you expect to call this number and what it's used for. Incoming calls are screened based on your preferences &mdash; only relevant callers get through.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="step-card">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                <h3>Share your persona number</h3>
+                                <p>Give out your persona number via QR code, SMS, or vCard. Use it for signups, business contacts, dating, deliveries &mdash; anything where you'd rather not share your real number.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="step-card">
+                            <div class="step-number">5</div>
+                            <div class="step-content">
+                                <h3>Manage your contacts</h3>
+                                <p>Add contacts to your personas so you know who's calling. Approved callers are recognized automatically and routed based on your preferences.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Help Topics -->
             <div style="margin-top: 4rem;">
-                <h2>Popular Help Topics</h2>
+                <h2>Help Topics</h2>
                 <div class="grid grid-3" style="margin-top: 2rem;">
                     <div class="card">
-                        <h3>Account Setup</h3>
+                        <div class="topic-icon">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                        </div>
+                        <h3>Account &amp; Setup</h3>
                         <ul class="features-list">
-                            <li>Creating your first persona</li>
-                            <li>Configuring routing rules</li>
-                            <li>Setting up integrations</li>
-                            <li>Importing contacts</li>
+                            <li>Creating and verifying your account</li>
+                            <li>Setting up biometric lock (Face ID / Touch ID)</li>
+                            <li>Managing your profile and preferences</li>
+                            <li>Deleting your account</li>
                         </ul>
                     </div>
                     <div class="card">
-                        <h3>Using CloakID</h3>
+                        <div class="topic-icon">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                        </div>
+                        <h3>Personas &amp; Numbers</h3>
                         <ul class="features-list">
-                            <li>Managing multiple personas</li>
-                            <li>Call routing features</li>
-                            <li>Analytics dashboard</li>
-                            <li>Mobile app usage</li>
+                            <li>Creating permanent and temporary personas</li>
+                            <li>Choosing area codes for your numbers</li>
+                            <li>Sharing your persona number (QR, SMS, vCard)</li>
+                            <li>Upgrading a temporary persona to permanent</li>
                         </ul>
                     </div>
                     <div class="card">
-                        <h3>Billing & Account</h3>
+                        <div class="topic-icon">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                        </div>
+                        <h3>Calls &amp; Screening</h3>
                         <ul class="features-list">
-                            <li>Changing your plan</li>
-                            <li>Payment methods</li>
-                            <li>Canceling subscription</li>
-                            <li>Account security</li>
+                            <li>How call screening works</li>
+                            <li>Making outbound calls from a persona</li>
+                            <li>Voicemail and transcription</li>
+                            <li>Setting screening rules and context</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <div class="topic-icon">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                        </div>
+                        <h3>Messages &amp; SMS</h3>
+                        <ul class="features-list">
+                            <li>Sending and receiving SMS from personas</li>
+                            <li>Message threads and history</li>
+                            <li>SMS from your persona number</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <div class="topic-icon">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                        </div>
+                        <h3>Contacts &amp; Approved Callers</h3>
+                        <ul class="features-list">
+                            <li>Adding and managing contacts</li>
+                            <li>Approving known callers per persona</li>
+                            <li>How approved callers are recognized</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <div class="topic-icon">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+                        </div>
+                        <h3>Billing &amp; Plans</h3>
+                        <ul class="features-list">
+                            <li>Understanding plan tiers and limits</li>
+                            <li>Changing or canceling your plan</li>
+                            <li>Payment through App Store or Google Play</li>
+                            <li>What happens when your trial ends</li>
                         </ul>
                     </div>
                 </div>
             </div>
 
-            <div class="highlight-box" style="margin-top: 3rem;">
-                <h2>Video Tutorials</h2>
-                <p>Learn CloakID with our comprehensive video tutorial series:</p>
-                <ul style="margin-top: 1rem;">
-                    <li><strong>CloakID 101:</strong> Complete platform overview (15 min)</li>
-                    <li><strong>Setting Up Personas:</strong> Create and configure your professional identities (10 min)</li>
-                    <li><strong>Routing Features Deep Dive:</strong> Master call routing and configuration (20 min)</li>
-                    <li><strong>Advanced Tips:</strong> Pro strategies for power users (12 min)</li>
-                </ul>
-            </div>
-
+            <!-- FAQ Section -->
             <div id="faq" style="margin-top: 4rem;">
                 <h2>Frequently Asked Questions</h2>
-                
-                <div class="card" style="margin-top: 2rem;">
-                    <h3>Getting Started</h3>
-                    <div style="margin-top: 1rem;">
-                        <p><strong>How do I create my first persona?</strong></p>
-                        <p>After signing up, click "Create Persona" in your dashboard. Choose a name, configure communication preferences, and set routing rules. Settings can be optimized based on your usage patterns.</p>
+
+                <div class="faq-tabs" style="margin-top: 2rem;">
+                    <button class="faq-tab active" data-category="getting-started">Getting Started</button>
+                    <button class="faq-tab" data-category="personas">Personas</button>
+                    <button class="faq-tab" data-category="calls">Calls &amp; Screening</button>
+                    <button class="faq-tab" data-category="billing">Billing</button>
+                    <button class="faq-tab" data-category="privacy">Privacy &amp; Security</button>
+                </div>
+
+                <!-- Getting Started -->
+                <div class="faq-category active" data-category="getting-started">
+                    <div class="faq-item">
+                        <button class="faq-question">How do I create my first persona?</button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-inner">
+                                After signing up, go to the Personas tab and tap "Create Persona." Pick a name for your persona, choose an area code, and CloakID will assign a real phone number. You can start giving it out immediately. You can also set up screening rules so only relevant callers reach you.
+                            </div>
+                        </div>
                     </div>
-                    <div style="margin-top: 1.5rem;">
-                        <p><strong>Can I import my existing contacts?</strong></p>
-                        <p>Yes! CloakID supports importing contacts from CSV files, Google Contacts, and most major CRM systems. Go to Settings > Import Contacts to get started.</p>
+                    <div class="faq-item">
+                        <button class="faq-question">Is there a mobile app?</button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-inner">
+                                Yes. CloakID has native apps for both iOS and Android. All features &mdash; personas, calls, messages, screening, and trust management &mdash; work fully on both platforms.
+                            </div>
+                        </div>
                     </div>
-                    <div style="margin-top: 1.5rem;">
-                        <p><strong>Is there a mobile app?</strong></p>
-                        <p>Yes, CloakID has native iOS and Android apps available in the App Store and Google Play. All features sync seamlessly across devices.</p>
+                    <div class="faq-item">
+                        <button class="faq-question">What is a persona?</button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-inner">
+                                A persona is a separate phone identity with its own real phone number. You give out the persona number instead of your real number. Each persona has its own call history, messages, voicemail, and screening rules. You can create personas for different parts of your life &mdash; one for work, one for online shopping, one for dating, and so on.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">Do I get a real phone number?</button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-inner">
+                                Yes. Every persona gets a real, carrier-grade US phone number. People can call it and text it just like any regular number. Your personal number is never exposed.
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="card" style="margin-top: 2rem;">
-                    <h3>Features & Usage</h3>
-                    <div style="margin-top: 1rem;">
-                        <p><strong>How does call routing work?</strong></p>
-                        <p>CloakID routes incoming calls based on your configured preferences, contact relationships, and time settings. Calls are directed to the appropriate persona based on rules you set.</p>
+                <!-- Personas -->
+                <div class="faq-category" data-category="personas">
+                    <div class="faq-item">
+                        <button class="faq-question">How many personas can I have?</button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-inner">
+                                It depends on your plan. The Trial plan includes 2 personas, Core ($24.99/month) includes up to 3, and Executive ($49.99/month) includes up to 10. Both permanent and temporary personas count toward your total limit.
+                            </div>
+                        </div>
                     </div>
-                    <div style="margin-top: 1.5rem;">
-                        <p><strong>Can I schedule when personas are active?</strong></p>
-                        <p>Absolutely! Each persona can have custom availability schedules. Set business hours, vacation modes, and automatic responses for each identity.</p>
+                    <div class="faq-item">
+                        <button class="faq-question">What are temporary personas?</button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-inner">
+                                Temporary personas are disposable phone numbers that expire after 7 days. They're useful for short-term situations like selling something online, signing up for a service you don't fully trust, or giving a number to someone you might not want to stay in touch with. You can upgrade a temporary persona to permanent before it expires if you want to keep it.
+                            </div>
+                        </div>
                     </div>
-                    <div style="margin-top: 1.5rem;">
-                        <p><strong>What integrations are available?</strong></p>
-                        <p>CloakID integrates with popular tools like Google Workspace, Microsoft 365, Slack, Salesforce, and more. Enterprise plans include custom integration options.</p>
+                    <div class="faq-item">
+                        <button class="faq-question">What happens when a temporary persona expires?</button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-inner">
+                                You'll receive push notifications at 48 hours, 24 hours, and 1 hour before expiry. After expiry, there's a 24-hour grace period where you can still upgrade to permanent. Once the grace period ends, the phone number is released and cannot be recovered. Your call and message history is preserved for 30 days.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">Can I share my persona number?</button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-inner">
+                                Yes. CloakID gives you several ways to share a persona number: generate a QR code, send it via SMS directly from the app, export it as a vCard (contact card), or just copy the number to your clipboard. The person receiving it sees a normal phone number &mdash; they won't know it's a CloakID persona.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">Can I choose my area code?</button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-inner">
+                                Yes. When creating a persona, you can choose from available US area codes. This is useful if you want a local number for a specific city or region.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">What happens if I delete a persona?</button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-inner">
+                                Deleting a persona permanently releases the phone number. If you have contacts associated with that persona, CloakID will ask you to reassign them to another persona first. You'll need to type "DELETE" to confirm. This action cannot be undone.
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="card" style="margin-top: 2rem;">
-                    <h3>Security & Privacy</h3>
-                    <div style="margin-top: 1rem;">
-                        <p><strong>How is my data protected?</strong></p>
-                        <p>All data is encrypted at rest and in transit using AES-256 encryption. SOC 2 Type II certification is coming soon, and we undergo regular security audits.</p>
+                <!-- Calls & Screening -->
+                <div class="faq-category" data-category="calls">
+                    <div class="faq-item">
+                        <button class="faq-question">How does call screening work?</button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-inner">
+                                When someone calls your persona number, CloakID screens the call based on the context you've provided &mdash; who you expect to call, what the persona is used for, and your screening rules. Callers are asked to identify themselves and state their reason for calling. Based on their response and your preferences, the call is either connected to you, sent to voicemail, or blocked.
+                            </div>
+                        </div>
                     </div>
-                    <div style="margin-top: 1.5rem;">
-                        <p><strong>Can I export my data?</strong></p>
-                        <p>Yes, you can export all your data at any time from Settings > Data Export. We support multiple formats including CSV and JSON.</p>
+                    <div class="faq-item">
+                        <button class="faq-question">Can I make outbound calls from a persona?</button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-inner">
+                                Yes. You can call anyone from within the app using your persona number as the caller ID. CloakID supports both in-app (WebRTC) calling and relay calling, which uses your phone's native dialer while still showing your persona number to the recipient.
+                            </div>
+                        </div>
                     </div>
-                    <div style="margin-top: 1.5rem;">
-                        <p><strong>Is CloakID HIPAA compliant?</strong></p>
-                        <p>HIPAA compliance features are coming soon for Enterprise plans. We will be able to sign BAAs (Business Associate Agreements) for healthcare professionals.</p>
+                    <div class="faq-item">
+                        <button class="faq-question">How does voicemail work?</button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-inner">
+                                When a call is sent to voicemail, the caller can leave a message. You'll get a push notification and can listen to the recording directly in the app with a built-in audio player. Voicemail transcription is included on all plans.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">What is intake mode?</button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-inner">
+                                Intake mode is designed for public-facing personas like a business number. Instead of screening callers, it captures their name and reason for calling, then routes them to voicemail. It acts like a reception desk &mdash; every caller gets to leave a message, and you review them on your own time. You can toggle intake mode on or off in your persona settings.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">Can I give feedback on screening decisions?</button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-inner">
+                                Yes. If a call was blocked that should have gone through (or vice versa), you can provide feedback directly from the activity feed. Your feedback helps improve future screening accuracy for that persona.
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="card" style="margin-top: 2rem;">
-                    <h3>Billing & Plans</h3>
-                    <div style="margin-top: 1rem;">
-                        <p><strong>Can I change my plan anytime?</strong></p>
-                        <p>Yes, you can upgrade or downgrade at any time. Changes take effect at the next billing cycle, with prorated adjustments.</p>
+                <!-- Billing -->
+                <div class="faq-category" data-category="billing">
+                    <div class="faq-item">
+                        <button class="faq-question">What plans are available?</button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-inner">
+                                CloakID offers three plans: <strong>Trial</strong> (free, 7 days, 2 personas), <strong>Core</strong> ($24.99/month, 3 personas including 1 temporary), and <strong>Executive</strong> ($49.99/month, up to 10 personas including 2 temporary). All paid plans include call screening, SMS, voicemail with transcription, and contact management.
+                            </div>
+                        </div>
                     </div>
-                    <div style="margin-top: 1.5rem;">
-                        <p><strong>What happens if I exceed my message limit?</strong></p>
-                        <p>We'll notify you when you're approaching your limit. You can upgrade your plan or purchase additional messages as needed.</p>
+                    <div class="faq-item">
+                        <button class="faq-question">How do I pay?</button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-inner">
+                                Subscriptions are available through the Apple App Store (iOS) and Google Play Store (Android). Stripe is also available as a fallback payment method. You manage your subscription through the platform you signed up on.
+                            </div>
+                        </div>
                     </div>
-                    <div style="margin-top: 1.5rem;">
-                        <p><strong>Do you offer refunds?</strong></p>
-                        <p>We offer a 14-day money-back guarantee for new customers. Contact support@cloakid.app within 14 days for a full refund.</p>
+                    <div class="faq-item">
+                        <button class="faq-question">Can I cancel anytime?</button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-inner">
+                                Yes. You can cancel your subscription at any time through your App Store, Google Play, or Stripe settings. Your service continues until the end of the current billing period. After that, your persona numbers will be deactivated, but your data is preserved for 30 days in case you resubscribe.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">What happens when my trial ends?</button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-inner">
+                                When the 7-day trial expires, your persona numbers stop routing calls and messages. To continue using CloakID, choose a paid plan (Core or Executive). Your existing personas and history are preserved &mdash; you won't lose anything by subscribing after the trial ends, as long as you do so within 30 days.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">Can I upgrade or downgrade my plan?</button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-inner">
+                                Yes. You can switch between Core and Executive at any time. If you downgrade and have more personas than your new plan allows, you'll need to choose which ones to keep. Changes take effect at the start of your next billing cycle.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Privacy & Security -->
+                <div class="faq-category" data-category="privacy">
+                    <div class="faq-item">
+                        <button class="faq-question">Can anyone find my real phone number?</button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-inner">
+                                No. Your real phone number is never exposed to anyone you communicate with through CloakID. Callers and message recipients only see your persona number. Your real number is used solely for account verification and is stored securely.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">How is my data protected?</button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-inner">
+                                CloakID uses encryption for data in transit and at rest. Phone numbers in the call database are encrypted. Authentication credentials are stored in your device's secure enclave (iOS Keychain or Android Keystore), not in regular app storage. Biometric authentication (Face ID / Touch ID) adds an additional layer of protection.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">Can I lock the app with Face ID or Touch ID?</button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-inner">
+                                Yes. CloakID supports biometric authentication on both iOS and Android. You can enable it in Settings. When enabled, you'll need Face ID, Touch ID, or your device passcode to open the app.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">Can I delete my account and all my data?</button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-inner">
+                                Yes. You can delete your account from the Profile screen in the app. This permanently removes your account, releases all phone numbers, and deletes your data. This action cannot be undone. You can also request account deletion by emailing <a href="mailto:support@cloakid.app" style="color: var(--primary-color);">support@cloakid.app</a>.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">Do you sell my data?</button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-inner">
+                                No. CloakID does not sell, share, or monetize your personal data. Privacy is the core of the product. For full details, see our <a href="privacy-policy.html" style="color: var(--primary-color);">Privacy Policy</a>.
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="cta-section" style="margin-top: 3rem;">
-                <h2>Still Need Help?</h2>
-                <p>Our support team is standing by to assist you.</p>
-                <div style="margin-top: 2rem;">
-                    <a href="mailto:support@cloakid.app" class="btn">Email Support</a>
-                    <p style="margin-top: 1rem; font-size: 0.9rem;">Average response time: 4 hours</p>
+            <!-- Troubleshooting -->
+            <div style="margin-top: 4rem;">
+                <h2>Troubleshooting</h2>
+                <div class="card" style="margin-top: 2rem;">
+                    <div class="troubleshoot-item">
+                        <div class="troubleshoot-icon">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--primary-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                        </div>
+                        <div class="troubleshoot-text">
+                            <h4>Calls aren't coming through</h4>
+                            <p>Check that call screening is enabled for your persona. If using intake mode, calls go directly to voicemail by design. Also make sure push notifications are enabled so you're alerted to incoming calls.</p>
+                        </div>
+                    </div>
+                    <div class="troubleshoot-item">
+                        <div class="troubleshoot-icon">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--primary-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                        </div>
+                        <div class="troubleshoot-text">
+                            <h4>SMS not sending or receiving</h4>
+                            <p>Make sure you have an active subscription and your persona number is still active (not expired). If you're on a temporary persona, check that it hasn't passed its 7-day expiry. Restart the app if the issue persists.</p>
+                        </div>
+                    </div>
+                    <div class="troubleshoot-item">
+                        <div class="troubleshoot-icon">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--primary-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                        </div>
+                        <div class="troubleshoot-text">
+                            <h4>Biometric login not working</h4>
+                            <p>If Face ID or Touch ID stops working, try disabling and re-enabling biometric auth in Settings. If you changed your device biometrics (added a new face or fingerprint), you'll need to re-authenticate with your password first.</p>
+                        </div>
+                    </div>
+                    <div class="troubleshoot-item">
+                        <div class="troubleshoot-icon">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--primary-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                        </div>
+                        <div class="troubleshoot-text">
+                            <h4>Legitimate callers being screened out</h4>
+                            <p>Update your persona's context description to better reflect who you expect to call. For example, if you use a persona for a business, include the types of callers you expect (customers, delivery services, suppliers). You can also add specific callers as approved contacts so they're recognized automatically.</p>
+                        </div>
+                    </div>
+                    <div class="troubleshoot-item">
+                        <div class="troubleshoot-icon">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--primary-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                        </div>
+                        <div class="troubleshoot-text">
+                            <h4>iOS widget showing stale data</h4>
+                            <p>Open the CloakID app and navigate to the Personas tab &mdash; this triggers a widget refresh. If the widget still shows old data, remove it from your home screen and re-add it.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <div style="margin-top: 3rem;">
-                <h2>System Status</h2>
-                <div class="highlight-box">
-                    <p><strong>🟢 All Systems Operational</strong></p>
-                    <p>Last updated: 5 minutes ago</p>
-                    <p style="margin-top: 1rem;">Check our <a href="#" style="color: var(--primary-blue);">status page</a> for real-time updates and maintenance schedules.</p>
+            <!-- Contact CTA -->
+            <div class="cta-section" style="margin-top: 4rem;">
+                <h2>Still need help?</h2>
+                <p>Our support team is here for you. We typically respond within 4 hours.</p>
+                <div style="position: relative;">
+                    <a href="mailto:support@cloakid.app" class="btn">Email support@cloakid.app</a>
+                    <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.9;">For billing questions: <a href="mailto:billing@cloakid.app" style="color: white; text-decoration: underline;">billing@cloakid.app</a></p>
                 </div>
             </div>
         </div>
@@ -226,6 +693,40 @@
             </div>
         </div>
     </footer>
+
     <script src="script.js"></script>
+    <script>
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                var item = this.parentElement;
+                var wasOpen = item.classList.contains('open');
+                // Close all in same category
+                item.parentElement.querySelectorAll('.faq-item').forEach(function(el) {
+                    el.classList.remove('open');
+                });
+                if (!wasOpen) {
+                    item.classList.add('open');
+                }
+            });
+        });
+
+        // FAQ Category Tabs
+        document.querySelectorAll('.faq-tab').forEach(function(tab) {
+            tab.addEventListener('click', function() {
+                var category = this.getAttribute('data-category');
+                // Update active tab
+                document.querySelectorAll('.faq-tab').forEach(function(t) {
+                    t.classList.remove('active');
+                });
+                this.classList.add('active');
+                // Show matching category
+                document.querySelectorAll('.faq-category').forEach(function(cat) {
+                    cat.classList.remove('active');
+                });
+                document.querySelector('.faq-category[data-category="' + category + '"]').classList.add('active');
+            });
+        });
+    </script>
 </body>
 </html>
