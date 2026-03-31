@@ -185,6 +185,69 @@
             margin-top: 0.75rem;
         }
 
+        /* Persona example cards */
+        .persona-example {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: all 0.2s ease;
+        }
+        .persona-example:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+        }
+        .persona-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+        .persona-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            flex-shrink: 0;
+        }
+        .persona-name {
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: #0f172a;
+            line-height: 1.2;
+        }
+        .persona-number {
+            font-size: 0.8rem;
+            color: #94a3b8;
+            font-family: 'SF Mono', 'Fira Code', monospace;
+            letter-spacing: 0.02em;
+        }
+        .persona-desc {
+            font-size: 0.88rem;
+            color: #4b5563;
+            line-height: 1.6;
+            margin-bottom: 0.75rem;
+            font-style: italic;
+        }
+        .persona-context {
+            font-size: 0.82rem;
+            color: #64748b;
+            line-height: 1.5;
+        }
+        .persona-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.25rem;
+        }
+        @media (max-width: 768px) {
+            .persona-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
         /* Stat callouts */
         .stat-row {
             display: flex;
@@ -461,6 +524,88 @@
                     <h3>Job Hunting</h3>
                     <p>Post your resume with a persona number so recruiters can reach you without getting your real number. Calls are screened so only real opportunities get through.</p>
                     <span class="use-case-tag">Permanent persona</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Persona Examples -->
+    <section class="section">
+        <div class="container">
+            <h2>How People Set Up Their Personas</h2>
+            <p style="text-align: center; color: #64748b; max-width: 550px; margin: -0.5rem auto 2.5rem;">Most people start with 2&ndash;3 personas. Here are some real setups that work well.</p>
+
+            <div class="persona-grid">
+                <div class="persona-example">
+                    <div class="persona-header">
+                        <div class="persona-avatar" style="background: linear-gradient(135deg, #dbeafe, #bfdbfe);">🤝</div>
+                        <div>
+                            <div class="persona-name">Social</div>
+                            <div class="persona-number">(512) 555-••••</div>
+                        </div>
+                    </div>
+                    <p class="persona-desc">"For people I meet out, events, and new connections."</p>
+                    <p class="persona-context">Give this number to people you meet at parties, neighbors, or casual contacts. Screening lets through anyone who can say why they're calling.</p>
+                </div>
+
+                <div class="persona-example">
+                    <div class="persona-header">
+                        <div class="persona-avatar" style="background: linear-gradient(135deg, #fef3c7, #fde68a);">💼</div>
+                        <div>
+                            <div class="persona-name">Work</div>
+                            <div class="persona-number">(415) 555-••••</div>
+                        </div>
+                    </div>
+                    <p class="persona-desc">"Client calls and professional contacts."</p>
+                    <p class="persona-context">A dedicated line for clients and business. Calls from people mentioning projects or appointments get through. Everything else goes to voicemail.</p>
+                </div>
+
+                <div class="persona-example">
+                    <div class="persona-header">
+                        <div class="persona-avatar" style="background: linear-gradient(135deg, #dcfce7, #bbf7d0);">📦</div>
+                        <div>
+                            <div class="persona-name">Marketplace</div>
+                            <div class="persona-number">(773) 555-••••</div>
+                        </div>
+                    </div>
+                    <p class="persona-desc">"Buying and selling stuff online."</p>
+                    <p class="persona-context">Use this for Craigslist, Facebook Marketplace, or OfferUp. When the sale's done, delete the number. No one can reach you afterward.</p>
+                </div>
+
+                <div class="persona-example">
+                    <div class="persona-header">
+                        <div class="persona-avatar" style="background: linear-gradient(135deg, #fce7f3, #fbcfe8);">❤️</div>
+                        <div>
+                            <div class="persona-name">Dating</div>
+                            <div class="persona-number">(646) 555-••••</div>
+                        </div>
+                    </div>
+                    <p class="persona-desc">"For dating apps and first dates."</p>
+                    <p class="persona-context">Share this instead of your real number. If it doesn't work out, block or delete. No one gets access to your actual phone.</p>
+                </div>
+
+                <div class="persona-example">
+                    <div class="persona-header">
+                        <div class="persona-avatar" style="background: linear-gradient(135deg, #e0e7ff, #c7d2fe);">🏠</div>
+                        <div>
+                            <div class="persona-name">Community</div>
+                            <div class="persona-number">(303) 555-••••</div>
+                        </div>
+                    </div>
+                    <p class="persona-desc">"For neighbors, local groups, and casual contacts."</p>
+                    <p class="persona-context">Great for HOA stuff, kid's school, sports leagues, or anyone in your local orbit. Keeps your personal line clean without being unfriendly.</p>
+                </div>
+
+                <div class="persona-example">
+                    <div class="persona-header">
+                        <div class="persona-avatar" style="background: linear-gradient(135deg, #f3e8ff, #e9d5ff);">🔑</div>
+                        <div>
+                            <div class="persona-name">Services</div>
+                            <div class="persona-number">(972) 555-••••</div>
+                        </div>
+                    </div>
+                    <p class="persona-desc">"Contractors, repair people, deliveries."</p>
+                    <p class="persona-context">The number you give to your plumber, electrician, movers, and anyone doing work on your house. Temporary or permanent — your call.</p>
                 </div>
             </div>
         </div>
