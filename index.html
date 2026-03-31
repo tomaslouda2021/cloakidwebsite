@@ -4,11 +4,247 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CloakID - Your Real Phone Number Should Be Private</title>
-    <meta name="description" content="Get real phone numbers for different parts of your life. CloakID helps keep your real number private by separating calls and messages across dedicated numbers.">
+    <meta name="description" content="Get real phone numbers for different parts of your life. CloakID screens your calls, blocks spam, and keeps your real number hidden.">
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/png" href="images/_CloakID_icon_white.png">
-    <script src="https://www.google.com/recaptcha/api.js?render=6LfI9T4sAAAAANxTvpRvO43zLwRBw_hfUJKjljDR" async defer></script>
     <link rel="apple-touch-icon" href="images/_CloakID_icon_white.png">
+    <style>
+        /* Hero layout with phone mockup */
+        .hero-split {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+            text-align: left;
+        }
+        .hero-split .hero-text {
+            flex: 1;
+        }
+        .hero-split .hero-text h1 {
+            text-align: left;
+        }
+        .hero-split .hero-text .subtitle {
+            margin-left: 0;
+            text-align: left;
+        }
+        .hero-visual {
+            flex: 0 0 320px;
+            position: relative;
+        }
+
+        /* Phone mockup frame */
+        .phone-mockup {
+            width: 280px;
+            height: 560px;
+            background: #f1f5f9;
+            border-radius: 36px;
+            border: 3px solid #e2e8f0;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            position: relative;
+            margin: 0 auto;
+        }
+        .phone-mockup img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .phone-mockup-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #94a3b8;
+            font-size: 0.85rem;
+            text-align: center;
+            padding: 2rem;
+            gap: 1rem;
+        }
+        .phone-mockup-placeholder svg {
+            opacity: 0.4;
+        }
+
+        /* Download buttons */
+        .download-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.85rem 1.75rem;
+            border-radius: 12px;
+            background: #0f172a;
+            color: white;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            border: 1px solid transparent;
+        }
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        .download-btn svg {
+            flex-shrink: 0;
+        }
+        .download-btn .btn-label {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+        }
+        .download-btn .btn-label small {
+            font-size: 0.65rem;
+            font-weight: 400;
+            opacity: 0.8;
+        }
+        .download-btn .btn-label strong {
+            font-size: 1rem;
+        }
+
+        /* Screenshot gallery */
+        .screenshot-row {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            overflow-x: auto;
+            padding: 1rem 0;
+            -webkit-overflow-scrolling: touch;
+        }
+        .screenshot-frame {
+            flex: 0 0 220px;
+            height: 440px;
+            background: #f1f5f9;
+            border-radius: 28px;
+            border: 2px solid #e2e8f0;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        .screenshot-frame:hover {
+            transform: translateY(-6px);
+        }
+        .screenshot-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .screenshot-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #94a3b8;
+            font-size: 0.8rem;
+            text-align: center;
+            padding: 1.5rem;
+            gap: 0.5rem;
+        }
+
+        /* Use case cards */
+        .use-case-card {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 1.75rem;
+            transition: all 0.2s ease;
+        }
+        .use-case-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+            border-color: #d1d5db;
+        }
+        .use-case-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        .use-case-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+        .use-case-card p {
+            font-size: 0.9rem;
+            color: #4b5563;
+            line-height: 1.6;
+        }
+        .use-case-tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            background: rgba(27, 163, 198, 0.08);
+            padding: 0.25rem 0.75rem;
+            border-radius: 100px;
+            margin-top: 0.75rem;
+        }
+
+        /* Stat callouts */
+        .stat-row {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            padding: 2rem 0;
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            line-height: 1;
+        }
+        .stat-label {
+            font-size: 0.85rem;
+            color: #64748b;
+            margin-top: 0.25rem;
+        }
+
+        /* Responsive hero */
+        @media (max-width: 768px) {
+            .hero-split {
+                flex-direction: column;
+                text-align: center;
+                gap: 2rem;
+            }
+            .hero-split .hero-text h1 {
+                text-align: center;
+            }
+            .hero-split .hero-text .subtitle {
+                margin-left: auto;
+                text-align: center;
+            }
+            .hero-visual {
+                flex: none;
+                width: 100%;
+            }
+            .phone-mockup {
+                width: 240px;
+                height: 480px;
+            }
+            .download-buttons {
+                justify-content: center;
+            }
+            .screenshot-frame {
+                flex: 0 0 180px;
+                height: 360px;
+            }
+            .stat-row {
+                gap: 2rem;
+            }
+            .stat-number {
+                font-size: 2rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -23,192 +259,292 @@
             </button>
             <ul class="nav-links">
                 <li><a href="#features">How It Works</a></li>
+                <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="support.html">Support</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
     </header>
 
+    <!-- Hero -->
     <section class="hero">
         <div class="container">
-            <div class="hero-mascot">
-                <img src="images/cloakid-mascot.png" alt="CloakID Mascot">
-            </div>
-            <h1>Your Real Phone Number Should Be Private</h1>
-            <p class="subtitle">Get separate real phone numbers for different parts of your life.</p>
+            <div class="hero-split">
+                <div class="hero-text">
+                    <h1>Your Real Phone Number Should Be Private</h1>
+                    <p class="subtitle">CloakID gives you separate real phone numbers for different parts of your life. Incoming calls are screened before they reach you. Spam is blocked. Your real number stays hidden.</p>
 
-            <form class="beta-signup-form" id="beta-form">
-                <input type="email" name="email" placeholder="Enter your email" required>
-                <textarea name="why" placeholder="Why do you want CloakID? (1-2 sentences)" required minlength="20" rows="2"></textarea>
-                <input type="text" name="website" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
-                <button type="submit" class="btn btn-accent">Request Beta Access</button>
-            </form>
-            <p class="beta-microcopy">No spam. Ever.</p>
-
-            <div class="beta-success" id="beta-success">
-                <span class="success-icon">&#10003;</span>
-                <p>Check your email to verify and complete your application.</p>
+                    <div class="download-buttons">
+                        <a href="#" class="download-btn">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+                                <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+                            </svg>
+                            <span class="btn-label">
+                                <small>Download on the</small>
+                                <strong>App Store</strong>
+                            </span>
+                        </a>
+                        <a href="#" class="download-btn">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+                                <path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.144 1.24a1 1 0 010 1.735l-2.144 1.24-2.53-2.53 2.53-2.685zM5.864 2.658L16.8 9.39l-2.302 2.302-8.634-8.634z"/>
+                            </svg>
+                            <span class="btn-label">
+                                <small>Get it on</small>
+                                <strong>Google Play</strong>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="phone-mockup">
+                        <!-- Replace with: <img src="images/screenshots/hero-screen.png" alt="CloakID app"> -->
+                        <div class="phone-mockup-placeholder">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+                            <span>App screenshot<br>goes here</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
+    <!-- Trust bar -->
     <section class="section" style="padding-top: 2rem; padding-bottom: 2rem;">
-        <div class="container" style="max-width: 600px; text-align: center;">
+        <div class="container" style="max-width: 700px; text-align: center;">
             <p style="font-weight: 600; color: var(--text-dark); margin-bottom: 1rem;">Built for privacy, not spam.</p>
-            <ul style="list-style: none; padding: 0; margin: 0; color: #64748b; font-size: 0.95rem;">
-                <li style="margin-bottom: 0.5rem;">Each persona is a real phone number</li>
-                <li style="margin-bottom: 0.5rem;">One-to-one communication only</li>
-                <li>Access approved manually</li>
-            </ul>
+            <div style="display: flex; justify-content: center; gap: 2.5rem; flex-wrap: wrap; color: #64748b; font-size: 0.95rem;">
+                <span>Real carrier-grade numbers</span>
+                <span>Calls screened automatically</span>
+                <span>Your number never exposed</span>
+            </div>
         </div>
     </section>
 
+    <!-- How It Works -->
     <section class="section" id="features">
         <div class="container">
             <h2>How CloakID Protects You</h2>
             <div class="grid grid-3">
                 <div class="card">
-                    <div class="icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                        </svg>
-                    </div>
-                    <h3>Call Routing</h3>
-                    <p>Incoming calls are routed based on your preferences before they reach you. Caller information is shown to help you decide who gets through.</p>
-                </div>
-                <div class="card">
-                    <div class="icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-                        </svg>
-                    </div>
-                    <h3>Real Phone Numbers</h3>
-                    <p>Each persona gets a real phone number. Your personal number stays hidden. Make calls and send texts showing your persona number, never your real one.</p>
-                </div>
-                <div class="card">
-                    <div class="icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                            <circle cx="9" cy="7" r="4"></circle>
-                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                        </svg>
-                    </div>
-                    <h3>Handshake Trust System</h3>
-                    <p>Create a trusted contacts list that you control. Approved contacts are routed according to your preferences. Invitation-based access lets you accept or decline new contacts.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="section" style="background-color: #f8fafc;">
-        <div class="container">
-            <h2>Built For People Who Value Privacy</h2>
-            <div class="grid grid-3">
-                <div class="card">
-                    <h3>Parents</h3>
-                    <p>Protect your family from unwanted calls. Give out a separate number for school, activities, and services. Keep your personal line for people who matter.</p>
-                </div>
-                <div class="card">
-                    <h3>Dating</h3>
-                    <p>Keep your real number private until you're ready to share it. Use a dating persona and upgrade contacts to your real number when trust is earned.</p>
-                </div>
-                <div class="card">
-                    <h3>Online Sellers</h3>
-                    <p>Selling on Craigslist, Facebook Marketplace, or classified ads? Use a dedicated persona. When the sale is done, you're done — no lingering calls.</p>
-                </div>
-            </div>
-            <div class="grid grid-3" style="margin-top: 2rem;">
-                <div class="card">
-                    <h3>Consultants & Freelancers</h3>
-                    <p>Separate client calls from personal life. Give each client or project its own number. When the engagement ends, so does the number.</p>
-                </div>
-                <div class="card">
-                    <h3>Healthcare Professionals</h3>
-                    <p>Keep work calls separate from personal time. Use dedicated personas for patient communication without exposing your personal number.</p>
-                </div>
-                <div class="card">
-                    <h3>Legal Practitioners</h3>
-                    <p>Maintain confidentiality with separate numbers for different matters. Control who can reach you and when.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="section">
-        <div class="container">
-            <h2>How CloakID Works</h2>
-            <div class="grid grid-3">
-                <div class="card">
                     <span class="step-number">1</span>
                     <h3>Create Personas</h3>
-                    <p>Get real phone numbers for work, dating, selling online — whatever you need. Each persona is completely separate with its own call history and messages.</p>
+                    <p>Each persona gets its own real phone number. Create one for work, one for online shopping, one for dating — whatever you need. Your real number is never exposed.</p>
                 </div>
                 <div class="card">
                     <span class="step-number">2</span>
-                    <h3>Call Routing</h3>
-                    <p>Incoming calls are routed based on your preferences. You control what gets through and manage who can contact you.</p>
+                    <h3>Calls Are Screened</h3>
+                    <p>When someone calls your persona, they're asked to identify themselves. Based on your preferences, the call is connected, sent to voicemail, or blocked. You decide who gets through.</p>
                 </div>
                 <div class="card">
                     <span class="step-number">3</span>
-                    <h3>VIP List</h3>
-                    <p>Trusted contacts reach you according to your preferences. Create your inner circle and control exactly who gets through.</p>
+                    <h3>You Stay in Control</h3>
+                    <p>Review your activity feed. See who called, what they said, and how it was handled. Approve callers, block numbers, and adjust your screening rules anytime.</p>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- App Screenshots -->
     <section class="section" style="background-color: #f8fafc;">
+        <div class="container">
+            <h2>See It in Action</h2>
+            <p style="text-align: center; color: #64748b; max-width: 500px; margin: -0.5rem auto 2rem;">The CloakID app on iOS and Android.</p>
+
+            <div class="screenshot-row">
+                <div class="screenshot-frame">
+                    <!-- Replace with: <img src="images/screenshots/activity-feed.png" alt="Activity feed"> -->
+                    <div class="screenshot-placeholder">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+                        <span>Activity Feed</span>
+                    </div>
+                </div>
+                <div class="screenshot-frame">
+                    <!-- Replace with: <img src="images/screenshots/persona-list.png" alt="Persona list"> -->
+                    <div class="screenshot-placeholder">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+                        <span>Persona List</span>
+                    </div>
+                </div>
+                <div class="screenshot-frame">
+                    <!-- Replace with: <img src="images/screenshots/call-screened.png" alt="Call screening"> -->
+                    <div class="screenshot-placeholder">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+                        <span>Call Screened</span>
+                    </div>
+                </div>
+                <div class="screenshot-frame">
+                    <!-- Replace with: <img src="images/screenshots/messages.png" alt="Messages"> -->
+                    <div class="screenshot-placeholder">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+                        <span>Messages</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Features -->
+    <section class="section">
         <div class="container">
             <h2>Features That Actually Work</h2>
             <div class="grid grid-3">
                 <div class="card">
-                    <h3>Call Protection</h3>
+                    <h3>Call Screening</h3>
                     <ul class="features-list">
-                        <li>Call routing based on your preferences</li>
-                        <li>Caller information shown</li>
-                        <li>Voicemail + transcription</li>
-                        <li>Caller ID for outbound calls</li>
+                        <li>Callers identify themselves before reaching you</li>
+                        <li>Spam and robocalls blocked automatically</li>
+                        <li>Voicemail with transcription</li>
+                        <li>Your feedback improves accuracy over time</li>
                     </ul>
                 </div>
                 <div class="card">
-                    <h3>Messaging</h3>
+                    <h3>Real Phone Numbers</h3>
                     <ul class="features-list">
-                        <li>SMS send & receive</li>
-                        <li>MMS support</li>
-                        <li>Separate inbox per persona</li>
-                        <li>Block unwanted senders</li>
+                        <li>Each persona gets a real US number</li>
+                        <li>SMS send and receive</li>
+                        <li>Make outbound calls showing your persona number</li>
+                        <li>Choose your area code</li>
                     </ul>
                 </div>
                 <div class="card">
                     <h3>Privacy First</h3>
                     <ul class="features-list">
-                        <li>Real phone numbers</li>
-                        <li>Your number never exposed</li>
-                        <li>Biometric app lock</li>
-                        <li>Web dashboard <span class="coming-soon-badge">Coming Soon</span></li>
+                        <li>Your real number is never exposed</li>
+                        <li>Biometric app lock (Face ID / Touch ID)</li>
+                        <li>Temporary numbers that expire in 7 days</li>
+                        <li>Delete a persona and the number is gone</li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="section" style="padding-bottom: 1rem;">
-        <div class="container" style="max-width: 500px; text-align: center;">
-            <p style="font-weight: 600; color: var(--text-dark); margin-bottom: 0.75rem;">What happens next</p>
-            <ol style="color: #64748b; font-size: 0.9rem; padding-left: 1.25rem; margin: 0; text-align: left; display: inline-block;">
-                <li style="margin-bottom: 0.5rem;">Request access to the private beta</li>
-                <li style="margin-bottom: 0.5rem;">We review each request manually</li>
-                <li>Approved users receive their first CloakID phone numbers</li>
-            </ol>
+    <!-- Use Cases -->
+    <section class="section" style="background-color: #f8fafc;">
+        <div class="container">
+            <h2>One App, Many Uses</h2>
+            <p style="text-align: center; color: #64748b; max-width: 550px; margin: -0.5rem auto 2.5rem;">People use CloakID anywhere they'd rather not give out their real number.</p>
+
+            <div class="grid grid-3">
+                <div class="use-case-card">
+                    <div class="use-case-icon">🏠</div>
+                    <h3>Selling or Renting</h3>
+                    <p>List on Craigslist, Facebook Marketplace, or Zillow with a persona number. When the deal closes, delete the number. No more strangers texting you months later.</p>
+                    <span class="use-case-tag">Temporary persona</span>
+                </div>
+                <div class="use-case-card">
+                    <div class="use-case-icon">💼</div>
+                    <h3>Freelancers &amp; Side Hustles</h3>
+                    <p>Give clients a dedicated business number. Keep work calls separate from personal ones. When a project ends, the number can go with it.</p>
+                    <span class="use-case-tag">Permanent persona</span>
+                </div>
+                <div class="use-case-card">
+                    <div class="use-case-icon">❤️</div>
+                    <h3>Dating</h3>
+                    <p>Share a persona number on dating apps instead of your real one. If things don't work out, block or delete the number. No awkward follow-ups on your personal line.</p>
+                    <span class="use-case-tag">Temporary or permanent</span>
+                </div>
+                <div class="use-case-card">
+                    <div class="use-case-icon">📦</div>
+                    <h3>Online Shopping &amp; Signups</h3>
+                    <p>Use a persona number for accounts, deliveries, and loyalty programs. When the spam starts, you know exactly which company sold your number.</p>
+                    <span class="use-case-tag">Temporary persona</span>
+                </div>
+                <div class="use-case-card">
+                    <div class="use-case-icon">🔑</div>
+                    <h3>Moving &amp; Home Services</h3>
+                    <p>Contractors, movers, realtors, utility companies — they all want your number. Give them a persona. When you're settled in, you're done.</p>
+                    <span class="use-case-tag">Temporary persona</span>
+                </div>
+                <div class="use-case-card">
+                    <div class="use-case-icon">📋</div>
+                    <h3>Job Hunting</h3>
+                    <p>Post your resume with a persona number so recruiters can reach you without getting your real number. Calls are screened so only real opportunities get through.</p>
+                    <span class="use-case-tag">Permanent persona</span>
+                </div>
+            </div>
         </div>
     </section>
 
+    <!-- How screening works (detail) -->
+    <section class="section">
+        <div class="container" style="max-width: 800px;">
+            <h2>What Happens When Someone Calls</h2>
+            <div style="display: grid; gap: 1.5rem; margin-top: 2rem;">
+                <div class="card" style="display: flex; gap: 1.25rem; align-items: flex-start;">
+                    <span class="step-number" style="flex-shrink: 0; margin-bottom: 0;">1</span>
+                    <div>
+                        <h3 style="margin-bottom: 0.25rem;">Caller is asked to identify themselves</h3>
+                        <p style="font-size: 0.9rem; color: #4b5563;">When someone dials your persona number, they hear a brief prompt asking who they are and why they're calling.</p>
+                    </div>
+                </div>
+                <div class="card" style="display: flex; gap: 1.25rem; align-items: flex-start;">
+                    <span class="step-number" style="flex-shrink: 0; margin-bottom: 0;">2</span>
+                    <div>
+                        <h3 style="margin-bottom: 0.25rem;">The call is screened</h3>
+                        <p style="font-size: 0.9rem; color: #4b5563;">Based on what the caller says, your persona's purpose, and your screening rules, the call is evaluated in seconds.</p>
+                    </div>
+                </div>
+                <div class="card" style="display: flex; gap: 1.25rem; align-items: flex-start;">
+                    <span class="step-number" style="flex-shrink: 0; margin-bottom: 0;">3</span>
+                    <div>
+                        <h3 style="margin-bottom: 0.25rem;">You get the result</h3>
+                        <p style="font-size: 0.9rem; color: #4b5563;">Legitimate calls ring your phone. Suspicious calls go to voicemail. Spam is blocked. You see everything in your activity feed with a full record of what happened.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing teaser -->
+    <section class="section" style="background-color: #f8fafc;">
+        <div class="container" style="max-width: 800px; text-align: center;">
+            <h2>Simple Pricing</h2>
+            <p style="color: #64748b; margin-bottom: 2rem;">Start free. Upgrade when you need more numbers.</p>
+            <div class="stat-row">
+                <div class="stat-item">
+                    <div class="stat-number">$0</div>
+                    <div class="stat-label">7-day free trial</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">$24.99</div>
+                    <div class="stat-label">Core — 3 personas</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">$49.99</div>
+                    <div class="stat-label">Executive — up to 10</div>
+                </div>
+            </div>
+            <a href="pricing.html" style="color: var(--primary-color); font-weight: 600; font-size: 0.95rem;">See full plan details &rarr;</a>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
     <section class="section">
         <div class="container">
             <div class="cta-section">
-                <h2>Ready to protect your real number?</h2>
-                <p>Join the private beta.</p>
-                <a href="#" class="btn" onclick="document.getElementById('beta-form').scrollIntoView({behavior: 'smooth'}); return false;">Request Beta Access</a>
+                <h2>Your real number should be private.</h2>
+                <p>Download CloakID and get your first persona in under two minutes.</p>
+                <div class="download-buttons" style="justify-content: center; position: relative;">
+                    <a href="#" class="download-btn" style="background: white; color: #0f172a;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="#0f172a">
+                            <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+                        </svg>
+                        <span class="btn-label">
+                            <small style="color: #64748b;">Download on the</small>
+                            <strong>App Store</strong>
+                        </span>
+                    </a>
+                    <a href="#" class="download-btn" style="background: white; color: #0f172a;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="#0f172a">
+                            <path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.144 1.24a1 1 0 010 1.735l-2.144 1.24-2.53-2.53 2.53-2.685zM5.864 2.658L16.8 9.39l-2.302 2.302-8.634-8.634z"/>
+                        </svg>
+                        <span class="btn-label">
+                            <small style="color: #64748b;">Get it on</small>
+                            <strong>Google Play</strong>
+                        </span>
+                    </a>
+                </div>
             </div>
         </div>
     </section>
@@ -220,12 +556,14 @@
                     <h4>Product</h4>
                     <ul class="footer-links">
                         <li><a href="#features">How It Works</a></li>
+                        <li><a href="pricing.html">Pricing</a></li>
                         <li><a href="about.html">About</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
-                    <h4>Contact</h4>
+                    <h4>Support</h4>
                     <ul class="footer-links">
+                        <li><a href="support.html">Help Center</a></li>
                         <li><a href="contact.html">Contact Us</a></li>
                         <li><a href="mailto:support@cloakid.app">support@cloakid.app</a></li>
                     </ul>
@@ -248,7 +586,7 @@
             </div>
             <div class="footer-bottom">
                 <p style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 0.5rem;">CloakID phone numbers are intended for personal and business communications initiated by the user. We do not support unsolicited messaging or spam.</p>
-                <p>&copy; 2025 Niobium LLC. All rights reserved. CloakID is a product of Niobium LLC.</p>
+                <p>&copy; 2026 Niobium LLC. All rights reserved. CloakID is a product of Niobium LLC.</p>
             </div>
         </div>
     </footer>
