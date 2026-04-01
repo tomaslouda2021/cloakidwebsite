@@ -310,11 +310,11 @@ h3 {
 }
 
 .grid-3 {
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
 }
 
 .grid-4 {
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
 }
 
 /* Cards */
@@ -601,7 +601,7 @@ footer {
 /* Pricing */
 .pricing-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
   gap: 2rem;
   margin-top: 3rem;
 }
@@ -736,6 +736,29 @@ footer {
 
   .card {
     padding: 2rem;
+  }
+
+  /* First visible content section needs header clearance (fixed header ~60px) */
+  .section:first-of-type {
+    padding-top: 80px;
+  }
+
+  /* Sections after hero don't need extra clearance */
+  .hero ~ .section:first-of-type {
+    padding-top: 2rem;
+  }
+
+  .pricing-card.featured {
+    transform: none;
+  }
+
+  .pricing-card.featured:hover {
+    transform: translateY(-10px);
+  }
+
+  .legal-content {
+    padding: 2rem 20px;
+    margin-top: 70px;
   }
 }
 

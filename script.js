@@ -46,8 +46,9 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
-// Observe all cards and sections
-document.querySelectorAll('.card, .section').forEach(el => {
+// Observe all cards (but not top-level .section wrappers, which can fail to
+// intersect on small mobile viewports and stay invisible at opacity: 0)
+document.querySelectorAll('.card').forEach(el => {
     el.classList.add('animate-on-scroll');
     observer.observe(el);
 });
