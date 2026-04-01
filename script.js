@@ -32,10 +32,11 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Animate elements on scroll
+// Animate elements on scroll — only cards below the initial viewport get the
+// fade-in effect. Elements already visible on load are never hidden.
 const observerOptions = {
     threshold: 0.1,
-    rootMargin: '0px 0px -100px 0px'
+    rootMargin: '0px 0px -50px 0px'
 };
 
 const observer = new IntersectionObserver((entries) => {
@@ -46,11 +47,13 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
-// Observe all cards (but not top-level .section wrappers, which can fail to
-// intersect on small mobile viewports and stay invisible at opacity: 0)
 document.querySelectorAll('.card').forEach(el => {
-    el.classList.add('animate-on-scroll');
-    observer.observe(el);
+    const rect = el.getBoundingClientRect();
+    // Only animate cards that start below the viewport
+    if (rect.top > window.innerHeight) {
+        el.classList.add('animate-on-scroll');
+        observer.observe(el);
+    }
 });
 
 // Beta signup form handler
