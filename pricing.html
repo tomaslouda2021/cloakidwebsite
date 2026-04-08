@@ -1,241 +1,263 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pricing - CloakID</title>
-    <meta name="description" content="Simple, honest pricing. Get real phone numbers with call routing. Your real number stays private.">
-    <link rel="stylesheet" href="style.css">
-    <link rel="icon" type="image/png" href="images/_CloakID_icon_white.png">
-    <link rel="apple-touch-icon" href="images/_CloakID_icon_white.png">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pricing — CloakID</title>
+<meta name="description" content="Simple, honest pricing. Real phone numbers with built-in call screening. Cancel anytime.">
+<link rel="icon" type="image/png" href="images/_CloakID_icon_white.png">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<script>
+  tailwind.config = { theme: { extend: {
+    colors: { ink: { 950: '#05070f', 900: '#0a0e1a', 800: '#0f1524', 700: '#1a2235' } },
+    fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] }
+  }}}
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', system-ui, sans-serif; background: #05070f; color: #e2e8f0; -webkit-font-smoothing: antialiased; }
+  .gradient-text { background: linear-gradient(135deg, #22d3ee 0%, #38bdf8 45%, #34d399 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .glass { background: rgba(255,255,255,0.035); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.08); }
+  .grid-bg { background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.06) 1px, transparent 0); background-size: 36px 36px; }
+  details > summary { list-style: none; cursor: pointer; }
+  details > summary::-webkit-details-marker { display: none; }
+  details[open] summary .chev { transform: rotate(180deg); }
+</style>
 </head>
-<body>
-    <header>
-        <nav class="container">
-            <a href="index.html" class="logo">
-                <img src="images/_CloakID_logo_1.png" alt="CloakID Logo">
-            </a>
-            <button class="mobile-menu-toggle" aria-label="Toggle menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <ul class="nav-links">
-                <li><a href="index.html#features">How It Works</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+<body class="min-h-screen">
 
-    <section class="section">
-        <div class="container">
-            <h1>Your real phone number should be private.</h1>
-            <p class="subtitle">CloakID is a call firewall for your identity. You never give out your real number — ever.</p>
-            <p class="subtitle" style="margin-top: 0.5rem;">Keep your real number private. Separate your calls and messages across dedicated phone numbers.</p>
-            <p style="text-align: center; color: #64748b; font-size: 0.9rem; margin-top: 1rem;">Pricing will be finalized after the private beta.</p>
+<div class="fixed inset-0 -z-10 overflow-hidden">
+  <div class="absolute -top-40 -left-40 w-[560px] h-[560px] rounded-full bg-cyan-500/20 blur-3xl"></div>
+  <div class="absolute top-1/3 -right-40 w-[520px] h-[520px] rounded-full bg-emerald-500/10 blur-3xl"></div>
+</div>
 
-            <div class="highlight-box" style="margin-top: 2rem; margin-bottom: 3rem;">
-                <h3 style="margin-bottom: 1rem;">How It Works</h3>
-                <div class="grid grid-4" style="text-align: left;">
-                    <div>
-                        <strong>Real Numbers</strong>
-                        <p style="font-size: 0.9rem; margin-top: 0.5rem;">Each persona gets a real, carrier-grade phone number.</p>
-                    </div>
-                    <div>
-                        <strong>Call Routing</strong>
-                        <p style="font-size: 0.9rem; margin-top: 0.5rem;">Incoming calls are routed based on your preferences.</p>
-                    </div>
-                    <div>
-                        <strong>Trusted Circle</strong>
-                        <p style="font-size: 0.9rem; margin-top: 0.5rem;">People you trust are routed according to your preferences and always get through.</p>
-                    </div>
-                    <div>
-                        <strong>Stay Hidden</strong>
-                        <p style="font-size: 0.9rem; margin-top: 0.5rem;">Your real number is never exposed to anyone.</p>
-                    </div>
-                </div>
-            </div>
+<header class="fixed top-0 inset-x-0 z-50 backdrop-blur-xl bg-ink-950/70 border-b border-white/5">
+  <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-2.5">
+      <img src="images/_CloakID_icon_white.png" class="w-8 h-8" alt="CloakID">
+      <span class="text-white font-bold tracking-tight text-lg">CloakID</span>
+    </a>
+    <nav class="hidden md:flex items-center gap-9 text-sm text-slate-300">
+      <a href="index.html#features" class="hover:text-white transition">Features</a>
+      <a href="index.html#how" class="hover:text-white transition">How it works</a>
+      <a href="pricing.html" class="text-white transition">Pricing</a>
+      <a href="support.html" class="hover:text-white transition">Support</a>
+    </nav>
+    <a href="index.html#download" class="bg-gradient-to-r from-cyan-400 to-sky-500 text-ink-950 font-semibold px-4 py-2 rounded-full text-sm hover:shadow-lg hover:shadow-cyan-500/30 transition">Get the app</a>
+  </div>
+</header>
 
-            <div class="pricing-grid" style="max-width: 900px; margin: 0 auto;">
-                <!-- Free Trial -->
-                <div class="pricing-card">
-                    <h3>Free Trial</h3>
-                    <p style="color: var(--secondary-gray); margin-bottom: 1rem;">14 days, full access</p>
-                    <div class="price">$0</div>
-                    <ul class="features-list">
-                        <li>2 real phone numbers (personas)</li>
-                        <li>Call routing</li>
-                        <li>SMS send & receive</li>
-                        <li>Voicemail + transcription</li>
-                        <li>Handshake trusted contacts</li>
-                        <li>300 call minutes</li>
-                        <li>300 SMS</li>
-                    </ul>
-                    <a href="#" class="btn btn-secondary" style="width: 100%; margin-top: 2rem;">Start Free Trial</a>
-                    <p style="font-size: 0.8rem; color: var(--secondary-gray); margin-top: 0.5rem;">No credit card required</p>
-                </div>
+<section class="pt-32 pb-12 relative">
+  <div class="absolute inset-0 grid-bg opacity-50 [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_80%)]"></div>
+  <div class="relative max-w-4xl mx-auto px-6 text-center">
+    <div class="inline-flex items-center gap-2 glass px-4 py-1.5 rounded-full text-xs font-medium text-cyan-300 mb-6">
+      <i data-lucide="tag" class="w-3.5 h-3.5"></i> Pricing
+    </div>
+    <h1 class="text-5xl md:text-6xl font-extrabold tracking-tight text-white leading-[1.05] mb-6">
+      Simple, honest pricing.<br>
+      <span class="gradient-text">Cancel anytime.</span>
+    </h1>
+    <p class="text-lg text-slate-400 max-w-xl mx-auto">Every plan includes real US phone numbers, call screening, and end-to-end encryption. No ads, ever.</p>
+  </div>
+</section>
 
-                <!-- Cloak -->
-                <div class="pricing-card">
-                    <h3>Cloak</h3>
-                    <p style="color: var(--secondary-gray); margin-bottom: 1rem;">Best for everyday privacy</p>
-                    <div class="price">$9.99<span class="price-period">/month</span></div>
-                    <ul class="features-list">
-                        <li>3 real phone numbers</li>
-                        <li>Calls routed based on your preferences</li>
-                        <li>SMS + calls from persona numbers</li>
-                        <li>Trusted inner circle (Handshake)</li>
-                        <li>Voicemail + transcription</li>
-                        <li>300 call minutes / month</li>
-                        <li>900 SMS / month</li>
-                    </ul>
-                    <a href="#" class="btn btn-primary" style="width: 100%; margin-top: 2rem;">Get Cloak</a>
-                </div>
+<section class="pb-20">
+  <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-3 gap-6">
 
-                <!-- Cloak Pro -->
-                <div class="pricing-card featured">
-                    <div style="background-color: var(--primary-blue); color: white; padding: 0.5rem; margin: -2rem -2rem 1rem -2rem; border-radius: 10px 10px 0 0;">
-                        <strong>MOST POPULAR</strong>
-                    </div>
-                    <h3>Cloak Pro</h3>
-                    <p style="color: var(--secondary-gray); margin-bottom: 1rem;">Best for people who never want their real number exposed</p>
-                    <div class="price">$19.99<span class="price-period">/month</span></div>
-                    <ul class="features-list">
-                        <li>6 real phone numbers</li>
-                        <li>Advanced call routing</li>
-                        <li>Smart caller context</li>
-                        <li>Enhanced voicemail handling</li>
-                        <li>1,000 call minutes / month</li>
-                        <li>Unlimited normal SMS usage*</li>
-                    </ul>
-                    <a href="#" class="btn btn-primary" style="width: 100%; margin-top: 2rem;">Get Cloak Pro</a>
-                    <p style="font-size: 0.75rem; color: var(--secondary-gray); margin-top: 0.5rem;">*Fair use applies</p>
-                </div>
-            </div>
+    <div class="glass rounded-3xl p-8 relative flex flex-col">
+      <h3 class="text-xl font-bold text-white mb-2">Free Trial</h3>
+      <p class="text-sm text-slate-500 mb-6">Try everything for 7 days</p>
+      <div class="flex items-baseline gap-1 mb-8">
+        <span class="text-5xl font-extrabold text-white">$0</span>
+        <span class="text-slate-500">/7 days</span>
+      </div>
+      <ul class="space-y-3 text-sm text-slate-300 mb-8 flex-1">
+        <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400 mt-0.5 shrink-0"></i>2 personas with real US numbers</li>
+        <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400 mt-0.5 shrink-0"></i>Built-in call screening</li>
+        <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400 mt-0.5 shrink-0"></i>Approved caller lists</li>
+        <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400 mt-0.5 shrink-0"></i>SMS, voicemail, outbound calls</li>
+      </ul>
+      <a href="index.html#download" class="block text-center font-semibold px-5 py-3 rounded-full border border-white/15 text-white hover:bg-white/10 transition">Start free trial</a>
+    </div>
 
-            <div class="highlight-box" style="margin-top: 3rem;">
-                <h2>What We Don't Do</h2>
-                <div class="grid grid-4" style="margin-top: 1rem; text-align: center;">
-                    <div>
-                        <p style="font-size: 1.5rem; margin-bottom: 0.5rem;">&#10005;</p>
-                        <p>No selling your data</p>
-                    </div>
-                    <div>
-                        <p style="font-size: 1.5rem; margin-bottom: 0.5rem;">&#10005;</p>
-                        <p>No ads</p>
-                    </div>
-                    <div>
-                        <p style="font-size: 1.5rem; margin-bottom: 0.5rem;">&#10005;</p>
-                        <p>No enterprise upsells</p>
-                    </div>
-                    <div>
-                        <p style="font-size: 1.5rem; margin-bottom: 0.5rem;">&#10005;</p>
-                        <p>No fake compliance claims</p>
-                    </div>
-                </div>
-                <p style="margin-top: 1.5rem; font-weight: 600;">Your privacy is the product.</p>
-            </div>
+    <div class="rounded-3xl p-8 relative flex flex-col bg-gradient-to-b from-cyan-500/20 via-sky-500/10 to-transparent border border-cyan-400/40 shadow-[0_0_80px_rgba(34,211,238,0.25)]">
+      <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-cyan-400 to-sky-500 text-ink-950 text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full">Most popular</div>
+      <h3 class="text-xl font-bold text-white mb-2">Core</h3>
+      <p class="text-sm text-slate-400 mb-6">For everyday privacy</p>
+      <div class="flex items-baseline gap-1 mb-8">
+        <span class="text-5xl font-extrabold text-white">$24.99</span>
+        <span class="text-slate-400">/month</span>
+      </div>
+      <ul class="space-y-3 text-sm text-slate-200 mb-8 flex-1">
+        <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-cyan-300 mt-0.5 shrink-0"></i>3 personas with real US numbers</li>
+        <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-cyan-300 mt-0.5 shrink-0"></i>1 temporary 7-day number</li>
+        <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-cyan-300 mt-0.5 shrink-0"></i>Call screening &amp; voicemail</li>
+        <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-cyan-300 mt-0.5 shrink-0"></i>QR &amp; vCard sharing</li>
+        <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-cyan-300 mt-0.5 shrink-0"></i>Real SMS &amp; outbound calling</li>
+        <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-cyan-300 mt-0.5 shrink-0"></i>iOS home screen widget</li>
+      </ul>
+      <a href="index.html#download" class="block text-center font-semibold px-5 py-3 rounded-full bg-gradient-to-r from-cyan-400 to-sky-500 text-ink-950 hover:shadow-xl hover:shadow-cyan-500/40 transition">Start 7-day free trial</a>
+    </div>
 
-            <div class="highlight-box" style="margin-top: 3rem;">
-                <h2>All Plans Include</h2>
-                <div class="grid grid-3" style="margin-top: 1rem;">
-                    <ul class="features-list">
-                        <li>iOS & Android apps</li>
-                        <li>Real phone numbers</li>
-                        <li>Call routing</li>
-                    </ul>
-                    <ul class="features-list">
-                        <li>Handshake trusted contacts</li>
-                        <li>Voicemail + transcription</li>
-                        <li>SMS send & receive</li>
-                    </ul>
-                    <ul class="features-list">
-                        <li>Cancel anytime</li>
-                        <li>No setup fees</li>
-                        <li>Web dashboard <span class="coming-soon-badge">Coming Soon</span></li>
-                    </ul>
-                </div>
-            </div>
+    <div class="glass rounded-3xl p-8 relative flex flex-col">
+      <h3 class="text-xl font-bold text-white mb-2">Executive</h3>
+      <p class="text-sm text-slate-500 mb-6">Maximum separation</p>
+      <div class="flex items-baseline gap-1 mb-8">
+        <span class="text-5xl font-extrabold text-white">$49.99</span>
+        <span class="text-slate-500">/month</span>
+      </div>
+      <ul class="space-y-3 text-sm text-slate-300 mb-8 flex-1">
+        <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400 mt-0.5 shrink-0"></i>10 personas with real US numbers</li>
+        <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400 mt-0.5 shrink-0"></i>2 temporary 7-day numbers</li>
+        <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400 mt-0.5 shrink-0"></i>Everything in Core</li>
+        <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400 mt-0.5 shrink-0"></i>Priority call screening</li>
+        <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400 mt-0.5 shrink-0"></i>Priority support</li>
+      </ul>
+      <a href="index.html#download" class="block text-center font-semibold px-5 py-3 rounded-full border border-white/15 text-white hover:bg-white/10 transition">Start 7-day free trial</a>
+    </div>
+  </div>
+</section>
 
-            <div style="margin-top: 3rem;">
-                <h2>Frequently Asked Questions</h2>
-                <div class="grid" style="gap: 2rem; margin-top: 2rem;">
-                    <div class="card">
-                        <h3>What happens during the free trial?</h3>
-                        <p>You get full access to CloakID for 14 days. No credit card required. Try everything — call routing, real phone numbers, the Handshake trust system — and decide if it's right for you.</p>
-                    </div>
-                    <div class="card">
-                        <h3>What happens after the trial ends?</h3>
-                        <p>If you don't subscribe after trial, persona numbers are deactivated and calls won't route. Your data is preserved for 30 days in case you decide to subscribe later.</p>
-                    </div>
-                    <div class="card">
-                        <h3>Can I cancel anytime?</h3>
-                        <p>Yes. Cancel anytime. Trial is free — no charge during trial. If you're charged unexpectedly, contact support and we'll make it right.</p>
-                    </div>
-                    <div class="card">
-                        <h3>What payment methods do you accept?</h3>
-                        <p>We accept all major credit cards through Stripe. Subscriptions are also available through the iOS App Store and Google Play.</p>
-                    </div>
-                    <div class="card">
-                        <h3>What does "unlimited SMS" mean?</h3>
-                        <p>CloakID is designed for personal privacy, not bulk or automated messaging. Normal personal use is unlimited. Unusual volume may be throttled to prevent abuse.</p>
-                    </div>
-                    <div class="card">
-                        <h3>Do you offer team or enterprise plans?</h3>
-                        <p>CloakID currently supports individual users. Team features may be introduced in the future. <a href="contact.html">Contact us</a> if you have specific needs.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="cta-section" style="margin-top: 3rem;">
-                <h2>Ready to protect your real number?</h2>
-                <p>Start your free 14-day trial. No credit card required.</p>
-                <a href="#" class="btn">Start Free Trial</a>
-            </div>
+<section class="py-14">
+  <div class="max-w-4xl mx-auto px-6">
+    <div class="text-center mb-12">
+      <div class="inline-flex items-center gap-2 text-cyan-300 text-sm font-semibold uppercase tracking-wider mb-4">
+        <i data-lucide="shield" class="w-4 h-4"></i> Our promise
+      </div>
+      <h2 class="text-4xl md:text-5xl font-bold text-white tracking-tight">What we don't do.</h2>
+    </div>
+    <div class="grid md:grid-cols-2 gap-4">
+      <div class="glass rounded-2xl p-6 flex items-start gap-4">
+        <div class="w-10 h-10 rounded-xl bg-rose-500/15 flex items-center justify-center shrink-0">
+          <i data-lucide="x" class="w-5 h-5 text-rose-400"></i>
         </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h4>Product</h4>
-                    <ul class="footer-links">
-                        <li><a href="index.html#features">Features</a></li>
-                        <li><a href="pricing.html">Pricing</a></li>
-                        <li><a href="about.html">About</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Support</h4>
-                    <ul class="footer-links">
-                        <li><a href="support.html">Help Center</a></li>
-                        <li><a href="contact.html">Contact Us</a></li>
-                        <li><a href="mailto:support@cloakid.app">support@cloakid.app</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Legal</h4>
-                    <ul class="footer-links">
-                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                        <li><a href="terms-of-service.html">Terms of Service</a></li>
-                        <li><a href="sms-disclosure.html">SMS Opt-in Disclosure</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Company</h4>
-                    <ul class="footer-links">
-                        <li><a href="about.html">About Niobium LLC</a></li>
-                        <li><a href="mailto:hello@cloakid.app">hello@cloakid.app</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 0.5rem;">CloakID phone numbers are intended for personal and business communications initiated by the user. We do not support unsolicited messaging or spam.</p>
-                <p>&copy; 2025 Niobium LLC. All rights reserved. CloakID is a product of Niobium LLC.</p>
-            </div>
+        <div>
+          <div class="text-white font-semibold mb-1">We don't sell your data</div>
+          <div class="text-sm text-slate-400">Ever. Not to anyone. That's the entire point of CloakID.</div>
         </div>
-    </footer>
-    <script src="script.js"></script>
+      </div>
+      <div class="glass rounded-2xl p-6 flex items-start gap-4">
+        <div class="w-10 h-10 rounded-xl bg-rose-500/15 flex items-center justify-center shrink-0">
+          <i data-lucide="x" class="w-5 h-5 text-rose-400"></i>
+        </div>
+        <div>
+          <div class="text-white font-semibold mb-1">We don't show ads</div>
+          <div class="text-sm text-slate-400">No ads in the app. No sponsored contacts. No upsell popups.</div>
+        </div>
+      </div>
+      <div class="glass rounded-2xl p-6 flex items-start gap-4">
+        <div class="w-10 h-10 rounded-xl bg-rose-500/15 flex items-center justify-center shrink-0">
+          <i data-lucide="x" class="w-5 h-5 text-rose-400"></i>
+        </div>
+        <div>
+          <div class="text-white font-semibold mb-1">We don't lock you in</div>
+          <div class="text-sm text-slate-400">Cancel anytime through the App Store or Google Play. No hoops.</div>
+        </div>
+      </div>
+      <div class="glass rounded-2xl p-6 flex items-start gap-4">
+        <div class="w-10 h-10 rounded-xl bg-rose-500/15 flex items-center justify-center shrink-0">
+          <i data-lucide="x" class="w-5 h-5 text-rose-400"></i>
+        </div>
+        <div>
+          <div class="text-white font-semibold mb-1">We don't log your calls</div>
+          <div class="text-sm text-slate-400">Screening transcripts stay server-side for debugging only — never shared, never sold.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-14">
+  <div class="max-w-3xl mx-auto px-6">
+    <div class="text-center mb-12">
+      <h2 class="text-4xl md:text-5xl font-bold text-white tracking-tight">Pricing FAQ</h2>
+    </div>
+    <div class="space-y-3">
+      <details class="glass rounded-2xl p-6 group">
+        <summary class="flex items-center justify-between">
+          <span class="text-white font-semibold">Can I cancel anytime?</span>
+          <i data-lucide="chevron-down" class="chev w-5 h-5 text-slate-400 transition"></i>
+        </summary>
+        <p class="text-slate-400 mt-4 leading-relaxed">Yes. Cancel anytime through the App Store or Google Play subscription settings. If the trial is active, you won't be charged.</p>
+      </details>
+      <details class="glass rounded-2xl p-6 group">
+        <summary class="flex items-center justify-between">
+          <span class="text-white font-semibold">What happens to my numbers if I cancel?</span>
+          <i data-lucide="chevron-down" class="chev w-5 h-5 text-slate-400 transition"></i>
+        </summary>
+        <p class="text-slate-400 mt-4 leading-relaxed">Your phone numbers are released at the end of your billing period. Number releases are permanent — you can't get the same number back.</p>
+      </details>
+      <details class="glass rounded-2xl p-6 group">
+        <summary class="flex items-center justify-between">
+          <span class="text-white font-semibold">Do you offer team or enterprise plans?</span>
+          <i data-lucide="chevron-down" class="chev w-5 h-5 text-slate-400 transition"></i>
+        </summary>
+        <p class="text-slate-400 mt-4 leading-relaxed">Not yet. CloakID is built for individuals today. Contact us if you have team needs — we'd love to hear about them.</p>
+      </details>
+      <details class="glass rounded-2xl p-6 group">
+        <summary class="flex items-center justify-between">
+          <span class="text-white font-semibold">What payment methods do you accept?</span>
+          <i data-lucide="chevron-down" class="chev w-5 h-5 text-slate-400 transition"></i>
+        </summary>
+        <p class="text-slate-400 mt-4 leading-relaxed">Billing goes through the App Store or Google Play — any payment method you have set up with Apple or Google works.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="py-16">
+  <div class="max-w-3xl mx-auto px-6 text-center">
+    <h2 class="text-4xl md:text-5xl font-bold text-white tracking-tight mb-5">Ready to take your number back?</h2>
+    <p class="text-lg text-slate-400 mb-10">7-day free trial. No credit card required.</p>
+    <a href="index.html#download" class="inline-flex items-center gap-2 bg-gradient-to-r from-cyan-400 to-sky-500 text-ink-950 font-semibold px-7 py-4 rounded-full hover:shadow-xl hover:shadow-cyan-500/40 transition">
+      <i data-lucide="download" class="w-5 h-5"></i>
+      Download CloakID
+    </a>
+  </div>
+</section>
+
+<footer class="border-t border-white/5 bg-ink-950">
+  <div class="max-w-7xl mx-auto px-6 py-16 grid md:grid-cols-4 gap-10">
+    <div>
+      <div class="flex items-center gap-2 mb-4">
+        <img src="images/_CloakID_icon_white.png" class="w-8 h-8">
+        <span class="text-white font-bold">CloakID</span>
+      </div>
+      <p class="text-sm text-slate-500 leading-relaxed">Real phone numbers. Real privacy. Real calm.</p>
+    </div>
+    <div>
+      <h4 class="text-white font-semibold text-sm mb-4">Product</h4>
+      <ul class="space-y-2.5 text-sm text-slate-400">
+        <li><a href="index.html#features" class="hover:text-white transition">Features</a></li>
+        <li><a href="index.html#how" class="hover:text-white transition">How it works</a></li>
+        <li><a href="pricing.html" class="hover:text-white transition">Pricing</a></li>
+        <li><a href="support.html" class="hover:text-white transition">Support</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="text-white font-semibold text-sm mb-4">Company</h4>
+      <ul class="space-y-2.5 text-sm text-slate-400">
+        <li><a href="about.html" class="hover:text-white transition">About</a></li>
+        <li><a href="contact.html" class="hover:text-white transition">Contact</a></li>
+        <li><a href="mailto:support@cloakid.app" class="hover:text-white transition">support@cloakid.app</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="text-white font-semibold text-sm mb-4">Legal</h4>
+      <ul class="space-y-2.5 text-sm text-slate-400">
+        <li><a href="privacy-policy.html" class="hover:text-white transition">Privacy Policy</a></li>
+        <li><a href="terms-of-service.html" class="hover:text-white transition">Terms of Service</a></li>
+        <li><a href="sms-disclosure.html" class="hover:text-white transition">SMS Disclosure</a></li>
+        <li><a href="delete-account.html" class="hover:text-white transition">Delete Account</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="border-t border-white/5 py-6 text-center text-xs text-slate-600">© 2026 Niobium LLC. CloakID is a product of Niobium LLC.</div>
+</footer>
+
+<script>lucide.createIcons();</script>
 </body>
 </html>

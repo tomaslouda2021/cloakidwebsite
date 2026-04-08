@@ -1,720 +1,421 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CloakID - Your Real Phone Number Should Be Private</title>
-    <meta name="description" content="Get real phone numbers for different parts of your life. CloakID screens your calls, blocks spam, and keeps your real number hidden.">
-    <link rel="stylesheet" href="style.css">
-    <link rel="icon" type="image/png" href="images/_CloakID_icon_white.png">
-    <link rel="apple-touch-icon" href="images/_CloakID_icon_white.png">
-    <style>
-        /* Hero layout with phone mockup */
-        .hero-split {
-            display: flex;
-            align-items: center;
-            gap: 4rem;
-            text-align: left;
-        }
-        .hero-split .hero-text {
-            flex: 1;
-        }
-        .hero-split .hero-text h1 {
-            text-align: left;
-        }
-        .hero-split .hero-text .subtitle {
-            margin-left: 0;
-            text-align: left;
-        }
-        .hero-visual {
-            flex: 0 0 320px;
-            position: relative;
-        }
-
-        /* Phone mockup frame */
-        .phone-mockup {
-            width: 280px;
-            height: 560px;
-            background: #f1f5f9;
-            border-radius: 36px;
-            border: 3px solid #e2e8f0;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            position: relative;
-            margin: 0 auto;
-        }
-        .phone-mockup img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .phone-mockup-placeholder {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: #94a3b8;
-            font-size: 0.85rem;
-            text-align: center;
-            padding: 2rem;
-            gap: 1rem;
-        }
-        .phone-mockup-placeholder svg {
-            opacity: 0.4;
-        }
-
-        /* Download buttons */
-        .download-buttons {
-            display: flex;
-            gap: 1rem;
-            margin-top: 2rem;
-            flex-wrap: wrap;
-        }
-        .download-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.75rem;
-            padding: 0.85rem 1.75rem;
-            border-radius: 12px;
-            background: #0f172a;
-            color: white;
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: all 0.2s ease;
-            border: 1px solid transparent;
-        }
-        .download-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-        }
-        .download-btn svg {
-            flex-shrink: 0;
-        }
-        .download-btn .btn-label {
-            display: flex;
-            flex-direction: column;
-            line-height: 1.2;
-        }
-        .download-btn .btn-label small {
-            font-size: 0.65rem;
-            font-weight: 400;
-            opacity: 0.8;
-        }
-        .download-btn .btn-label strong {
-            font-size: 1rem;
-        }
-
-        /* Screenshot gallery */
-        .screenshot-row {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            overflow-x: auto;
-            padding: 1rem 0;
-            -webkit-overflow-scrolling: touch;
-        }
-        .screenshot-frame {
-            flex: 0 0 220px;
-            height: 440px;
-            background: #f1f5f9;
-            border-radius: 28px;
-            border: 2px solid #e2e8f0;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
-            overflow: hidden;
-            transition: transform 0.3s ease;
-        }
-        .screenshot-frame:hover {
-            transform: translateY(-6px);
-        }
-        .screenshot-frame img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .screenshot-placeholder {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: #94a3b8;
-            font-size: 0.8rem;
-            text-align: center;
-            padding: 1.5rem;
-            gap: 0.5rem;
-        }
-
-        /* Use case cards */
-        .use-case-card {
-            background: #ffffff;
-            border: 1px solid #e5e7eb;
-            border-radius: 12px;
-            padding: 1.75rem;
-            transition: all 0.2s ease;
-        }
-        .use-case-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
-            border-color: #d1d5db;
-        }
-        .use-case-icon {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-        .use-case-card h3 {
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-        }
-        .use-case-card p {
-            font-size: 0.9rem;
-            color: #4b5563;
-            line-height: 1.6;
-        }
-        .use-case-tag {
-            display: inline-block;
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: var(--primary-color);
-            background: rgba(27, 163, 198, 0.08);
-            padding: 0.25rem 0.75rem;
-            border-radius: 100px;
-            margin-top: 0.75rem;
-        }
-
-        /* Persona example cards */
-        .persona-example {
-            background: #ffffff;
-            border: 1px solid #e5e7eb;
-            border-radius: 16px;
-            padding: 1.5rem;
-            transition: all 0.2s ease;
-        }
-        .persona-example:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
-        }
-        .persona-header {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            margin-bottom: 0.75rem;
-        }
-        .persona-avatar {
-            width: 44px;
-            height: 44px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.25rem;
-            flex-shrink: 0;
-        }
-        .persona-name {
-            font-weight: 700;
-            font-size: 1.05rem;
-            color: #0f172a;
-            line-height: 1.2;
-        }
-        .persona-number {
-            font-size: 0.8rem;
-            color: #94a3b8;
-            font-family: 'SF Mono', 'Fira Code', monospace;
-            letter-spacing: 0.02em;
-        }
-        .persona-desc {
-            font-size: 0.88rem;
-            color: #4b5563;
-            line-height: 1.6;
-            margin-bottom: 0.75rem;
-            font-style: italic;
-        }
-        .persona-context {
-            font-size: 0.82rem;
-            color: #64748b;
-            line-height: 1.5;
-        }
-        .persona-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.25rem;
-        }
-        @media (max-width: 768px) {
-            .persona-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Stat callouts */
-        .stat-row {
-            display: flex;
-            justify-content: center;
-            gap: 3rem;
-            flex-wrap: wrap;
-            padding: 2rem 0;
-        }
-        .stat-item {
-            text-align: center;
-        }
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: var(--primary-color);
-            line-height: 1;
-        }
-        .stat-label {
-            font-size: 0.85rem;
-            color: #64748b;
-            margin-top: 0.25rem;
-        }
-
-        /* Responsive hero */
-        @media (max-width: 768px) {
-            .hero-split {
-                flex-direction: column;
-                text-align: center;
-                gap: 2rem;
-            }
-            .hero-split .hero-text h1 {
-                text-align: center;
-            }
-            .hero-split .hero-text .subtitle {
-                margin-left: auto;
-                text-align: center;
-            }
-            .hero-visual {
-                flex: none;
-                width: 100%;
-            }
-            .phone-mockup {
-                width: 240px;
-                height: 480px;
-            }
-            .download-buttons {
-                justify-content: center;
-            }
-            .screenshot-frame {
-                flex: 0 0 180px;
-                height: 360px;
-            }
-            .stat-row {
-                gap: 2rem;
-            }
-            .stat-number {
-                font-size: 2rem;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CloakID — Real phone numbers. Real privacy.</title>
+<meta name="description" content="CloakID gives you real US phone numbers for every part of your life. Calls are screened, spam is filtered, and your real number stays hidden.">
+<link rel="icon" type="image/png" href="images/_CloakID_icon_white.png">
+<link rel="apple-touch-icon" href="images/_CloakID_icon_white.png">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          ink: { 950: '#05070f', 900: '#0a0e1a', 800: '#0f1524', 700: '#1a2235' },
+          neon: { cyan: '#22d3ee', sky: '#38bdf8', mint: '#34d399' }
+        },
+        fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] }
+      }
+    }
+  }
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', system-ui, sans-serif; background: #05070f; color: #e2e8f0; -webkit-font-smoothing: antialiased; }
+  .gradient-text { background: linear-gradient(135deg, #22d3ee 0%, #38bdf8 45%, #34d399 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .glass { background: rgba(255,255,255,0.035); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.08); }
+  .grid-bg { background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.06) 1px, transparent 0); background-size: 36px 36px; }
+  .glow-cyan { box-shadow: 0 0 120px rgba(34,211,238,0.25); }
+  .glow-soft { box-shadow: 0 30px 100px -20px rgba(34,211,238,0.35); }
+  .noise::after { content:''; position:absolute; inset:0; background-image: radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px); background-size: 3px 3px; opacity:0.4; pointer-events:none; }
+  @keyframes float { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-14px) } }
+  .float { animation: float 7s ease-in-out infinite; }
+  @keyframes pulse-ring { 0% { transform: scale(0.9); opacity: 0.7;} 80%,100% { transform: scale(1.6); opacity: 0;} }
+  .pulse-ring::before { content:''; position:absolute; inset:0; border-radius:9999px; border:2px solid rgba(34,211,238,0.5); animation: pulse-ring 2.2s cubic-bezier(0.22,1,0.36,1) infinite; }
+  .fade-in { animation: fadeUp 0.9s ease-out both; }
+  @keyframes fadeUp { from { opacity:0; transform: translateY(20px);} to { opacity:1; transform: translateY(0);} }
+  details > summary { list-style: none; cursor: pointer; }
+  details > summary::-webkit-details-marker { display: none; }
+  details[open] summary .chev { transform: rotate(180deg); }
+</style>
 </head>
-<body>
-    <header>
-        <nav class="container">
-            <a href="index.html" class="logo">
-                <img src="images/_CloakID_logo_1.png" alt="CloakID Logo">
-            </a>
-            <button class="mobile-menu-toggle" aria-label="Toggle menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <ul class="nav-links">
-                <li><a href="#features">How It Works</a></li>
-                <li><a href="pricing.html">Pricing</a></li>
-                <li><a href="support.html">Support</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+<body class="min-h-screen">
 
-    <!-- Hero -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero-split">
-                <div class="hero-text">
-                    <h1>Your Real Phone Number Should Be Private</h1>
-                    <p class="subtitle">CloakID gives you separate real phone numbers for different parts of your life. Incoming calls are screened before they reach you. Spam is blocked. Your real number stays hidden.</p>
+<!-- Ambient background blobs -->
+<div class="fixed inset-0 -z-10 overflow-hidden">
+  <div class="absolute -top-40 -left-40 w-[560px] h-[560px] rounded-full bg-cyan-500/20 blur-3xl"></div>
+  <div class="absolute top-1/3 -right-40 w-[520px] h-[520px] rounded-full bg-emerald-500/10 blur-3xl"></div>
+  <div class="absolute bottom-0 left-1/3 w-[480px] h-[480px] rounded-full bg-sky-600/10 blur-3xl"></div>
+</div>
 
-                    <div class="download-buttons">
-                        <a href="#" class="download-btn">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
-                                <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
-                            </svg>
-                            <span class="btn-label">
-                                <small>Download on the</small>
-                                <strong>App Store</strong>
-                            </span>
-                        </a>
-                        <a href="#" class="download-btn">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
-                                <path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.144 1.24a1 1 0 010 1.735l-2.144 1.24-2.53-2.53 2.53-2.685zM5.864 2.658L16.8 9.39l-2.302 2.302-8.634-8.634z"/>
-                            </svg>
-                            <span class="btn-label">
-                                <small>Get it on</small>
-                                <strong>Google Play</strong>
-                            </span>
-                        </a>
-                    </div>
-                </div>
-                <div class="hero-visual">
-                    <div class="phone-mockup">
-                        <img src="images/screenshots/hero-screen.png" alt="CloakID app" style="width: 100%; height: 100%; object-fit: cover; border-radius: inherit;">
-                    </div>
-                </div>
-            </div>
+<!-- HEADER -->
+<header class="fixed top-0 inset-x-0 z-50 backdrop-blur-xl bg-ink-950/70 border-b border-white/5">
+  <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-2.5">
+      <img src="images/_CloakID_icon_white.png" class="w-8 h-8" alt="CloakID">
+      <span class="text-white font-bold tracking-tight text-lg">CloakID</span>
+    </a>
+    <nav class="hidden md:flex items-center gap-9 text-sm text-slate-300">
+      <a href="#features" class="hover:text-white transition">Features</a>
+      <a href="#how" class="hover:text-white transition">How it works</a>
+      <a href="pricing.html" class="hover:text-white transition">Pricing</a>
+      <a href="support.html" class="hover:text-white transition">Support</a>
+    </nav>
+    <a href="#download" class="bg-gradient-to-r from-cyan-400 to-sky-500 text-ink-950 font-semibold px-4 py-2 rounded-full text-sm hover:shadow-lg hover:shadow-cyan-500/30 transition">Get the app</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="relative pt-32 pb-16 overflow-hidden">
+  <div class="absolute inset-0 grid-bg opacity-70 [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_80%)]"></div>
+  <div class="relative max-w-7xl mx-auto px-6 grid lg:grid-cols-[1.15fr_0.85fr] gap-12 items-center">
+    <div class="fade-in">
+      <div class="inline-flex items-center gap-2 glass px-4 py-1.5 rounded-full text-xs font-medium text-cyan-300 mb-6">
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+        Live · Protecting thousands of numbers
+      </div>
+      <h1 class="text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.02] mb-6">
+        Your real number<br>
+        <span class="gradient-text">was never meant</span><br>
+        to be public.
+      </h1>
+      <p class="text-lg md:text-xl text-slate-400 max-w-xl mb-10 leading-relaxed">
+        CloakID gives you real US phone numbers for every part of your life — dating, dealerships, deliveries, side projects. Calls are screened, spam is filtered, and your real number stays hidden.
+      </p>
+      <div class="flex flex-wrap items-center gap-4">
+        <a href="#download" class="group bg-gradient-to-r from-cyan-400 to-sky-500 text-ink-950 font-semibold px-6 py-3.5 rounded-full flex items-center gap-2 hover:shadow-xl hover:shadow-cyan-500/40 transition">
+          <i data-lucide="download" class="w-4 h-4"></i>
+          Download for iOS & Android
+        </a>
+        <a href="#how" class="flex items-center gap-2 text-slate-300 hover:text-white font-medium px-5 py-3.5 rounded-full border border-white/10 hover:bg-white/5 transition">
+          <i data-lucide="play-circle" class="w-4 h-4"></i>
+          See how it works
+        </a>
+      </div>
+      <div class="mt-10 flex items-center gap-6 text-sm text-slate-500">
+        <div class="flex items-center gap-2">
+          <i data-lucide="shield-check" class="w-4 h-4 text-emerald-400"></i>
+          Encrypted
         </div>
-    </section>
-
-    <!-- Trust bar -->
-    <section class="section" style="padding-top: 2rem; padding-bottom: 2rem;">
-        <div class="container" style="max-width: 700px; text-align: center;">
-            <p style="font-weight: 600; color: var(--text-dark); margin-bottom: 1rem;">Built for privacy, not spam.</p>
-            <div style="display: flex; justify-content: center; gap: 2.5rem; flex-wrap: wrap; color: #64748b; font-size: 0.95rem;">
-                <span>Real carrier-grade numbers</span>
-                <span>Calls screened automatically</span>
-                <span>Your number never exposed</span>
-            </div>
+        <div class="flex items-center gap-2">
+          <i data-lucide="phone-off" class="w-4 h-4 text-cyan-400"></i>
+          Real US numbers
         </div>
-    </section>
-
-    <!-- How It Works -->
-    <section class="section" id="features">
-        <div class="container">
-            <h2>How CloakID Protects You</h2>
-            <div class="grid grid-3">
-                <div class="card">
-                    <span class="step-number">1</span>
-                    <h3>Create Personas</h3>
-                    <p>Each persona gets its own real phone number. Create one for work, one for online shopping, one for dating — whatever you need. Your real number is never exposed.</p>
-                </div>
-                <div class="card">
-                    <span class="step-number">2</span>
-                    <h3>Calls Are Screened</h3>
-                    <p>When someone calls your persona, they're asked to identify themselves. Based on your preferences, the call is connected, sent to voicemail, or blocked. You decide who gets through.</p>
-                </div>
-                <div class="card">
-                    <span class="step-number">3</span>
-                    <h3>You Stay in Control</h3>
-                    <p>Review your activity feed. See who called, what they said, and how it was handled. Approve callers, block numbers, and adjust your screening rules anytime.</p>
-                </div>
-            </div>
+        <div class="flex items-center gap-2">
+          <i data-lucide="zap" class="w-4 h-4 text-amber-400"></i>
+          Calls screened first
         </div>
-    </section>
+      </div>
+    </div>
 
-    <!-- App Screenshots -->
-    <section class="section" style="background-color: #f8fafc;">
-        <div class="container">
-            <h2>See It in Action</h2>
-            <p style="text-align: center; color: #64748b; max-width: 500px; margin: -0.5rem auto 2rem;">The CloakID app on iOS and Android.</p>
-
-            <div class="screenshot-row">
-                <div class="screenshot-frame">
-                    <img src="images/screenshots/activity-feed.png" alt="Activity feed" style="width: 100%; height: 100%; object-fit: cover; border-radius: inherit;">
-                </div>
-                <div class="screenshot-frame">
-                    <img src="images/screenshots/persona-list.png" alt="Persona list" style="width: 100%; height: 100%; object-fit: cover; border-radius: inherit;">
-                </div>
-                <div class="screenshot-frame">
-                    <img src="images/screenshots/call-screened.png" alt="Call screening" style="width: 100%; height: 100%; object-fit: cover; border-radius: inherit;">
-                </div>
-                <div class="screenshot-frame">
-                    <img src="images/screenshots/messages.png" alt="Messages" style="width: 100%; height: 100%; object-fit: cover; border-radius: inherit;">
-                </div>
-            </div>
+    <div class="relative flex justify-center items-center min-h-[480px] fade-in">
+      <div class="absolute w-[440px] h-[440px] rounded-full bg-gradient-to-br from-cyan-500/30 via-sky-500/10 to-emerald-500/20 blur-3xl"></div>
+      <div class="absolute w-72 h-72 rounded-full pulse-ring"></div>
+      <img src="images/hero-screening.png" alt="CloakID call screening" class="relative z-10 max-h-[560px] drop-shadow-2xl float">
+      <!-- floating card 1 -->
+      <div class="hidden md:flex absolute top-10 -left-4 glass rounded-2xl px-4 py-3 items-center gap-3 z-20 fade-in">
+        <div class="w-9 h-9 rounded-full bg-emerald-500/20 flex items-center justify-center">
+          <i data-lucide="shield-check" class="w-4 h-4 text-emerald-400"></i>
         </div>
-    </section>
-
-    <!-- Key Features -->
-    <section class="section">
-        <div class="container">
-            <h2>Features That Actually Work</h2>
-            <div class="grid grid-3">
-                <div class="card">
-                    <h3>Call Screening</h3>
-                    <ul class="features-list">
-                        <li>Callers identify themselves before reaching you</li>
-                        <li>Spam and robocalls blocked automatically</li>
-                        <li>Voicemail with transcription</li>
-                        <li>Your feedback improves accuracy over time</li>
-                    </ul>
-                </div>
-                <div class="card">
-                    <h3>Real Phone Numbers</h3>
-                    <ul class="features-list">
-                        <li>Each persona gets a real US number</li>
-                        <li>SMS send and receive</li>
-                        <li>Make outbound calls showing your persona number</li>
-                        <li>Choose your area code</li>
-                    </ul>
-                </div>
-                <div class="card">
-                    <h3>Privacy First</h3>
-                    <ul class="features-list">
-                        <li>Your real number is never exposed</li>
-                        <li>Biometric app lock (Face ID / Touch ID)</li>
-                        <li>Temporary numbers that expire in 7 days</li>
-                        <li>Delete a persona and the number is gone</li>
-                    </ul>
-                </div>
-            </div>
+        <div class="text-left">
+          <div class="text-xs text-slate-400">Unknown caller</div>
+          <div class="text-sm text-white font-semibold">Screened · Blocked</div>
         </div>
-    </section>
-
-    <!-- Use Cases -->
-    <section class="section" style="background-color: #f8fafc;">
-        <div class="container">
-            <h2>One App, Many Uses</h2>
-            <p style="text-align: center; color: #64748b; max-width: 550px; margin: -0.5rem auto 2.5rem;">People use CloakID anywhere they'd rather not give out their real number.</p>
-
-            <div class="grid grid-3">
-                <div class="use-case-card">
-                    <div class="use-case-icon">🏠</div>
-                    <h3>Selling or Renting</h3>
-                    <p>List on Craigslist, Facebook Marketplace, or Zillow with a persona number. When the deal closes, delete the number. No more strangers texting you months later.</p>
-                    <span class="use-case-tag">Temporary persona</span>
-                </div>
-                <div class="use-case-card">
-                    <div class="use-case-icon">💼</div>
-                    <h3>Freelancers &amp; Side Hustles</h3>
-                    <p>Give clients a dedicated business number. Keep work calls separate from personal ones. When a project ends, the number can go with it.</p>
-                    <span class="use-case-tag">Permanent persona</span>
-                </div>
-                <div class="use-case-card">
-                    <div class="use-case-icon">❤️</div>
-                    <h3>Dating</h3>
-                    <p>Share a persona number on dating apps instead of your real one. If things don't work out, block or delete the number. No awkward follow-ups on your personal line.</p>
-                    <span class="use-case-tag">Temporary or permanent</span>
-                </div>
-                <div class="use-case-card">
-                    <div class="use-case-icon">📦</div>
-                    <h3>Online Shopping &amp; Signups</h3>
-                    <p>Use a persona number for accounts, deliveries, and loyalty programs. When the spam starts, you know exactly which company sold your number.</p>
-                    <span class="use-case-tag">Temporary persona</span>
-                </div>
-                <div class="use-case-card">
-                    <div class="use-case-icon">🔑</div>
-                    <h3>Moving &amp; Home Services</h3>
-                    <p>Contractors, movers, realtors, utility companies — they all want your number. Give them a persona. When you're settled in, you're done.</p>
-                    <span class="use-case-tag">Temporary persona</span>
-                </div>
-                <div class="use-case-card">
-                    <div class="use-case-icon">📋</div>
-                    <h3>Job Hunting</h3>
-                    <p>Post your resume with a persona number so recruiters can reach you without getting your real number. Calls are screened so only real opportunities get through.</p>
-                    <span class="use-case-tag">Permanent persona</span>
-                </div>
-            </div>
+      </div>
+      <!-- floating card 2 -->
+      <div class="hidden md:flex absolute bottom-16 -right-2 glass rounded-2xl px-4 py-3 items-center gap-3 z-20 fade-in">
+        <div class="w-9 h-9 rounded-full bg-cyan-500/20 flex items-center justify-center">
+          <i data-lucide="phone-incoming" class="w-4 h-4 text-cyan-300"></i>
         </div>
-    </section>
-
-    <!-- Persona Examples -->
-    <section class="section">
-        <div class="container">
-            <h2>How People Set Up Their Personas</h2>
-            <p style="text-align: center; color: #64748b; max-width: 550px; margin: -0.5rem auto 2.5rem;">Most people start with 2&ndash;3 personas. Here are some real setups that work well.</p>
-
-            <div class="persona-grid">
-                <div class="persona-example">
-                    <div class="persona-header">
-                        <div class="persona-avatar" style="background: linear-gradient(135deg, #dbeafe, #bfdbfe);">🤝</div>
-                        <div>
-                            <div class="persona-name">Social</div>
-                            <div class="persona-number">(512) 555-••••</div>
-                        </div>
-                    </div>
-                    <p class="persona-desc">"For people I meet out, events, and new connections."</p>
-                    <p class="persona-context">Give this number to people you meet at parties, neighbors, or casual contacts. Screening lets through anyone who can say why they're calling.</p>
-                </div>
-
-                <div class="persona-example">
-                    <div class="persona-header">
-                        <div class="persona-avatar" style="background: linear-gradient(135deg, #fef3c7, #fde68a);">💼</div>
-                        <div>
-                            <div class="persona-name">Work</div>
-                            <div class="persona-number">(415) 555-••••</div>
-                        </div>
-                    </div>
-                    <p class="persona-desc">"Client calls and professional contacts."</p>
-                    <p class="persona-context">A dedicated line for clients and business. Calls from people mentioning projects or appointments get through. Everything else goes to voicemail.</p>
-                </div>
-
-                <div class="persona-example">
-                    <div class="persona-header">
-                        <div class="persona-avatar" style="background: linear-gradient(135deg, #dcfce7, #bbf7d0);">📦</div>
-                        <div>
-                            <div class="persona-name">Marketplace</div>
-                            <div class="persona-number">(773) 555-••••</div>
-                        </div>
-                    </div>
-                    <p class="persona-desc">"Buying and selling stuff online."</p>
-                    <p class="persona-context">Use this for Craigslist, Facebook Marketplace, or OfferUp. When the sale's done, delete the number. No one can reach you afterward.</p>
-                </div>
-
-                <div class="persona-example">
-                    <div class="persona-header">
-                        <div class="persona-avatar" style="background: linear-gradient(135deg, #fce7f3, #fbcfe8);">❤️</div>
-                        <div>
-                            <div class="persona-name">Dating</div>
-                            <div class="persona-number">(646) 555-••••</div>
-                        </div>
-                    </div>
-                    <p class="persona-desc">"For dating apps and first dates."</p>
-                    <p class="persona-context">Share this instead of your real number. If it doesn't work out, block or delete. No one gets access to your actual phone.</p>
-                </div>
-
-                <div class="persona-example">
-                    <div class="persona-header">
-                        <div class="persona-avatar" style="background: linear-gradient(135deg, #e0e7ff, #c7d2fe);">🏠</div>
-                        <div>
-                            <div class="persona-name">Community</div>
-                            <div class="persona-number">(303) 555-••••</div>
-                        </div>
-                    </div>
-                    <p class="persona-desc">"For neighbors, local groups, and casual contacts."</p>
-                    <p class="persona-context">Great for HOA stuff, kid's school, sports leagues, or anyone in your local orbit. Keeps your personal line clean without being unfriendly.</p>
-                </div>
-
-                <div class="persona-example">
-                    <div class="persona-header">
-                        <div class="persona-avatar" style="background: linear-gradient(135deg, #f3e8ff, #e9d5ff);">🔑</div>
-                        <div>
-                            <div class="persona-name">Services</div>
-                            <div class="persona-number">(972) 555-••••</div>
-                        </div>
-                    </div>
-                    <p class="persona-desc">"Contractors, repair people, deliveries."</p>
-                    <p class="persona-context">The number you give to your plumber, electrician, movers, and anyone doing work on your house. Temporary or permanent — your call.</p>
-                </div>
-            </div>
+        <div class="text-left">
+          <div class="text-xs text-slate-400">Amazon delivery</div>
+          <div class="text-sm text-white font-semibold">Allowed through</div>
         </div>
-    </section>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- How screening works (detail) -->
-    <section class="section">
-        <div class="container" style="max-width: 800px;">
-            <h2>What Happens When Someone Calls</h2>
-            <div style="display: grid; gap: 1.5rem; margin-top: 2rem;">
-                <div class="card" style="display: flex; gap: 1.25rem; align-items: flex-start;">
-                    <span class="step-number" style="flex-shrink: 0; margin-bottom: 0;">1</span>
-                    <div>
-                        <h3 style="margin-bottom: 0.25rem;">Caller is asked to identify themselves</h3>
-                        <p style="font-size: 0.9rem; color: #4b5563;">When someone dials your persona number, they hear a brief prompt asking who they are and why they're calling.</p>
-                    </div>
-                </div>
-                <div class="card" style="display: flex; gap: 1.25rem; align-items: flex-start;">
-                    <span class="step-number" style="flex-shrink: 0; margin-bottom: 0;">2</span>
-                    <div>
-                        <h3 style="margin-bottom: 0.25rem;">The call is screened</h3>
-                        <p style="font-size: 0.9rem; color: #4b5563;">Based on what the caller says, your persona's purpose, and your screening rules, the call is evaluated in seconds.</p>
-                    </div>
-                </div>
-                <div class="card" style="display: flex; gap: 1.25rem; align-items: flex-start;">
-                    <span class="step-number" style="flex-shrink: 0; margin-bottom: 0;">3</span>
-                    <div>
-                        <h3 style="margin-bottom: 0.25rem;">You get the result</h3>
-                        <p style="font-size: 0.9rem; color: #4b5563;">Legitimate calls ring your phone. Suspicious calls go to voicemail. Spam is blocked. You see everything in your activity feed with a full record of what happened.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- TRUST STRIP -->
+<section class="border-y border-white/5 bg-white/[0.015]">
+  <div class="max-w-7xl mx-auto px-6 py-8 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+    <div>
+      <div class="text-3xl md:text-4xl font-bold text-white">100%</div>
+      <div class="text-xs text-slate-500 uppercase tracking-wider mt-1">Encrypted</div>
+    </div>
+    <div>
+      <div class="text-3xl md:text-4xl font-bold text-white">&lt;1s</div>
+      <div class="text-xs text-slate-500 uppercase tracking-wider mt-1">Screening speed</div>
+    </div>
+    <div>
+      <div class="text-3xl md:text-4xl font-bold text-white">10+</div>
+      <div class="text-xs text-slate-500 uppercase tracking-wider mt-1">Personas per user</div>
+    </div>
+    <div>
+      <div class="text-3xl md:text-4xl font-bold text-white">24/7</div>
+      <div class="text-xs text-slate-500 uppercase tracking-wider mt-1">Always on guard</div>
+    </div>
+  </div>
+</section>
 
-    <!-- Pricing teaser -->
-    <section class="section" style="background-color: #f8fafc;">
-        <div class="container" style="max-width: 800px; text-align: center;">
-            <h2>Simple Pricing</h2>
-            <p style="color: #64748b; margin-bottom: 2rem;">Start free. Upgrade when you need more numbers.</p>
-            <div class="stat-row">
-                <div class="stat-item">
-                    <div class="stat-number">$0</div>
-                    <div class="stat-label">7-day free trial</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">$24.99</div>
-                    <div class="stat-label">Core — 3 personas</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">$49.99</div>
-                    <div class="stat-label">Executive — up to 10</div>
-                </div>
-            </div>
-            <a href="pricing.html" style="color: var(--primary-color); font-weight: 600; font-size: 0.95rem;">See full plan details &rarr;</a>
-        </div>
-    </section>
+<!-- PROBLEM -->
+<section class="relative pt-20 pb-12">
+  <div class="max-w-6xl mx-auto px-6 text-center">
+    <div class="inline-flex items-center gap-2 text-cyan-300 text-sm font-semibold uppercase tracking-wider mb-4">
+      <i data-lucide="alert-triangle" class="w-4 h-4"></i> The problem
+    </div>
+    <h2 class="text-4xl md:text-5xl font-bold text-white tracking-tight mb-5">
+      You give out your real number<br>and <span class="gradient-text">lose control of it</span>.
+    </h2>
+    <p class="text-lg text-slate-400 max-w-2xl mx-auto leading-relaxed">
+      Every signup, form, and dealership becomes a spam pipeline. Your number ends up in data brokers, lead lists, and scam dialers — forever. There's no way to take it back.
+    </p>
+  </div>
+</section>
 
-    <!-- Final CTA -->
-    <section class="section">
-        <div class="container">
-            <div class="cta-section">
-                <h2>Your real number should be private.</h2>
-                <p>Download CloakID and get your first persona in under two minutes.</p>
-                <div class="download-buttons" style="justify-content: center; position: relative;">
-                    <a href="#" class="download-btn" style="background: white; color: #0f172a;">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="#0f172a">
-                            <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
-                        </svg>
-                        <span class="btn-label">
-                            <small style="color: #64748b;">Download on the</small>
-                            <strong>App Store</strong>
-                        </span>
-                    </a>
-                    <a href="#" class="download-btn" style="background: white; color: #0f172a;">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="#0f172a">
-                            <path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.144 1.24a1 1 0 010 1.735l-2.144 1.24-2.53-2.53 2.53-2.685zM5.864 2.658L16.8 9.39l-2.302 2.302-8.634-8.634z"/>
-                        </svg>
-                        <span class="btn-label">
-                            <small style="color: #64748b;">Get it on</small>
-                            <strong>Google Play</strong>
-                        </span>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- FEATURES GRID -->
+<section id="features" class="pt-12 pb-20">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-12">
+      <div class="inline-flex items-center gap-2 text-cyan-300 text-sm font-semibold uppercase tracking-wider mb-4">
+        <i data-lucide="sparkles" class="w-4 h-4"></i> How CloakID protects you
+      </div>
+      <h2 class="text-4xl md:text-5xl font-bold text-white tracking-tight">Built for calm, not noise.</h2>
+    </div>
 
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h4>Product</h4>
-                    <ul class="footer-links">
-                        <li><a href="#features">How It Works</a></li>
-                        <li><a href="pricing.html">Pricing</a></li>
-                        <li><a href="about.html">About</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Support</h4>
-                    <ul class="footer-links">
-                        <li><a href="support.html">Help Center</a></li>
-                        <li><a href="contact.html">Contact Us</a></li>
-                        <li><a href="mailto:support@cloakid.app">support@cloakid.app</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Legal</h4>
-                    <ul class="footer-links">
-                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                        <li><a href="terms-of-service.html">Terms of Service</a></li>
-                        <li><a href="sms-disclosure.html">SMS Opt-in Disclosure</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Company</h4>
-                    <ul class="footer-links">
-                        <li><a href="about.html">About Niobium LLC</a></li>
-                        <li><a href="mailto:hello@cloakid.app">hello@cloakid.app</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 0.5rem;">CloakID phone numbers are intended for personal and business communications initiated by the user. We do not support unsolicited messaging or spam.</p>
-                <p>&copy; 2026 Niobium LLC. All rights reserved. CloakID is a product of Niobium LLC.</p>
-            </div>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Feature 1 -->
+      <div class="glass rounded-3xl p-8 hover:border-cyan-400/30 transition group">
+        <div class="w-12 h-12 rounded-2xl bg-cyan-500/15 flex items-center justify-center mb-5 group-hover:scale-110 transition">
+          <i data-lucide="users" class="w-6 h-6 text-cyan-300"></i>
         </div>
-    </footer>
-    <script src="script.js"></script>
+        <h3 class="text-xl font-bold text-white mb-3">Multiple personas</h3>
+        <p class="text-slate-400 leading-relaxed">Create a persona for each part of your life. Work, dating, side hustle, deliveries — each gets its own real US number.</p>
+      </div>
+      <!-- Feature 2 -->
+      <div class="glass rounded-3xl p-8 hover:border-cyan-400/30 transition group">
+        <div class="w-12 h-12 rounded-2xl bg-emerald-500/15 flex items-center justify-center mb-5 group-hover:scale-110 transition">
+          <i data-lucide="shield-check" class="w-6 h-6 text-emerald-400"></i>
+        </div>
+        <h3 class="text-xl font-bold text-white mb-3">Calls screened first</h3>
+        <p class="text-slate-400 leading-relaxed">Every unknown caller is asked who they are and why they're calling. Only the ones that make sense for that persona get through.</p>
+      </div>
+      <!-- Feature 3 -->
+      <div class="glass rounded-3xl p-8 hover:border-cyan-400/30 transition group">
+        <div class="w-12 h-12 rounded-2xl bg-sky-500/15 flex items-center justify-center mb-5 group-hover:scale-110 transition">
+          <i data-lucide="lock" class="w-6 h-6 text-sky-300"></i>
+        </div>
+        <h3 class="text-xl font-bold text-white mb-3">End-to-end encrypted</h3>
+        <p class="text-slate-400 leading-relaxed">Your calls, messages, and contacts are encrypted at rest and in transit. We can't read them. Neither can anyone else.</p>
+      </div>
+      <!-- Feature 4 -->
+      <div class="glass rounded-3xl p-8 hover:border-cyan-400/30 transition group">
+        <div class="w-12 h-12 rounded-2xl bg-amber-500/15 flex items-center justify-center mb-5 group-hover:scale-110 transition">
+          <i data-lucide="timer" class="w-6 h-6 text-amber-300"></i>
+        </div>
+        <h3 class="text-xl font-bold text-white mb-3">Temporary numbers</h3>
+        <p class="text-slate-400 leading-relaxed">Selling a couch on Craigslist? Spin up a 7-day disposable number. When it expires, the number is released — no trail.</p>
+      </div>
+      <!-- Feature 5 -->
+      <div class="glass rounded-3xl p-8 hover:border-cyan-400/30 transition group">
+        <div class="w-12 h-12 rounded-2xl bg-fuchsia-500/15 flex items-center justify-center mb-5 group-hover:scale-110 transition">
+          <i data-lucide="message-square" class="w-6 h-6 text-fuchsia-300"></i>
+        </div>
+        <h3 class="text-xl font-bold text-white mb-3">Real SMS & voicemail</h3>
+        <p class="text-slate-400 leading-relaxed">Every persona sends and receives real text messages, voicemail, and even makes outbound calls with its own caller ID.</p>
+      </div>
+      <!-- Feature 6 -->
+      <div class="glass rounded-3xl p-8 hover:border-cyan-400/30 transition group">
+        <div class="w-12 h-12 rounded-2xl bg-rose-500/15 flex items-center justify-center mb-5 group-hover:scale-110 transition">
+          <i data-lucide="eye-off" class="w-6 h-6 text-rose-300"></i>
+        </div>
+        <h3 class="text-xl font-bold text-white mb-3">Your real number stays private</h3>
+        <p class="text-slate-400 leading-relaxed">No one you call from CloakID ever sees your real number. Ever. Not dealerships, not delivery drivers, not strangers.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how" class="py-20 relative">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-14">
+      <div class="inline-flex items-center gap-2 text-cyan-300 text-sm font-semibold uppercase tracking-wider mb-4">
+        <i data-lucide="workflow" class="w-4 h-4"></i> How it works
+      </div>
+      <h2 class="text-4xl md:text-5xl font-bold text-white tracking-tight">Three steps to a quieter phone.</h2>
+    </div>
+
+    <div class="grid lg:grid-cols-3 gap-8 items-start">
+      <div class="glass rounded-3xl p-8 relative">
+        <div class="absolute -top-5 left-8 w-12 h-12 rounded-2xl bg-gradient-to-br from-cyan-400 to-sky-500 flex items-center justify-center text-ink-950 text-xl font-black">1</div>
+        <img src="images/hero-personas.png" alt="Create personas" class="w-full h-56 object-contain mb-6 mt-4">
+        <h3 class="text-xl font-bold text-white mb-3">Create a persona</h3>
+        <p class="text-slate-400">Pick an area code and get a real US phone number instantly. Name it whatever you want — "Dating", "DoorDash", "Work side gig".</p>
+      </div>
+      <div class="glass rounded-3xl p-8 relative">
+        <div class="absolute -top-5 left-8 w-12 h-12 rounded-2xl bg-gradient-to-br from-cyan-400 to-sky-500 flex items-center justify-center text-ink-950 text-xl font-black">2</div>
+        <img src="images/hero-situation.png" alt="Share the number" class="w-full h-56 object-contain mb-6 mt-4">
+        <h3 class="text-xl font-bold text-white mb-3">Share the number</h3>
+        <p class="text-slate-400">Give it out like any regular number. Share it via QR code, SMS, or vCard. Your real number never leaves your phone.</p>
+      </div>
+      <div class="glass rounded-3xl p-8 relative">
+        <div class="absolute -top-5 left-8 w-12 h-12 rounded-2xl bg-gradient-to-br from-cyan-400 to-sky-500 flex items-center justify-center text-ink-950 text-xl font-black">3</div>
+        <img src="images/hero-activity.png" alt="Screened activity" class="w-full h-56 object-contain mb-6 mt-4">
+        <h3 class="text-xl font-bold text-white mb-3">Relax.</h3>
+        <p class="text-slate-400">CloakID screens every incoming call, filters spam, and lets only the right people through. You just see the ones that matter.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCREENSHOTS SHOWCASE -->
+<section class="py-20">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-12">
+      <div class="inline-flex items-center gap-2 text-cyan-300 text-sm font-semibold uppercase tracking-wider mb-4">
+        <i data-lucide="smartphone" class="w-4 h-4"></i> Inside the app
+      </div>
+      <h2 class="text-4xl md:text-5xl font-bold text-white tracking-tight">Designed for calm.</h2>
+      <p class="text-lg text-slate-400 max-w-xl mx-auto mt-4">No filters, no chips, no notification bells. Just a clean, trustworthy feed of what actually matters.</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="glass rounded-3xl p-6 flex flex-col items-center hover:border-cyan-400/30 transition">
+        <img src="images/screenshots/persona-list.png" class="h-96 object-contain mb-4" alt="Personas">
+        <div class="text-white font-semibold">Personas</div>
+        <div class="text-xs text-slate-500 mt-1">All your numbers in one place</div>
+      </div>
+      <div class="glass rounded-3xl p-6 flex flex-col items-center hover:border-cyan-400/30 transition">
+        <img src="images/screenshots/activity-feed.png" class="h-96 object-contain mb-4" alt="Activity">
+        <div class="text-white font-semibold">Activity</div>
+        <div class="text-xs text-slate-500 mt-1">Calls and messages, unified</div>
+      </div>
+      <div class="glass rounded-3xl p-6 flex flex-col items-center hover:border-cyan-400/30 transition">
+        <img src="images/screenshots/call-screened.png" class="h-96 object-contain mb-4" alt="Call screened">
+        <div class="text-white font-semibold">Screened calls</div>
+        <div class="text-xs text-slate-500 mt-1">See why each call was handled</div>
+      </div>
+      <div class="glass rounded-3xl p-6 flex flex-col items-center hover:border-cyan-400/30 transition">
+        <img src="images/screenshots/messages.png" class="h-96 object-contain mb-4" alt="Messages">
+        <div class="text-white font-semibold">Real SMS</div>
+        <div class="text-xs text-slate-500 mt-1">Per-persona threads</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="py-20">
+  <div class="max-w-3xl mx-auto px-6">
+    <div class="text-center mb-10">
+      <div class="inline-flex items-center gap-2 text-cyan-300 text-sm font-semibold uppercase tracking-wider mb-4">
+        <i data-lucide="help-circle" class="w-4 h-4"></i> Questions
+      </div>
+      <h2 class="text-4xl md:text-5xl font-bold text-white tracking-tight">The short answers.</h2>
+    </div>
+    <div class="space-y-3">
+      <details class="glass rounded-2xl p-6 group">
+        <summary class="flex items-center justify-between">
+          <span class="text-white font-semibold">Are these real phone numbers?</span>
+          <i data-lucide="chevron-down" class="chev w-5 h-5 text-slate-400 transition"></i>
+        </summary>
+        <p class="text-slate-400 mt-4 leading-relaxed">Yes. Every CloakID persona comes with a real US phone number that can send and receive real calls and SMS — nothing virtual, nothing fake.</p>
+      </details>
+      <details class="glass rounded-2xl p-6 group">
+        <summary class="flex items-center justify-between">
+          <span class="text-white font-semibold">Does CloakID work with iMessage?</span>
+          <i data-lucide="chevron-down" class="chev w-5 h-5 text-slate-400 transition"></i>
+        </summary>
+        <p class="text-slate-400 mt-4 leading-relaxed">CloakID sends and receives standard SMS/MMS over the carrier network. You can message anyone, on any device.</p>
+      </details>
+      <details class="glass rounded-2xl p-6 group">
+        <summary class="flex items-center justify-between">
+          <span class="text-white font-semibold">Can I cancel anytime?</span>
+          <i data-lucide="chevron-down" class="chev w-5 h-5 text-slate-400 transition"></i>
+        </summary>
+        <p class="text-slate-400 mt-4 leading-relaxed">Yes. Subscriptions are managed through the App Store or Google Play. Cancel anytime, no questions asked.</p>
+      </details>
+      <details class="glass rounded-2xl p-6 group">
+        <summary class="flex items-center justify-between">
+          <span class="text-white font-semibold">What happens when I delete my account?</span>
+          <i data-lucide="chevron-down" class="chev w-5 h-5 text-slate-400 transition"></i>
+        </summary>
+        <p class="text-slate-400 mt-4 leading-relaxed">Everything is permanently deleted — personas, call logs, messages, voicemail, contacts. Phone numbers are immediately released back to the provider. See our <a href="delete-account.html" class="text-cyan-300 hover:underline">account deletion page</a>.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA / DOWNLOAD -->
+<section id="download" class="py-24 relative overflow-hidden">
+  <div class="absolute inset-0 grid-bg opacity-40 [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_75%)]"></div>
+  <div class="relative max-w-4xl mx-auto px-6 text-center">
+    <div class="glass rounded-[2.5rem] p-12 md:p-16 glow-soft">
+      <img src="images/_CloakID_icon_white.png" class="w-16 h-16 mx-auto mb-6" alt="CloakID">
+      <h2 class="text-4xl md:text-5xl font-bold text-white tracking-tight mb-5">Take your number back.</h2>
+      <p class="text-lg text-slate-400 max-w-xl mx-auto mb-10">Download CloakID and create your first persona in under 60 seconds. Your real number will thank you.</p>
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <a href="#" class="bg-white text-ink-950 font-semibold px-6 py-3.5 rounded-full flex items-center gap-2 hover:shadow-xl transition">
+          <i data-lucide="apple" class="w-5 h-5"></i>
+          App Store
+        </a>
+        <a href="#" class="bg-white/10 border border-white/15 text-white font-semibold px-6 py-3.5 rounded-full flex items-center gap-2 hover:bg-white/15 transition">
+          <i data-lucide="play" class="w-5 h-5"></i>
+          Google Play
+        </a>
+      </div>
+      <div class="mt-8 text-xs text-slate-500">7-day free trial · No credit card required · Cancel anytime</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="border-t border-white/5 bg-ink-950">
+  <div class="max-w-7xl mx-auto px-6 py-16 grid md:grid-cols-4 gap-10">
+    <div>
+      <div class="flex items-center gap-2 mb-4">
+        <img src="images/_CloakID_icon_white.png" class="w-8 h-8">
+        <span class="text-white font-bold">CloakID</span>
+      </div>
+      <p class="text-sm text-slate-500 leading-relaxed">Real phone numbers. Real privacy. Real calm.</p>
+    </div>
+    <div>
+      <h4 class="text-white font-semibold text-sm mb-4">Product</h4>
+      <ul class="space-y-2.5 text-sm text-slate-400">
+        <li><a href="index.html#features" class="hover:text-white transition">Features</a></li>
+        <li><a href="index.html#how" class="hover:text-white transition">How it works</a></li>
+        <li><a href="pricing.html" class="hover:text-white transition">Pricing</a></li>
+        <li><a href="support.html" class="hover:text-white transition">Support</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="text-white font-semibold text-sm mb-4">Company</h4>
+      <ul class="space-y-2.5 text-sm text-slate-400">
+        <li><a href="about.html" class="hover:text-white transition">About</a></li>
+        <li><a href="contact.html" class="hover:text-white transition">Contact</a></li>
+        <li><a href="mailto:support@cloakid.app" class="hover:text-white transition">support@cloakid.app</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="text-white font-semibold text-sm mb-4">Legal</h4>
+      <ul class="space-y-2.5 text-sm text-slate-400">
+        <li><a href="privacy-policy.html" class="hover:text-white transition">Privacy Policy</a></li>
+        <li><a href="terms-of-service.html" class="hover:text-white transition">Terms of Service</a></li>
+        <li><a href="sms-disclosure.html" class="hover:text-white transition">SMS Disclosure</a></li>
+        <li><a href="delete-account.html" class="hover:text-white transition">Delete Account</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="border-t border-white/5 py-6 text-center text-xs text-slate-600">© 2026 Niobium LLC. CloakID is a product of Niobium LLC.</div>
+</footer>
+
+<script>lucide.createIcons();</script>
 </body>
 </html>

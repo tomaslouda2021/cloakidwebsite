@@ -1,116 +1,177 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Delete Your Account - CloakID</title>
-    <meta name="description" content="How to delete your CloakID account and what data is removed.">
-    <link rel="stylesheet" href="style.css">
-    <link rel="icon" type="image/png" href="images/_CloakID_icon_white.png">
-    <link rel="apple-touch-icon" href="images/_CloakID_icon_white.png">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Delete Your Account — CloakID</title>
+<meta name="description" content="How to permanently delete your CloakID account and all associated data.">
+<link rel="icon" type="image/png" href="images/_CloakID_icon_white.png">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<script>
+  tailwind.config = { theme: { extend: {
+    colors: { ink: { 950: '#05070f', 900: '#0a0e1a', 800: '#0f1524', 700: '#1a2235' } },
+    fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] }
+  }}}
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', system-ui, sans-serif; background: #05070f; color: #e2e8f0; -webkit-font-smoothing: antialiased; }
+  .gradient-text { background: linear-gradient(135deg, #22d3ee 0%, #38bdf8 45%, #34d399 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .glass { background: rgba(255,255,255,0.035); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.08); }
+  .grid-bg { background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.06) 1px, transparent 0); background-size: 36px 36px; }
+</style>
 </head>
-<body>
-    <header>
-        <nav class="container">
-            <a href="index.html" class="logo">
-                <img src="images/_CloakID_logo_1.png" alt="CloakID Logo">
-            </a>
-            <button class="mobile-menu-toggle" aria-label="Toggle menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <ul class="nav-links">
-                <li><a href="index.html#features">How It Works</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+<body class="min-h-screen">
 
-    <section class="section" style="padding-top: 5rem;">
-        <div class="container" style="max-width: 720px;">
-            <h1 style="text-align: center; margin-bottom: 0.5rem;">Delete Your Account</h1>
-            <p style="text-align: center; color: #64748b; margin-bottom: 2.5rem;">CloakID by Niobium LLC</p>
+<div class="fixed inset-0 -z-10 overflow-hidden">
+  <div class="absolute -top-40 -left-40 w-[560px] h-[560px] rounded-full bg-rose-500/15 blur-3xl"></div>
+  <div class="absolute top-1/3 -right-40 w-[520px] h-[520px] rounded-full bg-cyan-500/10 blur-3xl"></div>
+</div>
 
-            <div class="card" style="margin-bottom: 2rem;">
-                <h2 style="font-size: 1.25rem; margin-bottom: 1rem;">How to Delete Your Account</h2>
-                <p style="margin-bottom: 1rem;">You can delete your account directly from the CloakID app. Follow these steps:</p>
-                <ol style="padding-left: 1.25rem; color: #334155; line-height: 1.8;">
-                    <li>Open the <strong>CloakID</strong> app on your device</li>
-                    <li>Tap the <strong>menu icon</strong> (top-left corner) to open the side menu</li>
-                    <li>Tap <strong>Profile</strong></li>
-                    <li>Scroll down to the <strong>Danger Zone</strong> section</li>
-                    <li>Tap <strong>Delete Account</strong></li>
-                    <li>Read the warning and tap <strong>Continue</strong></li>
-                    <li>Type <strong>DELETE</strong> to confirm, then tap <strong>Delete Forever</strong></li>
-                </ol>
-            </div>
+<header class="fixed top-0 inset-x-0 z-50 backdrop-blur-xl bg-ink-950/70 border-b border-white/5">
+  <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-2.5">
+      <img src="images/_CloakID_icon_white.png" class="w-8 h-8" alt="CloakID">
+      <span class="text-white font-bold tracking-tight text-lg">CloakID</span>
+    </a>
+    <nav class="hidden md:flex items-center gap-9 text-sm text-slate-300">
+      <a href="index.html#features" class="hover:text-white transition">Features</a>
+      <a href="index.html#how" class="hover:text-white transition">How it works</a>
+      <a href="pricing.html" class="hover:text-white transition">Pricing</a>
+      <a href="support.html" class="hover:text-white transition">Support</a>
+    </nav>
+    <a href="index.html#download" class="bg-gradient-to-r from-cyan-400 to-sky-500 text-ink-950 font-semibold px-4 py-2 rounded-full text-sm hover:shadow-lg hover:shadow-cyan-500/30 transition">Get the app</a>
+  </div>
+</header>
 
-            <div class="card" style="margin-bottom: 2rem;">
-                <h2 style="font-size: 1.25rem; margin-bottom: 1rem;">What Data Is Deleted</h2>
-                <p style="margin-bottom: 1rem;">When you delete your account, the following data is <strong>permanently deleted</strong> and cannot be recovered:</p>
-                <ul class="features-list" style="line-height: 1.8;">
-                    <li>Your user account and profile information</li>
-                    <li>All personas and their associated phone numbers</li>
-                    <li>All call history and call logs</li>
-                    <li>All messages (SMS and MMS)</li>
-                    <li>All contacts and approved callers</li>
-                    <li>All handshake (trusted caller) contacts and invitations</li>
-                    <li>Push notification settings and device tokens</li>
-                    <li>Voicemail recordings</li>
-                </ul>
-            </div>
+<section class="pt-32 pb-10 relative">
+  <div class="absolute inset-0 grid-bg opacity-50 [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_80%)]"></div>
+  <div class="relative max-w-3xl mx-auto px-6 text-center">
+    <div class="inline-flex items-center gap-2 glass px-4 py-1.5 rounded-full text-xs font-medium text-rose-300 mb-6">
+      <i data-lucide="trash-2" class="w-3.5 h-3.5"></i> Account deletion
+    </div>
+    <h1 class="text-5xl md:text-6xl font-extrabold tracking-tight text-white leading-[1.05] mb-6">
+      Delete your<br><span class="gradient-text">CloakID account.</span>
+    </h1>
+    <p class="text-lg text-slate-400 max-w-xl mx-auto">CloakID by Niobium LLC. This page explains exactly how to permanently delete your account and what happens to your data.</p>
+  </div>
+</section>
 
-            <div class="card" style="margin-bottom: 2rem;">
-                <h2 style="font-size: 1.25rem; margin-bottom: 1rem;">Data Retention</h2>
-                <p style="line-height: 1.8;">No user data is retained after account deletion. All phone numbers associated with your personas are immediately released back to the telephony provider and cannot be recovered. This action is <strong>permanent and irreversible</strong>.</p>
-            </div>
+<section class="pb-24">
+  <div class="max-w-3xl mx-auto px-6 space-y-6">
 
-            <div class="card" style="margin-bottom: 2rem;">
-                <h2 style="font-size: 1.25rem; margin-bottom: 1rem;">Need Help?</h2>
-                <p style="line-height: 1.8;">If you are unable to access the app or need assistance deleting your account, contact us at <a href="mailto:support@cloakid.app" style="color: var(--accent);">support@cloakid.app</a> with the email address associated with your account, and we will process your request.</p>
-            </div>
+    <!-- How to Delete -->
+    <div class="glass rounded-3xl p-8">
+      <div class="flex items-center gap-3 mb-5">
+        <div class="w-10 h-10 rounded-xl bg-cyan-500/15 flex items-center justify-center">
+          <i data-lucide="smartphone" class="w-5 h-5 text-cyan-300"></i>
         </div>
-    </section>
+        <h2 class="text-2xl font-bold text-white">How to delete from the app</h2>
+      </div>
+      <p class="text-slate-400 mb-5">You can delete your account directly from the CloakID app in just a few taps:</p>
+      <ol class="space-y-3">
+        <li class="flex gap-3 text-slate-300"><span class="w-6 h-6 rounded-full bg-cyan-500/20 text-cyan-300 text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">1</span>Open the <strong class="text-white">CloakID</strong> app on your device</li>
+        <li class="flex gap-3 text-slate-300"><span class="w-6 h-6 rounded-full bg-cyan-500/20 text-cyan-300 text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">2</span>Tap the <strong class="text-white">menu icon</strong> (top-left corner) to open the side menu</li>
+        <li class="flex gap-3 text-slate-300"><span class="w-6 h-6 rounded-full bg-cyan-500/20 text-cyan-300 text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">3</span>Tap <strong class="text-white">Profile</strong></li>
+        <li class="flex gap-3 text-slate-300"><span class="w-6 h-6 rounded-full bg-cyan-500/20 text-cyan-300 text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">4</span>Scroll down to the <strong class="text-white">Danger Zone</strong> section</li>
+        <li class="flex gap-3 text-slate-300"><span class="w-6 h-6 rounded-full bg-cyan-500/20 text-cyan-300 text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">5</span>Tap <strong class="text-white">Delete Account</strong></li>
+        <li class="flex gap-3 text-slate-300"><span class="w-6 h-6 rounded-full bg-cyan-500/20 text-cyan-300 text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">6</span>Read the warning and tap <strong class="text-white">Continue</strong></li>
+        <li class="flex gap-3 text-slate-300"><span class="w-6 h-6 rounded-full bg-cyan-500/20 text-cyan-300 text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">7</span>Type <strong class="text-white">DELETE</strong> to confirm, then tap <strong class="text-white">Delete Forever</strong></li>
+      </ol>
+    </div>
 
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h4>Product</h4>
-                    <ul class="footer-links">
-                        <li><a href="index.html#features">How It Works</a></li>
-                        <li><a href="about.html">About</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Contact</h4>
-                    <ul class="footer-links">
-                        <li><a href="contact.html">Contact Us</a></li>
-                        <li><a href="mailto:support@cloakid.app">support@cloakid.app</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Legal</h4>
-                    <ul class="footer-links">
-                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                        <li><a href="terms-of-service.html">Terms of Service</a></li>
-                        <li><a href="sms-disclosure.html">SMS Opt-in Disclosure</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Company</h4>
-                    <ul class="footer-links">
-                        <li><a href="about.html">About Niobium LLC</a></li>
-                        <li><a href="mailto:hello@cloakid.app">hello@cloakid.app</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Niobium LLC. All rights reserved. CloakID is a product of Niobium LLC.</p>
-            </div>
+    <!-- What gets deleted -->
+    <div class="glass rounded-3xl p-8">
+      <div class="flex items-center gap-3 mb-5">
+        <div class="w-10 h-10 rounded-xl bg-rose-500/15 flex items-center justify-center">
+          <i data-lucide="trash-2" class="w-5 h-5 text-rose-400"></i>
         </div>
-    </footer>
-    <script src="script.js"></script>
+        <h2 class="text-2xl font-bold text-white">What data is permanently deleted</h2>
+      </div>
+      <p class="text-slate-400 mb-5">When you delete your account, the following is <strong class="text-white">permanently deleted and cannot be recovered:</strong></p>
+      <ul class="grid sm:grid-cols-2 gap-3 text-sm">
+        <li class="flex items-start gap-2 text-slate-300"><i data-lucide="x" class="w-4 h-4 text-rose-400 mt-0.5 shrink-0"></i>Your user account &amp; profile</li>
+        <li class="flex items-start gap-2 text-slate-300"><i data-lucide="x" class="w-4 h-4 text-rose-400 mt-0.5 shrink-0"></i>All personas &amp; phone numbers</li>
+        <li class="flex items-start gap-2 text-slate-300"><i data-lucide="x" class="w-4 h-4 text-rose-400 mt-0.5 shrink-0"></i>Call history &amp; call logs</li>
+        <li class="flex items-start gap-2 text-slate-300"><i data-lucide="x" class="w-4 h-4 text-rose-400 mt-0.5 shrink-0"></i>All SMS &amp; MMS messages</li>
+        <li class="flex items-start gap-2 text-slate-300"><i data-lucide="x" class="w-4 h-4 text-rose-400 mt-0.5 shrink-0"></i>Contacts &amp; approved callers</li>
+        <li class="flex items-start gap-2 text-slate-300"><i data-lucide="x" class="w-4 h-4 text-rose-400 mt-0.5 shrink-0"></i>Trusted caller lists</li>
+        <li class="flex items-start gap-2 text-slate-300"><i data-lucide="x" class="w-4 h-4 text-rose-400 mt-0.5 shrink-0"></i>Push notification settings</li>
+        <li class="flex items-start gap-2 text-slate-300"><i data-lucide="x" class="w-4 h-4 text-rose-400 mt-0.5 shrink-0"></i>Voicemail recordings</li>
+      </ul>
+    </div>
+
+    <!-- Data retention -->
+    <div class="glass rounded-3xl p-8">
+      <div class="flex items-center gap-3 mb-5">
+        <div class="w-10 h-10 rounded-xl bg-amber-500/15 flex items-center justify-center">
+          <i data-lucide="alert-triangle" class="w-5 h-5 text-amber-400"></i>
+        </div>
+        <h2 class="text-2xl font-bold text-white">Data retention</h2>
+      </div>
+      <p class="text-slate-400 leading-relaxed">No user data is retained after account deletion. All phone numbers are immediately released back to the telephony provider and <strong class="text-white">cannot be recovered</strong>. This action is permanent and irreversible.</p>
+    </div>
+
+    <!-- Need help -->
+    <div class="rounded-3xl p-8 border border-cyan-400/30 bg-gradient-to-br from-cyan-500/10 via-sky-500/5 to-transparent">
+      <div class="flex items-center gap-3 mb-5">
+        <div class="w-10 h-10 rounded-xl bg-cyan-500/20 flex items-center justify-center">
+          <i data-lucide="life-buoy" class="w-5 h-5 text-cyan-300"></i>
+        </div>
+        <h2 class="text-2xl font-bold text-white">Need help?</h2>
+      </div>
+      <p class="text-slate-300 leading-relaxed mb-5">If you can't access the app or need assistance deleting your account, email us with the address associated with your account and we'll process your request.</p>
+      <a href="mailto:support@cloakid.app" class="inline-flex items-center gap-2 bg-gradient-to-r from-cyan-400 to-sky-500 text-ink-950 font-semibold px-5 py-3 rounded-full hover:shadow-xl hover:shadow-cyan-500/40 transition">
+        <i data-lucide="mail" class="w-4 h-4"></i>
+        support@cloakid.app
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<footer class="border-t border-white/5 bg-ink-950">
+  <div class="max-w-7xl mx-auto px-6 py-16 grid md:grid-cols-4 gap-10">
+    <div>
+      <div class="flex items-center gap-2 mb-4">
+        <img src="images/_CloakID_icon_white.png" class="w-8 h-8">
+        <span class="text-white font-bold">CloakID</span>
+      </div>
+      <p class="text-sm text-slate-500 leading-relaxed">Real phone numbers. Real privacy. Real calm.</p>
+    </div>
+    <div>
+      <h4 class="text-white font-semibold text-sm mb-4">Product</h4>
+      <ul class="space-y-2.5 text-sm text-slate-400">
+        <li><a href="index.html#features" class="hover:text-white transition">Features</a></li>
+        <li><a href="index.html#how" class="hover:text-white transition">How it works</a></li>
+        <li><a href="pricing.html" class="hover:text-white transition">Pricing</a></li>
+        <li><a href="support.html" class="hover:text-white transition">Support</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="text-white font-semibold text-sm mb-4">Company</h4>
+      <ul class="space-y-2.5 text-sm text-slate-400">
+        <li><a href="about.html" class="hover:text-white transition">About</a></li>
+        <li><a href="contact.html" class="hover:text-white transition">Contact</a></li>
+        <li><a href="mailto:support@cloakid.app" class="hover:text-white transition">support@cloakid.app</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="text-white font-semibold text-sm mb-4">Legal</h4>
+      <ul class="space-y-2.5 text-sm text-slate-400">
+        <li><a href="privacy-policy.html" class="hover:text-white transition">Privacy Policy</a></li>
+        <li><a href="terms-of-service.html" class="hover:text-white transition">Terms of Service</a></li>
+        <li><a href="sms-disclosure.html" class="hover:text-white transition">SMS Disclosure</a></li>
+        <li><a href="delete-account.html" class="hover:text-white transition">Delete Account</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="border-t border-white/5 py-6 text-center text-xs text-slate-600">© 2026 Niobium LLC. CloakID is a product of Niobium LLC.</div>
+</footer>
+
+<script>lucide.createIcons();</script>
 </body>
 </html>
