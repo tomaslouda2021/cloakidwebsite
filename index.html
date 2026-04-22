@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>CloakID — Real phone numbers. Real privacy.</title>
-<meta name="description" content="CloakID gives you up to eight real US phone numbers — one for each part of your life. Share the one that fits. Retire any of them when you're done." />
+<title>CloakID — Take your number off the table.</title>
+<meta name="description" content="Real US phone numbers you can hand out, route, and retire. CloakID gives you a separate line for every counterparty, so the one that reaches your family stays off the internet." />
 <link rel="icon" type="image/png" href="images/cloakid-icon-black.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,31 +13,21 @@
 
 <style>
 /* =====================================================
-   Home-only styles (hero, scene sections, rules,
-   homepage pricing cards, final CTA). Shared rules
-   come from styles-v2.css.
+   Home-only styles (hero, Shift section, rules,
+   homepage pricing cards, trust line, final). Shared
+   rules come from styles-v2.css.
    ===================================================== */
 
 /* ================== HERO ================== */
 .hero {
-  padding: 48px 40px 56px;
+  padding: 56px 40px 72px;
 }
 .hero-inner {
   max-width: 1180px; margin: 0 auto; width: 100%;
   display: grid; grid-template-columns: 1.2fr 0.8fr;
   gap: 64px; align-items: center;
-  position: relative;
 }
-.hero-inner .visual { position: relative; }
-.hero-inner .visual::before {
-  content: "";
-  position: absolute;
-  inset: -40px;
-  background: radial-gradient(circle at 50% 50%, rgba(34,211,238,0.18) 0%, rgba(34,211,238,0) 65%);
-  z-index: 0;
-  pointer-events: none;
-}
-.hero-inner .visual .phone { position: relative; z-index: 1; }
+.hero-inner .visual .phone { position: relative; }
 .hero h1 {
   margin: 0;
   font-size: clamp(40px, 4.8vw, 64px);
@@ -45,7 +35,6 @@
   font-weight: 600; max-width: 640px;
   text-wrap: balance;
 }
-.hero h1 .muted { color: var(--ink-4); }
 .hero-sub {
   margin: 22px 0 0;
   font-size: 17px; line-height: 1.55;
@@ -53,36 +42,52 @@
   text-wrap: pretty;
 }
 .hero-actions {
-  margin-top: 32px;
-  display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+  margin-top: 36px;
+  display: flex; align-items: center;
 }
+.hero-actions .appstore-link img { height: 54px; }
 
-/* ================== SCENE SECTIONS ================== */
-.scene-section {
-  padding: 64px 40px;
+/* ================== THE SHIFT (dark anchor) ================== */
+.shift {
+  background: #0F1115;
+  color: #fff;
+  padding: 104px 40px;
 }
-.scene-section.warm { background: var(--bg-warm); }
-.scene-inner {
+.shift-inner {
   max-width: 1180px; margin: 0 auto; width: 100%;
-  display: grid; grid-template-columns: 1fr 1fr;
+  display: grid; grid-template-columns: 1.25fr 0.75fr;
   gap: 72px; align-items: center;
 }
-.scene-inner.flip > .text { order: 2; }
-.scene-inner.flip > .visual { order: 1; }
-
-.scene-title {
-  font-size: clamp(30px, 3.4vw, 44px);
-  line-height: 1.08; letter-spacing: -0.022em;
-  font-weight: 600; margin: 0;
-  max-width: 480px;
-  text-wrap: balance;
-}
-.scene-title .muted { color: var(--ink-4); }
-.scene-body {
-  margin: 20px 0 0;
-  font-size: 15.5px; line-height: 1.6;
-  color: var(--ink-3); max-width: 420px;
+.shift-body {
+  font-size: clamp(24px, 2.4vw, 30px);
+  line-height: 1.3; letter-spacing: -0.018em;
+  color: #fff;
+  margin: 0 0 44px;
+  max-width: 620px;
+  font-weight: 500;
   text-wrap: pretty;
+}
+.shift-proofs {
+  list-style: none; padding: 0; margin: 0;
+  display: flex; flex-direction: column;
+  gap: 20px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding-top: 28px;
+  max-width: 560px;
+}
+.shift-proofs li {
+  font-size: 15.5px; line-height: 1.55;
+  color: rgba(255,255,255,0.72);
+  text-wrap: pretty;
+}
+.shift-proofs li strong {
+  color: #fff; font-weight: 600;
+  display: block; font-size: 16px;
+  margin-bottom: 2px;
+  letter-spacing: -0.01em;
+}
+.shift .visual .phone {
+  filter: drop-shadow(0 40px 80px rgba(0,0,0,0.5)) drop-shadow(0 12px 24px rgba(0,0,0,0.35));
 }
 
 /* ================== PHONE MOCKUP ================== */
@@ -95,11 +100,11 @@
 }
 .phone-inner { display: block; }
 .phone-inner img { width: 100%; display: block; border-radius: 38px; }
-.phone.lg { max-width: 260px; }
+.phone.lg { max-width: 300px; }
 
 /* ================== THREE RULES ================== */
 .rules {
-  padding: 56px 40px;
+  padding: 96px 40px;
   text-align: center;
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
@@ -108,28 +113,36 @@
 .rules-title {
   font-size: clamp(28px, 3vw, 38px);
   font-weight: 600; letter-spacing: -0.022em;
-  margin: 0 0 28px;
+  margin: 0 0 40px;
   color: var(--ink);
 }
 .rules-list {
   list-style: none; padding: 0; margin: 0;
-  display: flex; flex-direction: column; gap: 20px;
+  display: flex; flex-direction: column; gap: 24px;
+  text-align: left;
 }
 .rules-list li {
-  font-size: clamp(17px, 1.7vw, 21px);
-  line-height: 1.45; color: var(--ink-2);
+  font-size: 16.5px; line-height: 1.55;
+  color: var(--ink-3);
   max-width: 680px; margin: 0 auto;
   text-wrap: pretty;
 }
-.rules-list li strong { color: var(--ink); font-weight: 600; }
+.rules-list li strong {
+  display: block;
+  color: var(--ink);
+  font-weight: 600;
+  font-size: 18px;
+  margin-bottom: 4px;
+  letter-spacing: -0.012em;
+}
 
 /* ================== HOMEPAGE PRICING ================== */
 .home-pricing {
-  padding: 64px 40px;
+  padding: 96px 40px;
   background: var(--bg-warm);
 }
 .home-pricing-inner { max-width: 1000px; margin: 0 auto; }
-.home-pricing-head { text-align: center; margin-bottom: 32px; }
+.home-pricing-head { text-align: center; margin-bottom: 48px; }
 .home-pricing-head h2 {
   font-size: clamp(28px, 3vw, 38px);
   font-weight: 600; letter-spacing: -0.022em;
@@ -137,62 +150,62 @@
 }
 .home-pricing-head p {
   margin: 0 auto; font-size: 15px; color: var(--ink-3);
-  max-width: 480px;
+  max-width: 520px;
 }
 .plans { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
 .plan {
   background: #fff;
   border: 1px solid var(--line);
   border-radius: 20px;
-  padding: 32px 30px;
+  padding: 36px 32px;
   display: flex; flex-direction: column;
 }
 .plan.featured {
-  background: var(--ink); color: #fff; border-color: var(--ink);
+  border: 2px solid var(--ink);
+  padding: 35px 31px;
 }
 .plan-name {
-  font-size: 14px; font-weight: 600;
+  font-size: 15px; font-weight: 600;
   letter-spacing: -0.1px;
-  margin: 0 0 24px;
-  display: flex; justify-content: space-between; align-items: center;
+  margin: 0 0 6px;
+  color: var(--ink);
 }
-.plan-name .plan-pill {
-  font-size: 10.5px; font-weight: 600; letter-spacing: 0.6px;
-  background: var(--brand); color: #fff;
-  padding: 4px 10px; border-radius: 999px;
-  text-transform: uppercase;
+.plan-name-row {
+  display: flex; align-items: baseline; justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 20px;
 }
-.plan.featured .plan-name { color: #fff; }
+.plan-tag {
+  font-size: 10.5px; font-weight: 600; letter-spacing: 0.1em;
+  color: var(--ink); text-transform: uppercase;
+}
 .plan-price {
   display: flex; align-items: baseline;
   font-family: var(--font-mono);
   font-size: 42px; font-weight: 500;
   line-height: 1; letter-spacing: -0.03em;
+  color: var(--ink);
   margin: 0;
 }
 .plan-price .frac { font-size: 24px; color: var(--ink-3); margin-left: 2px; }
-.plan.featured .plan-price .frac { color: rgba(255,255,255,0.55); }
 .plan-price .per {
   font-family: var(--font);
   font-size: 14px; font-weight: 400;
   color: var(--ink-3); margin-left: 12px;
   letter-spacing: normal;
 }
-.plan.featured .plan-price .per { color: rgba(255,255,255,0.6); }
 .plan-note {
   margin: 14px 0 22px;
-  font-size: 14px; line-height: 1.5;
+  font-size: 14.5px; line-height: 1.5;
   color: var(--ink-3);
-  max-width: 320px;
+  max-width: 340px;
   text-wrap: pretty;
 }
-.plan.featured .plan-note { color: rgba(255,255,255,0.7); }
 .plan ul {
-  list-style: none; padding: 0; margin: 0 0 24px;
+  list-style: none; padding: 0; margin: 0 0 28px;
   border-top: 1px solid var(--line);
   flex: 1;
 }
-.plan.featured ul { border-color: rgba(255,255,255,0.12); }
 .plan ul li {
   padding: 11px 0;
   border-bottom: 1px solid var(--line-soft);
@@ -200,86 +213,85 @@
   color: var(--ink-2);
   display: flex; align-items: flex-start; gap: 10px;
 }
-.plan.featured ul li { color: rgba(255,255,255,0.9); border-color: rgba(255,255,255,0.08); }
 .plan ul li .check {
-  color: var(--brand); flex-shrink: 0; margin-top: 2px;
+  color: var(--ink); flex-shrink: 0; margin-top: 2px;
   font-size: 13px; font-weight: 700;
 }
-.plan.featured ul li .check { color: var(--brand-2); }
 .plan-cta {
   display: inline-flex; align-items: center; justify-content: center;
-  background: linear-gradient(135deg, var(--brand-2) 0%, var(--brand) 100%);
+  background: var(--ink);
   color: #fff;
   text-decoration: none; font-size: 14px; font-weight: 600;
   padding: 13px 22px; border-radius: 999px;
   letter-spacing: -0.1px;
-  box-shadow: 0 3px 10px -3px rgba(8,145,178,0.4);
+  box-shadow: 0 3px 10px -3px rgba(0,0,0,0.22);
   transition: transform .2s ease, box-shadow .2s ease;
 }
-.plan.featured .plan-cta {
-  background: #fff; color: var(--ink); box-shadow: none;
-}
-.plan-cta:hover { transform: translateY(-1px); box-shadow: 0 8px 18px -5px rgba(8,145,178,0.5); }
-.plan.featured .plan-cta:hover { box-shadow: 0 6px 16px -4px rgba(255,255,255,0.25); }
+.plan-cta:hover { transform: translateY(-1px); box-shadow: 0 8px 18px -5px rgba(0,0,0,0.28); }
 .plan-trial {
   text-align: center;
   font-size: 12.5px;
   color: var(--ink-4);
   margin-top: 14px;
 }
-.plan.featured .plan-trial { color: rgba(255,255,255,0.5); }
 .pricing-more {
   text-align: center;
-  margin-top: 32px;
+  margin-top: 40px;
   font-size: 13.5px;
   color: var(--ink-3);
 }
 .pricing-more a {
-  color: var(--brand);
+  color: var(--ink);
   text-decoration: none;
   font-weight: 500;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 1px;
 }
-.pricing-more a:hover { text-decoration: underline; }
+.pricing-more a:hover { border-color: var(--ink); }
+
+/* ================== TRUST LINE ================== */
+.trust-line {
+  padding: 48px 40px 64px;
+  text-align: center;
+  background: var(--bg-warm);
+  border-top: 1px solid rgba(0,0,0,0.04);
+}
+.trust-line p {
+  margin: 0 auto;
+  max-width: 640px;
+  font-size: 13.5px;
+  color: var(--ink-3);
+  letter-spacing: 0.005em;
+  line-height: 1.6;
+}
 
 /* ================== FINAL CTA (home) ================== */
 .final {
-  padding: 64px 40px 80px;
+  padding: 120px 40px;
   text-align: center;
-  background:
-    radial-gradient(circle at 50% 0%, rgba(34,211,238,0.08) 0%, rgba(34,211,238,0) 60%),
-    #fff;
-}
-.final-mascot {
-  width: 96px; height: 96px; margin: 0 auto 20px;
-  display: block; object-fit: contain;
+  background: #fff;
 }
 .final h3 {
-  margin: 0 auto 24px;
-  font-size: clamp(28px, 3.2vw, 40px);
-  font-weight: 600; letter-spacing: -0.022em;
-  line-height: 1.1;
-  max-width: 580px;
+  margin: 0 auto;
+  font-size: clamp(28px, 3.4vw, 42px);
+  font-weight: 600; letter-spacing: -0.024em;
+  line-height: 1.12;
+  max-width: 620px;
+  color: var(--ink);
   text-wrap: balance;
-}
-.final h3 .muted { color: var(--ink-4); }
-.final .final-actions {
-  display: flex; justify-content: center; gap: 18px; flex-wrap: wrap;
-  align-items: center;
 }
 
 /* ================== RESPONSIVE ================== */
 @media (max-width: 960px) {
-  .hero, .scene-section { padding-left: 24px; padding-right: 24px; }
-  .hero { padding-top: 40px; padding-bottom: 56px; }
-  .scene-section { padding-top: 56px; padding-bottom: 56px; }
-  .hero-inner, .scene-inner { grid-template-columns: 1fr; gap: 40px; }
-  .scene-inner.flip > .text { order: 1; }
-  .scene-inner.flip > .visual { order: 2; }
-  .rules, .home-pricing, .final { padding: 56px 24px; }
+  .hero { padding: 40px 24px 56px; }
+  .shift { padding: 72px 24px; }
+  .rules, .home-pricing, .final { padding: 64px 24px; }
+  .trust-line { padding: 40px 24px 48px; }
+  .hero-inner, .shift-inner { grid-template-columns: 1fr; gap: 48px; }
   .plans { grid-template-columns: 1fr; }
-  .phone { max-width: 280px; }
-  .phone.lg { max-width: 260px; }
-  .rules-list { gap: 24px; }
+  .phone { max-width: 260px; }
+  .phone.lg { max-width: 280px; }
+  .shift-body { font-size: 22px; }
 }
 </style>
 </head>
@@ -302,16 +314,12 @@
 <section class="hero">
   <div class="hero-inner">
     <div class="text">
-      <h1>
-        You shouldn't need your real number
-        <span class="muted">for a dry cleaner loyalty card.</span>
-      </h1>
+      <h1>Take your number off the table.</h1>
       <p class="hero-sub">
-        CloakID gives you up to eight real US phone numbers &mdash; one for each part of your life. Share the one that fits. Retire any of them when you're done.
+        Real US numbers you can hand out, route, and retire. The one that reaches your family stays off the internet.
       </p>
       <div class="hero-actions">
         <a class="appstore-link" href="https://apps.apple.com/us/app/cloakid/id6761379232"><img src="images/app-store-badge-black@2x.png" alt="Download on the App Store" /></a>
-        <a class="btn-ghost" href="android.html"><span class="dot"></span>Android? Join the waitlist <span class="arr">&rarr;</span></a>
       </div>
     </div>
     <div class="visual">
@@ -324,44 +332,23 @@
   </div>
 </section>
 
-<!-- ================== SCENE 1 — DATING + DELIVERIES ================== -->
-<section class="scene-section warm" id="how">
-  <div class="scene-inner flip">
+<!-- ================== THE SHIFT ================== -->
+<section class="shift" id="how">
+  <div class="shift-inner">
     <div class="text">
-      <h2 class="scene-title">
-        Your match.
-        <span class="muted">Not your number.</span>
-      </h2>
-      <p class="scene-body">
-        Give the dating app one number. Give DoorDash another. Give the pediatrician a third. If a match turns weird, you retire their number &mdash; not yours. The people you care about still reach you on the one you've had since high school.
+      <p class="shift-body">
+        Every vendor, every form, every court record, every data broker treats your phone number as a public identifier. Once it's out, it stays out. CloakID returns the one-to-one: one number per counterparty, one line nobody else has.
       </p>
+      <ul class="shift-proofs">
+        <li><strong>Separate numbers, separate risk.</strong> Give each counterparty a line that only reaches them. Retire it without consequence.</li>
+        <li><strong>Screening before the ring.</strong> Unknown callers prove themselves before your phone makes a sound.</li>
+        <li><strong>Your number, private again.</strong> The one you've had for twenty years stops being how the world finds you.</li>
+      </ul>
     </div>
     <div class="visual">
       <div class="phone lg">
         <div class="phone-inner">
-          <img src="images/screenshots/persona-list.png" alt="Multiple phone numbers, each labelled by context" />
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ================== SCENE 2 — SELL THE COUCH ================== -->
-<section class="scene-section warm">
-  <div class="scene-inner">
-    <div class="text">
-      <h2 class="scene-title">
-        Sell the couch.
-        <span class="muted">Burn the number.</span>
-      </h2>
-      <p class="scene-body">
-        Temporary numbers delete themselves after seven days. Post the classifieds ad, take the weird texts, and move on. Nobody's calling you back about that futon in 2027.
-      </p>
-    </div>
-    <div class="visual">
-      <div class="phone lg">
-        <div class="phone-inner">
-          <img src="images/screenshots/messages.png" alt="Messages thread on a temporary number" />
+          <img src="images/screenshots/persona-list.png" alt="CloakID number set, organized by counterparty" />
         </div>
       </div>
     </div>
@@ -371,11 +358,11 @@
 <!-- ================== THREE RULES ================== -->
 <section class="rules" id="privacy">
   <div class="rules-inner">
-    <h2 class="rules-title">Built on three rules.</h2>
+    <h2 class="rules-title">Three rules we don't break.</h2>
     <ul class="rules-list">
-      <li><strong>We don't sell your data.</strong> Not to advertisers. Not to brokers. Not ever.</li>
-      <li><strong>We don't keep what we don't need.</strong> Voicemails become transcripts; the audio goes.</li>
-      <li><strong>Your phone is your phone.</strong> Face ID lock, no tracking, no ads, no third-party analytics beyond a scrubbed crash reporter.</li>
+      <li><strong>Your data is not for sale.</strong> No ad networks. No brokers. No partner pipelines.</li>
+      <li><strong>Audio doesn't linger.</strong> Voicemails become text. The recording is discarded.</li>
+      <li><strong>Your device is your device.</strong> Face ID on launch. No ad SDKs. The only analytics is a crash reporter that never sees who you are.</li>
     </ul>
   </div>
 </section>
@@ -384,42 +371,48 @@
 <section class="home-pricing" id="pricing">
   <div class="home-pricing-inner">
     <div class="home-pricing-head">
-      <h2>Two plans. Seven-day free trial.</h2>
-      <p>Start free, cancel anytime in the App Store.</p>
+      <h2>Two tiers. Same infrastructure. Different headroom.</h2>
+      <p>Seven-day free trial. No credit card required. Cancel anytime in the App Store.</p>
     </div>
     <div class="plans">
       <div class="plan">
-        <div class="plan-name">
-          <span>Core</span>
+        <div class="plan-name-row">
+          <div class="plan-name">Core</div>
         </div>
         <div class="plan-price">$9<span class="frac">.99</span><span class="per">/month</span></div>
-        <p class="plan-note">Up to 3 numbers total &mdash; one of them can be a 7-day disposable. Everything you need to unhook your real number from every form you've ever filled out.</p>
+        <p class="plan-note">Three numbers. One disposable that expires in seven days.</p>
         <ul>
-          <li><span class="check">&check;</span><span>Up to 3 numbers total &mdash; 1 can be a 7-day temp</span></li>
+          <li><span class="check">&check;</span><span>Three permanent numbers</span></li>
+          <li><span class="check">&check;</span><span>One seven-day disposable</span></li>
           <li><span class="check">&check;</span><span>Call screening, SMS, voicemail transcripts</span></li>
-          <li><span class="check">&check;</span><span>iPhone home screen widget</span></li>
-          <li><span class="check">&check;</span><span>Face ID lock</span></li>
+          <li><span class="check">&check;</span><span>iPhone widget and Face ID lock</span></li>
         </ul>
         <a class="plan-cta" href="https://apps.apple.com/us/app/cloakid/id6761379232">Start free trial</a>
-        <div class="plan-trial">7 days free &middot; cancel anytime</div>
+        <div class="plan-trial">7-day trial &middot; no credit card required</div>
       </div>
       <div class="plan featured">
-        <div class="plan-name">
-          <span>Executive</span>
-          <span class="plan-pill">Recommended</span>
+        <div class="plan-name-row">
+          <div class="plan-name">Executive</div>
+          <div class="plan-tag">Recommended</div>
         </div>
         <div class="plan-price">$19<span class="frac">.99</span><span class="per">/month</span></div>
-        <p class="plan-note">Up to 8 numbers total &mdash; up to two of them can be 7-day disposables. For people who keep work, dating, family, and everything else in separate lanes.</p>
+        <p class="plan-note">Eight numbers. Two disposables. For people who separate every counterparty.</p>
         <ul>
-          <li><span class="check">&check;</span><span>Up to 8 numbers total &mdash; 2 can be 7-day temps</span></li>
+          <li><span class="check">&check;</span><span>Eight permanent numbers</span></li>
+          <li><span class="check">&check;</span><span>Two seven-day disposables</span></li>
           <li><span class="check">&check;</span><span>Everything in Core</span></li>
         </ul>
         <a class="plan-cta" href="https://apps.apple.com/us/app/cloakid/id6761379232">Start free trial</a>
-        <div class="plan-trial">7 days free &middot; cancel anytime</div>
+        <div class="plan-trial">7-day trial &middot; no credit card required</div>
       </div>
     </div>
     <p class="pricing-more"><a href="pricing.html">See full pricing details and FAQ &rarr;</a></p>
   </div>
+</section>
+
+<!-- ================== TRUST LINE ================== -->
+<section class="trust-line">
+  <p>Operated by Niobium LLC in the United States. Billed through Apple. No press. No testimonials.</p>
 </section>
 
 <!-- ================== SUBSCRIPTION DISCLOSURE (Apple Guideline 3.1.2) ================== -->
@@ -434,12 +427,7 @@
 
 <!-- ================== FINAL CTA ================== -->
 <section class="final">
-  <img class="final-mascot" src="images/_Cloak_ID_full_mascot.png" alt="" aria-hidden="true" />
-  <h3>Take your number <span class="muted">off the table.</span></h3>
-  <div class="final-actions">
-    <a class="appstore-link" href="https://apps.apple.com/us/app/cloakid/id6761379232"><img src="images/app-store-badge-black@2x.png" alt="Download on the App Store" /></a>
-    <a class="btn-ghost" href="android.html"><span class="dot"></span>Android? Join the waitlist <span class="arr">&rarr;</span></a>
-  </div>
+  <h3>The one that matters shouldn't be on forms.</h3>
 </section>
 
 <!-- ================== FOOTER ================== -->
