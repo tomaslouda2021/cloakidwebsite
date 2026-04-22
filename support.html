@@ -6,298 +6,327 @@
 <title>Support — CloakID</title>
 <meta name="description" content="Get help with CloakID. Quick start guide, FAQ, troubleshooting, and contact support.">
 <link rel="icon" type="image/png" href="images/_CloakID_icon_white.png">
-<script src="https://cdn.tailwindcss.com"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
-<script>
-  tailwind.config = { theme: { extend: {
-    colors: { ink: { 950: '#05070f', 900: '#0a0e1a', 800: '#0f1524', 700: '#1a2235' } },
-    fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] }
-  }}}
-</script>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles-v2.css">
 <style>
-  html { scroll-behavior: smooth; }
-  body { font-family: 'Inter', system-ui, sans-serif; background: #05070f; color: #e2e8f0; -webkit-font-smoothing: antialiased; }
-  .gradient-text { background: linear-gradient(135deg, #22d3ee 0%, #38bdf8 45%, #34d399 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
-  .glass { background: rgba(255,255,255,0.035); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.08); }
-  .grid-bg { background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.06) 1px, transparent 0); background-size: 36px 36px; }
-  details > summary { list-style: none; cursor: pointer; }
-  details > summary::-webkit-details-marker { display: none; }
-  details[open] summary .chev { transform: rotate(180deg); }
+  .quick-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; max-width: 980px; margin: 0 auto; }
+  .quick-card {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 22px 24px;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color .2s ease, transform .2s ease, box-shadow .2s ease;
+    display: block;
+  }
+  .quick-card:hover { border-color: var(--brand); transform: translateY(-2px); box-shadow: 0 10px 28px -14px rgba(8,145,178,0.25); }
+  .quick-icon {
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    background: var(--brand-soft);
+    color: var(--brand);
+    font-size: 20px; font-weight: 600;
+    display: inline-flex; align-items: center; justify-content: center;
+    margin-bottom: 14px;
+  }
+  .quick-title { font-size: 16px; font-weight: 600; color: var(--ink); margin: 0 0 4px; }
+  .quick-body { font-size: 14px; color: var(--ink-3); margin: 0; line-height: 1.5; }
+
+  .step-list { display: flex; flex-direction: column; gap: 12px; max-width: 760px; margin: 0 auto; }
+  .step-card {
+    display: flex; gap: 20px; align-items: flex-start;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 20px 22px;
+  }
+  .step-num {
+    flex-shrink: 0;
+    width: 32px; height: 32px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, var(--brand-2) 0%, var(--brand) 100%);
+    color: #fff;
+    font-weight: 600; font-size: 14.5px;
+    display: inline-flex; align-items: center; justify-content: center;
+    box-shadow: 0 3px 10px -3px rgba(8,145,178,0.4);
+  }
+  .step-title { font-size: 15.5px; font-weight: 600; color: var(--ink); margin: 2px 0 4px; letter-spacing: -0.01em; }
+  .step-body { font-size: 14.5px; color: var(--ink-3); margin: 0; line-height: 1.55; }
+
+  .faq-group-title {
+    font-size: 12px; font-weight: 700;
+    color: var(--brand);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin: 36px 0 12px;
+  }
+  .faq-group-title:first-child { margin-top: 0; }
+
+  .trouble-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; max-width: 900px; margin: 0 auto; }
+  .trouble-card { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 20px 22px; }
+  .trouble-head {
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 8px;
+  }
+  .trouble-icon {
+    width: 28px; height: 28px;
+    border-radius: 8px;
+    background: rgba(214,69,69,0.1);
+    color: var(--danger);
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 600;
+  }
+  .trouble-title { font-size: 15px; font-weight: 600; color: var(--ink); margin: 0; letter-spacing: -0.01em; }
+  .trouble-body { font-size: 14px; color: var(--ink-3); margin: 0; line-height: 1.55; }
+
+  .contact-card {
+    max-width: 640px; margin: 0 auto;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 24px;
+    padding: 52px 40px;
+    text-align: center;
+    box-shadow: 0 12px 32px -16px rgba(10,10,10,0.1);
+  }
+  .contact-icon {
+    width: 56px; height: 56px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, var(--brand-2) 0%, var(--brand) 100%);
+    color: #fff;
+    display: inline-flex; align-items: center; justify-content: center;
+    margin: 0 auto 22px;
+    font-size: 24px; font-weight: 600;
+    box-shadow: 0 8px 20px -6px rgba(8,145,178,0.45);
+  }
+  .contact-card h2 { font-size: clamp(26px, 3vw, 32px); font-weight: 600; letter-spacing: -0.022em; margin: 0 0 10px; color: var(--ink); }
+  .contact-card p { font-size: 15.5px; color: var(--ink-3); margin: 0 0 26px; }
+
+  @media (max-width: 960px) {
+    .quick-grid, .trouble-grid { grid-template-columns: 1fr; }
+    .contact-card { padding: 36px 24px; border-radius: 20px; }
+  }
 </style>
 </head>
-<body class="min-h-screen">
+<body>
 
-<div class="fixed inset-0 -z-10 overflow-hidden">
-  <div class="absolute -top-40 -left-40 w-[560px] h-[560px] rounded-full bg-cyan-500/20 blur-3xl"></div>
-  <div class="absolute top-1/3 -right-40 w-[520px] h-[520px] rounded-full bg-emerald-500/10 blur-3xl"></div>
-</div>
-
-<header class="fixed top-0 inset-x-0 z-50 backdrop-blur-xl bg-ink-950/70 border-b border-white/5">
-  <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-    <a href="index.html" class="flex items-center gap-2.5">
-      <img src="images/_CloakID_icon_white.png" class="w-8 h-8" alt="CloakID">
-      <span class="text-white font-bold tracking-tight text-lg">CloakID</span>
-    </a>
-    <nav class="hidden md:flex items-center gap-9 text-sm text-slate-300">
-      <a href="index.html#features" class="hover:text-white transition">Features</a>
-      <a href="index.html#how" class="hover:text-white transition">How it works</a>
-      <a href="pricing.html" class="hover:text-white transition">Pricing</a>
-      <a href="support.html" class="text-white transition">Support</a>
-    </nav>
-    <a href="index.html#download" class="bg-gradient-to-r from-cyan-400 to-sky-500 text-ink-950 font-semibold px-4 py-2 rounded-full text-sm hover:shadow-lg hover:shadow-cyan-500/30 transition">Get the app</a>
+<!-- ============ NAV ============ -->
+<nav class="nav">
+  <a href="index.html" class="brand">
+    <img src="images/_CloakID_icon_white.png" alt="CloakID" style="filter: invert(1) brightness(0);">
+    &nbsp;<span>CloakID</span>
+  </a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="support.html" class="active">Support</a>
+    <a href="about.html">About</a>
   </div>
-</header>
+  <a class="nav-cta" href="https://apps.apple.com/us/app/cloakid/id6761379232">
+    Get CloakID <span class="arr">→</span>
+  </a>
+</nav>
 
-<section class="pt-32 pb-12 relative">
-  <div class="absolute inset-0 grid-bg opacity-50 [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_80%)]"></div>
-  <div class="relative max-w-4xl mx-auto px-6 text-center">
-    <div class="inline-flex items-center gap-2 glass px-4 py-1.5 rounded-full text-xs font-medium text-cyan-300 mb-6">
-      <i data-lucide="life-buoy" class="w-3.5 h-3.5"></i> Support
-    </div>
-    <h1 class="text-5xl md:text-6xl font-extrabold tracking-tight text-white leading-[1.05] mb-6">
-      We're here<br><span class="gradient-text">to help.</span>
-    </h1>
-    <p class="text-lg text-slate-400 max-w-xl mx-auto">Find answers fast, or reach out to a real human. We usually respond within a few hours.</p>
+<!-- ============ HERO ============ -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <span class="eyebrow">Support</span>
+    <h1>We're here <span class="muted">to help.</span></h1>
+    <p>Find answers fast, or reach out to a real human. We usually respond within a few hours.</p>
   </div>
 </section>
 
-<!-- QUICK LINKS -->
-<section class="pb-12">
-  <div class="max-w-5xl mx-auto px-6 grid md:grid-cols-3 gap-5">
-    <a href="#quickstart" class="glass rounded-3xl p-7 hover:border-cyan-400/30 transition group">
-      <div class="w-12 h-12 rounded-2xl bg-cyan-500/15 flex items-center justify-center mb-4 group-hover:scale-110 transition">
-        <i data-lucide="rocket" class="w-6 h-6 text-cyan-300"></i>
-      </div>
-      <h3 class="text-lg font-bold text-white mb-1">Quick Start</h3>
-      <p class="text-sm text-slate-400">Get set up in under 2 minutes.</p>
+<!-- ============ QUICK LINKS ============ -->
+<section class="section tight">
+  <div class="quick-grid">
+    <a href="#quickstart" class="quick-card">
+      <div class="quick-icon">→</div>
+      <h3 class="quick-title">Quick Start</h3>
+      <p class="quick-body">Get set up in under 2 minutes.</p>
     </a>
-    <a href="#faq" class="glass rounded-3xl p-7 hover:border-cyan-400/30 transition group">
-      <div class="w-12 h-12 rounded-2xl bg-emerald-500/15 flex items-center justify-center mb-4 group-hover:scale-110 transition">
-        <i data-lucide="help-circle" class="w-6 h-6 text-emerald-400"></i>
-      </div>
-      <h3 class="text-lg font-bold text-white mb-1">FAQ</h3>
-      <p class="text-sm text-slate-400">Answers to the most common questions.</p>
+    <a href="#faq" class="quick-card">
+      <div class="quick-icon">?</div>
+      <h3 class="quick-title">FAQ</h3>
+      <p class="quick-body">Answers to the most common questions.</p>
     </a>
-    <a href="#contact" class="glass rounded-3xl p-7 hover:border-cyan-400/30 transition group">
-      <div class="w-12 h-12 rounded-2xl bg-sky-500/15 flex items-center justify-center mb-4 group-hover:scale-110 transition">
-        <i data-lucide="mail" class="w-6 h-6 text-sky-300"></i>
-      </div>
-      <h3 class="text-lg font-bold text-white mb-1">Contact us</h3>
-      <p class="text-sm text-slate-400">Email a real person for help.</p>
+    <a href="#contact" class="quick-card">
+      <div class="quick-icon">✉</div>
+      <h3 class="quick-title">Contact us</h3>
+      <p class="quick-body">Email a real person for help.</p>
     </a>
   </div>
 </section>
 
-<!-- QUICK START -->
-<section id="quickstart" class="py-14">
-  <div class="max-w-4xl mx-auto px-6">
-    <div class="text-center mb-12">
-      <div class="inline-flex items-center gap-2 text-cyan-300 text-sm font-semibold uppercase tracking-wider mb-4">
-        <i data-lucide="rocket" class="w-4 h-4"></i> Quick start
+<!-- ============ QUICK START ============ -->
+<section id="quickstart" class="section warm">
+  <div class="section-head-center">
+    <span class="section-eyebrow">Quick start</span>
+    <h2 class="section-title">Get up and running in 4 steps.</h2>
+  </div>
+  <div class="step-list">
+    <div class="step-card">
+      <div class="step-num">1</div>
+      <div>
+        <h3 class="step-title">Download the app</h3>
+        <p class="step-body">Get CloakID on the App Store (Google Play coming soon). Sign up with your real phone number — we'll verify it once, then keep it hidden forever.</p>
       </div>
-      <h2 class="text-4xl md:text-5xl font-bold text-white tracking-tight">Get up and running in 4 steps.</h2>
     </div>
-    <div class="space-y-4">
-      <div class="glass rounded-2xl p-6 flex gap-5 items-start">
-        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-400 to-sky-500 flex items-center justify-center text-ink-950 font-black shrink-0">1</div>
-        <div>
-          <h3 class="text-white font-semibold mb-1">Download the app</h3>
-          <p class="text-sm text-slate-400">Get CloakID on the App Store (Google Play coming soon). Sign up with your real phone number — we'll verify it once, then keep it hidden forever.</p>
-        </div>
+    <div class="step-card">
+      <div class="step-num">2</div>
+      <div>
+        <h3 class="step-title">Create your first persona</h3>
+        <p class="step-body">Tap Personas → "+". Choose a template or start blank. Pick an area code, confirm, and your new real US number is ready in seconds.</p>
       </div>
-      <div class="glass rounded-2xl p-6 flex gap-5 items-start">
-        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-400 to-sky-500 flex items-center justify-center text-ink-950 font-black shrink-0">2</div>
-        <div>
-          <h3 class="text-white font-semibold mb-1">Create your first persona</h3>
-          <p class="text-sm text-slate-400">Tap Personas → "+". Choose a template or start blank. Pick an area code, confirm, and your new real US number is ready in seconds.</p>
-        </div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">3</div>
+      <div>
+        <h3 class="step-title">Set up screening rules</h3>
+        <p class="step-body">Open the persona → Protection Rules. Tell CloakID what this persona is for and who you expect to hear from. Screening adapts automatically.</p>
       </div>
-      <div class="glass rounded-2xl p-6 flex gap-5 items-start">
-        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-400 to-sky-500 flex items-center justify-center text-ink-950 font-black shrink-0">3</div>
-        <div>
-          <h3 class="text-white font-semibold mb-1">Set up screening rules</h3>
-          <p class="text-sm text-slate-400">Open the persona → Protection Rules. Tell CloakID what this persona is for and who you expect to hear from. Screening adapts automatically.</p>
-        </div>
-      </div>
-      <div class="glass rounded-2xl p-6 flex gap-5 items-start">
-        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-400 to-sky-500 flex items-center justify-center text-ink-950 font-black shrink-0">4</div>
-        <div>
-          <h3 class="text-white font-semibold mb-1">Share the number</h3>
-          <p class="text-sm text-slate-400">Tap "Share" to show a QR code, send a vCard, or text it from the persona. Your real number never leaves your phone.</p>
-        </div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">4</div>
+      <div>
+        <h3 class="step-title">Share the number</h3>
+        <p class="step-body">Tap "Share" to show a QR code, send a vCard, or text it from the persona. Your real number never leaves your phone.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- FAQ -->
-<section id="faq" class="py-14">
-  <div class="max-w-3xl mx-auto px-6">
-    <div class="text-center mb-12">
-      <div class="inline-flex items-center gap-2 text-cyan-300 text-sm font-semibold uppercase tracking-wider mb-4">
-        <i data-lucide="help-circle" class="w-4 h-4"></i> FAQ
-      </div>
-      <h2 class="text-4xl md:text-5xl font-bold text-white tracking-tight">Common questions.</h2>
+<!-- ============ FAQ ============ -->
+<section id="faq" class="section">
+  <div class="container-sm">
+    <div class="section-head-center">
+      <span class="section-eyebrow">FAQ</span>
+      <h2 class="section-title">Common questions.</h2>
     </div>
 
-    <h3 class="text-sm text-cyan-300 uppercase tracking-wider font-semibold mb-4 mt-10">Account &amp; Setup</h3>
-    <div class="space-y-3">
-      <details class="glass rounded-2xl p-6 group">
-        <summary class="flex items-center justify-between"><span class="text-white font-semibold">Do I need to verify my real phone number?</span><i data-lucide="chevron-down" class="chev w-5 h-5 text-slate-400 transition"></i></summary>
-        <p class="text-slate-400 mt-4 leading-relaxed">Yes, we verify once at signup to prevent abuse. After that, your real number is hashed and never shared with anyone you call.</p>
+    <div class="faq-group-title">Account &amp; Setup</div>
+    <div class="faq">
+      <details>
+        <summary>Do I need to verify my real phone number?</summary>
+        <p>Yes, we verify once at signup to prevent abuse. After that, your real number is hashed and never shared with anyone you call.</p>
       </details>
-      <details class="glass rounded-2xl p-6 group">
-        <summary class="flex items-center justify-between"><span class="text-white font-semibold">How does the free trial work?</span><i data-lucide="chevron-down" class="chev w-5 h-5 text-slate-400 transition"></i></summary>
-        <p class="text-slate-400 mt-4 leading-relaxed">Every new account gets 7 days of full access with 2 personas. No credit card required. When the trial ends, pick a plan or your personas pause.</p>
-      </details>
-    </div>
-
-    <h3 class="text-sm text-cyan-300 uppercase tracking-wider font-semibold mb-4 mt-10">Personas &amp; Numbers</h3>
-    <div class="space-y-3">
-      <details class="glass rounded-2xl p-6 group">
-        <summary class="flex items-center justify-between"><span class="text-white font-semibold">Are CloakID numbers real US phone numbers?</span><i data-lucide="chevron-down" class="chev w-5 h-5 text-slate-400 transition"></i></summary>
-        <p class="text-slate-400 mt-4 leading-relaxed">Yes. Every persona gets a real US number that can send and receive real calls and SMS from any carrier. Nothing virtual or fake.</p>
-      </details>
-      <details class="glass rounded-2xl p-6 group">
-        <summary class="flex items-center justify-between"><span class="text-white font-semibold">Can I pick my own area code?</span><i data-lucide="chevron-down" class="chev w-5 h-5 text-slate-400 transition"></i></summary>
-        <p class="text-slate-400 mt-4 leading-relaxed">Yes. During persona creation, enter a 3-digit area code. If a number isn't available, we'll pick the closest geographic match.</p>
-      </details>
-      <details class="glass rounded-2xl p-6 group">
-        <summary class="flex items-center justify-between"><span class="text-white font-semibold">What are temporary personas?</span><i data-lucide="chevron-down" class="chev w-5 h-5 text-slate-400 transition"></i></summary>
-        <p class="text-slate-400 mt-4 leading-relaxed">Disposable 7-day numbers for short-term situations — selling something online, contractors, quick signups. When they expire, the number is permanently released.</p>
+      <details>
+        <summary>How does the free trial work?</summary>
+        <p>Every new account gets 7 days of full access with 2 personas. Cancel anytime in the App Store before the trial ends and you won't be charged. When the trial ends, pick a plan or your personas pause.</p>
       </details>
     </div>
 
-    <h3 class="text-sm text-cyan-300 uppercase tracking-wider font-semibold mb-4 mt-10">Calls &amp; Screening</h3>
-    <div class="space-y-3">
-      <details class="glass rounded-2xl p-6 group">
-        <summary class="flex items-center justify-between"><span class="text-white font-semibold">How does call screening work?</span><i data-lucide="chevron-down" class="chev w-5 h-5 text-slate-400 transition"></i></summary>
-        <p class="text-slate-400 mt-4 leading-relaxed">When someone calls your persona number, an assistant answers first and asks who's calling and why. Based on your persona context, it decides to allow the call through, send it to voicemail, or block it.</p>
+    <div class="faq-group-title">Personas &amp; Numbers</div>
+    <div class="faq">
+      <details>
+        <summary>Are CloakID numbers real US phone numbers?</summary>
+        <p>Yes. Every persona gets a real US number that can send and receive real calls and SMS from any carrier. Nothing virtual or fake.</p>
       </details>
-      <details class="glass rounded-2xl p-6 group">
-        <summary class="flex items-center justify-between"><span class="text-white font-semibold">Can I make outbound calls?</span><i data-lucide="chevron-down" class="chev w-5 h-5 text-slate-400 transition"></i></summary>
-        <p class="text-slate-400 mt-4 leading-relaxed">Yes — from any persona, with that persona's number as caller ID. Your real number is never exposed.</p>
+      <details>
+        <summary>Can I pick my own area code?</summary>
+        <p>Yes. During persona creation, enter a 3-digit area code. If a number isn't available, we'll pick the closest geographic match.</p>
       </details>
-      <details class="glass rounded-2xl p-6 group">
-        <summary class="flex items-center justify-between"><span class="text-white font-semibold">Does screening work for SMS too?</span><i data-lucide="chevron-down" class="chev w-5 h-5 text-slate-400 transition"></i></summary>
-        <p class="text-slate-400 mt-4 leading-relaxed">SMS goes straight through — we don't intercept text messages. You'll see every message your persona receives.</p>
+      <details>
+        <summary>What are temporary personas?</summary>
+        <p>Disposable 7-day numbers for short-term situations — selling something online, contractors, quick signups. When they expire, the number is permanently released.</p>
       </details>
     </div>
 
-    <h3 class="text-sm text-cyan-300 uppercase tracking-wider font-semibold mb-4 mt-10">Billing &amp; Account</h3>
-    <div class="space-y-3">
-      <details class="glass rounded-2xl p-6 group">
-        <summary class="flex items-center justify-between"><span class="text-white font-semibold">How do I cancel my subscription?</span><i data-lucide="chevron-down" class="chev w-5 h-5 text-slate-400 transition"></i></summary>
-        <p class="text-slate-400 mt-4 leading-relaxed">Cancel through the App Store (Settings → Apple ID → Subscriptions). You keep access until the end of your billing period. Google Play coming soon.</p>
+    <div class="faq-group-title">Calls &amp; Screening</div>
+    <div class="faq">
+      <details>
+        <summary>How does call screening work?</summary>
+        <p>When someone calls your persona number, an assistant answers first and asks who's calling and why. Based on your persona context, it decides to allow the call through, send it to voicemail, or block it.</p>
       </details>
-      <details class="glass rounded-2xl p-6 group">
-        <summary class="flex items-center justify-between"><span class="text-white font-semibold">How do I delete my account?</span><i data-lucide="chevron-down" class="chev w-5 h-5 text-slate-400 transition"></i></summary>
-        <p class="text-slate-400 mt-4 leading-relaxed">Open the app → side menu → Profile → Delete Account. Everything is permanently deleted and numbers are released. Full instructions on the <a href="delete-account.html" class="text-cyan-300 hover:underline">delete account page</a>.</p>
+      <details>
+        <summary>Can I make outbound calls?</summary>
+        <p>Yes — from any persona, with that persona's number as caller ID. Your real number is never exposed.</p>
+      </details>
+      <details>
+        <summary>Does screening work for SMS too?</summary>
+        <p>SMS goes straight through — we don't intercept text messages. You'll see every message your persona receives.</p>
+      </details>
+    </div>
+
+    <div class="faq-group-title">Billing &amp; Account</div>
+    <div class="faq">
+      <details>
+        <summary>How do I cancel my subscription?</summary>
+        <p>Cancel through the App Store (Settings → Apple ID → Subscriptions). You keep access until the end of your billing period. Google Play coming soon.</p>
+      </details>
+      <details>
+        <summary>How do I delete my account?</summary>
+        <p>Open the app → side menu → Profile → Delete Account. Everything is permanently deleted and numbers are released. Full instructions on the <a href="delete-account.html" style="color: var(--brand); text-decoration: underline;">delete account page</a>.</p>
       </details>
     </div>
   </div>
 </section>
 
-<!-- TROUBLESHOOTING -->
-<section class="py-14">
-  <div class="max-w-4xl mx-auto px-6">
-    <div class="text-center mb-12">
-      <div class="inline-flex items-center gap-2 text-cyan-300 text-sm font-semibold uppercase tracking-wider mb-4">
-        <i data-lucide="wrench" class="w-4 h-4"></i> Troubleshooting
+<!-- ============ TROUBLESHOOTING ============ -->
+<section class="section warm">
+  <div class="section-head-center">
+    <span class="section-eyebrow">Troubleshooting</span>
+    <h2 class="section-title">Something not working?</h2>
+  </div>
+  <div class="trouble-grid">
+    <div class="trouble-card">
+      <div class="trouble-head">
+        <div class="trouble-icon">⚠</div>
+        <h3 class="trouble-title">Calls not coming through</h3>
       </div>
-      <h2 class="text-4xl md:text-5xl font-bold text-white tracking-tight">Something not working?</h2>
+      <p class="trouble-body">Check your persona's screening rules — it may be sending unknown callers to voicemail. You can also add contacts as Approved Callers to bypass screening.</p>
     </div>
-    <div class="grid md:grid-cols-2 gap-4">
-      <div class="glass rounded-2xl p-6">
-        <div class="flex items-center gap-3 mb-2">
-          <i data-lucide="phone-off" class="w-5 h-5 text-rose-400"></i>
-          <h3 class="text-white font-semibold">Calls not coming through</h3>
-        </div>
-        <p class="text-sm text-slate-400">Check your persona's screening rules — it may be sending unknown callers to voicemail. You can also add contacts as Approved Callers to bypass screening.</p>
+    <div class="trouble-card">
+      <div class="trouble-head">
+        <div class="trouble-icon">⚠</div>
+        <h3 class="trouble-title">Not getting push notifications</h3>
       </div>
-      <div class="glass rounded-2xl p-6">
-        <div class="flex items-center gap-3 mb-2">
-          <i data-lucide="bell-off" class="w-5 h-5 text-rose-400"></i>
-          <h3 class="text-white font-semibold">Not getting push notifications</h3>
-        </div>
-        <p class="text-sm text-slate-400">Go to iOS system settings → CloakID → Notifications and make sure everything is enabled. Then force-close and reopen CloakID.</p>
+      <p class="trouble-body">Go to iOS system settings → CloakID → Notifications and make sure everything is enabled. Then force-close and reopen CloakID.</p>
+    </div>
+    <div class="trouble-card">
+      <div class="trouble-head">
+        <div class="trouble-icon">⚠</div>
+        <h3 class="trouble-title">SMS not sending</h3>
       </div>
-      <div class="glass rounded-2xl p-6">
-        <div class="flex items-center gap-3 mb-2">
-          <i data-lucide="message-square-off" class="w-5 h-5 text-rose-400"></i>
-          <h3 class="text-white font-semibold">SMS not sending</h3>
-        </div>
-        <p class="text-sm text-slate-400">Some carriers filter outbound SMS from new numbers. Wait 24 hours — most temporary blocks clear automatically. Contact us if it persists.</p>
+      <p class="trouble-body">Some carriers filter outbound SMS from new numbers. Wait 24 hours — most temporary blocks clear automatically. Contact us if it persists.</p>
+    </div>
+    <div class="trouble-card">
+      <div class="trouble-head">
+        <div class="trouble-icon">⚠</div>
+        <h3 class="trouble-title">Billing issues</h3>
       </div>
-      <div class="glass rounded-2xl p-6">
-        <div class="flex items-center gap-3 mb-2">
-          <i data-lucide="credit-card" class="w-5 h-5 text-rose-400"></i>
-          <h3 class="text-white font-semibold">Billing issues</h3>
-        </div>
-        <p class="text-sm text-slate-400">If you were charged unexpectedly, contact support@cloakid.app with your email and we'll sort it out immediately.</p>
-      </div>
+      <p class="trouble-body">If you were charged unexpectedly, contact support@cloakid.app with your email and we'll sort it out immediately.</p>
     </div>
   </div>
 </section>
 
-<!-- CONTACT -->
-<section id="contact" class="py-20">
-  <div class="max-w-3xl mx-auto px-6">
-    <div class="glass rounded-[2rem] p-10 md:p-14 text-center">
-      <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-cyan-400 to-sky-500 flex items-center justify-center mx-auto mb-6">
-        <i data-lucide="mail" class="w-7 h-7 text-ink-950"></i>
-      </div>
-      <h2 class="text-4xl md:text-5xl font-bold text-white tracking-tight mb-4">Still stuck?</h2>
-      <p class="text-lg text-slate-400 max-w-md mx-auto mb-8">Email us and a real human will get back to you — usually within a few hours.</p>
-      <a href="mailto:support@cloakid.app" class="inline-flex items-center gap-2 bg-gradient-to-r from-cyan-400 to-sky-500 text-ink-950 font-semibold px-7 py-4 rounded-full hover:shadow-xl hover:shadow-cyan-500/40 transition">
-        <i data-lucide="send" class="w-5 h-5"></i>
-        support@cloakid.app
-      </a>
-    </div>
+<!-- ============ CONTACT ============ -->
+<section id="contact" class="section">
+  <div class="contact-card">
+    <div class="contact-icon">✉</div>
+    <h2>Still stuck?</h2>
+    <p>Email us and a real human will get back to you — usually within a few hours.</p>
+    <a href="mailto:support@cloakid.app" class="btn-primary">
+      support@cloakid.app <span class="arr">→</span>
+    </a>
   </div>
 </section>
 
-<footer class="border-t border-white/5 bg-ink-950">
-  <div class="max-w-7xl mx-auto px-6 py-16 grid md:grid-cols-4 gap-10">
-    <div>
-      <div class="flex items-center gap-2 mb-4">
-        <img src="images/_CloakID_icon_white.png" class="w-8 h-8">
-        <span class="text-white font-bold">CloakID</span>
-      </div>
-      <p class="text-sm text-slate-500 leading-relaxed">Real phone numbers. Real privacy. Real calm.</p>
-    </div>
-    <div>
-      <h4 class="text-white font-semibold text-sm mb-4">Product</h4>
-      <ul class="space-y-2.5 text-sm text-slate-400">
-        <li><a href="index.html#features" class="hover:text-white transition">Features</a></li>
-        <li><a href="index.html#how" class="hover:text-white transition">How it works</a></li>
-        <li><a href="pricing.html" class="hover:text-white transition">Pricing</a></li>
-        <li><a href="support.html" class="hover:text-white transition">Support</a></li>
-      </ul>
-    </div>
-    <div>
-      <h4 class="text-white font-semibold text-sm mb-4">Company</h4>
-      <ul class="space-y-2.5 text-sm text-slate-400">
-        <li><a href="about.html" class="hover:text-white transition">About</a></li>
-        <li><a href="contact.html" class="hover:text-white transition">Contact</a></li>
-        <li><a href="mailto:support@cloakid.app" class="hover:text-white transition">support@cloakid.app</a></li>
-      </ul>
-    </div>
-    <div>
-      <h4 class="text-white font-semibold text-sm mb-4">Legal</h4>
-      <ul class="space-y-2.5 text-sm text-slate-400">
-        <li><a href="privacy-policy.html" class="hover:text-white transition">Privacy Policy</a></li>
-        <li><a href="terms-of-service.html" class="hover:text-white transition">Terms of Service</a></li>
-        <li><a href="sms-disclosure.html" class="hover:text-white transition">SMS Disclosure</a></li>
-        <li><a href="delete-account.html" class="hover:text-white transition">Delete Account</a></li>
-      </ul>
+<!-- ============ FOOTER ============ -->
+<footer class="foot">
+  <div class="foot-inner">
+    <span>© 2026 Niobium LLC. CloakID is a product of Niobium LLC.</span>
+    <div class="foot-legal">
+      <a href="privacy-policy.html">Privacy</a>
+      <a href="terms-of-service.html">Terms</a>
+      <a href="sms-disclosure.html">SMS Disclosure</a>
+      <a href="delete-account.html">Delete Account</a>
+      <a href="support.html">Support</a>
+      <a href="contact.html">Contact</a>
     </div>
   </div>
-  <div class="border-t border-white/5 py-6 text-center text-xs text-slate-600">© 2026 Niobium LLC. CloakID is a product of Niobium LLC.</div>
 </footer>
 
-<script>lucide.createIcons();</script>
 </body>
 </html>

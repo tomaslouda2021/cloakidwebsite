@@ -1,508 +1,459 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Complete Your Application - CloakID</title>
-    <meta name="description" content="Complete your CloakID beta application">
-    <link rel="stylesheet" href="style.css">
-    <link rel="icon" type="image/png" href="images/_CloakID_icon_white.png">
-    <link rel="apple-touch-icon" href="images/_CloakID_icon_white.png">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Complete your application — CloakID</title>
+<meta name="description" content="Complete your CloakID application">
+<link rel="icon" type="image/png" href="images/_CloakID_icon_white.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles-v2.css">
+<style>
+  .confirm-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 120px 20px 60px;
+    background: var(--bg-warm, #FAF8F4);
+  }
+  .confirm-card {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 24px;
+    padding: 44px 40px;
+    max-width: 520px;
+    width: 100%;
+    box-shadow: 0 20px 60px -20px rgba(10,10,10,0.08);
+  }
+  .confirm-header { text-align: center; margin-bottom: 28px; }
+  .confirm-icon {
+    width: 64px; height: 64px;
+    border-radius: 18px;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 18px;
+  }
+  .confirm-icon-success {
+    background: linear-gradient(135deg, var(--brand-2) 0%, var(--brand) 100%);
+    color: #fff;
+  }
+  .confirm-icon-error {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    color: #fff;
+  }
+  .confirm-header h1 {
+    margin: 0 0 6px;
+    font-size: 26px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+  .confirm-header p {
+    margin: 0;
+    font-size: 15px;
+    color: var(--ink-3);
+  }
+  .confirm-form { text-align: left; }
+  .form-group { margin-bottom: 26px; }
+  .form-label {
+    display: block;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 12px;
+    font-size: 14.5px;
+  }
+  .label-hint {
+    font-weight: 400;
+    color: var(--ink-4);
+    font-size: 13px;
+    margin-left: 6px;
+  }
+  .checkbox-group, .radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .checkbox-option, .radio-option {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 18px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    cursor: pointer;
+    transition: all 0.18s ease;
+    font-weight: 400;
+    position: relative;
+    background: #fff;
+  }
+  .checkbox-option:hover, .radio-option:hover {
+    border-color: var(--brand);
+    background: rgba(8,145,178,0.03);
+  }
+  .checkbox-option input[type="checkbox"],
+  .radio-option input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  .checkbox-checkmark {
+    width: 20px; height: 20px;
+    border: 1.5px solid #d1d5db;
+    border-radius: 6px;
+    flex-shrink: 0;
+    transition: all 0.18s ease;
+    position: relative;
+  }
+  .checkbox-checkmark::after {
+    content: '';
+    position: absolute;
+    top: 2px; left: 6px;
+    width: 5px; height: 10px;
+    border: solid #fff;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg) scale(0);
+    transition: transform 0.18s ease;
+  }
+  .checkbox-option input[type="checkbox"]:checked + .checkbox-checkmark {
+    background: var(--brand);
+    border-color: var(--brand);
+  }
+  .checkbox-option input[type="checkbox"]:checked + .checkbox-checkmark::after {
+    transform: rotate(45deg) scale(1);
+  }
+  .checkbox-option:has(input:checked) {
+    border-color: var(--brand);
+    background: rgba(8,145,178,0.05);
+  }
+  .checkbox-option:has(input:checked) .checkbox-text {
+    color: var(--ink);
+    font-weight: 500;
+  }
+  .checkbox-text {
+    color: var(--ink-2);
+    font-size: 14.5px;
+    line-height: 1.4;
+  }
+  .pain-indicator {
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    transition: all 0.18s ease;
+  }
+  .pain-indicator.mild { background: linear-gradient(135deg, #86efac 0%, #22c55e 100%); }
+  .pain-indicator.regular { background: linear-gradient(135deg, #fcd34d 0%, #f59e0b 100%); }
+  .pain-indicator.severe { background: linear-gradient(135deg, #fca5a5 0%, #ef4444 100%); }
+  .pain-option:has(input:checked) .pain-indicator {
+    transform: scale(1.1);
+    box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.05);
+  }
+  .pain-option:has(input:checked) {
+    border-color: var(--brand);
+    background: rgba(8,145,178,0.05);
+  }
+  .radio-text { color: var(--ink-2); font-size: 14.5px; line-height: 1.4; }
+  .pain-option:has(input:checked) .radio-text {
+    color: var(--ink);
+    font-weight: 500;
+  }
+  .other-input {
+    margin-top: 12px;
+    width: 100%;
+    padding: 14px 18px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    font-size: 15px;
+    font-family: inherit;
+    outline: none;
+    transition: all 0.18s ease;
+    display: none;
+    color: var(--ink);
+    background: #fff;
+  }
+  .other-input:focus {
+    border-color: var(--brand);
+    box-shadow: 0 0 0 3px rgba(8,145,178,0.1);
+  }
+  .other-input.visible { display: block; }
+  .confirm-submit {
+    width: 100%;
+    padding: 14px 24px;
+    background: linear-gradient(135deg, var(--brand-2) 0%, var(--brand) 100%);
+    color: #fff;
+    border: none;
+    border-radius: 999px;
+    font-size: 14.5px;
+    font-weight: 600;
+    letter-spacing: -0.1px;
+    cursor: pointer;
+    box-shadow: 0 4px 14px -4px rgba(8,145,178,0.4);
+    transition: transform .2s ease, box-shadow .2s ease;
+    font-family: inherit;
+  }
+  .confirm-submit:hover:not(:disabled) {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 24px -6px rgba(8,145,178,0.5);
+  }
+  .confirm-submit:disabled {
+    opacity: 0.6; cursor: not-allowed; transform: none; box-shadow: none;
+  }
+  .next-steps {
+    background: linear-gradient(135deg, rgba(8,145,178,0.06) 0%, rgba(224,247,250,0.4) 100%);
+    border: 1px solid var(--brand-soft);
+    border-radius: 16px;
+    padding: 20px 24px;
+    text-align: left;
+    margin-bottom: 20px;
+  }
+  .next-steps h3 {
+    font-size: 15px; font-weight: 600;
+    color: var(--ink);
+    margin: 0 0 8px;
+  }
+  .next-steps p {
+    color: var(--ink-2);
+    font-size: 14.5px;
+    line-height: 1.6;
+    margin: 0;
+  }
+  .confirm-home-btn {
+    display: inline-flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    padding: 13px 24px;
+    background: #fff;
+    color: var(--ink);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    font-size: 14.5px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: border-color .2s ease, background .2s ease;
+  }
+  .confirm-home-btn:hover {
+    border-color: var(--ink-3);
+    background: #FAFAFA;
+  }
+  @media (max-width: 600px) {
+    .confirm-section { padding: 80px 16px 40px; }
+    .confirm-card { padding: 32px 24px; border-radius: 20px; }
+    .confirm-header h1 { font-size: 22px; }
+  }
+</style>
 </head>
 <body>
-    <header>
-        <nav class="container">
-            <a href="index.html" class="logo">
-                <img src="images/_CloakID_logo_1.png" alt="CloakID Logo">
-            </a>
-        </nav>
-    </header>
 
-    <section class="confirm-section">
-        <div class="container">
-            <div class="confirm-card" id="confirm-form-container">
-                <div class="confirm-header">
-                    <div class="confirm-icon confirm-icon-success">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                            <polyline points="20 6 9 17 4 12"></polyline>
-                        </svg>
-                    </div>
-                    <h1>Email Verified!</h1>
-                    <p>One last step to complete your application</p>
-                </div>
+<!-- ============ NAV ============ -->
+<nav class="nav">
+  <a href="index.html" class="brand">
+    <img src="images/_CloakID_icon_white.png" alt="CloakID" style="filter: invert(1) brightness(0);">
+    &nbsp;<span>CloakID</span>
+  </a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="support.html">Support</a>
+    <a href="about.html">About</a>
+  </div>
+  <a class="nav-cta" href="https://apps.apple.com/us/app/cloakid/id6761379232">
+    Get CloakID <span class="arr">→</span>
+  </a>
+</nav>
 
-                <form id="confirm-form" class="confirm-form">
-                    <div class="form-group">
-                        <label class="form-label">Which problems are you trying to solve? <span class="label-hint">(select all that apply)</span></label>
-                        <div class="checkbox-group">
-                            <label class="checkbox-option">
-                                <input type="checkbox" name="problem" value="Spam calls">
-                                <span class="checkbox-checkmark"></span>
-                                <span class="checkbox-text">Spam calls are driving me crazy</span>
-                            </label>
-                            <label class="checkbox-option">
-                                <input type="checkbox" name="problem" value="Strangers">
-                                <span class="checkbox-checkmark"></span>
-                                <span class="checkbox-text">I don't want to give my number to strangers</span>
-                            </label>
-                            <label class="checkbox-option">
-                                <input type="checkbox" name="problem" value="Business">
-                                <span class="checkbox-checkmark"></span>
-                                <span class="checkbox-text">Separating business from personal</span>
-                            </label>
-                            <label class="checkbox-option">
-                                <input type="checkbox" name="problem" value="Dating">
-                                <span class="checkbox-checkmark"></span>
-                                <span class="checkbox-text">Protecting my privacy while dating</span>
-                            </label>
-                            <label class="checkbox-option">
-                                <input type="checkbox" name="problem" value="Other">
-                                <span class="checkbox-checkmark"></span>
-                                <span class="checkbox-text">Something else</span>
-                            </label>
-                        </div>
-                        <input type="text" name="otherProblem" id="other-problem" placeholder="Tell us more..." class="other-input">
-                    </div>
+<section class="confirm-section">
+  <div class="confirm-card" id="confirm-form-container">
+    <div class="confirm-header">
+      <div class="confirm-icon confirm-icon-success">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+      </div>
+      <h1>Email verified.</h1>
+      <p>One last step to complete your application.</p>
+    </div>
 
-                    <div class="form-group">
-                        <label class="form-label">How much does this problem affect you?</label>
-                        <div class="radio-group pain-level-group">
-                            <label class="radio-option pain-option">
-                                <input type="radio" name="painLevel" value="Mild" required>
-                                <span class="pain-indicator mild"></span>
-                                <span class="radio-text">Mild annoyance</span>
-                            </label>
-                            <label class="radio-option pain-option">
-                                <input type="radio" name="painLevel" value="Regular">
-                                <span class="pain-indicator regular"></span>
-                                <span class="radio-text">Regular frustration</span>
-                            </label>
-                            <label class="radio-option pain-option">
-                                <input type="radio" name="painLevel" value="Severe">
-                                <span class="pain-indicator severe"></span>
-                                <span class="radio-text">It's seriously affecting me</span>
-                            </label>
-                        </div>
-                    </div>
-
-                    <button type="submit" class="btn btn-accent confirm-submit">Complete Application</button>
-                </form>
-            </div>
-
-            <div class="confirm-card" id="confirm-success" style="display: none;">
-                <div class="confirm-header">
-                    <div class="confirm-icon confirm-icon-success">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                            <polyline points="20 6 9 17 4 12"></polyline>
-                        </svg>
-                    </div>
-                    <h1>You're on the list!</h1>
-                    <p>Thank you for your interest in CloakID</p>
-                </div>
-                <div class="next-steps">
-                    <h3>What happens next?</h3>
-                    <p>We're carefully onboarding 10-20 users per week to ensure the best experience. If selected, you'll receive an email with next steps.</p>
-                </div>
-                <a href="index.html" class="btn confirm-home-btn">Back to Home</a>
-            </div>
-
-            <div class="confirm-card" id="confirm-error" style="display: none;">
-                <div class="confirm-header">
-                    <div class="confirm-icon confirm-icon-error">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <line x1="12" y1="8" x2="12" y2="12"></line>
-                            <line x1="12" y1="16" x2="12.01" y2="16"></line>
-                        </svg>
-                    </div>
-                    <h1>Something went wrong</h1>
-                    <p>Please try again or contact support</p>
-                </div>
-                <a href="index.html" class="btn confirm-home-btn">Back to Home</a>
-            </div>
+    <form id="confirm-form" class="confirm-form">
+      <div class="form-group">
+        <label class="form-label">Which problems are you trying to solve?<span class="label-hint">(select all that apply)</span></label>
+        <div class="checkbox-group">
+          <label class="checkbox-option">
+            <input type="checkbox" name="problem" value="Spam calls">
+            <span class="checkbox-checkmark"></span>
+            <span class="checkbox-text">Spam calls are driving me crazy</span>
+          </label>
+          <label class="checkbox-option">
+            <input type="checkbox" name="problem" value="Strangers">
+            <span class="checkbox-checkmark"></span>
+            <span class="checkbox-text">I don't want to give my number to strangers</span>
+          </label>
+          <label class="checkbox-option">
+            <input type="checkbox" name="problem" value="Business">
+            <span class="checkbox-checkmark"></span>
+            <span class="checkbox-text">Separating business from personal</span>
+          </label>
+          <label class="checkbox-option">
+            <input type="checkbox" name="problem" value="Dating">
+            <span class="checkbox-checkmark"></span>
+            <span class="checkbox-text">Protecting my privacy while dating</span>
+          </label>
+          <label class="checkbox-option">
+            <input type="checkbox" name="problem" value="Other">
+            <span class="checkbox-checkmark"></span>
+            <span class="checkbox-text">Something else</span>
+          </label>
         </div>
-    </section>
+        <input type="text" name="otherProblem" id="other-problem" placeholder="Tell us more…" class="other-input">
+      </div>
 
-    <style>
-        .confirm-section {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-            padding: 120px 20px 60px;
-        }
+      <div class="form-group">
+        <label class="form-label">How much does this problem affect you?</label>
+        <div class="radio-group pain-level-group">
+          <label class="radio-option pain-option">
+            <input type="radio" name="painLevel" value="Mild" required>
+            <span class="pain-indicator mild"></span>
+            <span class="radio-text">Mild annoyance</span>
+          </label>
+          <label class="radio-option pain-option">
+            <input type="radio" name="painLevel" value="Regular">
+            <span class="pain-indicator regular"></span>
+            <span class="radio-text">Regular frustration</span>
+          </label>
+          <label class="radio-option pain-option">
+            <input type="radio" name="painLevel" value="Severe">
+            <span class="pain-indicator severe"></span>
+            <span class="radio-text">It's seriously affecting me</span>
+          </label>
+        </div>
+      </div>
 
-        .confirm-card {
-            background: white;
-            border-radius: 24px;
-            padding: 3rem;
-            max-width: 480px;
-            width: 100%;
-            margin: 0 auto;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
-        }
+      <button type="submit" class="confirm-submit">Complete application</button>
+    </form>
+  </div>
 
-        .confirm-header {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
+  <div class="confirm-card" id="confirm-success" style="display: none;">
+    <div class="confirm-header">
+      <div class="confirm-icon confirm-icon-success">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+      </div>
+      <h1>You're on the list.</h1>
+      <p>Thanks for your interest in CloakID.</p>
+    </div>
+    <div class="next-steps">
+      <h3>What happens next?</h3>
+      <p>CloakID is live on the App Store today — you can download it now. We'll also be in touch with updates and tips as the product evolves.</p>
+    </div>
+    <a href="https://apps.apple.com/us/app/cloakid/id6761379232" class="confirm-home-btn" style="margin-bottom: 10px;">Open in App Store</a>
+    <a href="index.html" class="confirm-home-btn">Back to home</a>
+  </div>
 
-        .confirm-header h1 {
-            font-size: 1.75rem;
-            color: var(--text-dark);
-            margin-bottom: 0.5rem;
-        }
+  <div class="confirm-card" id="confirm-error" style="display: none;">
+    <div class="confirm-header">
+      <div class="confirm-icon confirm-icon-error">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="12" y1="8" x2="12" y2="12"></line>
+          <line x1="12" y1="16" x2="12.01" y2="16"></line>
+        </svg>
+      </div>
+      <h1>Something went wrong.</h1>
+      <p>Please try again or contact support@cloakid.app.</p>
+    </div>
+    <a href="index.html" class="confirm-home-btn">Back to home</a>
+  </div>
+</section>
 
-        .confirm-header p {
-            color: #64748b;
-            font-size: 1rem;
-        }
+<!-- ============ FOOTER ============ -->
+<footer class="foot">
+  <div class="foot-inner">
+    <span>© 2026 Niobium LLC. CloakID is a product of Niobium LLC.</span>
+    <div class="foot-legal">
+      <a href="privacy-policy.html">Privacy</a>
+      <a href="terms-of-service.html">Terms</a>
+      <a href="sms-disclosure.html">SMS Disclosure</a>
+      <a href="delete-account.html">Delete Account</a>
+      <a href="support.html">Support</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </div>
+</footer>
 
-        .confirm-icon {
-            width: 64px;
-            height: 64px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1.25rem;
-        }
+<script>
+  const token = new URLSearchParams(window.location.search).get('token');
+  const form = document.getElementById('confirm-form');
+  const formContainer = document.getElementById('confirm-form-container');
+  const successContainer = document.getElementById('confirm-success');
+  const errorContainer = document.getElementById('confirm-error');
+  const otherProblemInput = document.getElementById('other-problem');
+  const problemCheckboxes = document.querySelectorAll('input[name="problem"]');
+  const otherCheckbox = document.querySelector('input[name="problem"][value="Other"]');
 
-        .confirm-icon-success {
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
-            color: white;
-        }
+  // Show/hide "other" input based on checkbox
+  otherCheckbox.addEventListener('change', (e) => {
+    if (e.target.checked) {
+      otherProblemInput.classList.add('visible');
+      otherProblemInput.focus();
+    } else {
+      otherProblemInput.classList.remove('visible');
+    }
+  });
 
-        .confirm-icon-error {
-            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
-            color: white;
-        }
+  // Handle no token
+  if (!token) {
+    formContainer.style.display = 'none';
+    errorContainer.style.display = 'block';
+  }
 
-        .confirm-form {
-            text-align: left;
-        }
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
 
-        .form-group {
-            margin-bottom: 2rem;
-        }
+    const checkedProblems = Array.from(problemCheckboxes)
+      .filter(cb => cb.checked)
+      .map(cb => cb.value);
 
-        .form-label {
-            display: block;
-            font-weight: 600;
-            color: var(--text-dark);
-            margin-bottom: 1rem;
-            font-size: 0.95rem;
-        }
+    const formData = new FormData(form);
+    const painLevel = formData.get('painLevel');
+    const otherProblem = formData.get('otherProblem');
 
-        .label-hint {
-            font-weight: 400;
-            color: #94a3b8;
-            font-size: 0.85rem;
-        }
+    if (checkedProblems.length === 0) {
+      alert('Please select at least one problem.');
+      return;
+    }
 
-        .checkbox-group,
-        .radio-group {
-            display: flex;
-            flex-direction: column;
-            gap: 0.625rem;
-        }
+    const button = form.querySelector('button');
+    button.textContent = 'Submitting…';
+    button.disabled = true;
 
-        .checkbox-option,
-        .radio-option {
-            display: flex;
-            align-items: center;
-            gap: 0.875rem;
-            padding: 1rem 1.25rem;
-            border: 2px solid #e5e7eb;
-            border-radius: 14px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            font-weight: normal;
-            position: relative;
-        }
+    try {
+      const response = await fetch('/api/confirm', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          token,
+          problemCategory: checkedProblems.join(', '),
+          otherProblemText: checkedProblems.includes('Other') ? otherProblem : null,
+          painLevel
+        })
+      });
 
-        .checkbox-option:hover,
-        .radio-option:hover {
-            border-color: var(--primary-color);
-            background: rgba(27, 163, 198, 0.04);
-        }
-
-        .checkbox-option input[type="checkbox"],
-        .radio-option input[type="radio"] {
-            position: absolute;
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-
-        /* Checkbox styles */
-        .checkbox-checkmark {
-            width: 20px;
-            height: 20px;
-            border: 2px solid #d1d5db;
-            border-radius: 6px;
-            flex-shrink: 0;
-            transition: all 0.2s ease;
-            position: relative;
-        }
-
-        .checkbox-checkmark::after {
-            content: '';
-            position: absolute;
-            top: 2px;
-            left: 6px;
-            width: 5px;
-            height: 10px;
-            border: solid white;
-            border-width: 0 2px 2px 0;
-            transform: rotate(45deg) scale(0);
-            transition: transform 0.2s ease;
-        }
-
-        .checkbox-option input[type="checkbox"]:checked + .checkbox-checkmark {
-            background: var(--primary-color);
-            border-color: var(--primary-color);
-        }
-
-        .checkbox-option input[type="checkbox"]:checked + .checkbox-checkmark::after {
-            transform: rotate(45deg) scale(1);
-        }
-
-        .checkbox-option:has(input:checked) {
-            border-color: var(--primary-color);
-            background: rgba(27, 163, 198, 0.06);
-        }
-
-        .checkbox-option:has(input:checked) .checkbox-text {
-            color: var(--primary-dark);
-            font-weight: 500;
-        }
-
-        .checkbox-text {
-            color: #4b5563;
-            font-size: 0.95rem;
-            line-height: 1.4;
-        }
-
-        /* Radio styles */
-        .radio-checkmark {
-            width: 20px;
-            height: 20px;
-            border: 2px solid #d1d5db;
-            border-radius: 50%;
-            flex-shrink: 0;
-            transition: all 0.2s ease;
-            position: relative;
-        }
-
-        .radio-checkmark::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(0);
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: var(--primary-color);
-            transition: transform 0.2s ease;
-        }
-
-        .radio-option input[type="radio"]:checked + .radio-checkmark {
-            border-color: var(--primary-color);
-        }
-
-        .radio-option input[type="radio"]:checked + .radio-checkmark::after {
-            transform: translate(-50%, -50%) scale(1);
-        }
-
-        .radio-option:has(input:checked) {
-            border-color: var(--primary-color);
-            background: rgba(27, 163, 198, 0.06);
-        }
-
-        .radio-option:has(input:checked) .radio-text {
-            color: var(--primary-dark);
-            font-weight: 500;
-        }
-
-        .radio-text {
-            color: #4b5563;
-            font-size: 0.95rem;
-            line-height: 1.4;
-        }
-
-        /* Pain level indicators */
-        .pain-indicator {
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            flex-shrink: 0;
-            transition: all 0.2s ease;
-        }
-
-        .pain-indicator.mild {
-            background: linear-gradient(135deg, #86efac 0%, #22c55e 100%);
-        }
-
-        .pain-indicator.regular {
-            background: linear-gradient(135deg, #fcd34d 0%, #f59e0b 100%);
-        }
-
-        .pain-indicator.severe {
-            background: linear-gradient(135deg, #fca5a5 0%, #ef4444 100%);
-        }
-
-        .pain-option:has(input:checked) .pain-indicator {
-            transform: scale(1.1);
-            box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.05);
-        }
-
-        .other-input {
-            margin-top: 0.75rem;
-            width: 100%;
-            padding: 1rem 1.25rem;
-            border: 2px solid #e5e7eb;
-            border-radius: 14px;
-            font-size: 1rem;
-            font-family: inherit;
-            outline: none;
-            transition: all 0.2s ease;
-            display: none;
-        }
-
-        .other-input:focus {
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(27, 163, 198, 0.1);
-        }
-
-        .other-input.visible {
-            display: block;
-        }
-
-        .confirm-submit {
-            width: 100%;
-            padding: 1rem 2rem;
-            font-size: 1.05rem;
-            margin-top: 0.5rem;
-        }
-
-        /* Success state */
-        .next-steps {
-            background: linear-gradient(135deg, rgba(27, 163, 198, 0.08) 0%, rgba(0, 125, 145, 0.08) 100%);
-            border-radius: 16px;
-            padding: 1.5rem;
-            text-align: left;
-            margin-bottom: 1.5rem;
-        }
-
-        .next-steps h3 {
-            font-size: 1rem;
-            color: var(--text-dark);
-            margin-bottom: 0.5rem;
-        }
-
-        .next-steps p {
-            color: #4b5563;
-            font-size: 0.95rem;
-            line-height: 1.6;
-            margin: 0;
-        }
-
-        .confirm-home-btn {
-            width: 100%;
-            text-align: center;
-        }
-
-        @media (max-width: 600px) {
-            .confirm-section {
-                padding: 100px 16px 40px;
-            }
-
-            .confirm-card {
-                padding: 2rem 1.5rem;
-            }
-
-            .confirm-header h1 {
-                font-size: 1.5rem;
-            }
-        }
-    </style>
-
-    <script>
-        const token = new URLSearchParams(window.location.search).get('token');
-        const form = document.getElementById('confirm-form');
-        const formContainer = document.getElementById('confirm-form-container');
-        const successContainer = document.getElementById('confirm-success');
-        const errorContainer = document.getElementById('confirm-error');
-        const otherProblemInput = document.getElementById('other-problem');
-        const problemCheckboxes = document.querySelectorAll('input[name="problem"]');
-        const otherCheckbox = document.querySelector('input[name="problem"][value="Other"]');
-
-        // Show/hide "other" input based on checkbox
-        otherCheckbox.addEventListener('change', (e) => {
-            if (e.target.checked) {
-                otherProblemInput.classList.add('visible');
-                otherProblemInput.focus();
-            } else {
-                otherProblemInput.classList.remove('visible');
-            }
-        });
-
-        // Handle no token
-        if (!token) {
-            formContainer.style.display = 'none';
-            errorContainer.style.display = 'block';
-        }
-
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-
-            // Get all checked problems
-            const checkedProblems = Array.from(problemCheckboxes)
-                .filter(cb => cb.checked)
-                .map(cb => cb.value);
-
-            const formData = new FormData(form);
-            const painLevel = formData.get('painLevel');
-            const otherProblem = formData.get('otherProblem');
-
-            // Validate at least one problem selected
-            if (checkedProblems.length === 0) {
-                alert('Please select at least one problem.');
-                return;
-            }
-
-            const button = form.querySelector('button');
-            button.textContent = 'Submitting...';
-            button.disabled = true;
-
-            try {
-                const response = await fetch('/api/confirm', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        token,
-                        problemCategory: checkedProblems.join(', '),
-                        otherProblemText: checkedProblems.includes('Other') ? otherProblem : null,
-                        painLevel
-                    })
-                });
-
-                if (response.ok) {
-                    formContainer.style.display = 'none';
-                    successContainer.style.display = 'block';
-                } else {
-                    const data = await response.json().catch(() => ({}));
-                    throw new Error(data.error || 'Submission failed');
-                }
-            } catch (error) {
-                button.textContent = 'Try Again';
-                button.disabled = false;
-                alert(error.message || 'Something went wrong. Please try again.');
-            }
-        });
-    </script>
+      if (response.ok) {
+        formContainer.style.display = 'none';
+        successContainer.style.display = 'block';
+      } else {
+        const data = await response.json().catch(() => ({}));
+        throw new Error(data.error || 'Submission failed');
+      }
+    } catch (error) {
+      button.textContent = 'Try again';
+      button.disabled = false;
+      alert(error.message || 'Something went wrong. Please try again.');
+    }
+  });
+</script>
 </body>
 </html>

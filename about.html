@@ -1,161 +1,257 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About CloakID - Privacy-First Phone Protection by Niobium LLC</title>
-    <meta name="description" content="Learn about CloakID and Niobium LLC - creators of privacy-first phone protection that keeps your real number private.">
-    <link rel="stylesheet" href="style.css">
-    <link rel="icon" type="image/png" href="images/_CloakID_icon_white.png">
-    <link rel="apple-touch-icon" href="images/_CloakID_icon_white.png">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About CloakID — Privacy-First Phone Protection by Niobium LLC</title>
+<meta name="description" content="Learn about CloakID and Niobium LLC — creators of privacy-first phone protection that keeps your real number private.">
+<link rel="icon" type="image/png" href="images/_CloakID_icon_white.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles-v2.css">
+<style>
+  .about-card {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    padding: 28px 30px;
+  }
+  .about-card h3 {
+    margin: 0 0 10px;
+    font-size: 18px; font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+  .about-card p {
+    margin: 0;
+    font-size: 14.5px;
+    color: var(--ink-2);
+    line-height: 1.6;
+  }
+  .about-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+  .mission-card {
+    background: linear-gradient(135deg, rgba(8,145,178,0.04) 0%, rgba(224,247,250,0.4) 100%);
+    border: 1px solid var(--brand-soft);
+    border-radius: 24px;
+    padding: 40px 44px;
+    margin-bottom: 24px;
+  }
+  .mission-card h2 {
+    margin: 0 0 14px;
+    font-size: 24px; font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+  .mission-card p {
+    margin: 0 0 14px;
+    font-size: 16px;
+    color: var(--ink-2);
+    line-height: 1.65;
+  }
+  .mission-card p:last-child { margin-bottom: 0; }
+  .section-block {
+    margin-top: 36px;
+  }
+  .section-block h2 {
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin: 0 0 8px;
+  }
+  .section-block .lede {
+    font-size: 15.5px;
+    color: var(--ink-3);
+    margin: 0 0 20px;
+    line-height: 1.6;
+  }
+  .commitments {
+    list-style: none;
+    padding: 0; margin: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 24px;
+  }
+  .commitments li {
+    display: flex; gap: 12px; align-items: flex-start;
+    font-size: 15px;
+    color: var(--ink-2);
+    line-height: 1.6;
+  }
+  .commitments li::before {
+    content: "✓";
+    flex-shrink: 0;
+    width: 22px; height: 22px;
+    border-radius: 999px;
+    background: rgba(13,158,90,0.12);
+    color: var(--success, #0D9E5A);
+    font-size: 12px; font-weight: 700;
+    display: inline-flex; align-items: center; justify-content: center;
+    margin-top: 2px;
+  }
+  .commitments strong { color: var(--ink); font-weight: 600; }
+  .cta-row-wrap {
+    display: flex; gap: 14px;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-top: 20px;
+  }
+  @media (max-width: 900px) {
+    .about-grid { grid-template-columns: 1fr 1fr; }
+    .commitments { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 640px) {
+    .about-grid { grid-template-columns: 1fr; }
+    .mission-card { padding: 28px 24px; border-radius: 18px; }
+    .about-card { padding: 22px 20px; border-radius: 16px; }
+  }
+</style>
 </head>
 <body>
-    <header>
-        <nav class="container">
-            <a href="index.html" class="logo">
-                <img src="images/_CloakID_logo_1.png" alt="CloakID Logo">
-            </a>
-            <button class="mobile-menu-toggle" aria-label="Toggle menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <ul class="nav-links">
-                <li><a href="index.html#features">How It Works</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
 
-    <section class="section">
-        <div class="container">
-            <h1>About CloakID</h1>
-            <p class="subtitle">Privacy-first phone protection for everyone</p>
+<!-- ============ NAV ============ -->
+<nav class="nav">
+  <a href="index.html" class="brand">
+    <img src="images/_CloakID_icon_white.png" alt="CloakID" style="filter: invert(1) brightness(0);">
+    &nbsp;<span>CloakID</span>
+  </a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="support.html">Support</a>
+    <a href="about.html" class="active">About</a>
+  </div>
+  <a class="nav-cta" href="https://apps.apple.com/us/app/cloakid/id6761379232">
+    Get CloakID <span class="arr">→</span>
+  </a>
+</nav>
 
-            <div class="highlight-box" style="margin-top: 3rem;">
-                <h2>Our Mission</h2>
-                <p>CloakID keeps your real phone number private while ensuring important calls always get through. We believe your personal phone number is sensitive information that shouldn't be shared with everyone who asks for it.</p>
+<!-- ============ HERO ============ -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <span class="eyebrow">About</span>
+    <h1>Privacy-first phone <span class="muted">protection for everyone.</span></h1>
+    <p>Niobium LLC builds CloakID. Our job is simple: keep your real number private while making sure the people who matter still get through.</p>
+  </div>
+</section>
 
-                <p style="margin-top: 1rem;">Founded in 2024 by Niobium LLC, CloakID gives you real phone numbers for different parts of your life — work, dating, selling online, or anything else — so your personal number stays protected.</p>
+<!-- ============ CONTENT ============ -->
+<section class="section">
+  <div class="container-md">
 
-                <p style="margin-top: 1rem;">Our call routing stops unwanted calls before they reach you, while our Handshake trust system ensures the people who matter always get through.</p>
-            </div>
+    <!-- ===== Mission ===== -->
+    <div class="mission-card">
+      <h2>Our mission</h2>
+      <p>Your personal phone number is sensitive information. It shouldn't end up in a spam database because you signed up for a newsletter, listed something online, or filled out a form at the gym.</p>
+      <p>CloakID gives you real phone numbers for the different parts of your life — work, dating, selling, deliveries, kids' activities — so your personal number stays personal. Incoming calls get screened before your phone rings, and the people you've approved always get through.</p>
+      <p>We're a small, independent team that shipped our first version in 2026 and spent the year rebuilding it around real users. Today CloakID is live on the App Store, with Android on the way.</p>
+    </div>
 
-            <div style="margin-top: 3rem;">
-                <h2>Why CloakID?</h2>
-                <div class="grid grid-3">
-                    <div class="card">
-                        <h3>Real Protection</h3>
-                        <p>Each persona gets a real, carrier-grade phone number. This isn't call forwarding or virtual voicemail — it's actual phone numbers that work for calls and texts.</p>
-                    </div>
-                    <div class="card">
-                        <h3>Call Routing</h3>
-                        <p>Incoming calls are routed based on your preferences. Caller information is shown to help you decide who gets through. You stay in control.</p>
-                    </div>
-                    <div class="card">
-                        <h3>Trust System</h3>
-                        <p>The Handshake system lets you create a trusted contacts list. Approved contacts are routed according to your preferences.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div style="margin-top: 3rem;">
-                <h2>Who Uses CloakID</h2>
-                <p>CloakID is for anyone who values their privacy:</p>
-
-                <div class="grid grid-3" style="margin-top: 2rem;">
-                    <div class="card">
-                        <h3>Parents</h3>
-                        <p>Keep a separate number for school, activities, and services. Protect your family from unwanted calls while staying reachable for what matters.</p>
-                    </div>
-                    <div class="card">
-                        <h3>Dating</h3>
-                        <p>Don't give out your real number until you're ready. Use a dating persona and upgrade contacts when trust is earned.</p>
-                    </div>
-                    <div class="card">
-                        <h3>Online Sellers</h3>
-                        <p>Selling on Craigslist or Marketplace? Use a dedicated number. When the transaction is complete, you're done.</p>
-                    </div>
-                </div>
-                <div class="grid grid-3" style="margin-top: 2rem;">
-                    <div class="card">
-                        <h3>Consultants</h3>
-                        <p>Separate client calls from personal life. Give each project its own number. When the engagement ends, so does the number.</p>
-                    </div>
-                    <div class="card">
-                        <h3>Healthcare Workers</h3>
-                        <p>Keep work calls separate from personal time. Use dedicated personas for work communication without exposing your personal number.</p>
-                    </div>
-                    <div class="card">
-                        <h3>Legal Professionals</h3>
-                        <p>Maintain confidentiality with separate numbers for different matters. Control who can reach you and when.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="cta-section" style="margin-top: 3rem;">
-                <h2>Our Commitment</h2>
-                <p>At Niobium LLC, we're committed to building privacy tools that actually work. We believe in:</p>
-                <ul style="text-align: left; max-width: 600px; margin: 2rem auto; list-style: none;">
-                    <li style="margin-bottom: 1rem;">&#10003; <strong>Honest Products:</strong> No fake compliance claims or enterprise theater</li>
-                    <li style="margin-bottom: 1rem;">&#10003; <strong>User Privacy:</strong> Your data belongs to you, always</li>
-                    <li style="margin-bottom: 1rem;">&#10003; <strong>Continuous Improvement:</strong> Regular updates based on user feedback</li>
-                    <li style="margin-bottom: 1rem;">&#10003; <strong>Fair Pricing:</strong> Simple, transparent pricing without hidden fees</li>
-                </ul>
-            </div>
-
-            <div style="margin-top: 3rem;">
-                <h2>Get Started with CloakID</h2>
-                <p>Ready to protect your real phone number?</p>
-                <div style="margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap;">
-                    <a href="pricing.html" class="btn btn-primary">See Pricing</a>
-                    <a href="contact.html" class="btn btn-secondary">Contact Us</a>
-                </div>
-            </div>
+    <!-- ===== Why CloakID ===== -->
+    <div class="section-block">
+      <h2>Why CloakID</h2>
+      <p class="lede">Three things make CloakID different from other "second number" apps.</p>
+      <div class="about-grid">
+        <div class="about-card">
+          <h3>Real phone numbers</h3>
+          <p>Each persona gets a real, carrier-grade US number. It works for calls, SMS, MMS, and voicemail — not a VoIP fallback or a call-forwarding trick that breaks when you need it most.</p>
         </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h4>Product</h4>
-                    <ul class="footer-links">
-                        <li><a href="index.html#features">Features</a></li>
-                        <li><a href="pricing.html">Pricing</a></li>
-                        <li><a href="about.html">About</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Support</h4>
-                    <ul class="footer-links">
-                        <li><a href="support.html">Help Center</a></li>
-                        <li><a href="contact.html">Contact Us</a></li>
-                        <li><a href="mailto:support@cloakid.app">support@cloakid.app</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Legal</h4>
-                    <ul class="footer-links">
-                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                        <li><a href="terms-of-service.html">Terms of Service</a></li>
-                        <li><a href="sms-disclosure.html">SMS Opt-in Disclosure</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Company</h4>
-                    <ul class="footer-links">
-                        <li><a href="about.html">About Niobium LLC</a></li>
-                        <li><a href="mailto:hello@cloakid.app">hello@cloakid.app</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 0.5rem;">CloakID phone numbers are intended for personal and business communications initiated by the user. We do not support unsolicited messaging or spam.</p>
-                <p>&copy; 2025 Niobium LLC. All rights reserved. CloakID is a product of Niobium LLC.</p>
-            </div>
+        <div class="about-card">
+          <h3>Screening before it rings</h3>
+          <p>Unknown callers hit a short screen based on the persona they're calling. Spam, surveys, and unwanted outreach get filtered. Your phone only rings for calls that make sense.</p>
         </div>
-    </footer>
-    <script src="script.js"></script>
+        <div class="about-card">
+          <h3>Approved callers bypass</h3>
+          <p>People you approve — family, friends, colleagues — skip the screen entirely. You stay reachable to the humans who matter, and protected from everyone else.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== Who uses CloakID ===== -->
+    <div class="section-block">
+      <h2>Who uses CloakID</h2>
+      <p class="lede">CloakID is for anyone who's tired of their number getting around. A few of the most common patterns:</p>
+
+      <div class="about-grid">
+        <div class="about-card">
+          <h3>Parents</h3>
+          <p>One number for school, activities, and services — not your family line. Stay reachable for emergencies without opening the floodgates.</p>
+        </div>
+        <div class="about-card">
+          <h3>Dating</h3>
+          <p>Don't hand out your real number on day one. Use a dating persona and upgrade contacts when trust is earned.</p>
+        </div>
+        <div class="about-card">
+          <h3>Online sellers</h3>
+          <p>Marketplace, Craigslist, OfferUp — give out a disposable number that you can retire the day the deal is done.</p>
+        </div>
+        <div class="about-card">
+          <h3>Consultants &amp; freelancers</h3>
+          <p>Keep client calls out of your personal life. Give each engagement its own number; when it ends, so does the number.</p>
+        </div>
+        <div class="about-card">
+          <h3>Healthcare &amp; service workers</h3>
+          <p>A dedicated work persona for patients, clients, or on-call rotations, without exposing your personal line.</p>
+        </div>
+        <div class="about-card">
+          <h3>Anyone who's been burned</h3>
+          <p>If your number has been sold, scraped, or added to a spam list you never signed up for — CloakID is how you start over.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== Commitment ===== -->
+    <div class="section-block">
+      <h2>What we commit to</h2>
+      <p class="lede">Privacy tools should work. These are the rules we run CloakID by.</p>
+      <ul class="commitments">
+        <li><span><strong>Honest product:</strong> no fake compliance claims, no enterprise theater, no dark patterns.</span></li>
+        <li><span><strong>Your data is yours:</strong> we don't sell it, rent it, or feed it to advertisers. Ever.</span></li>
+        <li><span><strong>No ads:</strong> no ads in the app, no sponsored contacts, no upsell popups.</span></li>
+        <li><span><strong>Continuous improvement:</strong> regular releases driven by what users actually ask for.</span></li>
+        <li><span><strong>Fair pricing:</strong> transparent monthly plans. No hidden fees.</span></li>
+        <li><span><strong>Clean exits:</strong> cancel anytime in the App Store, delete your account in the app, and all data goes with it.</span></li>
+      </ul>
+    </div>
+
+    <!-- ===== CTA ===== -->
+    <div class="section-block">
+      <div class="mission-card" style="text-align: center;">
+        <h2>Ready to take your number back?</h2>
+        <p style="margin: 0 0 8px;">7-day free trial. Cancel anytime in the App Store before the trial ends and you won't be charged.</p>
+        <div class="cta-row-wrap" style="justify-content: center;">
+          <a href="https://apps.apple.com/us/app/cloakid/id6761379232" class="appstore-link" aria-label="Download on the App Store">
+            <img src="images/app-store-badge.svg" alt="Download on the App Store" onerror="this.src='https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg'" style="height: 48px;">
+          </a>
+          <a href="pricing.html" class="btn-ghost">
+            <span class="dot"></span>See pricing <span class="arr">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="foot">
+  <div class="foot-inner">
+    <span>© 2026 Niobium LLC. CloakID is a product of Niobium LLC.</span>
+    <div class="foot-legal">
+      <a href="privacy-policy.html">Privacy</a>
+      <a href="terms-of-service.html">Terms</a>
+      <a href="sms-disclosure.html">SMS Disclosure</a>
+      <a href="delete-account.html">Delete Account</a>
+      <a href="support.html">Support</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </div>
+</footer>
+
 </body>
 </html>

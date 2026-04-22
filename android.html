@@ -6,169 +6,229 @@
 <title>Android Waitlist — CloakID</title>
 <meta name="description" content="CloakID for Android is coming soon. Join the waitlist and we'll email you the day it ships.">
 <link rel="icon" type="image/png" href="images/_CloakID_icon_white.png">
-<script src="https://cdn.tailwindcss.com"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles-v2.css">
 <script src="https://www.google.com/recaptcha/api.js?render=6LfI9T4sAAAAANxTvpRvO43zLwRBw_hfUJKjljDR"></script>
-<script>
-  tailwind.config = { theme: { extend: {
-    colors: { ink: { 950: '#05070f', 900: '#0a0e1a', 800: '#0f1524', 700: '#1a2235' } },
-    fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] }
-  }}}
-</script>
 <style>
-  html { scroll-behavior: smooth; }
-  body { font-family: 'Inter', system-ui, sans-serif; background: #05070f; color: #e2e8f0; -webkit-font-smoothing: antialiased; }
-  .gradient-text { background: linear-gradient(135deg, #22d3ee 0%, #38bdf8 45%, #34d399 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
-  .glass { background: rgba(255,255,255,0.035); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.08); }
-  .grid-bg { background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.06) 1px, transparent 0); background-size: 36px 36px; }
   .grecaptcha-badge { visibility: hidden; }
+
+  .waitlist-card {
+    max-width: 560px;
+    margin: 0 auto;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    padding: 32px 32px 28px;
+    box-shadow: 0 8px 28px -14px rgba(10,10,10,0.08);
+  }
+  .waitlist-card .submit-btn {
+    width: 100%;
+    margin-top: 8px;
+    padding: 14px 24px;
+    background: linear-gradient(135deg, var(--brand-2) 0%, var(--brand) 100%);
+    color: #fff;
+    border: none;
+    border-radius: 999px;
+    font-size: 14.5px; font-weight: 600;
+    letter-spacing: -0.1px;
+    cursor: pointer;
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    box-shadow: 0 4px 14px -4px rgba(8,145,178,0.4);
+    transition: transform .2s ease, box-shadow .2s ease;
+  }
+  .waitlist-card .submit-btn:hover:not(:disabled) {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 24px -6px rgba(8,145,178,0.5);
+  }
+  .waitlist-card .submit-btn:disabled {
+    opacity: 0.6; cursor: not-allowed; transform: none; box-shadow: none;
+  }
+  .waitlist-card .submit-btn .icon {
+    font-size: 15px;
+  }
+  .waitlist-error {
+    margin: 14px 0 0;
+    font-size: 13.5px;
+    color: var(--danger);
+    text-align: center;
+  }
+  .waitlist-error.hidden { display: none; }
+  .waitlist-fineprint {
+    margin: 18px 0 0;
+    font-size: 12.5px;
+    color: var(--ink-4);
+    text-align: center;
+  }
+
+  .ios-callout {
+    max-width: 560px;
+    margin: 20px auto 0;
+    background: linear-gradient(135deg, rgba(8,145,178,0.05) 0%, rgba(224,247,250,0.4) 100%);
+    border: 1px solid var(--brand-soft);
+    border-radius: 20px;
+    padding: 22px 26px;
+    display: flex; gap: 20px; align-items: center;
+    flex-wrap: wrap;
+  }
+  .ios-callout-text { flex: 1; min-width: 180px; }
+  .ios-callout-text h3 {
+    margin: 0 0 4px;
+    font-size: 17px; font-weight: 600;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  .ios-callout-text p {
+    margin: 0;
+    font-size: 14px;
+    color: var(--ink-3);
+  }
+  .ios-callout .appstore-link img {
+    height: 42px;
+  }
+
+  .success-card {
+    max-width: 560px;
+    margin: 0 auto;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    padding: 44px 32px;
+    text-align: center;
+    box-shadow: 0 8px 28px -14px rgba(10,10,10,0.08);
+  }
+  .success-card .icon-circle {
+    width: 56px; height: 56px;
+    border-radius: 16px;
+    background: rgba(13,158,90,0.1);
+    color: var(--success);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 20px;
+    font-size: 28px; font-weight: 600;
+  }
+  .success-card h2 {
+    margin: 0 0 8px;
+    font-size: 28px; font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+  .success-card p {
+    margin: 0 0 28px;
+    font-size: 15px;
+    color: var(--ink-3);
+  }
+  .success-actions {
+    display: flex; gap: 12px;
+    flex-wrap: wrap; justify-content: center; align-items: center;
+  }
+
+  .hidden { display: none; }
+
+  @media (max-width: 640px) {
+    .waitlist-card, .success-card, .ios-callout { border-radius: 16px; padding: 24px 20px; }
+  }
 </style>
 </head>
-<body class="min-h-screen">
+<body>
 
-<div class="fixed inset-0 -z-10 overflow-hidden">
-  <div class="absolute -top-40 -left-40 w-[560px] h-[560px] rounded-full bg-emerald-500/15 blur-3xl"></div>
-  <div class="absolute top-1/3 -right-40 w-[520px] h-[520px] rounded-full bg-cyan-500/15 blur-3xl"></div>
-</div>
-
-<header class="fixed top-0 inset-x-0 z-50 backdrop-blur-xl bg-ink-950/70 border-b border-white/5">
-  <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-    <a href="index.html" class="flex items-center gap-2.5">
-      <img src="images/_CloakID_icon_white.png" class="w-8 h-8" alt="CloakID">
-      <span class="text-white font-bold tracking-tight text-lg">CloakID</span>
-    </a>
-    <nav class="hidden md:flex items-center gap-9 text-sm text-slate-300">
-      <a href="index.html#features" class="hover:text-white transition">Features</a>
-      <a href="index.html#how" class="hover:text-white transition">How it works</a>
-      <a href="pricing.html" class="hover:text-white transition">Pricing</a>
-      <a href="support.html" class="hover:text-white transition">Support</a>
-    </nav>
-    <a href="index.html#download" class="bg-gradient-to-r from-cyan-400 to-sky-500 text-ink-950 font-semibold px-4 py-2 rounded-full text-sm hover:shadow-lg hover:shadow-cyan-500/30 transition">Get the app</a>
+<!-- ============ NAV ============ -->
+<nav class="nav">
+  <a href="index.html" class="brand">
+    <img src="images/_CloakID_icon_white.png" alt="CloakID" style="filter: invert(1) brightness(0);">
+    &nbsp;<span>CloakID</span>
+  </a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="support.html">Support</a>
+    <a href="about.html">About</a>
   </div>
-</header>
+  <a class="nav-cta" href="https://apps.apple.com/us/app/cloakid/id6761379232">
+    Get CloakID <span class="arr">→</span>
+  </a>
+</nav>
 
-<section class="pt-32 pb-10 relative">
-  <div class="absolute inset-0 grid-bg opacity-50 [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_80%)]"></div>
-  <div class="relative max-w-2xl mx-auto px-6 text-center">
-    <div class="inline-flex items-center gap-2 glass px-4 py-1.5 rounded-full text-xs font-medium text-emerald-300 mb-6">
-      <i data-lucide="smartphone" class="w-3.5 h-3.5"></i> Android waitlist · coming soon
-    </div>
-    <h1 class="text-5xl md:text-6xl font-extrabold tracking-tight text-white leading-[1.05] mb-6">
-      Android is<br><span class="gradient-text">on the way.</span>
-    </h1>
-    <p class="text-lg text-slate-400 max-w-xl mx-auto">Drop your email and we'll ping you the day the Android build ships. No newsletters, no spam — just one email when it's ready.</p>
+<!-- ============ HERO ============ -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <span class="eyebrow">Android waitlist · coming soon</span>
+    <h1>Android is <span class="muted">on the way.</span></h1>
+    <p>Drop your email and we'll ping you the day the Android build ships. No newsletters, no spam — just one email when it's ready.</p>
   </div>
 </section>
 
-<section id="waitlist-section" class="pb-24">
-  <div class="max-w-xl mx-auto px-6 space-y-4">
+<!-- ============ WAITLIST FORM ============ -->
+<section id="waitlist-section" class="section">
+  <div class="waitlist-card">
+    <form id="waitlist-form" novalidate>
+      <label for="email" class="field-label">Email address</label>
+      <input
+        id="email"
+        name="email"
+        type="email"
+        required
+        autocomplete="email"
+        placeholder="you@example.com"
+        class="field-input"
+      >
+      <!-- Honeypot — must be empty. Hidden from humans, tempting to bots. -->
+      <input type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;" aria-hidden="true">
+      <input type="hidden" name="source" id="source-field" value="direct">
 
-    <!-- Waitlist form -->
-    <div id="waitlist-card" class="glass rounded-3xl p-8">
-      <form id="waitlist-form" novalidate>
-        <label for="email" class="block text-sm font-medium text-slate-300 mb-2">Email address</label>
-        <input
-          id="email"
-          name="email"
-          type="email"
-          required
-          autocomplete="email"
-          placeholder="you@example.com"
-          class="w-full bg-white/5 border border-white/10 text-white placeholder:text-slate-500 rounded-2xl px-4 py-3.5 focus:outline-none focus:border-cyan-400/60 focus:ring-2 focus:ring-cyan-400/20 transition"
-        >
-        <!-- Honeypot — must be empty. Hidden from humans, tempting to bots. -->
-        <input type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;" aria-hidden="true">
-        <input type="hidden" name="source" id="source-field" value="direct">
+      <button type="submit" id="waitlist-submit" class="submit-btn">
+        <span class="icon">🔔</span>
+        <span>Notify me when it ships</span>
+      </button>
 
-        <button
-          type="submit"
-          id="waitlist-submit"
-          class="mt-4 w-full bg-gradient-to-r from-cyan-400 to-sky-500 text-ink-950 font-semibold px-6 py-3.5 rounded-full flex items-center justify-center gap-2 hover:shadow-xl hover:shadow-cyan-500/40 transition disabled:opacity-60 disabled:cursor-not-allowed"
-        >
-          <i data-lucide="bell" class="w-4 h-4"></i>
-          <span>Notify me when it ships</span>
-        </button>
+      <p id="waitlist-error" role="alert" aria-live="polite" class="waitlist-error hidden"></p>
+    </form>
+    <p class="waitlist-fineprint">Protected by reCAPTCHA. One email when Android launches — nothing else.</p>
+  </div>
 
-        <p id="waitlist-error" role="alert" aria-live="polite" class="hidden mt-3 text-sm text-rose-400 text-center"></p>
-      </form>
-      <p class="mt-5 text-xs text-slate-500 text-center">Protected by reCAPTCHA. One email when Android launches — nothing else.</p>
+  <!-- iOS callout — converts same-household iPhone users immediately -->
+  <div class="ios-callout">
+    <div class="ios-callout-text">
+      <h3>Have an iPhone? Don't wait.</h3>
+      <p>CloakID is live on the App Store today.</p>
     </div>
+    <a href="https://apps.apple.com/us/app/cloakid/id6761379232" class="appstore-link" aria-label="Download CloakID on the App Store">
+      <img src="images/app-store-badge.svg" alt="Download on the App Store" onerror="this.src='https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg'">
+    </a>
+  </div>
+</section>
 
-    <!-- iOS callout — converts same-household iPhone users immediately -->
-    <div class="rounded-3xl p-6 border border-cyan-400/25 bg-gradient-to-br from-cyan-500/10 via-sky-500/5 to-transparent flex flex-col sm:flex-row sm:items-center gap-5">
-      <div class="flex-1 min-w-0">
-        <h3 class="text-white font-semibold text-lg leading-tight mb-1">Have an iPhone? Don't wait.</h3>
-        <p class="text-sm text-slate-400">CloakID is live on the App Store today.</p>
-      </div>
-      <a href="https://apps.apple.com/us/app/cloakid-private-calling/id6761379232" class="shrink-0 inline-block" aria-label="Download CloakID on the App Store">
-        <img src="images/app-store-badge-white.svg" alt="Download on the App Store" width="135" height="45" class="block">
+<!-- ============ SUCCESS STATE (hidden until submit succeeds) ============ -->
+<section id="waitlist-success" class="section hidden">
+  <div class="success-card">
+    <div class="icon-circle">✓</div>
+    <h2>You're on the list.</h2>
+    <p>We'll email you the day the Android build ships — check your inbox for a confirmation.</p>
+    <div class="success-actions">
+      <a href="index.html" class="btn-ghost">
+        <span style="font-size: 14px;">←</span>
+        Back to cloakid.app
+      </a>
+      <a href="https://apps.apple.com/us/app/cloakid/id6761379232" class="appstore-link" aria-label="Download CloakID on the App Store">
+        <img src="images/app-store-badge.svg" alt="Download on the App Store" onerror="this.src='https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg'">
       </a>
     </div>
-
   </div>
 </section>
 
-<!-- Success state (hidden until submit succeeds) -->
-<section id="waitlist-success" class="hidden pb-24">
-  <div class="max-w-xl mx-auto px-6">
-    <div class="glass rounded-3xl p-10 text-center">
-      <div class="w-16 h-16 rounded-2xl bg-emerald-500/15 flex items-center justify-center mx-auto mb-5">
-        <i data-lucide="check-circle-2" class="w-8 h-8 text-emerald-400"></i>
-      </div>
-      <h2 class="text-3xl font-bold text-white mb-3">You're on the list.</h2>
-      <p class="text-slate-400 mb-8">We'll email you the day the Android build ships — check your inbox for a confirmation.</p>
-      <div class="flex flex-wrap items-center justify-center gap-4">
-        <a href="index.html" class="flex items-center gap-2 text-slate-300 hover:text-white font-medium px-5 py-3 rounded-full border border-white/10 hover:bg-white/5 transition">
-          <i data-lucide="arrow-left" class="w-4 h-4"></i>
-          Back to cloakid.app
-        </a>
-        <a href="https://apps.apple.com/us/app/cloakid-private-calling/id6761379232" class="inline-block" aria-label="Download CloakID on the App Store">
-          <img src="images/app-store-badge-white.svg" alt="Download on the App Store" width="156" height="52" class="block">
-        </a>
-      </div>
+<!-- ============ FOOTER ============ -->
+<footer class="foot">
+  <div class="foot-inner">
+    <span>© 2026 Niobium LLC. CloakID is a product of Niobium LLC.</span>
+    <div class="foot-legal">
+      <a href="privacy-policy.html">Privacy</a>
+      <a href="terms-of-service.html">Terms</a>
+      <a href="sms-disclosure.html">SMS Disclosure</a>
+      <a href="delete-account.html">Delete Account</a>
+      <a href="support.html">Support</a>
+      <a href="contact.html">Contact</a>
     </div>
   </div>
-</section>
-
-<footer class="border-t border-white/5 bg-ink-950">
-  <div class="max-w-7xl mx-auto px-6 py-16 grid md:grid-cols-4 gap-10">
-    <div>
-      <div class="flex items-center gap-2 mb-4">
-        <img src="images/_CloakID_icon_white.png" class="w-8 h-8">
-        <span class="text-white font-bold">CloakID</span>
-      </div>
-      <p class="text-sm text-slate-500 leading-relaxed">Real phone numbers. Real privacy. Real calm.</p>
-    </div>
-    <div>
-      <h4 class="text-white font-semibold text-sm mb-4">Product</h4>
-      <ul class="space-y-2.5 text-sm text-slate-400">
-        <li><a href="index.html#features" class="hover:text-white transition">Features</a></li>
-        <li><a href="index.html#how" class="hover:text-white transition">How it works</a></li>
-        <li><a href="pricing.html" class="hover:text-white transition">Pricing</a></li>
-        <li><a href="support.html" class="hover:text-white transition">Support</a></li>
-      </ul>
-    </div>
-    <div>
-      <h4 class="text-white font-semibold text-sm mb-4">Company</h4>
-      <ul class="space-y-2.5 text-sm text-slate-400">
-        <li><a href="about.html" class="hover:text-white transition">About</a></li>
-        <li><a href="contact.html" class="hover:text-white transition">Contact</a></li>
-        <li><a href="mailto:support@cloakid.app" class="hover:text-white transition">support@cloakid.app</a></li>
-      </ul>
-    </div>
-    <div>
-      <h4 class="text-white font-semibold text-sm mb-4">Legal</h4>
-      <ul class="space-y-2.5 text-sm text-slate-400">
-        <li><a href="privacy-policy.html" class="hover:text-white transition">Privacy Policy</a></li>
-        <li><a href="terms-of-service.html" class="hover:text-white transition">Terms of Service</a></li>
-        <li><a href="sms-disclosure.html" class="hover:text-white transition">SMS Disclosure</a></li>
-        <li><a href="delete-account.html" class="hover:text-white transition">Delete Account</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="border-t border-white/5 py-6 text-center text-xs text-slate-600">© 2026 Niobium LLC. CloakID is a product of Niobium LLC.</div>
 </footer>
 
 <script>
@@ -186,7 +246,7 @@
   const waitlistSection = document.getElementById('waitlist-section');
   const success = document.getElementById('waitlist-success');
   const submitBtn = document.getElementById('waitlist-submit');
-  const submitLabel = submitBtn.querySelector('span');
+  const submitLabel = submitBtn.querySelectorAll('span')[1];
 
   function showError(msg) {
     errorEl.textContent = msg;
@@ -228,7 +288,6 @@
       if (response.ok) {
         waitlistSection.classList.add('hidden');
         success.classList.remove('hidden');
-        lucide.createIcons();
         success.scrollIntoView({ behavior: 'smooth', block: 'start' });
       } else if (response.status === 429) {
         showError('Too many requests. Please try again in a bit.');
@@ -246,8 +305,6 @@
       submitLabel.textContent = 'Try again';
     }
   });
-
-  lucide.createIcons();
 </script>
 </body>
 </html>
