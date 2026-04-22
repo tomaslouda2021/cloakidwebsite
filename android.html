@@ -14,18 +14,49 @@
 <style>
   .grecaptcha-badge { visibility: hidden; }
 
+  /* ---- Compact single-viewport layout ---- */
+  .waitlist-main {
+    padding: 40px 24px 48px;
+    display: flex; justify-content: center;
+  }
+
   .waitlist-card {
-    max-width: 560px;
-    margin: 0 auto;
+    width: 100%;
+    max-width: 520px;
     background: #fff;
     border: 1px solid var(--line);
     border-radius: 20px;
     padding: 32px 32px 28px;
     box-shadow: 0 8px 28px -14px rgba(10,10,10,0.08);
+    text-align: center;
   }
+  .waitlist-card .eyebrow {
+    display: inline-block;
+    font-size: 11.5px; font-weight: 600;
+    color: var(--ink-4);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .waitlist-card h1 {
+    margin: 0 0 10px;
+    font-size: 34px;
+    line-height: 1.1;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+  .waitlist-card h1 .muted { color: var(--ink-4); font-weight: 400; }
+  .waitlist-card .lede {
+    margin: 0 0 22px;
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--ink-3);
+  }
+  .waitlist-card form { text-align: left; }
   .waitlist-card .submit-btn {
     width: 100%;
-    margin-top: 8px;
+    margin-top: 10px;
     padding: 14px 24px;
     background: var(--ink);
     color: #fff;
@@ -45,52 +76,48 @@
   .waitlist-card .submit-btn:disabled {
     opacity: 0.6; cursor: not-allowed; transform: none; box-shadow: none;
   }
-  .waitlist-card .submit-btn .icon {
-    font-size: 15px;
-  }
+  .waitlist-card .submit-btn .icon { font-size: 15px; }
   .waitlist-error {
-    margin: 14px 0 0;
+    margin: 12px 0 0;
     font-size: 13.5px;
     color: var(--danger);
     text-align: center;
   }
   .waitlist-error.hidden { display: none; }
   .waitlist-fineprint {
-    margin: 18px 0 0;
+    margin: 14px 0 0;
     font-size: 12.5px;
     color: var(--ink-4);
     text-align: center;
   }
 
-  .ios-callout {
-    max-width: 560px;
-    margin: 20px auto 0;
-    background: var(--bg-warm);
-    border: 1px solid var(--line);
-    border-radius: 20px;
-    padding: 22px 26px;
-    display: flex; gap: 20px; align-items: center;
-    flex-wrap: wrap;
+  .card-divider {
+    margin: 24px -32px 20px;
+    border-top: 1px solid var(--line);
   }
-  .ios-callout-text { flex: 1; min-width: 180px; }
-  .ios-callout-text h3 {
-    margin: 0 0 4px;
-    font-size: 17px; font-weight: 600;
+
+  .ios-inline {
+    display: flex; gap: 16px; align-items: center; justify-content: space-between;
+    flex-wrap: wrap;
+    text-align: left;
+  }
+  .ios-inline-text { flex: 1; min-width: 180px; }
+  .ios-inline-text h3 {
+    margin: 0 0 2px;
+    font-size: 15px; font-weight: 600;
     color: var(--ink);
     letter-spacing: -0.01em;
   }
-  .ios-callout-text p {
+  .ios-inline-text p {
     margin: 0;
-    font-size: 14px;
+    font-size: 13px;
     color: var(--ink-3);
   }
-  .ios-callout .appstore-link img {
-    height: 42px;
-  }
+  .ios-inline .appstore-link img { height: 38px; display: block; }
 
   .success-card {
-    max-width: 560px;
-    margin: 0 auto;
+    width: 100%;
+    max-width: 520px;
     background: #fff;
     border: 1px solid var(--line);
     border-radius: 20px;
@@ -109,12 +136,12 @@
   }
   .success-card h2 {
     margin: 0 0 8px;
-    font-size: 28px; font-weight: 600;
+    font-size: 26px; font-weight: 600;
     letter-spacing: -0.02em;
     color: var(--ink);
   }
   .success-card p {
-    margin: 0 0 28px;
+    margin: 0 0 24px;
     font-size: 15px;
     color: var(--ink-3);
   }
@@ -126,7 +153,11 @@
   .hidden { display: none; }
 
   @media (max-width: 640px) {
-    .waitlist-card, .success-card, .ios-callout { border-radius: 16px; padding: 24px 20px; }
+    .waitlist-main { padding: 28px 16px 40px; }
+    .waitlist-card { padding: 26px 22px 22px; border-radius: 16px; }
+    .waitlist-card h1 { font-size: 28px; }
+    .card-divider { margin: 20px -22px 18px; }
+    .success-card { padding: 32px 22px; border-radius: 16px; }
   }
 </style>
 </head>
@@ -149,18 +180,13 @@
   </a>
 </nav>
 
-<!-- ============ HERO ============ -->
-<section class="page-hero">
-  <div class="page-hero-inner">
+<!-- ============ WAITLIST (single card: hero + form + ios) ============ -->
+<main id="waitlist-section" class="waitlist-main">
+  <div class="waitlist-card">
     <span class="eyebrow">Android waitlist · coming soon</span>
     <h1>Android is <span class="muted">on the way.</span></h1>
-    <p>Drop your email and we'll ping you the day the Android build ships. No newsletters, no spam — just one email when it's ready.</p>
-  </div>
-</section>
+    <p class="lede">Drop your email. We'll ping you the day the build ships — one email, nothing else.</p>
 
-<!-- ============ WAITLIST FORM ============ -->
-<section id="waitlist-section" class="section">
-  <div class="waitlist-card">
     <form id="waitlist-form" novalidate>
       <label for="email" class="field-label">Email address</label>
       <input
@@ -183,23 +209,23 @@
 
       <p id="waitlist-error" role="alert" aria-live="polite" class="waitlist-error hidden"></p>
     </form>
-    <p class="waitlist-fineprint">Protected by reCAPTCHA. One email when Android launches — nothing else.</p>
-  </div>
+    <p class="waitlist-fineprint">Protected by reCAPTCHA.</p>
 
-  <!-- iOS callout — converts same-household iPhone users immediately -->
-  <div class="ios-callout">
-    <div class="ios-callout-text">
-      <h3>Have an iPhone? Don't wait.</h3>
-      <p>CloakID is live on the App Store today.</p>
+    <div class="card-divider"></div>
+    <div class="ios-inline">
+      <div class="ios-inline-text">
+        <h3>Have an iPhone?</h3>
+        <p>CloakID is live on the App Store today.</p>
+      </div>
+      <a href="https://apps.apple.com/us/app/cloakid/id6761379232" class="appstore-link" aria-label="Download CloakID on the App Store">
+        <img src="images/app-store-badge.svg" alt="Download on the App Store" onerror="this.src='https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg'">
+      </a>
     </div>
-    <a href="https://apps.apple.com/us/app/cloakid/id6761379232" class="appstore-link" aria-label="Download CloakID on the App Store">
-      <img src="images/app-store-badge.svg" alt="Download on the App Store" onerror="this.src='https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg'">
-    </a>
   </div>
-</section>
+</main>
 
 <!-- ============ SUCCESS STATE (hidden until submit succeeds) ============ -->
-<section id="waitlist-success" class="section hidden">
+<main id="waitlist-success" class="waitlist-main hidden">
   <div class="success-card">
     <div class="icon-circle">✓</div>
     <h2>You're on the list.</h2>
@@ -214,7 +240,7 @@
       </a>
     </div>
   </div>
-</section>
+</main>
 
 <!-- ============ FOOTER ============ -->
 <footer class="foot">
