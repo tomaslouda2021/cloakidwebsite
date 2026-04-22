@@ -20,7 +20,7 @@
 
 /* ================== HERO ================== */
 .hero {
-  padding: 56px 40px 88px;
+  padding: 48px 40px 56px;
 }
 .hero-inner {
   max-width: 1180px; margin: 0 auto; width: 100%;
@@ -59,7 +59,7 @@
 
 /* ================== SCENE SECTIONS ================== */
 .scene-section {
-  padding: 88px 40px;
+  padding: 64px 40px;
 }
 .scene-section.warm { background: var(--bg-warm); }
 .scene-inner {
@@ -80,8 +80,8 @@
 .scene-title .muted { color: var(--ink-4); }
 .scene-body {
   margin: 20px 0 0;
-  font-size: 16.5px; line-height: 1.6;
-  color: var(--ink-3); max-width: 480px;
+  font-size: 15.5px; line-height: 1.6;
+  color: var(--ink-3); max-width: 420px;
   text-wrap: pretty;
 }
 
@@ -95,11 +95,11 @@
 }
 .phone-inner { display: block; }
 .phone-inner img { width: 100%; display: block; border-radius: 38px; }
-.phone.lg { max-width: 300px; }
+.phone.lg { max-width: 260px; }
 
 /* ================== THREE RULES ================== */
 .rules {
-  padding: 96px 40px;
+  padding: 56px 40px;
   text-align: center;
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
@@ -108,12 +108,12 @@
 .rules-title {
   font-size: clamp(28px, 3vw, 38px);
   font-weight: 600; letter-spacing: -0.022em;
-  margin: 0 0 44px;
+  margin: 0 0 28px;
   color: var(--ink);
 }
 .rules-list {
   list-style: none; padding: 0; margin: 0;
-  display: flex; flex-direction: column; gap: 26px;
+  display: flex; flex-direction: column; gap: 20px;
 }
 .rules-list li {
   font-size: clamp(17px, 1.7vw, 21px);
@@ -125,11 +125,11 @@
 
 /* ================== HOMEPAGE PRICING ================== */
 .home-pricing {
-  padding: 96px 40px;
+  padding: 64px 40px;
   background: var(--bg-warm);
 }
 .home-pricing-inner { max-width: 1000px; margin: 0 auto; }
-.home-pricing-head { text-align: center; margin-bottom: 48px; }
+.home-pricing-head { text-align: center; margin-bottom: 32px; }
 .home-pricing-head h2 {
   font-size: clamp(28px, 3vw, 38px);
   font-weight: 600; letter-spacing: -0.022em;
@@ -243,18 +243,18 @@
 
 /* ================== FINAL CTA (home) ================== */
 .final {
-  padding: 96px 40px 112px;
+  padding: 64px 40px 80px;
   text-align: center;
   background:
     radial-gradient(circle at 50% 0%, rgba(34,211,238,0.08) 0%, rgba(34,211,238,0) 60%),
     #fff;
 }
 .final-mascot {
-  width: 120px; height: 120px; margin: 0 auto 24px;
+  width: 96px; height: 96px; margin: 0 auto 20px;
   display: block; object-fit: contain;
 }
 .final h3 {
-  margin: 0 auto 32px;
+  margin: 0 auto 24px;
   font-size: clamp(28px, 3.2vw, 40px);
   font-weight: 600; letter-spacing: -0.022em;
   line-height: 1.1;
@@ -270,16 +270,16 @@
 /* ================== RESPONSIVE ================== */
 @media (max-width: 960px) {
   .hero, .scene-section { padding-left: 24px; padding-right: 24px; }
-  .hero { padding-top: 48px; padding-bottom: 80px; }
-  .scene-section { padding-top: 80px; padding-bottom: 80px; }
-  .hero-inner, .scene-inner { grid-template-columns: 1fr; gap: 48px; }
+  .hero { padding-top: 40px; padding-bottom: 56px; }
+  .scene-section { padding-top: 56px; padding-bottom: 56px; }
+  .hero-inner, .scene-inner { grid-template-columns: 1fr; gap: 40px; }
   .scene-inner.flip > .text { order: 1; }
   .scene-inner.flip > .visual { order: 2; }
-  .rules, .home-pricing, .final { padding: 80px 24px; }
+  .rules, .home-pricing, .final { padding: 56px 24px; }
   .plans { grid-template-columns: 1fr; }
-  .phone { max-width: 320px; }
-  .phone.lg { max-width: 320px; }
-  .rules-list { gap: 32px; }
+  .phone { max-width: 280px; }
+  .phone.lg { max-width: 260px; }
+  .rules-list { gap: 24px; }
 }
 </style>
 </head>
@@ -347,7 +347,7 @@
 </section>
 
 <!-- ================== SCENE 2 — SELL THE COUCH ================== -->
-<section class="scene-section">
+<section class="scene-section warm">
   <div class="scene-inner">
     <div class="text">
       <h2 class="scene-title">
@@ -362,28 +362,6 @@
       <div class="phone lg">
         <div class="phone-inner">
           <img src="images/screenshots/messages.png" alt="Messages thread on a temporary number" />
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ================== SCENE 3 — WHO GOT THROUGH ================== -->
-<section class="scene-section warm">
-  <div class="scene-inner flip">
-    <div class="text">
-      <h2 class="scene-title">
-        Your pediatrician rang.
-        <span class="muted">The spam call didn't.</span>
-      </h2>
-      <p class="scene-body">
-        CloakID listens to unknown callers before your phone does. Legitimate calls get through. Most spam and pretenders don't. You set the rules per number &mdash; your dating line can be tight, your work line loose.
-      </p>
-    </div>
-    <div class="visual">
-      <div class="phone lg">
-        <div class="phone-inner">
-          <img src="images/screenshots/call-screened.png" alt="Call screening decision" />
         </div>
       </div>
     </div>
