@@ -396,7 +396,6 @@ a { color: inherit; }
 .foot-inner a { text-decoration: none; color: #9A9A9E; margin-left: 24px; transition: color .15s ease; }
 .foot-inner a:first-child { margin-left: 0; }
 .foot-inner a:hover { color: #fff; }
-.foot-inner a.android-link { color: #fff; font-weight: 500; }
 .foot-legal { display: flex; flex-wrap: wrap; align-items: center; }
 
 /* ============ PRICING CARDS ============ */
