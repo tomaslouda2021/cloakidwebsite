@@ -356,6 +356,25 @@ a { color: inherit; }
   margin: 0 0 10px;
   letter-spacing: -0.1px;
 }
+.disclosure-summary {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: -0.1px;
+  list-style: none;
+  cursor: pointer;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.disclosure-summary::-webkit-details-marker { display: none; }
+.disclosure-summary::after {
+  content: "+";
+  font-size: 18px; font-weight: 400;
+  color: var(--ink-4);
+  line-height: 1;
+  transition: transform .2s ease;
+}
+.disclosure-details[open] .disclosure-summary { margin-bottom: 10px; }
+.disclosure-details[open] .disclosure-summary::after { transform: rotate(45deg); color: var(--ink); }
 .disclosure p { margin: 0 0 8px; }
 .disclosure p:last-child { margin-bottom: 0; }
 .disclosure a { color: var(--brand); text-decoration: none; }
