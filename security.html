@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Security — CloakID</title>
+<meta name="description" content="How CloakID stores numbers, manages keys, works with carriers, retains data, and handles disclosure.">
+<link rel="icon" type="image/png" href="images/cloakid-icon-black.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;700" rel="stylesheet">
+<link rel="stylesheet" href="styles-v2.css">
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav class="nav">
+  <a class="brand" href="index.html" aria-label="CloakID home">
+    <img class="brand-mark" src="images/cloakid-icon-black.png" alt="" />
+    <span class="brand-word">CloakID</span>
+  </a>
+  <div class="nav-links">
+    <a href="pricing.html">Pricing</a>
+    <a href="security.html" class="active">Security</a>
+    <a href="support.html">Support</a>
+    <a href="android.html">Android</a>
+  </div>
+  <a class="nav-cta" href="https://apps.apple.com/us/app/cloakid/id6761379232">Get CloakID</a>
+</nav>
+
+<!-- ============ HERO ============ -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <span class="eyebrow">Security posture</span>
+    <h1>Security at <span class="muted">CloakID.</span></h1>
+    <p>A plain-language writeup of how we store numbers, manage keys, work with carriers, retain data, and handle disclosure.</p>
+  </div>
+</section>
+
+<!-- ============ ARTICLE ============ -->
+<div class="sec-shell">
+  <aside class="sec-toc">
+    <h3>Contents</h3>
+    <ul>
+      <li><a href="#storage">Storage</a></li>
+      <li><a href="#keys">Key management</a></li>
+      <li><a href="#carriers">Carrier relationships</a></li>
+      <li><a href="#retention">Data retention</a></li>
+      <li><a href="#third-parties">Third parties</a></li>
+      <li><a href="#disclosure">Disclosure</a></li>
+    </ul>
+  </aside>
+
+  <article class="sec-article">
+    <h2 id="storage">Storage</h2>
+    <p>Phone numbers, SMS, voicemails, and call metadata are stored encrypted at rest. Data belonging to different users lives under different keys. Plaintext is not written to disk on our servers.</p>
+    <p>The iOS app stores user state locally in the iOS keychain and the app sandbox. Biometric unlock is optional and configured per-device.</p>
+
+    <h2 id="keys">Key management</h2>
+    <p>Authentication credentials and device-bound secrets live in the iPhone Secure Enclave. They are generated on the device, never transmitted to us, and are not recoverable from our servers.</p>
+    <p>Server-side keys are rotated on a scheduled cadence and are stored in a managed key service with access controls audited independently of our application code.</p>
+
+    <h2 id="carriers">Carrier relationships</h2>
+    <p>CloakID provisions US phone numbers through licensed US carrier partners. Inbound calls and SMS traverse the carrier's infrastructure, enter ours, and reach your device. Outbound calls and SMS leave through the same path.</p>
+    <p>Carriers see the numbers they provision and the call detail records required for billing and regulatory compliance. They do not receive your CloakID account identity or your real personal number.</p>
+
+    <h2 id="retention">Data retention</h2>
+    <p>We retain data for the minimum time needed to run the service and to satisfy regulatory requirements. Specifics:</p>
+    <ul>
+      <li><strong>Voicemail recordings:</strong> transcribed to text and then discarded. Transcripts are retained with the persona until the persona or account is deleted.</li>
+      <li><strong>SMS content:</strong> held encrypted while the persona is active. Released when the persona or account is deleted.</li>
+      <li><strong>Call metadata:</strong> kept for 90 days for diagnostic and billing purposes, then aggregated.</li>
+      <li><strong>Account data:</strong> wiped on account deletion. A short window exists for reversal before permanent purge.</li>
+    </ul>
+    <p>Deleting a persona releases its phone number back to the carrier pool. Releases are permanent &mdash; the same number cannot be reclaimed.</p>
+
+    <h2 id="third-parties">Third parties</h2>
+    <p>We do not sell data. There is no ad SDK in the app, no analytics pipeline that identifies individual users, and no data-broker feed.</p>
+    <p>Third-party processors are limited to the infrastructure we depend on to deliver the service: our carrier partners, Apple's billing and push-notification infrastructure, our cloud provider, and a crash reporter that receives anonymized diagnostics. Each is scoped to a single purpose.</p>
+
+    <h2 id="disclosure">Disclosure</h2>
+    <p>If you believe you have found a security issue, please report it to <a href="mailto:security@cloakid.com">security@cloakid.com</a>. We aim to acknowledge within two business days and to ship a fix within a reasonable window based on severity. Coordinated disclosure is welcome.</p>
+    <p>We publish incident reports for issues that affect user data. Routine maintenance and minor service interruptions are not posted individually.</p>
+  </article>
+</div>
+
+<!-- ============ FINAL CTA ============ -->
+<section class="final-strip">
+  <div class="final-strip-inner">
+    <h3>Questions we didn't answer here?</h3>
+    <a class="btn-primary" href="contact.html">Contact us</a>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="foot">
+  <div class="foot-inner">
+    <div class="foot-cols">
+      <div class="foot-col">
+        <h4>Product</h4>
+        <ul>
+          <li><a href="pricing.html">Pricing</a></li>
+          <li><a href="security.html">Security</a></li>
+          <li><a href="https://apps.apple.com/us/app/cloakid/id6761379232">Download</a></li>
+          <li><a href="android.html">Android waitlist</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="support.html">Support</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="terms-of-service.html">Terms</a></li>
+          <li><a href="privacy-policy.html">Privacy</a></li>
+          <li><a href="sms-disclosure.html">SMS disclosure</a></li>
+          <li><a href="delete-account.html">Delete account</a></li>
+        </ul>
+      </div>
+      <div class="foot-col"></div>
+    </div>
+    <div class="foot-meta">
+      <a class="foot-mark" href="index.html">
+        <img src="images/cloakid-icon-black.png" alt="" />
+        <span>&copy; 2026 Niobium LLC &middot; iOS 16+ &middot; US only</span>
+      </a>
+      <span class="foot-status">All systems normal</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
