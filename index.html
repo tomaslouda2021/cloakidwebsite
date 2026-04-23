@@ -17,13 +17,13 @@
    ===================================================== */
 
 /* ================== HERO ================== */
-.hero { padding: 56px 32px 40px; }
+.hero { padding: 48px 32px 40px; }
 .hero-inner {
   max-width: 1140px; margin: 0 auto;
   display: grid; grid-template-columns: 7fr 5fr;
-  gap: 56px; align-items: center;
+  gap: 56px; align-items: start;
 }
-.hero-text { max-width: 540px; }
+.hero-text { max-width: 540px; padding-top: 8px; }
 .hero h1 {
   font-size: 44px;
   font-weight: 700;
@@ -50,8 +50,18 @@
   letter-spacing: 0.01em;
 }
 .hero-shot { display: block; }
-.hero-shot img { width: 100%; max-width: 360px; height: auto; display: block; margin: 0 auto; border-radius: 8px; }
-.hero-rule { max-width: 1140px; margin: 40px auto 0; border: 0; border-top: 1px solid var(--line); }
+.hero-shot img {
+  width: 100%;
+  max-width: 280px;
+  max-height: 560px;
+  object-fit: contain;
+  object-position: top;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  border-radius: 8px;
+}
+.hero-rule { max-width: 1140px; margin: 32px auto 0; border: 0; border-top: 1px solid var(--line); }
 
 /* ================== FACT ROW ================== */
 .facts { padding: 48px 32px 64px; }
