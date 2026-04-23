@@ -15,6 +15,7 @@
   --cyan-ink:      #0EAFC8;
   --lime:          #C8F062;
   --lavender:      #C4B5F0;
+  --lavender-ink:  #6B55C9;
   --danger:        #E53935;
   --success:       #2F9E5E;
 
@@ -238,11 +239,11 @@ p  { margin: 0; }
 
 .eyebrow {
   display: inline-block;
-  font-size: 12px;
-  font-weight: 500;
+  font-size: 13px;
+  font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--lavender);
+  color: var(--lavender-ink);
   margin-bottom: 14px;
   line-height: 1;
 }
@@ -510,7 +511,7 @@ p  { margin: 0; }
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: var(--lavender);
+  color: var(--lavender-ink);
   margin: 0 0 14px;
 }
 .sec-toc ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
@@ -914,9 +915,9 @@ p  { margin: 0; }
 /* ============ SECTION HEADINGS (shared, aligned to phase-1 tokens) ============ */
 .section-eyebrow {
   display: inline-block;
-  font-size: 12px;
-  font-weight: 500;
-  color: var(--lavender);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--lavender-ink);
   letter-spacing: 0.08em;
   text-transform: uppercase;
   margin-bottom: 12px;
