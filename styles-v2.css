@@ -4,22 +4,47 @@
    ============================================================= */
 
 :root {
-  --ink:       #0A0A0A;
-  --ink-2:     #1F1F21;
-  --ink-3:     #5C5C60;
-  --ink-4:     #9A9A9E;
-  --line:      #EAEAEC;
-  --line-soft: #F2F2F4;
-  --bg:        #FFFFFF;
-  --bg-warm:   #F4F5F7;
-  --brand:        #0A0A0A;
-  --brand-2:      #1F1F21;
-  --brand-soft:   #F4F5F7;
-  --brand-ink:    #0F1115;
-  --danger:       #D64545;
-  --success:      #0D9E5A;
-  --font:      'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, sans-serif;
-  --font-mono: 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, monospace;
+  /* Brand palette */
+  --bg:            #FFFFFF;
+  --bg-panel:      #FAFAFB;
+  --line:          #E5E7EB;
+  --line-strong:   #D1D5DB;
+  --ink:           #0B0D10;
+  --ink-muted:     #5A6472;
+  --cyan:          #6BD3E6;
+  --cyan-ink:      #0EAFC8;
+  --lime:          #C8F062;
+  --lavender:      #C4B5F0;
+  --danger:        #E53935;
+  --success:       #2F9E5E;
+
+  /* Back-compat aliases (retired incrementally by later phases) */
+  --ink-2:         var(--ink);
+  --ink-3:         var(--ink-muted);
+  --ink-4:         var(--line-strong);
+  --line-soft:     var(--line);
+  --bg-warm:       var(--bg-panel);
+  --brand:         var(--ink);
+  --brand-2:       var(--ink);
+  --brand-soft:    var(--bg-panel);
+  --brand-ink:     var(--ink);
+  --accent:        var(--cyan-ink);
+  --accent-soft:   rgba(107, 211, 230, 0.14);
+
+  /* Type */
+  --font:      'Red Hat Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --font-mono: ui-monospace, 'SF Mono', Menlo, monospace;
+
+  /* Type scale */
+  --fs-micro: 13px;
+  --fs-ui:    14px;
+  --fs-body:  16px;
+  --fs-lede:  18px;
+  --fs-h5:    20px;
+  --fs-h4:    24px;
+  --fs-h3:    28px;
+  --fs-h2:    32px;
+  --fs-h1:    44px;
 }
 
 html { scroll-behavior: smooth; }
@@ -28,14 +53,31 @@ html, body { margin: 0; padding: 0; }
 
 body {
   font-family: var(--font);
+  font-size: var(--fs-body);
+  font-weight: 400;
   color: var(--ink);
   background: var(--bg);
   -webkit-font-smoothing: antialiased;
-  letter-spacing: -0.011em;
+  -moz-osx-font-smoothing: grayscale;
   line-height: 1.5;
 }
 a { color: inherit; }
-::selection { background: var(--brand); color: #fff; }
+::selection { background: var(--lime); color: var(--ink); }
+
+/* ============ BASE TYPE ============ */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font);
+  color: var(--ink);
+  margin: 0;
+  line-height: 1.15;
+}
+h1 { font-size: var(--fs-h1); font-weight: 700; letter-spacing: -0.025em; }
+h2 { font-size: var(--fs-h2); font-weight: 700; letter-spacing: -0.025em; }
+h3 { font-size: var(--fs-h3); font-weight: 700; letter-spacing: -0.025em; }
+h4 { font-size: var(--fs-h4); font-weight: 500; letter-spacing: -0.015em; line-height: 1.25; }
+h5 { font-size: var(--fs-h5); font-weight: 500; letter-spacing: -0.01em;  line-height: 1.3; }
+h6 { font-size: var(--fs-ui); font-weight: 500; letter-spacing: 0;         line-height: 1.3; }
+p  { margin: 0; }
 
 /* ============ NAV ============ */
 .nav {
