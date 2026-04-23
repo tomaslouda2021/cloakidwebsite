@@ -49,7 +49,12 @@
   color: var(--ink-muted);
   letter-spacing: 0.01em;
 }
-.hero-shot { display: block; }
+.hero-shot {
+  position: relative;
+  display: block;
+  max-width: 280px;
+  margin: 0 auto;
+}
 .hero-shot img {
   width: 100%;
   max-width: 280px;
@@ -60,6 +65,42 @@
   display: block;
   margin: 0 auto;
   border-radius: 8px;
+}
+.hero-callout {
+  position: absolute;
+  left: -170px;
+  top: 36%;
+  width: 180px;
+  background: var(--ink);
+  color: #fff;
+  border-radius: 8px;
+  padding: 12px 14px;
+  font-size: 13px;
+  line-height: 1.45;
+  letter-spacing: -0.005em;
+  z-index: 2;
+}
+.hero-callout::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: -7px;
+  transform: translateY(-50%) rotate(45deg);
+  width: 12px; height: 12px;
+  background: var(--ink);
+  border-radius: 2px;
+}
+.hero-callout strong {
+  display: block;
+  color: var(--lime);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+@media (max-width: 960px) {
+  .hero-callout { display: none; }
 }
 .hero-rule { max-width: 1140px; margin: 32px auto 0; border: 0; border-top: 1px solid var(--line); }
 
@@ -320,7 +361,11 @@
       <p class="hero-micro">iOS &middot; US numbers</p>
     </div>
     <div class="hero-shot">
-      <img src="images/screenshots/hero-screen.png" alt="CloakID app home screen" />
+      <div class="hero-callout" aria-hidden="true">
+        <strong>Routed via persona</strong>
+        Every inbound call shows which line it came in on.
+      </div>
+      <img src="images/screenshots/hero-screen.png" alt="CloakID activity feed, with each call tagged by the persona it came in on" />
     </div>
   </div>
   <hr class="hero-rule" />
