@@ -90,89 +90,93 @@
   margin: 0;
 }
 
-/* ================== THE SHIFT (placeholder until Phase 4) ================== */
-.shift {
-  background: var(--bg-panel);
-  padding: 64px 32px;
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-}
-.shift-inner {
-  max-width: 1140px; margin: 0 auto;
-  display: grid; grid-template-columns: 7fr 5fr;
-  gap: 56px; align-items: center;
-}
-.shift-thesis {
-  font-size: 32px;
-  line-height: 1.15; letter-spacing: -0.025em;
-  font-weight: 700;
-  margin: 0 0 18px;
-  max-width: 560px;
-  color: var(--ink);
-}
-.shift-body {
-  font-size: 16px;
-  line-height: 1.55;
-  color: var(--ink-muted);
-  margin: 0 0 28px;
-  max-width: 560px;
-}
-.shift-proofs {
-  list-style: none; padding: 0; margin: 0;
-  display: flex; flex-direction: column;
-  gap: 14px;
-  border-top: 1px solid var(--line);
-  padding-top: 20px;
-  max-width: 560px;
-}
-.shift-proofs li {
-  font-size: 14px; line-height: 1.55;
-  color: var(--ink-muted);
-}
-.shift-proofs li strong {
-  color: var(--ink); font-weight: 500;
-  display: block; font-size: 15px;
-  margin-bottom: 2px;
-  letter-spacing: -0.005em;
-}
-
-/* ================== ARCHITECTURE (placeholder until Phase 4) ================== */
-.rules { padding: 64px 32px; }
-.rules-inner { max-width: 1140px; margin: 0 auto; }
-.rules h2 {
+/* ================== HOW IT WORKS ================== */
+.hiw { padding: 64px 32px; border-top: 1px solid var(--line); }
+.hiw-inner { max-width: 1140px; margin: 0 auto; }
+.hiw-head { margin-bottom: 32px; }
+.hiw-head h2 {
   font-size: 32px;
   font-weight: 700;
   letter-spacing: -0.025em;
-  margin: 0 0 32px;
-  color: var(--ink);
+  line-height: 1.1;
+  margin: 0;
 }
-.rule {
+.hiw-grid {
   display: grid;
-  grid-template-columns: 48px 1fr;
-  gap: 20px;
-  padding: 22px 0;
+  grid-template-columns: repeat(3, 1fr);
   border-top: 1px solid var(--line);
 }
-.rule:last-child { border-bottom: 1px solid var(--line); }
-.rule-num {
-  font-size: 14px;
+.hiw-step {
+  padding: 28px 28px 28px 0;
+  border-right: 1px solid var(--line);
+}
+.hiw-step:first-child { padding-left: 0; }
+.hiw-step:not(:first-child) { padding-left: 28px; }
+.hiw-step:last-child { border-right: 0; }
+.hiw-num {
+  display: inline-block;
   color: var(--lime);
   font-weight: 700;
-  letter-spacing: 0.02em;
+  font-size: 28px;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  margin-bottom: 14px;
+  -webkit-text-stroke: 0.5px var(--ink);
 }
-.rule h3 {
+.hiw-step h3 {
   font-size: 18px;
   font-weight: 500;
   letter-spacing: -0.01em;
-  margin: 0 0 4px;
+  margin: 0 0 6px;
   color: var(--ink);
 }
-.rule p {
-  color: var(--ink-muted);
-  margin: 0;
+.hiw-step p {
   font-size: 15px;
+  color: var(--ink-muted);
   line-height: 1.55;
+  margin: 0;
 }
+
+/* ================== COMPARISON ================== */
+.compare { padding: 64px 32px; border-top: 1px solid var(--line); }
+.compare-inner { max-width: 1140px; margin: 0 auto; }
+.compare-head { margin-bottom: 28px; }
+.compare-head h2 {
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+  margin: 0;
+}
+.compare-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+  table-layout: fixed;
+}
+.compare-table thead th {
+  text-align: left;
+  padding: 14px 16px 12px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink-muted);
+  letter-spacing: 0.01em;
+  border-bottom: 1px solid var(--line);
+}
+.compare-table thead th:first-child { width: 30%; color: transparent; }
+.compare-table tbody td {
+  padding: 16px;
+  vertical-align: top;
+  line-height: 1.5;
+  border-bottom: 1px solid var(--line);
+}
+.compare-table tbody td:first-child {
+  font-weight: 500;
+  color: var(--ink);
+  width: 30%;
+}
+.compare-real { color: var(--ink-muted); }
+.compare-cloak { color: var(--ink); font-weight: 500; }
 
 /* ================== PRICING LINK (placeholder until Phase 5) ================== */
 .pricing-link { padding: 48px 32px; text-align: center; }
@@ -217,11 +221,15 @@
   .hero-rule { margin: 32px auto 0; }
   .facts { padding: 40px 24px 48px; }
   .facts-grid { grid-template-columns: 1fr; }
-  .shift { padding: 48px 24px; }
-  .shift-inner { grid-template-columns: 1fr; gap: 32px; }
-  .shift-thesis { font-size: 24px; }
-  .rules { padding: 48px 24px; }
-  .rules h2 { font-size: 24px; }
+  .hiw { padding: 48px 24px; }
+  .hiw-head h2 { font-size: 24px; }
+  .hiw-grid { grid-template-columns: 1fr; }
+  .hiw-step { padding: 20px 0 !important; border-right: 0; border-bottom: 1px solid var(--line); }
+  .hiw-step:last-child { border-bottom: 0; }
+  .compare { padding: 48px 24px; }
+  .compare-head h2 { font-size: 24px; }
+  .compare-table thead th { font-size: 12px; padding: 12px 10px; }
+  .compare-table tbody td { padding: 14px 10px; font-size: 14px; }
   .final { padding: 56px 24px; }
   .final h3 { font-size: 24px; }
 }
@@ -289,50 +297,76 @@
   </div>
 </section>
 
-<!-- ================== THE SHIFT ================== -->
-<section class="shift" id="how">
-  <div class="shift-inner">
-    <div class="text">
-      <h2 class="shift-thesis">Your number is an identity, not an address.</h2>
-      <p class="shift-body">
-        You hand it to people who matter. The rest of the world treats it as a public key &mdash; shared, sold, looked up. CloakID returns the one-to-one: one line per counterparty, your real number off the table.
-      </p>
-      <ul class="shift-proofs">
-        <li><strong>Separate numbers, separate risk.</strong> Give each counterparty a line that only reaches them. Retire it without consequence.</li>
-        <li><strong>Your number, private again.</strong> The one you've had for twenty years stops being how the world finds you.</li>
-      </ul>
+<!-- ================== HOW IT WORKS ================== -->
+<section class="hiw" id="how">
+  <div class="hiw-inner">
+    <div class="hiw-head">
+      <span class="eyebrow">How it works</span>
+      <h2>Three steps, no <span class="lime-mark">setup</span>.</h2>
     </div>
-    <div class="hero-shot">
-      <img src="images/screenshots/persona-list.png" alt="CloakID number set, organized by counterparty" />
+    <div class="hiw-grid">
+      <div class="hiw-step">
+        <span class="hiw-num">01</span>
+        <h3>Create a persona</h3>
+        <p>Pick a label &mdash; dating, work, marketplace. CloakID assigns a real US number to go with it.</p>
+      </div>
+      <div class="hiw-step">
+        <span class="hiw-num">02</span>
+        <h3>Share its number</h3>
+        <p>Hand it out the way you would your own. Calls and texts come through to you, on that line.</p>
+      </div>
+      <div class="hiw-step">
+        <span class="hiw-num">03</span>
+        <h3>Let it screen</h3>
+        <p>Unknown callers get filtered before they reach your phone. You stay reachable to people you want.</p>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ================== ARCHITECTURE ================== -->
-<section class="rules" id="privacy">
-  <div class="rules-inner">
-    <h2>The architecture.</h2>
-    <div class="rule">
-      <span class="rule-num">01</span>
-      <div>
-        <h3>Your data is not for sale.</h3>
-        <p>No ad networks. No brokers. No partner pipelines.</p>
-      </div>
+<!-- ================== WHAT IT REPLACES ================== -->
+<section class="compare">
+  <div class="compare-inner">
+    <div class="compare-head">
+      <span class="eyebrow">The difference</span>
+      <h2>What a persona replaces.</h2>
     </div>
-    <div class="rule">
-      <span class="rule-num">02</span>
-      <div>
-        <h3>Audio doesn't linger.</h3>
-        <p>Voicemails become text. The recording is discarded.</p>
-      </div>
-    </div>
-    <div class="rule">
-      <span class="rule-num">03</span>
-      <div>
-        <h3>Your device is your device.</h3>
-        <p>Face ID on launch. No ad SDKs. One crash reporter, anonymous.</p>
-      </div>
-    </div>
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th scope="col"></th>
+          <th scope="col">Your real number</th>
+          <th scope="col">A CloakID persona</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td scope="row">Spam exposure</td>
+          <td class="compare-real">Permanent</td>
+          <td class="compare-cloak">Screened and disposable</td>
+        </tr>
+        <tr>
+          <td scope="row">Data brokers</td>
+          <td class="compare-real">Sold forever</td>
+          <td class="compare-cloak">Never sold</td>
+        </tr>
+        <tr>
+          <td scope="row">Giving it out</td>
+          <td class="compare-real">One-way decision</td>
+          <td class="compare-cloak">Swap or retire any time</td>
+        </tr>
+        <tr>
+          <td scope="row">Boundary setting</td>
+          <td class="compare-real">Awkward</td>
+          <td class="compare-cloak">Handled by the app</td>
+        </tr>
+        <tr>
+          <td scope="row">Voicemail</td>
+          <td class="compare-real">Stored audio, forever</td>
+          <td class="compare-cloak">Transcribed and discarded</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </section>
 
