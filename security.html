@@ -33,7 +33,7 @@
   <div class="page-hero-inner">
     <span class="eyebrow">Security posture</span>
     <h1>Security at <span class="muted">CloakID.</span></h1>
-    <p>A plain-language writeup of how we store numbers, manage keys, work with carriers, retain data, and handle disclosure.</p>
+    <p>A short, honest summary of what we can say publicly today. The full technical writeup is in progress &mdash; we'd rather say less than say things we can't defend against the implementation.</p>
   </div>
 </section>
 
@@ -42,45 +42,31 @@
   <aside class="sec-toc">
     <h3>Contents</h3>
     <ul>
-      <li><a href="#storage">Storage</a></li>
-      <li><a href="#keys">Key management</a></li>
+      <li><a href="#scope">What we sell</a></li>
       <li><a href="#carriers">Carrier relationships</a></li>
-      <li><a href="#retention">Data retention</a></li>
-      <li><a href="#third-parties">Third parties</a></li>
+      <li><a href="#device">On the device</a></li>
       <li><a href="#disclosure">Disclosure</a></li>
+      <li><a href="#writeup">Full writeup</a></li>
     </ul>
   </aside>
 
   <article class="sec-article">
-    <h2 id="storage">Storage</h2>
-    <p>Phone numbers, SMS, voicemails, and call metadata are stored encrypted at rest. Data belonging to different users lives under different keys. Plaintext is not written to disk on our servers.</p>
-    <p>The iOS app stores user state locally in the iOS keychain and the app sandbox. Biometric unlock is optional and configured per-device.</p>
-
-    <h2 id="keys">Key management</h2>
-    <p>Authentication credentials and device-bound secrets live in the iPhone Secure Enclave. They are generated on the device, never transmitted to us, and are not recoverable from our servers.</p>
-    <p>Server-side keys are rotated on a scheduled cadence and are stored in a managed key service with access controls audited independently of our application code.</p>
+    <h2 id="scope">What we sell, and what we don't</h2>
+    <p>CloakID sells subscriptions for US phone numbers with call screening and SMS. We don't sell data. There is no ad SDK in the app, and no data-broker pipeline reading from our systems.</p>
 
     <h2 id="carriers">Carrier relationships</h2>
-    <p>CloakID provisions US phone numbers through licensed US carrier partners. Inbound calls and SMS traverse the carrier's infrastructure, enter ours, and reach your device. Outbound calls and SMS leave through the same path.</p>
-    <p>Carriers see the numbers they provision and the call detail records required for billing and regulatory compliance. They do not receive your CloakID account identity or your real personal number.</p>
-
-    <h2 id="retention">Data retention</h2>
-    <p>We retain data for the minimum time needed to run the service and to satisfy regulatory requirements. Specifics:</p>
-    <ul>
-      <li><strong>Voicemail recordings:</strong> transcribed to text and then discarded. Transcripts are retained with the persona until the persona or account is deleted.</li>
-      <li><strong>SMS content:</strong> held encrypted while the persona is active. Released when the persona or account is deleted.</li>
-      <li><strong>Call metadata:</strong> kept for 90 days for diagnostic and billing purposes, then aggregated.</li>
-      <li><strong>Account data:</strong> wiped on account deletion. A short window exists for reversal before permanent purge.</li>
-    </ul>
+    <p>CloakID provisions US phone numbers through Telnyx, a licensed US carrier. Inbound calls and SMS enter through Telnyx and reach your device; outbound calls and SMS leave through the same path. Telnyx sees the numbers they provision and the call detail records required for billing and regulatory compliance. They do not receive your CloakID account identity.</p>
     <p>Deleting a persona releases its phone number back to the carrier pool. Releases are permanent &mdash; the same number cannot be reclaimed.</p>
 
-    <h2 id="third-parties">Third parties</h2>
-    <p>We do not sell data. There is no ad SDK in the app, no analytics pipeline that identifies individual users, and no data-broker feed.</p>
-    <p>Third-party processors are limited to the infrastructure we depend on to deliver the service: our carrier partners, Apple's billing and push-notification infrastructure, our cloud provider, and a crash reporter that receives anonymized diagnostics. Each is scoped to a single purpose.</p>
+    <h2 id="device">On the device</h2>
+    <p>The iOS app stores local state in the iOS keychain and the app sandbox. Biometric unlock is optional and configured per-device.</p>
 
     <h2 id="disclosure">Disclosure</h2>
-    <p>If you believe you have found a security issue, please report it to <a href="mailto:security@cloakid.com">security@cloakid.com</a>. We aim to acknowledge within two business days and to ship a fix within a reasonable window based on severity. Coordinated disclosure is welcome.</p>
-    <p>We publish incident reports for issues that affect user data. Routine maintenance and minor service interruptions are not posted individually.</p>
+    <p>If you believe you have found a security issue, please reach us through the <a href="contact.html">contact page</a>. Coordinated disclosure is welcome.</p>
+
+    <h2 id="writeup">Full writeup &mdash; in progress</h2>
+    <p>We're deliberately not publishing specifics about server-side encryption, key management, retention windows, or the complete list of third-party processors until we can describe each one as it actually exists in the system today. Those sections will live here when the writeup is ready.</p>
+    <p>If there's a specific question you need answered before that, the <a href="contact.html">contact page</a> is the fastest path.</p>
   </article>
 </div>
 

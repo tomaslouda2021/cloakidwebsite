@@ -462,24 +462,24 @@
   <div class="security-inner">
     <div class="security-head">
       <span class="eyebrow">Security posture</span>
-      <h2>Built to <span class="lime-mark">forget</span>.</h2>
+      <h2>Where your number <span class="lime-mark">goes</span>.</h2>
     </div>
     <div class="security-rows">
       <div class="security-row">
-        <span class="security-row-label">Encrypted at rest</span>
-        <span class="security-row-body">Phone numbers and voicemails are stored encrypted. Keys aren't reused.</span>
-      </div>
-      <div class="security-row">
         <span class="security-row-label">Never sold</span>
-        <span class="security-row-body">We don't sell data. There is no ad SDK, no broker pipeline, no partner feed.</span>
+        <span class="security-row-body">We don't sell data. There is no ad SDK in the app and no data-broker pipeline.</span>
       </div>
       <div class="security-row">
-        <span class="security-row-label">On-device secrets</span>
-        <span class="security-row-body">Credentials and authentication keys live in the iPhone Secure Enclave, not on our servers.</span>
+        <span class="security-row-label">US carrier only</span>
+        <span class="security-row-body">Numbers are provisioned through Telnyx, a licensed US carrier.</span>
       </div>
       <div class="security-row">
-        <span class="security-row-label">Voicemail ages out</span>
-        <span class="security-row-body">Recordings are transcribed to text and the audio is discarded.</span>
+        <span class="security-row-label">Release is final</span>
+        <span class="security-row-body">Deleting a persona releases its number to the carrier pool. Permanently.</span>
+      </div>
+      <div class="security-row">
+        <span class="security-row-label">On the device</span>
+        <span class="security-row-body">The iOS app stores local state in the iOS keychain and the app sandbox.</span>
       </div>
     </div>
     <a class="security-more" href="security.html">Full security writeup &rarr;</a>
@@ -516,7 +516,7 @@
       </details>
       <details>
         <summary>Do you see my messages?</summary>
-        <p>Messages transit our infrastructure to reach the carrier, but we don't mine them and we don't sell them. They're stored encrypted with per-user keys.</p>
+        <p>Messages transit our infrastructure to reach the carrier. We don't sell them, and there's no ad pipeline reading them. Specifics on storage will live in the <a href="security.html">security writeup</a> when it's ready.</p>
       </details>
       <details>
         <summary>How's this different from a second SIM?</summary>
