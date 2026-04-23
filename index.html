@@ -13,229 +13,217 @@
 
 <style>
 /* =====================================================
-   Home-only styles (hero, Shift, trust band, Rules,
-   pricing link, trust line, final). Shared rules come
-   from styles-v2.css.
+   Home-only styles. Shared rules live in styles-v2.css.
    ===================================================== */
 
 /* ================== HERO ================== */
-.hero {
-  padding: 56px 40px 72px;
-}
+.hero { padding: 56px 32px 40px; }
 .hero-inner {
-  max-width: 1180px; margin: 0 auto; width: 100%;
-  display: grid; grid-template-columns: 1.2fr 0.8fr;
-  gap: 64px; align-items: center;
+  max-width: 1140px; margin: 0 auto;
+  display: grid; grid-template-columns: 7fr 5fr;
+  gap: 56px; align-items: center;
 }
-.hero-inner .visual .phone { position: relative; }
+.hero-text { max-width: 540px; }
 .hero h1 {
+  font-size: 44px;
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
   margin: 0;
-  font-size: clamp(40px, 4.8vw, 64px);
-  line-height: 1.04; letter-spacing: -0.028em;
-  font-weight: 600; max-width: 640px;
-  text-wrap: balance;
 }
 .hero-sub {
-  margin: 22px 0 0;
-  font-size: 17px; line-height: 1.55;
-  color: var(--ink-3); max-width: 520px;
-  text-wrap: pretty;
+  margin: 18px 0 0;
+  font-size: 18px;
+  line-height: 1.55;
+  color: var(--ink-muted);
+  max-width: 500px;
 }
 .hero-actions {
-  margin-top: 36px;
-  display: flex; align-items: center;
+  margin: 28px 0 0;
+  display: flex; align-items: center; gap: 20px;
+  flex-wrap: wrap;
 }
-.hero-actions .appstore-link img { height: 54px; }
+.hero-micro {
+  margin: 14px 0 0;
+  font-size: 13px;
+  color: var(--ink-muted);
+  letter-spacing: 0.01em;
+}
+.hero-shot { display: block; }
+.hero-shot img { width: 100%; max-width: 360px; height: auto; display: block; margin: 0 auto; border-radius: 8px; }
+.hero-rule { max-width: 1140px; margin: 40px auto 0; border: 0; border-top: 1px solid var(--line); }
 
-/* ================== THE SHIFT (dark anchor) ================== */
+/* ================== FACT ROW ================== */
+.facts { padding: 48px 32px 64px; }
+.facts-inner { max-width: 1140px; margin: 0 auto; }
+.facts-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 20px;
+}
+.fact-tile {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 24px;
+  background: var(--bg);
+}
+.fact-label {
+  font-size: 13px;
+  color: var(--ink-muted);
+  font-weight: 500;
+  margin: 0 0 14px;
+  letter-spacing: 0.005em;
+}
+.fact-num {
+  font-size: 44px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  margin: 0 0 12px;
+  color: var(--ink);
+}
+.fact-note {
+  font-size: 14px;
+  color: var(--ink-muted);
+  line-height: 1.45;
+  margin: 0;
+}
+
+/* ================== THE SHIFT (placeholder until Phase 4) ================== */
 .shift {
-  background: #0F1115;
-  color: #fff;
-  padding: 96px 40px;
+  background: var(--bg-panel);
+  padding: 64px 32px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
 }
 .shift-inner {
-  max-width: 1180px; margin: 0 auto; width: 100%;
-  display: grid; grid-template-columns: 1.25fr 0.75fr;
-  gap: 72px; align-items: center;
+  max-width: 1140px; margin: 0 auto;
+  display: grid; grid-template-columns: 7fr 5fr;
+  gap: 56px; align-items: center;
 }
 .shift-thesis {
-  font-size: clamp(28px, 2.8vw, 36px);
-  line-height: 1.15; letter-spacing: -0.022em;
-  font-weight: 600;
-  margin: 0 0 22px;
+  font-size: 32px;
+  line-height: 1.15; letter-spacing: -0.025em;
+  font-weight: 700;
+  margin: 0 0 18px;
   max-width: 560px;
-  color: #fff;
-  text-wrap: balance;
+  color: var(--ink);
 }
 .shift-body {
-  font-size: 17px;
-  line-height: 1.6; letter-spacing: -0.005em;
-  color: rgba(255,255,255,0.76);
-  margin: 0 0 40px;
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--ink-muted);
+  margin: 0 0 28px;
   max-width: 560px;
-  text-wrap: pretty;
 }
 .shift-proofs {
   list-style: none; padding: 0; margin: 0;
   display: flex; flex-direction: column;
-  gap: 18px;
-  border-top: 1px solid rgba(255,255,255,0.1);
-  padding-top: 26px;
+  gap: 14px;
+  border-top: 1px solid var(--line);
+  padding-top: 20px;
   max-width: 560px;
 }
 .shift-proofs li {
-  font-size: 15px; line-height: 1.55;
-  color: rgba(255,255,255,0.7);
-  text-wrap: pretty;
+  font-size: 14px; line-height: 1.55;
+  color: var(--ink-muted);
 }
 .shift-proofs li strong {
-  color: #fff; font-weight: 600;
-  display: block; font-size: 16px;
+  color: var(--ink); font-weight: 500;
+  display: block; font-size: 15px;
   margin-bottom: 2px;
-  letter-spacing: -0.01em;
-}
-.shift .visual .phone {
-  filter: drop-shadow(0 40px 80px rgba(0,0,0,0.5)) drop-shadow(0 12px 24px rgba(0,0,0,0.35));
+  letter-spacing: -0.005em;
 }
 
-/* ================== PHONE MOCKUP ================== */
-.phone {
-  max-width: 280px;
-  width: 100%;
-  margin: 0 auto;
-  filter: drop-shadow(0 22px 40px rgba(0,0,0,0.18)) drop-shadow(0 4px 10px rgba(0,0,0,0.06));
-}
-.phone-inner { display: block; }
-.phone-inner img { width: 100%; display: block; border-radius: 38px; }
-.phone.lg { max-width: 300px; }
-
-/* ================== TRUST BAND ================== */
-.trust-band {
-  padding: 32px 40px;
-  background: #FAFAFA;
-  border-top: 1px solid #E5E5EA;
-  border-bottom: 1px solid #E5E5EA;
-}
-.trust-row {
-  max-width: 1040px; margin: 0 auto;
-  display: flex; justify-content: space-between;
-  gap: 24px; flex-wrap: wrap;
-  font-size: 12px; letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #6B6B6B;
-  font-weight: 500;
-}
-.trust-row span {
-  white-space: nowrap;
-}
-
-/* ================== ARCHITECTURE (Rules) ================== */
-.rules {
-  padding: 72px 40px;
-}
-.rules-inner {
-  max-width: 1040px; margin: 0 auto;
-}
+/* ================== ARCHITECTURE (placeholder until Phase 4) ================== */
+.rules { padding: 64px 32px; }
+.rules-inner { max-width: 1140px; margin: 0 auto; }
 .rules h2 {
-  font-size: clamp(30px, 3.2vw, 40px);
-  font-weight: 500;
-  letter-spacing: -0.022em;
-  margin: 0 0 40px;
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  margin: 0 0 32px;
   color: var(--ink);
 }
 .rule {
   display: grid;
-  grid-template-columns: 64px 1fr;
-  gap: 24px;
-  padding: 26px 0;
-  border-top: 1px solid #E5E5EA;
+  grid-template-columns: 48px 1fr;
+  gap: 20px;
+  padding: 22px 0;
+  border-top: 1px solid var(--line);
 }
-.rule:last-child { border-bottom: 1px solid #E5E5EA; }
+.rule:last-child { border-bottom: 1px solid var(--line); }
 .rule-num {
-  font-family: var(--font-mono);
-  font-size: 13px;
-  color: #8E8E93;
-  letter-spacing: 0.1em;
-  padding-top: 6px;
+  font-size: 14px;
+  color: var(--lime);
+  font-weight: 700;
+  letter-spacing: 0.02em;
 }
 .rule h3 {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 500;
-  letter-spacing: -0.012em;
-  margin: 0 0 6px;
+  letter-spacing: -0.01em;
+  margin: 0 0 4px;
   color: var(--ink);
 }
 .rule p {
-  color: #6B6B6B;
+  color: var(--ink-muted);
   margin: 0;
-  font-size: 15.5px;
+  font-size: 15px;
   line-height: 1.55;
 }
 
-/* ================== PRICING LINK ================== */
-.pricing-link {
-  padding: 56px 40px;
-  text-align: center;
-  border-top: 1px solid #E5E5EA;
-}
+/* ================== PRICING LINK (placeholder until Phase 5) ================== */
+.pricing-link { padding: 48px 32px; text-align: center; }
 .pricing-link a {
-  font-size: 18px;
+  font-size: 16px;
   color: var(--ink);
   text-decoration: none;
   border-bottom: 1px solid var(--ink);
-  padding-bottom: 2px;
-  letter-spacing: -0.01em;
+  padding-bottom: 1px;
   transition: opacity .15s ease;
 }
-.pricing-link a:hover { opacity: 0.7; }
+.pricing-link a:hover { opacity: 0.65; }
 
 /* ================== TRUST LINE ================== */
-.trust-line {
-  padding: 40px;
-  text-align: center;
-  background: var(--bg-warm);
-  border-top: 1px solid rgba(0,0,0,0.04);
-}
+.trust-line { padding: 32px; text-align: center; }
 .trust-line p {
   margin: 0 auto;
   max-width: 640px;
-  font-size: 13.5px;
-  color: var(--ink-3);
-  letter-spacing: 0.005em;
-  line-height: 1.6;
+  font-size: 13px;
+  color: var(--ink-muted);
+  line-height: 1.55;
 }
 
-/* ================== FINAL CTA ================== */
-.final {
-  padding: 104px 40px;
-  text-align: center;
-  background: #fff;
-}
+/* ================== FINAL CTA (placeholder until Phase 6) ================== */
+.final { padding: 72px 32px; text-align: center; }
 .final h3 {
-  margin: 0 auto;
-  font-size: clamp(28px, 3.4vw, 42px);
-  font-weight: 600; letter-spacing: -0.024em;
-  line-height: 1.12;
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
   max-width: 620px;
+  margin: 0 auto;
   color: var(--ink);
-  text-wrap: balance;
 }
 
 /* ================== RESPONSIVE ================== */
 @media (max-width: 960px) {
-  .hero { padding: 40px 24px 56px; }
-  .shift { padding: 72px 24px; }
-  .rules { padding: 56px 24px; }
-  .final { padding: 72px 24px; }
-  .trust-line { padding: 32px 24px; }
-  .pricing-link { padding: 48px 24px; }
-  .trust-band { padding: 24px; }
-  .trust-row { justify-content: flex-start; gap: 18px 28px; font-size: 11.5px; }
-  .hero-inner, .shift-inner { grid-template-columns: 1fr; gap: 48px; }
-  .phone { max-width: 260px; }
-  .phone.lg { max-width: 280px; }
-  .rule { grid-template-columns: 48px 1fr; gap: 16px; padding: 22px 0; }
-  .rule h3 { font-size: 18px; }
+  .hero { padding: 40px 24px 32px; }
+  .hero h1 { font-size: 32px; }
+  .hero-sub { font-size: 16px; }
+  .hero-inner { grid-template-columns: 1fr; gap: 32px; }
+  .hero-rule { margin: 32px auto 0; }
+  .facts { padding: 40px 24px 48px; }
+  .facts-grid { grid-template-columns: 1fr; }
+  .shift { padding: 48px 24px; }
+  .shift-inner { grid-template-columns: 1fr; gap: 32px; }
+  .shift-thesis { font-size: 24px; }
+  .rules { padding: 48px 24px; }
+  .rules h2 { font-size: 24px; }
+  .final { padding: 56px 24px; }
+  .final h3 { font-size: 24px; }
 }
 </style>
 </head>
@@ -258,20 +246,44 @@
 <!-- ================== HERO ================== -->
 <section class="hero">
   <div class="hero-inner">
-    <div class="text">
-      <h1>Take your number off the table.</h1>
+    <div class="hero-text">
+      <span class="eyebrow">Privacy without friction</span>
+      <h1>Your real <span class="lime-mark">number</span>, off the table.</h1>
       <p class="hero-sub">
-        Real US numbers you can hand out, route, and retire. The one that reaches your family stays off the internet.
+        A CloakID persona is a real US line you hand out in place of your own. Keep it as long as it's useful, retire it when it isn't.
       </p>
       <div class="hero-actions">
-        <a class="appstore-link" href="https://apps.apple.com/us/app/cloakid/id6761379232"><img src="images/app-store-badge-black@2x.png" alt="Download on the App Store" /></a>
+        <a class="btn-primary" href="https://apps.apple.com/us/app/cloakid/id6761379232">Get CloakID &mdash; $9.99/mo</a>
+        <a class="btn-link" href="#how">See how screening works</a>
       </div>
+      <p class="hero-micro">iOS &middot; US numbers</p>
     </div>
-    <div class="visual">
-      <div class="phone">
-        <div class="phone-inner">
-          <img src="images/screenshots/hero-screen.png" alt="CloakID app home screen" />
-        </div>
+    <div class="hero-shot">
+      <img src="images/screenshots/hero-screen.png" alt="CloakID app home screen" />
+    </div>
+  </div>
+  <hr class="hero-rule" />
+</section>
+
+<!-- ================== FACT ROW ================== -->
+<section class="facts">
+  <div class="facts-inner">
+    <span class="eyebrow">How CloakID behaves</span>
+    <div class="facts-grid">
+      <div class="fact-tile">
+        <p class="fact-label">Personas per account</p>
+        <p class="fact-num">Up to 8</p>
+        <p class="fact-note">Swap, pause, or drop any persona.</p>
+      </div>
+      <div class="fact-tile">
+        <p class="fact-label">Calls screened</p>
+        <p class="fact-num">100%</p>
+        <p class="fact-note">On your behalf, before your phone rings.</p>
+      </div>
+      <div class="fact-tile">
+        <p class="fact-label">Churn on your real number</p>
+        <p class="fact-num">Zero</p>
+        <p class="fact-note">Keep it. Personas come and go.</p>
       </div>
     </div>
   </div>
@@ -290,23 +302,9 @@
         <li><strong>Your number, private again.</strong> The one you've had for twenty years stops being how the world finds you.</li>
       </ul>
     </div>
-    <div class="visual">
-      <div class="phone lg">
-        <div class="phone-inner">
-          <img src="images/screenshots/persona-list.png" alt="CloakID number set, organized by counterparty" />
-        </div>
-      </div>
+    <div class="hero-shot">
+      <img src="images/screenshots/persona-list.png" alt="CloakID number set, organized by counterparty" />
     </div>
-  </div>
-</section>
-
-<!-- ================== TRUST BAND ================== -->
-<section class="trust-band">
-  <div class="trust-row">
-    <span>Apple App Store</span>
-    <span>US-based infrastructure</span>
-    <span>No data brokers</span>
-    <span>iOS 16+</span>
   </div>
 </section>
 
