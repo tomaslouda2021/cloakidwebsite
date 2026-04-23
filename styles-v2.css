@@ -501,36 +501,51 @@ p  { margin: 0; }
 .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
 
 /* ============ FAQ (details/summary) ============ */
-.faq { display: flex; flex-direction: column; gap: 10px; }
-.faq details {
-  background: #fff;
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  padding: 18px 22px;
-  transition: border-color .2s ease;
+.faq {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--line);
 }
-.faq details[open] { border-color: var(--brand); }
+.faq details {
+  border-bottom: 1px solid var(--line);
+  padding: 18px 0;
+  background: transparent;
+}
 .faq summary {
   list-style: none;
   cursor: pointer;
-  display: flex; justify-content: space-between; align-items: center;
-  font-size: 15px; font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  font-size: 15px;
+  font-weight: 500;
   color: var(--ink);
-  letter-spacing: -0.01em;
+  letter-spacing: -0.005em;
 }
 .faq summary::-webkit-details-marker { display: none; }
 .faq summary::after {
   content: "+";
-  font-size: 20px; font-weight: 400;
-  color: var(--ink-4);
-  transition: transform .2s ease;
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--ink-muted);
+  line-height: 1;
+  transition: transform .2s ease, color .2s ease;
 }
-.faq details[open] summary::after { transform: rotate(45deg); color: var(--brand); }
-.faq details p {
-  margin: 14px 0 0;
-  font-size: 14.5px; line-height: 1.6;
-  color: var(--ink-3);
+.faq details[open] summary::after {
+  transform: rotate(45deg);
+  color: var(--ink);
 }
+.faq details > p,
+.faq details > div {
+  margin: 12px 0 4px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--ink-muted);
+  max-width: 640px;
+}
+.faq details a { color: var(--ink); text-decoration: underline; text-underline-offset: 2px; }
+.faq details a:hover { text-decoration: none; }
 
 /* ============ FORM ============ */
 .field { display: block; margin-bottom: 16px; }

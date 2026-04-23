@@ -178,38 +178,89 @@
 .compare-real { color: var(--ink-muted); }
 .compare-cloak { color: var(--ink); font-weight: 500; }
 
-/* ================== PRICING LINK (placeholder until Phase 5) ================== */
-.pricing-link { padding: 48px 32px; text-align: center; }
-.pricing-link a {
-  font-size: 16px;
+/* ================== SECURITY POSTURE ================== */
+.security { padding: 64px 32px; border-top: 1px solid var(--line); }
+.security-inner { max-width: 1140px; margin: 0 auto; }
+.security-head { margin-bottom: 24px; }
+.security-head h2 {
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+  margin: 0;
+}
+.security-rows { margin-bottom: 20px; }
+.security-row {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 24px;
+  padding: 18px 0;
+  border-top: 1px solid var(--line);
+}
+.security-row:last-child { border-bottom: 1px solid var(--line); }
+.security-row-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink);
+  letter-spacing: -0.005em;
+}
+.security-row-body {
+  font-size: 14.5px;
+  color: var(--ink-muted);
+  line-height: 1.55;
+}
+.security-more {
+  display: inline-block;
+  margin-top: 18px;
+  font-size: 14px;
   color: var(--ink);
   text-decoration: none;
   border-bottom: 1px solid var(--ink);
   padding-bottom: 1px;
   transition: opacity .15s ease;
 }
-.pricing-link a:hover { opacity: 0.65; }
+.security-more:hover { opacity: 0.65; }
 
-/* ================== TRUST LINE ================== */
-.trust-line { padding: 32px; text-align: center; }
-.trust-line p {
-  margin: 0 auto;
-  max-width: 640px;
-  font-size: 13px;
-  color: var(--ink-muted);
-  line-height: 1.55;
-}
-
-/* ================== FINAL CTA (placeholder until Phase 6) ================== */
-.final { padding: 72px 32px; text-align: center; }
-.final h3 {
+/* ================== FAQ WRAP ================== */
+.faq-section { padding: 64px 32px; border-top: 1px solid var(--line); }
+.faq-section-inner { max-width: 900px; margin: 0 auto; }
+.faq-section-head { margin-bottom: 20px; }
+.faq-section-head h2 {
   font-size: 32px;
   font-weight: 700;
   letter-spacing: -0.025em;
-  line-height: 1.15;
-  max-width: 620px;
+  line-height: 1.1;
+  margin: 0;
+}
+
+/* ================== FINAL CTA ================== */
+.final {
+  display: flex;
+  align-items: center;
+  min-height: 120px;
+  padding: 24px 32px 24px 40px;
+  border-top: 1px solid var(--line);
+  border-left: 4px solid var(--cyan);
+  background: var(--bg);
+}
+.final-inner {
+  max-width: 1140px;
   margin: 0 auto;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.final h3 {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin: 0;
   color: var(--ink);
+  max-width: 680px;
 }
 
 /* ================== RESPONSIVE ================== */
@@ -230,8 +281,14 @@
   .compare-head h2 { font-size: 24px; }
   .compare-table thead th { font-size: 12px; padding: 12px 10px; }
   .compare-table tbody td { padding: 14px 10px; font-size: 14px; }
-  .final { padding: 56px 24px; }
-  .final h3 { font-size: 24px; }
+  .security { padding: 48px 24px; }
+  .security-head h2 { font-size: 24px; }
+  .security-row { grid-template-columns: 1fr; gap: 6px; }
+  .faq-section { padding: 48px 24px; }
+  .faq-section-head h2 { font-size: 24px; }
+  .final { padding: 28px 20px 28px 24px; min-height: 0; }
+  .final-inner { gap: 16px; }
+  .final h3 { font-size: 20px; }
 }
 </style>
 </head>
@@ -414,14 +471,81 @@
   </div>
 </section>
 
-<!-- ================== TRUST LINE ================== -->
-<section class="trust-line">
-  <p>Operated by Niobium LLC in the United States. Billed through Apple.</p>
+<!-- ================== SECURITY POSTURE ================== -->
+<section class="security" id="security">
+  <div class="security-inner">
+    <div class="security-head">
+      <span class="eyebrow">Security posture</span>
+      <h2>Built to <span class="lime-mark">forget</span>.</h2>
+    </div>
+    <div class="security-rows">
+      <div class="security-row">
+        <span class="security-row-label">Encrypted at rest</span>
+        <span class="security-row-body">Phone numbers and voicemails are stored encrypted. Keys aren't reused.</span>
+      </div>
+      <div class="security-row">
+        <span class="security-row-label">Never sold</span>
+        <span class="security-row-body">We don't sell data. There is no ad SDK, no broker pipeline, no partner feed.</span>
+      </div>
+      <div class="security-row">
+        <span class="security-row-label">On-device secrets</span>
+        <span class="security-row-body">Credentials and authentication keys live in the iPhone Secure Enclave, not on our servers.</span>
+      </div>
+      <div class="security-row">
+        <span class="security-row-label">Voicemail ages out</span>
+        <span class="security-row-body">Recordings are transcribed to text and the audio is discarded.</span>
+      </div>
+    </div>
+    <a class="security-more" href="security.html">Full security writeup &rarr;</a>
+  </div>
+</section>
+
+<!-- ================== FAQ ================== -->
+<section class="faq-section">
+  <div class="faq-section-inner">
+    <div class="faq-section-head">
+      <span class="eyebrow">Questions</span>
+      <h2>Things people ask.</h2>
+    </div>
+    <div class="faq">
+      <details>
+        <summary>Is the number really mine?</summary>
+        <p>Yes. Each CloakID persona has a real US phone number &mdash; the kind that works with any form, any verification text, any call. It's yours to use for as long as your subscription is active.</p>
+      </details>
+      <details>
+        <summary>What happens when I cancel?</summary>
+        <p>Your numbers are released at the end of the billing period. Releases are permanent &mdash; once a number goes back into the pool, you can't reclaim it, so export anything you want to keep first.</p>
+      </details>
+      <details>
+        <summary>Is there an Android app?</summary>
+        <p>Not yet. iOS is the launch platform. You can <a href="android.html">join the Android waitlist</a> to hear when it's ready.</p>
+      </details>
+      <details>
+        <summary>Does screening block legitimate callers?</summary>
+        <p>Unknown callers are asked to state their reason for calling. Legitimate callers get through; boiler-room autodialers don't. You can whitelist specific numbers per persona.</p>
+      </details>
+      <details>
+        <summary>Can I keep a persona number forever?</summary>
+        <p>As long as your subscription is active and you keep the persona assigned, the number stays with you. There's no rotation or forced churn.</p>
+      </details>
+      <details>
+        <summary>Do you see my messages?</summary>
+        <p>Messages transit our infrastructure to reach the carrier, but we don't mine them and we don't sell them. They're stored encrypted with per-user keys.</p>
+      </details>
+      <details>
+        <summary>How's this different from a second SIM?</summary>
+        <p>A second SIM gives you one extra line, tied to your device, visible to your carrier. CloakID gives you several personas, swap-able and disposable, without touching your real line or SIM.</p>
+      </details>
+    </div>
+  </div>
 </section>
 
 <!-- ================== FINAL CTA ================== -->
 <section class="final">
-  <h3>The one that matters shouldn't be on forms.</h3>
+  <div class="final-inner">
+    <h3>Ready to hand out a number you can take back?</h3>
+    <a class="btn-primary" href="https://apps.apple.com/us/app/cloakid/id6761379232">Get CloakID</a>
+  </div>
 </section>
 
 <!-- ================== FOOTER ================== -->
