@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Report Abuse — CloakID</title>
+<meta name="description" content="If a CloakID number is contacting you and you want it to stop, here's how to report it.">
+<link rel="icon" type="image/png" href="images/cloakid-icon-black.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;700" rel="stylesheet">
+<link rel="stylesheet" href="styles-v2.css">
+<style>
+  .abuse-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    margin-bottom: 24px;
+  }
+  .abuse-card {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    padding: 28px 26px;
+    display: flex; flex-direction: column; gap: 12px;
+  }
+  .abuse-card.primary {
+    background: var(--bg-warm);
+    border-color: var(--line);
+  }
+  .abuse-card.alert {
+    background: #fff8f4;
+    border-color: #f4d8c4;
+  }
+  .abuse-icon {
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    background: var(--brand-soft);
+    color: var(--brand);
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 20px; font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .abuse-title {
+    margin: 0;
+    font-size: 17px; font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+  .abuse-body {
+    margin: 0;
+    font-size: 14.5px;
+    color: var(--ink-3);
+    line-height: 1.55;
+  }
+  .abuse-email {
+    margin: 0;
+    font-size: 14.5px;
+    font-weight: 600;
+    color: var(--brand);
+    word-break: break-all;
+  }
+  .abuse-email a {
+    color: var(--brand);
+    text-decoration: none;
+  }
+  .abuse-email a:hover { text-decoration: underline; }
+  .abuse-list {
+    list-style: none;
+    padding: 0; margin: 0;
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .abuse-list li {
+    display: flex; gap: 10px; align-items: flex-start;
+    font-size: 14.5px;
+    color: var(--ink-2);
+    line-height: 1.5;
+  }
+  .abuse-list li::before {
+    content: "";
+    flex-shrink: 0;
+    width: 6px; height: 6px;
+    border-radius: 999px;
+    background: var(--brand);
+    margin-top: 8px;
+  }
+  .section-block {
+    margin-top: 32px;
+  }
+  .section-block h2 {
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin: 0 0 16px;
+  }
+  .section-block > p.lead {
+    margin: 0 0 18px;
+    font-size: 15.5px;
+    color: var(--ink-3);
+    line-height: 1.6;
+    max-width: 720px;
+  }
+  .cta-card {
+    background: var(--bg-warm);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    padding: 32px 36px;
+    text-align: center;
+  }
+  .cta-card h2 {
+    margin: 0 0 8px;
+    font-size: 22px; font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+  .cta-card p {
+    margin: 0 0 18px;
+    font-size: 15px;
+    color: var(--ink-3);
+    line-height: 1.6;
+  }
+  .stop-callout {
+    background: #f0f7ff;
+    border: 1px solid #c9e0ff;
+    border-radius: 16px;
+    padding: 22px 26px;
+    margin: 0 0 8px;
+  }
+  .stop-callout strong {
+    color: var(--ink);
+  }
+  @media (max-width: 900px) {
+    .abuse-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 640px) {
+    .abuse-card, .cta-card { padding: 22px 20px; border-radius: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav class="nav">
+  <a class="brand" href="index.html" aria-label="CloakID home">
+    <img class="brand-mark" src="images/cloakid-icon-black.png" alt="" />
+    <span class="brand-word">CloakID</span>
+  </a>
+  <div class="nav-links">
+    <a href="pricing.html">Pricing</a>
+    <a href="security.html">Security</a>
+    <a href="support.html">Support</a>
+    <a href="android.html">Android</a>
+  </div>
+  <a class="nav-cta" href="https://apps.apple.com/us/app/cloakid/id6761379232">Get CloakID</a>
+</nav>
+
+<!-- ============ HERO ============ -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <span class="eyebrow">Safety</span>
+    <h1>Report unwanted <span class="muted">contact.</span></h1>
+    <p>If a CloakID number is calling or texting you and you want it to stop, here's how to make that happen. We review every report.</p>
+  </div>
+</section>
+
+<!-- ============ CONTENT ============ -->
+<section class="section">
+  <div class="container-md">
+
+    <!-- ===== Right now ===== -->
+    <div class="section-block" style="margin-top: 0;">
+      <h2>Right now</h2>
+      <p class="lead">Two things you can do immediately. Use either one or both — they work independently.</p>
+
+      <div class="abuse-grid">
+        <div class="abuse-card primary">
+          <div class="abuse-icon">1</div>
+          <h3 class="abuse-title">Reply STOP to text messages</h3>
+          <p class="abuse-body">If the number has been texting you, reply with the single word <strong>STOP</strong>. Your carrier will permanently block all further texts from that number to you. This is automatic and immediate. It applies even if the sender keeps trying.</p>
+          <p class="abuse-body" style="color: var(--ink-4); font-size: 13.5px;">Reply STOP only when you actually want all messages from that number to stop. The block lifts only if you later text START.</p>
+        </div>
+        <div class="abuse-card primary">
+          <div class="abuse-icon">2</div>
+          <h3 class="abuse-title">Email abuse@cloakid.app</h3>
+          <p class="abuse-body">For calls, voicemails, or any contact a STOP reply can't cover, email us. We'll review the records on our side and take action if our Acceptable Use Policy was violated.</p>
+          <p class="abuse-email"><a href="mailto:abuse@cloakid.app?subject=Abuse%20Report&body=The%20CloakID%20number%20that%20contacted%20me%3A%0A%0A%0AMy%20phone%20number%3A%0A%0A%0AWhat%20happened%20%28dates%2C%20times%2C%20what%20kind%20of%20contact%29%3A%0A%0A%0AHave%20you%20asked%20the%20person%20to%20stop%3F%20When%20and%20how%3A%0A%0A">abuse@cloakid.app</a></p>
+        </div>
+      </div>
+
+      <div class="stop-callout">
+        <p style="margin: 0; font-size: 14.5px; color: var(--ink-2); line-height: 1.6;">
+          <strong>STOP works at the carrier level.</strong> When you reply STOP, your phone carrier installs a permanent block on the sender. CloakID can't bypass that block, and neither can the sender. The block applies until you text START to lift it.
+        </p>
+      </div>
+    </div>
+
+    <!-- ===== What to include ===== -->
+    <div class="section-block">
+      <h2>What to include in your report</h2>
+      <p class="lead">The more detail you can give us, the faster we can act. If something on this list isn't easy to provide, send what you have — we'll work with it.</p>
+
+      <div class="abuse-card" style="grid-column: 1 / -1;">
+        <ul class="abuse-list">
+          <li>The CloakID phone number that contacted you, in any format you have it</li>
+          <li>Your phone number (so we can match it against our records)</li>
+          <li>Approximate dates and times of the contact</li>
+          <li>What kind of contact it was (calls, texts, voicemail, or a mix)</li>
+          <li>A short description of what happened in your own words</li>
+          <li>Whether you've asked the person to stop, and how (text, voice, in person, etc.)</li>
+          <li>Anything else you think we should know — screenshots, voicemail recordings, transcripts</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ===== What happens next ===== -->
+    <div class="section-block">
+      <h2>What happens after you report</h2>
+      <p class="lead">Every abuse report is reviewed by a person, not an automated system.</p>
+
+      <div class="abuse-grid">
+        <div class="abuse-card">
+          <h3 class="abuse-title">Within 24 hours</h3>
+          <p class="abuse-body">We confirm we received your report and begin reviewing the records on our side — call logs, message history, account details for the user behind the number.</p>
+        </div>
+        <div class="abuse-card">
+          <h3 class="abuse-title">If our policy was violated</h3>
+          <p class="abuse-body">We suspend the account, release the phone number back to the telephony network, block future contact from that user to your number, and prevent re-registration with the same phone number.</p>
+        </div>
+        <div class="abuse-card">
+          <h3 class="abuse-title">We preserve evidence</h3>
+          <p class="abuse-body">If you intend to file a police report or seek a protective order, the records we hold are preserved and can be produced in response to a subpoena, court order, or other valid legal process.</p>
+        </div>
+        <div class="abuse-card">
+          <h3 class="abuse-title">We follow up</h3>
+          <p class="abuse-body">We let you know what action was taken. We don't share information about the other user beyond confirming an investigation occurred and what enforcement steps were taken.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== Emergency ===== -->
+    <div class="section-block">
+      <h2>If you're in immediate danger</h2>
+
+      <div class="abuse-card alert">
+        <div class="abuse-icon" style="background: #fdebe0; color: #c54a1c;">!</div>
+        <h3 class="abuse-title">Call 911 (or your local emergency number) first</h3>
+        <p class="abuse-body">If you feel unsafe, threatened, or are being stalked, contact law enforcement before you contact us. Local police can take action faster than we can in an emergency, and they have authority we don't.</p>
+        <p class="abuse-body">After you've contacted them, email <a href="mailto:abuse@cloakid.app">abuse@cloakid.app</a> so we can take parallel action on the platform side and preserve records for any investigation.</p>
+      </div>
+    </div>
+
+    <!-- ===== Law enforcement ===== -->
+    <div class="section-block">
+      <h2>For law enforcement and legal process</h2>
+      <p class="lead">Subpoenas, court orders, preservation letters, and other legal process should be sent to <a href="mailto:legal@cloakid.app" style="color: var(--brand);">legal@cloakid.app</a>. We respond to valid legal process and cooperate with investigations into harassment, stalking, threats, and other unlawful use of our service.</p>
+
+      <div class="abuse-card" style="grid-column: 1 / -1;">
+        <h3 class="abuse-title">Where to send legal process</h3>
+        <ul class="abuse-list">
+          <li><strong>Subpoenas and court orders:</strong> <a href="mailto:legal@cloakid.app" style="color: var(--brand);">legal@cloakid.app</a></li>
+          <li><strong>Preservation requests:</strong> <a href="mailto:legal@cloakid.app" style="color: var(--brand);">legal@cloakid.app</a> &mdash; please include the phone numbers and approximate date range</li>
+          <li><strong>Mailing address:</strong> Niobium LLC. Provided on request via <a href="mailto:legal@cloakid.app" style="color: var(--brand);">legal@cloakid.app</a></li>
+        </ul>
+        <p class="abuse-body" style="margin-top: 4px; color: var(--ink-4);">We follow standard legal-process procedures and may notify the affected user unless legally prohibited from doing so.</p>
+      </div>
+    </div>
+
+    <!-- ===== What our policy says ===== -->
+    <div class="section-block">
+      <h2>What our policy prohibits</h2>
+      <p class="lead">Our <a href="terms-of-service.html#" style="color: var(--brand);">Acceptable Use Policy</a> specifically prohibits using CloakID to:</p>
+
+      <div class="abuse-card" style="grid-column: 1 / -1;">
+        <ul class="abuse-list">
+          <li>Harass, intimidate, threaten, or stalk any person</li>
+          <li>Contact someone who has not consented to receive calls or messages from a CloakID persona</li>
+          <li>Continue contacting someone after they've asked you to stop</li>
+          <li>Place calls or send messages at unreasonable hours without consent</li>
+          <li>Make silent or breather calls</li>
+          <li>Impersonate someone in a way that causes harm</li>
+          <li>Violate a protective, restraining, or no-contact order</li>
+          <li>Bypass STOP-keyword blocks or other opt-out mechanisms</li>
+          <li>Recreate an account after one has been terminated for these violations</li>
+        </ul>
+        <p class="abuse-body" style="margin-top: 6px;">Read the full policy in our <a href="terms-of-service.html" style="color: var(--brand);">Terms of Service, Section 4</a>.</p>
+      </div>
+    </div>
+
+    <!-- ===== CTA ===== -->
+    <div class="section-block">
+      <div class="cta-card">
+        <h2>Ready to report?</h2>
+        <p>Email us with as much detail as you have. We'll take it from there.</p>
+        <a href="mailto:abuse@cloakid.app?subject=Abuse%20Report&body=The%20CloakID%20number%20that%20contacted%20me%3A%0A%0A%0AMy%20phone%20number%3A%0A%0A%0AWhat%20happened%20%28dates%2C%20times%2C%20what%20kind%20of%20contact%29%3A%0A%0A%0AHave%20you%20asked%20the%20person%20to%20stop%3F%20When%20and%20how%3A%0A%0A" class="btn-primary">
+          abuse@cloakid.app <span class="arr">→</span>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="foot">
+  <div class="foot-inner">
+    <div class="foot-cols">
+      <div class="foot-col">
+        <h4>Product</h4>
+        <ul>
+          <li><a href="pricing.html">Pricing</a></li>
+          <li><a href="security.html">Security</a></li>
+          <li><a href="https://apps.apple.com/us/app/cloakid/id6761379232">Download</a></li>
+          <li><a href="android.html">Android waitlist</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="support.html">Support</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="terms-of-service.html">Terms</a></li>
+          <li><a href="privacy-policy.html">Privacy</a></li>
+          <li><a href="sms-disclosure.html">SMS disclosure</a></li>
+          <li><a href="abuse.html">Report abuse</a></li>
+          <li><a href="delete-account.html">Delete account</a></li>
+        </ul>
+      </div>
+      <div class="foot-col"></div>
+    </div>
+    <div class="foot-meta">
+      <a class="foot-mark" href="index.html">
+        <img src="images/cloakid-icon-black.png" alt="" />
+        <span>&copy; 2026 Niobium LLC &middot; iOS 16+ &middot; US only</span>
+      </a>
+      <span class="foot-status">All systems normal</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
