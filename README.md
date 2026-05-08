@@ -28,8 +28,8 @@ These are the facts the copy is bound to. Changing the copy without changing the
 | Plan | Monthly price | Permanent numbers | Disposable numbers | Notes |
 |---|---|---|---|---|
 | Trial | Free, 7 days | 2 | 1 | No card required |
-| Core | $9.99 | 3 | 1 | Customer-facing |
-| Executive | $19.99 | 8 | 2 | Customer-facing |
+| Personal | $19.99 | 3 | 1 | Customer-facing |
+| Executive | $49.99 | 8 | 2 | Customer-facing |
 | Beta | n/a | 15 | 3 | Internal only |
 
 Public max is **eight permanent + two disposable** on Executive. Never say "sixteen" in public copy. Never cite the Beta tier.
@@ -75,7 +75,7 @@ In public copy: never say "on-device," "carrier-side," "agent," "GPT," "LangChai
 - **Sentry present** with PII stripping (`send_default_pii=False` + `beforeSend` hook scrubs email/phone). The Three Rules copy calls this "no third-party analytics beyond a scrubbed crash reporter" — that's the honest framing.
 
 ### App Store
-- **URL: `https://apps.apple.com/us/app/cloakid-private-calling/id6761379232`**
+- **URL: `https://apps.apple.com/us/app/cloakid/id6761379232`**
 - Every CTA in the prototype uses this URL. Do not change the ID.
 
 ---
@@ -162,7 +162,7 @@ Do not paraphrase. The hero and scene titles are the product's voice.
 - **Rule 2:** *"We don't keep what we don't need."* Voicemails become transcripts; the audio goes.
 - **Rule 3:** *"Your phone is your phone."* Face ID lock, no tracking, no ads, no third-party analytics beyond a scrubbed crash reporter.
 - **Pricing head:** "Two plans. Seven-day trial." / "No credit card required to start. Cancel anytime, keep what you've logged, lose nothing."
-- **Core note:** "Three numbers. Plus one disposable that deletes itself after a week. Everything you need to unhook your real number from every form you've ever filled out."
+- **Personal note:** "Three numbers. Plus one disposable that deletes itself after a week. Everything you need to unhook your real number from every form you've ever filled out."
 - **Executive note:** "Eight numbers. Plus two disposables. For people who keep work, dating, family, and everything else in separate lanes."
 - **Final CTA:** "Take your number off the table." (second clause muted)
 
@@ -205,23 +205,35 @@ Marketing copy drift is the #1 risk. Before every deploy, run:
 
 ```bash
 # Banned product claims
-grep -niE 'iCloud|\bE2E\b|on-device|CSV export|94\.2|sixteen|16 personas|\bVIP\b|quiet hours|auto-reply|ring pattern|area[- ]code blocking|time[- ]of[- ]day|34 countries|zero third-party SDK' CloakID_Website.html
+grep -rniE 'iCloud|\bE2E\b|on-device|CSV export|94\.2|sixteen|16 personas|\bVIP\b|quiet hours|auto-reply|ring pattern|area[- ]code blocking|time[- ]of[- ]day|34 countries|zero third-party SDK' --include='*.html'
 
 # App Store URL drift
-grep -nE 'apps\.apple\.com' CloakID_Website.html | grep -v 'id6761379232'
+grep -rnE 'apps\.apple\.com' --include='*.html' | grep -v 'id6761379232'
 
 # Aesthetic drift (Path B guards)
-grep -nE 'feature · 0|01 · |02 · |03 · |cc-seg|hero-float-meta' CloakID_Website.html
-grep -nE '<dl>|<dt>|<dd>' CloakID_Website.html
+grep -rnE 'feature · 0|01 · |02 · |03 · |cc-seg|hero-float-meta' --include='*.html'
+grep -rnE '<dl>|<dt>|<dd>' --include='*.html'
+
+# Pricing drift — old prices must not reappear
+grep -rnE '\$9\.99' --include='*.html' --include='*.md'
 ```
 
-All four blocks must return zero results.
+All five blocks must return zero results.
 
 ---
 
 ## Files
 
-- `CloakID_Website.html` — the prototype. Opens standalone in a browser.
-- `README.md` — this document.
+The site is a multi-page static build. Each top-level page is its own HTML file:
+
+- `index.html` — landing page (hero, scenes, pricing, security)
+- `pricing.html` — full pricing matrix + Apple subscription disclosure
+- `support.html` — FAQ
+- `about.html` — story / mission
+- `terms-of-service.html` — legal billing terms
+- `privacy-policy.html` — privacy policy
+- `confirm.html` — post-signup confirmation
+- `android.html` — Android waitlist
+- `README.md` — this document
 
 A developer who wasn't in the design conversation should be able to implement from this file alone. If anything conflicts, the **Product Facts** section wins — facts are bound to code, copy isn't.
