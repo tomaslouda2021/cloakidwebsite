@@ -1,636 +1,650 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>CloakID — Take your number off the table.</title>
-<meta name="description" content="Real US phone numbers you can hand out, route, and retire. CloakID gives you a separate line for every counterparty, so the one that reaches your family stays off the internet." />
-<link rel="icon" type="image/png" href="images/cloakid-icon-black.png" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CloakID — Give out a number, not your number.</title>
+<meta name="description" content="CloakID gives you real US phone numbers for every part of your life. Every call is screened before it rings, and your real number never leaves your phone.">
+<link rel="icon" type="image/png" href="images/cloakid-icon-black.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;700" rel="stylesheet">
-<link rel="stylesheet" href="styles-v2.css">
-
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<script>document.documentElement.classList.add('js');</script>
 <style>
-/* =====================================================
-   Home-only styles. Shared rules live in styles-v2.css.
-   ===================================================== */
+  :root {
+    --paper: #FBFAF8;
+    --paper-2: #F4F2EE;
+    --ink: #14171B;
+    --ink-2: #3B424B;
+    --muted: #6B7078;
+    --line: rgba(20,23,27,0.10);
+    --line-soft: rgba(20,23,27,0.06);
+    --accent: #0B6E7C;
+    --accent-deep: #075260;
+    --accent-soft: #E6F0F1;
+    --accent-bright: #5FC9DC;
+    --dark: #0C1013;
+    --dark-2: #141A1F;
+    --ok: #1E8E5A;
+    --radius: 16px;
+    --maxw: 1180px;
+  }
 
-/* ================== HERO ================== */
-.hero { padding: 48px 32px 40px; }
-.hero-inner {
-  max-width: 1140px; margin: 0 auto;
-  display: grid; grid-template-columns: 7fr 5fr;
-  gap: 56px; align-items: center;
-}
-.hero-text { max-width: 540px; }
-.hero h1 {
-  font-size: 44px;
-  font-weight: 700;
-  line-height: 1.05;
-  letter-spacing: -0.03em;
-  margin: 0;
-}
-.hero-sub {
-  margin: 18px 0 0;
-  font-size: 18px;
-  line-height: 1.55;
-  color: var(--ink-muted);
-  max-width: 500px;
-}
-.hero-actions {
-  margin: 28px 0 0;
-  display: flex; align-items: center; gap: 20px;
-  flex-wrap: wrap;
-}
-.hero-micro {
-  margin: 14px 0 0;
-  font-size: 13px;
-  color: var(--ink-muted);
-  letter-spacing: 0.01em;
-}
-.hero-shot {
-  position: relative;
-  display: block;
-  max-width: 280px;
-  margin: 0 auto;
-}
-.hero-shot img {
-  width: 100%;
-  max-width: 280px;
-  max-height: 560px;
-  object-fit: contain;
-  object-position: top;
-  height: auto;
-  display: block;
-  margin: 0 auto;
-  border-radius: 8px;
-}
-.hero-callout {
-  position: absolute;
-  left: -170px;
-  top: 36%;
-  width: 180px;
-  background: var(--ink);
-  color: #fff;
-  border-radius: 8px;
-  padding: 12px 14px;
-  font-size: 13px;
-  line-height: 1.45;
-  letter-spacing: -0.005em;
-  z-index: 2;
-}
-.hero-callout::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  right: -7px;
-  transform: translateY(-50%) rotate(45deg);
-  width: 12px; height: 12px;
-  background: var(--ink);
-  border-radius: 2px;
-}
-.hero-callout strong {
-  display: block;
-  color: var(--lime);
-  font-weight: 700;
-  font-size: 12px;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  margin-bottom: 4px;
-}
-@media (max-width: 960px) {
-  .hero-callout { display: none; }
-}
-.hero-rule { max-width: 1140px; margin: 32px auto 0; border: 0; border-top: 1px solid var(--line); }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  html, body { overflow-x: hidden; }
+  body {
+    margin: 0;
+    font-family: 'Geist', system-ui, sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    line-height: 1.5;
+  }
+  h1, h2, h3 { margin: 0; letter-spacing: -0.02em; line-height: 1.04; font-weight: 600; }
+  p { margin: 0; }
+  a { color: inherit; text-decoration: none; }
+  img { display: block; max-width: 100%; }
+  .mono { font-family: 'Geist Mono', ui-monospace, monospace; }
 
-/* ================== FACT ROW ================== */
-.facts { padding: 48px 32px 64px; }
-.facts-inner { max-width: 1140px; margin: 0 auto; }
-.facts-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  margin-top: 20px;
-}
-.fact-tile {
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  padding: 24px;
-  background: var(--bg);
-}
-.fact-label {
-  font-size: 14px;
-  color: var(--ink);
-  font-weight: 500;
-  margin: 0 0 14px;
-  letter-spacing: -0.005em;
-}
-.fact-num {
-  font-size: 44px;
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  line-height: 1;
-  margin: 0 0 12px;
-  color: var(--ink);
-}
-.fact-note {
-  font-size: 14px;
-  color: var(--ink-muted);
-  line-height: 1.45;
-  margin: 0;
-}
+  /* Hero punchline — the swap is the aha */
+  .punch { color: var(--accent); font-weight: 700; position: relative; white-space: nowrap; }
+  .punch::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: 0.06em; height: 5px;
+    background: var(--accent); opacity: 0.28; border-radius: 3px;
+    transform: scaleX(0); transform-origin: left; transition: transform .7s cubic-bezier(.2,.7,.2,1) .35s;
+  }
+  .js .reveal.in .punch::after { transform: scaleX(1); }
+  @media (prefers-reduced-motion: reduce) { .punch::after { transform: scaleX(1); transition: none; } }
 
-/* ================== HOW IT WORKS ================== */
-.hiw { padding: 64px 32px; border-top: 1px solid var(--line); }
-.hiw-inner { max-width: 1140px; margin: 0 auto; }
-.hiw-head { margin-bottom: 32px; }
-.hiw-head h2 {
-  font-size: 32px;
-  font-weight: 700;
-  letter-spacing: -0.025em;
-  line-height: 1.1;
-  margin: 0;
-}
-.hiw-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  border-top: 1px solid var(--line);
-}
-.hiw-step {
-  padding: 28px 28px 28px 0;
-  border-right: 1px solid var(--line);
-}
-.hiw-step:first-child { padding-left: 0; }
-.hiw-step:not(:first-child) { padding-left: 28px; }
-.hiw-step:last-child { border-right: 0; }
-.hiw-num {
-  display: inline-block;
-  color: var(--lime);
-  font-weight: 700;
-  font-size: 28px;
-  letter-spacing: -0.02em;
-  line-height: 1;
-  margin-bottom: 14px;
-  -webkit-text-stroke: 0.5px var(--ink);
-}
-.hiw-step h3 {
-  font-size: 18px;
-  font-weight: 500;
-  letter-spacing: -0.01em;
-  margin: 0 0 6px;
-  color: var(--ink);
-}
-.hiw-step p {
-  font-size: 15px;
-  color: var(--ink-muted);
-  line-height: 1.55;
-  margin: 0;
-}
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 28px; }
 
-/* ================== COMPARISON ================== */
-.compare { padding: 64px 32px; border-top: 1px solid var(--line); }
-.compare-inner { max-width: 1140px; margin: 0 auto; }
-.compare-head { margin-bottom: 28px; }
-.compare-head h2 {
-  font-size: 32px;
-  font-weight: 700;
-  letter-spacing: -0.025em;
-  line-height: 1.1;
-  margin: 0;
-}
-.compare-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 15px;
-  table-layout: fixed;
-}
-.compare-table thead th {
-  text-align: left;
-  padding: 14px 16px 12px;
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--ink-muted);
-  letter-spacing: 0.01em;
-  border-bottom: 1px solid var(--line);
-}
-.compare-table thead th:first-child { width: 30%; color: transparent; }
-.compare-table tbody td {
-  padding: 16px;
-  vertical-align: top;
-  line-height: 1.5;
-  border-bottom: 1px solid var(--line);
-}
-.compare-table tbody td:first-child {
-  font-weight: 500;
-  color: var(--ink);
-  width: 30%;
-}
-.compare-real { color: var(--ink-muted); }
-.compare-cloak { color: var(--ink); font-weight: 500; }
+  .eyebrow {
+    font-family: 'Geist Mono', monospace;
+    font-size: 12px; font-weight: 500;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--accent);
+    display: inline-flex; align-items: center; gap: 9px;
+  }
+  .eyebrow::before { content:""; width: 22px; height: 1px; background: var(--accent); opacity: 0.6; }
+  .eyebrow.center { justify-content: center; }
 
-/* ================== SECURITY POSTURE ================== */
-.security { padding: 64px 32px; border-top: 1px solid var(--line); }
-.security-inner { max-width: 1140px; margin: 0 auto; }
-.security-head { margin-bottom: 24px; }
-.security-head h2 {
-  font-size: 32px;
-  font-weight: 700;
-  letter-spacing: -0.025em;
-  line-height: 1.1;
-  margin: 0;
-}
-.security-rows { margin-bottom: 20px; }
-.security-row {
-  display: grid;
-  grid-template-columns: 220px 1fr;
-  gap: 24px;
-  padding: 18px 0;
-  border-top: 1px solid var(--line);
-}
-.security-row:last-child { border-bottom: 1px solid var(--line); }
-.security-row-label {
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--ink);
-  letter-spacing: -0.005em;
-}
-.security-row-body {
-  font-size: 14.5px;
-  color: var(--ink-muted);
-  line-height: 1.55;
-}
-.security-more {
-  display: inline-block;
-  margin-top: 18px;
-  font-size: 14px;
-  color: var(--ink);
-  text-decoration: none;
-  border-bottom: 1px solid var(--ink);
-  padding-bottom: 1px;
-  transition: opacity .15s ease;
-}
-.security-more:hover { opacity: 0.65; }
+  /* ---------- Buttons ---------- */
+  .btn {
+    display: inline-flex; align-items: center; gap: 9px;
+    font-weight: 500; font-size: 15px;
+    padding: 13px 22px; border-radius: 999px;
+    border: 1px solid transparent; cursor: pointer;
+    transition: transform .18s ease, background .18s ease, border-color .18s ease, color .18s ease;
+  }
+  .btn-primary { background: var(--ink); color: var(--paper); }
+  .btn-primary:hover { background: var(--accent-deep); transform: translateY(-1px); }
+  .btn-ghost { background: transparent; color: var(--ink); border-color: var(--line); }
+  .btn-ghost:hover { border-color: var(--ink); transform: translateY(-1px); }
+  .btn .ic { width: 16px; height: 16px; }
 
-/* ================== FINAL CTA ================== */
-.final {
-  display: flex;
-  align-items: center;
-  min-height: 120px;
-  padding: 24px 32px 24px 40px;
-  border-top: 1px solid var(--line);
-  border-left: 4px solid var(--cyan);
-  background: var(--bg);
-}
-.final-inner {
-  max-width: 1140px;
-  margin: 0 auto;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 24px;
-  flex-wrap: wrap;
-}
-.final h3 {
-  font-size: 24px;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  line-height: 1.2;
-  margin: 0;
-  color: var(--ink);
-  max-width: 680px;
-}
+  /* ---------- Header ---------- */
+  header {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(251,250,248,0.78);
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .nav { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+  .brand { display: flex; align-items: center; gap: 10px; }
+  .brand img { width: 28px; height: 28px; border-radius: 7px; }
+  .brand span { font-weight: 600; font-size: 18px; letter-spacing: -0.02em; }
+  .nav-links { display: flex; align-items: center; gap: 34px; }
+  .nav-links a { font-size: 14.5px; color: var(--ink-2); transition: color .15s; }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-cta { display: flex; align-items: center; gap: 16px; }
+  @media (max-width: 860px) { .nav-links { display: none; } }
 
-/* ================== RESPONSIVE ================== */
-@media (max-width: 960px) {
-  .hero { padding: 40px 24px 32px; }
-  .hero h1 { font-size: 32px; }
-  .hero-sub { font-size: 16px; }
-  .hero-inner { grid-template-columns: 1fr; gap: 32px; }
-  .hero-rule { margin: 32px auto 0; }
-  .facts { padding: 40px 24px 48px; }
-  .facts-grid { grid-template-columns: 1fr; }
-  .hiw { padding: 48px 24px; }
-  .hiw-head h2 { font-size: 24px; }
-  .hiw-grid { grid-template-columns: 1fr; }
-  .hiw-step { padding: 20px 0 !important; border-right: 0; border-bottom: 1px solid var(--line); }
-  .hiw-step:last-child { border-bottom: 0; }
-  .compare { padding: 48px 24px; }
-  .compare-head h2 { font-size: 24px; }
-  .compare-table thead th { font-size: 12px; padding: 12px 10px; }
-  .compare-table tbody td { padding: 14px 10px; font-size: 14px; }
-  .security { padding: 48px 24px; }
-  .security-head h2 { font-size: 24px; }
-  .security-row { grid-template-columns: 1fr; gap: 6px; }
-  .final { padding: 28px 20px 28px 24px; min-height: 0; }
-  .final-inner { gap: 16px; }
-  .final h3 { font-size: 20px; }
-}
+  /* ---------- Hero ---------- */
+  .hero { padding: 84px 0 72px; position: relative; overflow: hidden; }
+  .hero-grid { display: grid; grid-template-columns: 1.06fr 0.94fr; gap: 56px; align-items: center; }
+  .hero h1 { font-size: clamp(40px, 5.4vw, 68px); }
+  .hero .lede { font-size: 19px; color: var(--ink-2); max-width: 30em; margin-top: 24px; line-height: 1.55; }
+  .hero-cta { display: flex; align-items: center; gap: 16px; margin-top: 36px; flex-wrap: wrap; }
+  .hero-trust { display: flex; flex-wrap: wrap; gap: 8px 22px; margin-top: 32px; }
+  .hero-trust span { font-family: 'Geist Mono', monospace; font-size: 12.5px; color: var(--muted); display: inline-flex; align-items: center; gap: 7px; }
+  .hero-trust .dot { width: 4px; height: 4px; border-radius: 50%; background: var(--accent); }
+
+  @media (max-width: 920px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 48px; }
+    .hero-grid > * { min-width: 0; }
+    .hero { padding: 56px 0 56px; }
+  }
+  /* Keep the nowrap punchline from overflowing the padding on small phones */
+  @media (max-width: 480px) {
+    .hero h1 { font-size: clamp(30px, 8.4vw, 40px); }
+  }
+
+  /* ---------- Phone frame ---------- */
+  .phone-stage { display: flex; justify-content: center; position: relative; }
+  .phone {
+    position: relative; width: 296px; aspect-ratio: 296 / 612;
+    background: #0a0d10; border-radius: 46px;
+    padding: 10px;
+    box-shadow: 0 2px 6px rgba(20,23,27,.12), 0 40px 80px -28px rgba(11,110,124,.45), inset 0 0 0 2px #2a3036;
+  }
+  .phone-screen {
+    position: relative; width: 100%; height: 100%;
+    border-radius: 37px; overflow: hidden; background: #fff;
+  }
+  .phone-screen img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+  .phone .island {
+    position: absolute; top: 12px; left: 50%; transform: translateX(-50%);
+    width: 92px; height: 26px; background: #0a0d10; border-radius: 999px; z-index: 3;
+  }
+  .float-chip {
+    position: absolute; z-index: 5;
+    background: #fff; border: 1px solid var(--line);
+    border-radius: 14px; padding: 11px 14px;
+    display: flex; align-items: center; gap: 11px;
+    box-shadow: 0 18px 40px -14px rgba(20,23,27,.28);
+  }
+  .float-chip .ci { width: 30px; height: 30px; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .float-chip .ci svg { width: 15px; height: 15px; }
+  .float-chip small { display: block; font-size: 11px; color: var(--muted); }
+  .float-chip b { display: block; font-size: 13px; font-weight: 600; }
+  .chip-block { background: #FDECEC; color: #C0392B; }
+  .chip-allow { background: #E6F4EC; color: var(--ok); }
+  .chip-a { top: 64px; left: -34px; }
+  .chip-b { bottom: 96px; right: -40px; }
+  @media (max-width: 560px) { .chip-a { left: 0; } .chip-b { right: 0; } }
+  @media (max-width: 380px) {
+    .float-chip { padding: 9px 11px; }
+    .chip-a { top: 40px; }
+    .chip-b { bottom: 70px; }
+  }
+
+  /* ---------- Trust strip ---------- */
+  .strip { border-top: 1px solid var(--line-soft); border-bottom: 1px solid var(--line-soft); background: var(--paper-2); }
+  .strip-grid { display: grid; grid-template-columns: repeat(4, 1fr); }
+  .strip-grid > div { padding: 26px 24px; border-left: 1px solid var(--line-soft); }
+  .strip-grid > div:first-child { border-left: none; }
+  .strip .k { font-family: 'Geist Mono', monospace; font-size: 26px; font-weight: 500; letter-spacing: -0.02em; }
+  .strip .v { font-size: 13px; color: var(--muted); margin-top: 5px; }
+  @media (max-width: 720px) {
+    .strip-grid { grid-template-columns: 1fr 1fr; }
+    .strip-grid > div:nth-child(3) { border-left: none; }
+    .strip-grid > div:nth-child(odd) { border-left: none; }
+    .strip-grid > div { border-top: 1px solid var(--line-soft); }
+    .strip-grid > div:nth-child(-n+2) { border-top: none; }
+  }
+
+  /* ---------- Sections ---------- */
+  section { position: relative; }
+  .sec { padding: 104px 0; }
+  .sec-head { max-width: 660px; }
+  .sec-head.center { margin: 0 auto; text-align: center; }
+  .sec-head h2 { font-size: clamp(30px, 3.8vw, 46px); margin-top: 18px; }
+  .sec-head p { font-size: 18px; color: var(--ink-2); margin-top: 18px; line-height: 1.55; }
+
+  /* Problem */
+  .problem { background: var(--paper-2); border-top: 1px solid var(--line-soft); border-bottom: 1px solid var(--line-soft); }
+  .problem h2 { font-size: clamp(28px, 4vw, 44px); max-width: 16em; }
+  .problem .big { font-size: 19px; color: var(--ink-2); max-width: 34em; margin-top: 22px; line-height: 1.6; }
+  .problem .big b { color: var(--ink); font-weight: 600; }
+  .problem-grid { display: grid; grid-template-columns: 1.08fr 0.92fr; gap: 56px; align-items: center; }
+  .problem-phone { display: flex; justify-content: center; }
+  @media (max-width: 860px) { .problem-grid { grid-template-columns: 1fr; gap: 44px; } }
+
+  /* How it works */
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: 60px; }
+  .step .scr {
+    position: relative; border-radius: 18px; overflow: hidden;
+    border: 1px solid var(--line); background: #fff;
+    aspect-ratio: 9 / 14; box-shadow: 0 22px 50px -30px rgba(20,23,27,.30);
+  }
+  .step .scr img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+  .step .num { font-family: 'Geist Mono', monospace; font-size: 13px; color: var(--accent); margin-top: 24px; }
+  .step h3 { font-size: 21px; margin-top: 10px; }
+  .step p { color: var(--ink-2); margin-top: 9px; font-size: 15.5px; }
+  @media (max-width: 820px) { .steps { grid-template-columns: 1fr; gap: 40px; max-width: 460px; margin-inline: auto; } }
+
+  /* Feature rows */
+  .frow { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+  .frow + .frow { margin-top: 110px; }
+  .frow.flip .ftext { order: 2; }
+  .frow .ftext h3 { font-size: clamp(26px, 3vw, 36px); margin-top: 16px; }
+  .frow .ftext p { font-size: 17.5px; color: var(--ink-2); margin-top: 18px; line-height: 1.6; }
+  .flist { margin-top: 24px; display: flex; flex-direction: column; gap: 13px; padding: 0; }
+  .flist li { list-style: none; display: flex; align-items: flex-start; gap: 11px; font-size: 15.5px; color: var(--ink-2); }
+  .flist .tick { width: 20px; height: 20px; border-radius: 50%; background: var(--accent-soft); color: var(--accent); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+  .flist .tick svg { width: 12px; height: 12px; }
+  .fimg { display: flex; justify-content: center; }
+  @media (max-width: 860px) {
+    .frow { grid-template-columns: 1fr; gap: 40px; }
+    .frow.flip .ftext { order: 0; }
+    .frow + .frow { margin-top: 72px; }
+  }
+
+  /* Small feature grid */
+  .mini { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line-soft); border: 1px solid var(--line-soft); border-radius: var(--radius); overflow: hidden; margin-top: 56px; }
+  .mini > div { background: var(--paper); padding: 32px 28px; }
+  .mini .mi { width: 38px; height: 38px; border-radius: 10px; background: var(--accent-soft); color: var(--accent); display: flex; align-items: center; justify-content: center; }
+  .mini .mi svg { width: 19px; height: 19px; }
+  .mini h4 { font-size: 17px; font-weight: 600; margin: 18px 0 8px; }
+  .mini p { font-size: 14.5px; color: var(--muted); line-height: 1.55; }
+  @media (max-width: 760px) { .mini { grid-template-columns: 1fr; } }
+
+  /* Security dark section */
+  .dark { background: var(--dark); color: #E7ECEE; }
+  .dark .eyebrow { color: var(--accent-bright); }
+  .dark .eyebrow::before { background: var(--accent-bright); }
+  .dark .sec-head h2 { color: #fff; }
+  .dark .sec-head p { color: #A7B0B6; }
+  .vow { display: grid; grid-template-columns: repeat(3,1fr); gap: 26px; margin-top: 56px; }
+  .vow > div { border: 1px solid rgba(255,255,255,.10); border-radius: var(--radius); padding: 30px 26px; background: var(--dark-2); }
+  .vow .vi { width: 40px; height: 40px; border-radius: 10px; background: rgba(95,201,220,.14); color: var(--accent-bright); display: flex; align-items: center; justify-content: center; }
+  .vow .vi svg { width: 20px; height: 20px; }
+  .vow h4 { color: #fff; font-size: 18px; font-weight: 600; margin: 20px 0 9px; }
+  .vow p { color: #9AA4AA; font-size: 14.5px; line-height: 1.6; }
+  @media (max-width: 820px) { .vow { grid-template-columns: 1fr; } }
+
+  /* Pricing */
+  .plans { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; max-width: 760px; margin: 56px auto 0; }
+  .plan { border: 1px solid var(--line); border-radius: 22px; background: #fff; padding: 38px 34px; display: flex; flex-direction: column; position: relative; }
+  .plan.featured { border-color: var(--accent); box-shadow: 0 30px 70px -40px rgba(11,110,124,.5); }
+  .plan .tag { position: absolute; top: -12px; left: 34px; background: var(--accent); color: #fff; font-family: 'Geist Mono', monospace; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; padding: 5px 12px; border-radius: 999px; }
+  .plan .pname { font-size: 20px; font-weight: 600; }
+  .plan .pdesc { font-size: 14px; color: var(--muted); margin-top: 5px; }
+  .plan .amt { font-family: 'Geist Mono', monospace; font-size: 46px; font-weight: 500; letter-spacing: -0.03em; margin-top: 22px; }
+  .plan .amt span { font-size: 16px; color: var(--muted); font-family: 'Geist', sans-serif; }
+  .plan .plist { list-style: none; padding: 0; margin: 26px 0 30px; display: flex; flex-direction: column; gap: 13px; flex: 1; }
+  .plan .plist li { display: flex; gap: 10px; align-items: flex-start; font-size: 14.5px; color: var(--ink-2); }
+  .plan .plist .tick { width: 20px; height: 20px; border-radius: 50%; background: var(--accent-soft); color: var(--accent); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+  .plan .plist .tick svg { width: 12px; height: 12px; }
+  .plan .btn { width: 100%; justify-content: center; }
+  .price-fine { text-align: center; font-family: 'Geist Mono', monospace; font-size: 12.5px; color: var(--muted); margin-top: 24px; }
+  @media (max-width: 720px) { .plans { grid-template-columns: 1fr; max-width: 420px; } }
+
+  /* FAQ */
+  .faq { max-width: 760px; margin: 48px auto 0; }
+  details { border-bottom: 1px solid var(--line); }
+  summary { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 24px 4px; font-size: 18px; font-weight: 500; }
+  summary::-webkit-details-marker { display: none; }
+  summary .chev { transition: transform .2s; color: var(--muted); flex-shrink: 0; }
+  details[open] summary .chev { transform: rotate(180deg); }
+  details p { color: var(--ink-2); padding: 0 4px 26px; max-width: 62ch; line-height: 1.6; font-size: 15.5px; }
+
+  /* Final CTA */
+  .final { text-align: center; }
+  .final h2 { font-size: clamp(34px, 5vw, 60px); }
+  .final p { font-size: 19px; color: var(--ink-2); max-width: 32em; margin: 22px auto 0; }
+  .final .hero-cta { justify-content: center; }
+
+  /* Footer */
+  footer { border-top: 1px solid var(--line-soft); background: var(--paper-2); }
+  .foot { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: 40px; padding: 64px 0 40px; }
+  .foot .brand { margin-bottom: 16px; }
+  .foot p { color: var(--muted); font-size: 14px; max-width: 26em; line-height: 1.6; }
+  .foot h5 { font-size: 13px; font-weight: 600; margin: 0 0 16px; }
+  .foot ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 11px; }
+  .foot ul a { font-size: 14px; color: var(--ink-2); }
+  .foot ul a:hover { color: var(--ink); }
+  .foot-base { border-top: 1px solid var(--line-soft); padding: 22px 0; font-size: 12.5px; color: var(--muted); font-family: 'Geist Mono', monospace; }
+  @media (max-width: 760px) { .foot { grid-template-columns: 1fr 1fr; gap: 32px; } }
+
+  .badge img { height: 48px; width: auto; }
+
+  /* Reveal — gated behind .js so content always shows without/before JS */
+  .js .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1); }
+  .js .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    .js .reveal { opacity: 1; transform: none; transition: none; }
+    html { scroll-behavior: auto; }
+  }
 </style>
 </head>
 <body>
 
-<nav class="nav">
-  <a class="brand" href="index.html" aria-label="CloakID home">
-    <img class="brand-mark" src="images/cloakid-icon-black.png" alt="" />
-    <span class="brand-word">CloakID</span>
-  </a>
-  <div class="nav-links">
-    <a href="pricing.html">Pricing</a>
-    <a href="security.html">Security</a>
-    <a href="support.html">Support</a>
-    <a href="android.html">Android</a>
+<!-- HEADER -->
+<header>
+  <div class="wrap nav">
+    <a href="index.html" class="brand">
+      <img src="images/cloakid-icon-black.png" alt="CloakID">
+      <span>CloakID</span>
+    </a>
+    <nav class="nav-links">
+      <a href="#how">How it works</a>
+      <a href="#features">Features</a>
+      <a href="#security">Security</a>
+      <a href="#pricing">Pricing</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="#download" class="btn btn-primary">Get CloakID</a>
+    </div>
   </div>
-  <a class="nav-cta" href="https://apps.apple.com/us/app/cloakid/id6761379232">Get CloakID</a>
-</nav>
+</header>
 
-<!-- ================== HERO ================== -->
+<!-- HERO -->
 <section class="hero">
-  <div class="hero-inner">
-    <div class="hero-text">
-      <span class="eyebrow">Privacy without friction</span>
-      <h1>Your real <span class="lime-mark">number</span>, off the table.</h1>
-      <p class="hero-sub">
-        A CloakID persona is a real US line you hand out in place of your own. Keep it as long as it's useful, retire it when it isn't.
-      </p>
-      <div class="hero-actions">
-        <a class="btn-primary" href="https://apps.apple.com/us/app/cloakid/id6761379232">Get CloakID &mdash; $19.99/mo</a>
-        <a class="btn-link" href="#how">See how screening works</a>
+  <div class="wrap hero-grid">
+    <div class="reveal">
+      <span class="eyebrow">Privacy-first phone numbers</span>
+      <h1 style="margin-top:22px;">Give out a number.<br><span class="punch">Not your number.</span></h1>
+      <p class="lede">Real phone numbers you hand out instead of your own. Spam gets screened. Your real number stays private.</p>
+      <div class="hero-cta">
+        <a href="#download" class="btn btn-primary"><i data-lucide="apple" class="ic"></i> Get CloakID for iOS</a>
+        <a href="#how" class="btn btn-ghost">See how it works <i data-lucide="arrow-down" class="ic"></i></a>
       </div>
-      <p class="hero-micro">iOS &middot; US numbers</p>
-    </div>
-    <div class="hero-shot">
-      <div class="hero-callout" aria-hidden="true">
-        <strong>Routed via persona</strong>
-        Every inbound call shows which line it came in on.
+      <div class="hero-trust">
+        <span><span class="dot"></span> Real US numbers</span>
+        <span><span class="dot"></span> Encrypted &amp; private</span>
+        <span><span class="dot"></span> 7-day free trial</span>
       </div>
-      <img src="images/screenshots/hero-screen.png" alt="CloakID activity feed, with each call tagged by the persona it came in on" />
     </div>
-  </div>
-  <hr class="hero-rule" />
-</section>
 
-<!-- ================== FACT ROW ================== -->
-<section class="facts">
-  <div class="facts-inner">
-    <span class="eyebrow">How CloakID behaves</span>
-    <div class="facts-grid">
-      <div class="fact-tile">
-        <p class="fact-label">Personas per account</p>
-        <p class="fact-num">Up to 8</p>
-        <p class="fact-note">Swap, pause, or drop any persona.</p>
+    <div class="phone-stage reveal">
+      <div class="phone">
+        <div class="island"></div>
+        <div class="phone-screen">
+          <img src="images/screen-hero-activity.png" alt="CloakID activity feed showing screened calls and messages">
+        </div>
       </div>
-      <div class="fact-tile">
-        <p class="fact-label">Calls screened</p>
-        <p class="fact-num">100%</p>
-        <p class="fact-note">On your behalf, before your phone rings.</p>
+      <div class="float-chip chip-a">
+        <span class="ci chip-block"><i data-lucide="shield-off"></i></span>
+        <div><small>Unknown caller</small><b>Spam blocked</b></div>
       </div>
-      <div class="fact-tile">
-        <p class="fact-label">Churn on your real number</p>
-        <p class="fact-num">Zero</p>
-        <p class="fact-note">Keep it. Personas come and go.</p>
+      <div class="float-chip chip-b">
+        <span class="ci chip-allow"><i data-lucide="phone-incoming"></i></span>
+        <div><small>Delivery driver</small><b>Allowed through</b></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ================== HOW IT WORKS ================== -->
-<section class="hiw" id="how">
-  <div class="hiw-inner">
-    <div class="hiw-head">
-      <span class="eyebrow">How it works</span>
-      <h2>Three steps, no <span class="lime-mark">setup</span>.</h2>
+<!-- TRUST STRIP -->
+<section class="strip">
+  <div class="wrap">
+    <div class="strip-grid">
+      <div><div class="k">8</div><div class="v">Personas per account</div></div>
+      <div><div class="k">&lt;1s</div><div class="v">To screen a call</div></div>
+      <div><div class="k">AES-128</div><div class="v">Encryption at rest</div></div>
+      <div><div class="k">0</div><div class="v">Times we sell your data</div></div>
     </div>
-    <div class="hiw-grid">
-      <div class="hiw-step">
-        <span class="hiw-num">01</span>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="problem">
+  <div class="wrap sec">
+    <div class="problem-grid">
+      <div class="reveal">
+        <span class="eyebrow">The problem</span>
+        <h2 style="margin-top:18px;">Your number is the most reused password you'll ever have.</h2>
+        <p class="big">You hand the same ten digits to every form, dealership, dating app, and delivery driver. From there it spreads to <b>data brokers, lead lists, and spam dialers</b> &mdash; and once it's out, there is no way to take it back.</p>
+      </div>
+      <div class="problem-phone reveal">
+        <div class="phone" style="width:248px;">
+          <div class="island"></div>
+          <div class="phone-screen"><img src="images/onboard-1-everyone.png" alt="Everyone has your number — every caller funnels to your one line"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how" class="sec">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="eyebrow center">How it works</span>
+      <h2>Three steps to a quieter phone.</h2>
+      <p>Set it up once. CloakID handles the rest in the background.</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="scr"><img src="images/screen-hero-personas.png" alt="Personas list"></div>
+        <div class="num">01</div>
         <h3>Create a persona</h3>
-        <p>Pick a label &mdash; dating, work, marketplace. CloakID assigns a real US number to go with it.</p>
+        <p>Pick an area code and get a real US number in seconds. Name it Work, Dating, Deliveries — whatever fits.</p>
       </div>
-      <div class="hiw-step">
-        <span class="hiw-num">02</span>
-        <h3>Share its number</h3>
-        <p>Hand it out the way you would your own. Calls and texts come through to you, on that line.</p>
+      <div class="step reveal">
+        <div class="scr"><img src="images/screen-hero-screening.png" alt="Call screening"></div>
+        <div class="num">02</div>
+        <h3>Hand it out instead</h3>
+        <p>Give the persona's number to anyone who asks. Your real number stays on your phone, every time.</p>
       </div>
-      <div class="hiw-step">
-        <span class="hiw-num">03</span>
+      <div class="step reveal">
+        <div class="scr"><img src="images/onboard-4-allowed.png" alt="Real caller allowed through"></div>
+        <div class="num">03</div>
         <h3>Let it screen</h3>
-        <p>Unknown callers get filtered before they reach your phone. You stay reachable to people you want.</p>
+        <p>Unknown callers state who they are. Only the ones that make sense for that persona ever ring through.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ================== WHAT IT REPLACES ================== -->
-<section class="compare">
-  <div class="compare-inner">
-    <div class="compare-head">
-      <span class="eyebrow">The difference</span>
-      <h2>What a persona replaces.</h2>
-    </div>
-    <table class="compare-table">
-      <thead>
-        <tr>
-          <th scope="col"></th>
-          <th scope="col">Your real number</th>
-          <th scope="col">A CloakID persona</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td scope="row">Spam exposure</td>
-          <td class="compare-real">Permanent</td>
-          <td class="compare-cloak">Screened and disposable</td>
-        </tr>
-        <tr>
-          <td scope="row">Data brokers</td>
-          <td class="compare-real">Sold forever</td>
-          <td class="compare-cloak">Never sold</td>
-        </tr>
-        <tr>
-          <td scope="row">Giving it out</td>
-          <td class="compare-real">One-way decision</td>
-          <td class="compare-cloak">Swap or retire any time</td>
-        </tr>
-        <tr>
-          <td scope="row">Boundary setting</td>
-          <td class="compare-real">Awkward</td>
-          <td class="compare-cloak">Handled by the app</td>
-        </tr>
-        <tr>
-          <td scope="row">Voicemail</td>
-          <td class="compare-real">Stored audio, forever</td>
-          <td class="compare-cloak">Transcribed and discarded</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</section>
+<!-- FEATURES -->
+<section id="features" class="sec" style="padding-top:0;">
+  <div class="wrap">
 
-<!-- ================== PRICING ================== -->
-<section class="plans" id="pricing">
-  <div class="plans-inner">
-    <div class="plans-head">
-      <span class="eyebrow">Pricing</span>
-      <h2>Two plans. Both real.</h2>
-    </div>
-    <div class="plans-grid">
-      <div class="plan-card">
-        <h3 class="plan-name">Personal</h3>
-        <div class="plan-price">
-          <span class="plan-price-num">$19.99</span>
-          <span class="plan-price-per">/ month</span>
-        </div>
-        <ul class="plan-list">
-          <li>Up to 3 numbers total</li>
-          <li>1 can be a 7-day temp</li>
-          <li>Call screening &amp; voicemail</li>
-          <li>Real SMS &amp; outbound calls</li>
-          <li>QR &amp; vCard sharing</li>
+    <div class="frow reveal">
+      <div class="ftext">
+        <span class="eyebrow">Personas</span>
+        <h3>A number for every part of your life.</h3>
+        <p>Keep work, family, dating, and one-off transactions completely separate — each with its own real US line that you control.</p>
+        <ul class="flist">
+          <li><span class="tick"><i data-lucide="check"></i></span> Up to eight active personas at once</li>
+          <li><span class="tick"><i data-lucide="check"></i></span> Drag to reorder, pause, or retire any line</li>
+          <li><span class="tick"><i data-lucide="check"></i></span> Spin up a temporary number for a single sale</li>
         </ul>
-        <a class="plan-cta" href="https://apps.apple.com/us/app/cloakid/id6761379232">Get Personal</a>
-        <p class="plan-trial">7-day free trial included.</p>
       </div>
-      <div class="plan-card">
-        <h3 class="plan-name">Executive</h3>
-        <div class="plan-price">
-          <span class="plan-price-num">$49.99</span>
-          <span class="plan-price-per">/ month</span>
+      <div class="fimg">
+        <div class="phone" style="width:262px;">
+          <div class="island"></div>
+          <div class="phone-screen"><img src="images/onboard-2-separate.png" alt="A separate number for every situation"></div>
         </div>
-        <ul class="plan-list">
-          <li>Up to 8 numbers total</li>
-          <li>2 can be 7-day temps</li>
-          <li>Everything in Personal</li>
-          <li>Priority call screening</li>
-          <li>Priority support</li>
+      </div>
+    </div>
+
+    <div class="frow flip reveal">
+      <div class="ftext">
+        <span class="eyebrow">Screening</span>
+        <h3>Every call screened before it rings.</h3>
+        <p>Unknown callers are asked who they are and why they're calling. CloakID matches the answer to the persona — and only then decides whether your phone should ever light up.</p>
+        <ul class="flist">
+          <li><span class="tick"><i data-lucide="check"></i></span> Spam and scam dialers never reach you</li>
+          <li><span class="tick"><i data-lucide="check"></i></span> Real callers get through in under a second</li>
+          <li><span class="tick"><i data-lucide="check"></i></span> See exactly why each call was handled</li>
         </ul>
-        <a class="plan-cta" href="https://apps.apple.com/us/app/cloakid/id6761379232">Get Executive</a>
-        <p class="plan-trial">7-day free trial included.</p>
+      </div>
+      <div class="fimg">
+        <div class="phone" style="width:262px;">
+          <div class="island"></div>
+          <div class="phone-screen"><img src="images/onboard-3-blocked.png" alt="Spam call blocked by screening"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mini reveal">
+      <div>
+        <div class="mi"><i data-lucide="message-square"></i></div>
+        <h4>Real SMS &amp; voicemail</h4>
+        <p>Every persona sends and receives real texts and voicemail, with its own caller ID on outbound calls.</p>
+      </div>
+      <div>
+        <div class="mi"><i data-lucide="timer"></i></div>
+        <h4>Temporary numbers</h4>
+        <p>Selling something online? Spin up a disposable number, then release it when you're done — no trail.</p>
+      </div>
+      <div>
+        <div class="mi"><i data-lucide="eye-off"></i></div>
+        <h4>Your real number stays private</h4>
+        <p>No one you call from CloakID ever sees your real number. Not dealerships, not strangers. Ever.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SECURITY -->
+<section id="security" class="dark">
+  <div class="wrap sec">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Security</span>
+      <h2>Built to forget.</h2>
+      <p>A privacy product is only as good as what it refuses to keep. We designed CloakID so there's as little to lose as possible.</p>
+    </div>
+    <div class="vow">
+      <div class="reveal">
+        <div class="vi"><i data-lucide="lock"></i></div>
+        <h4>Encrypted at rest &amp; in transit</h4>
+        <p>Your phone numbers, call recordings, and voicemail are encrypted. Screening runs automatically &mdash; no human at CloakID listens to your calls &mdash; and call audio is deleted once it's handled.</p>
+      </div>
+      <div class="reveal">
+        <div class="vi"><i data-lucide="ban"></i></div>
+        <h4>Never sold, never shared</h4>
+        <p>We don't sell your data, share it with brokers, or build an advertising profile. That's not our business model — your subscription is.</p>
+      </div>
+      <div class="reveal">
+        <div class="vi"><i data-lucide="trash-2"></i></div>
+        <h4>Delete and walk away</h4>
+        <p>Close your account and your personas, call logs, and messages are deleted from CloakID &mdash; and your numbers are released the same day.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ================== SECURITY POSTURE ================== -->
-<section class="security" id="security">
-  <div class="security-inner">
-    <div class="security-head">
-      <span class="eyebrow">Security posture</span>
-      <h2>Where your number <span class="lime-mark">goes</span>.</h2>
+<!-- PRICING -->
+<section id="pricing" class="sec">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="eyebrow center">Pricing</span>
+      <h2>Two plans. Both start free.</h2>
+      <p>Every plan includes real US numbers, call screening, and encrypted storage. No ads, no data selling &mdash; ever.</p>
     </div>
-    <div class="security-rows">
-      <div class="security-row">
-        <span class="security-row-label">Never sold</span>
-        <span class="security-row-body">We don't sell data. There is no ad SDK in the app and no data-broker pipeline.</span>
+    <div class="plans reveal">
+      <div class="plan featured">
+        <span class="tag">Most popular</span>
+        <div class="pname">Personal</div>
+        <div class="pdesc">For everyday privacy</div>
+        <div class="amt">$19.99<span>/mo</span></div>
+        <ul class="plist">
+          <li><span class="tick"><i data-lucide="check"></i></span> Up to 3 numbers — one can be a 7-day temp</li>
+          <li><span class="tick"><i data-lucide="check"></i></span> Call screening &amp; voicemail</li>
+          <li><span class="tick"><i data-lucide="check"></i></span> Real SMS &amp; outbound calls</li>
+          <li><span class="tick"><i data-lucide="check"></i></span> QR &amp; vCard sharing</li>
+        </ul>
+        <a href="https://apps.apple.com/us/app/cloakid/id6761379232" class="btn btn-primary">Start free trial</a>
       </div>
-      <div class="security-row">
-        <span class="security-row-label">US carrier only</span>
-        <span class="security-row-body">Numbers are provisioned through Telnyx, a licensed US carrier.</span>
-      </div>
-      <div class="security-row">
-        <span class="security-row-label">Release is final</span>
-        <span class="security-row-body">Deleting a persona releases its number to the carrier pool. Permanently.</span>
-      </div>
-      <div class="security-row">
-        <span class="security-row-label">On the device</span>
-        <span class="security-row-body">The iOS app stores local state in the iOS keychain and the app sandbox.</span>
+      <div class="plan">
+        <div class="pname">Executive</div>
+        <div class="pdesc">Maximum separation</div>
+        <div class="amt">$49.99<span>/mo</span></div>
+        <ul class="plist">
+          <li><span class="tick"><i data-lucide="check"></i></span> Up to 8 numbers — two can be 7-day temps</li>
+          <li><span class="tick"><i data-lucide="check"></i></span> Everything in Personal</li>
+          <li><span class="tick"><i data-lucide="check"></i></span> Priority call screening</li>
+          <li><span class="tick"><i data-lucide="check"></i></span> Priority support</li>
+        </ul>
+        <a href="https://apps.apple.com/us/app/cloakid/id6761379232" class="btn btn-ghost">Start free trial</a>
       </div>
     </div>
-    <a class="security-more" href="security.html">Full security writeup &rarr;</a>
+    <div class="price-fine">7-day free trial on both · Cancel anytime through the App Store</div>
   </div>
 </section>
 
-<!-- ================== FAQ ================== -->
-<section class="faq-section">
-  <div class="faq-section-inner">
-    <div class="faq-section-head">
-      <span class="eyebrow">Questions</span>
-      <h2>Things people ask.</h2>
+<!-- FAQ -->
+<section class="sec problem">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="eyebrow center">Questions</span>
+      <h2>The short answers.</h2>
     </div>
-    <div class="faq">
-      <details>
-        <summary>Is the number really mine?</summary>
-        <p>Yes. Each CloakID persona has a real US phone number &mdash; the kind that works with any form, any verification text, any call. It's yours to use for as long as your subscription is active.</p>
+    <div class="faq reveal">
+      <details open>
+        <summary>Are these real phone numbers? <i data-lucide="chevron-down" class="chev"></i></summary>
+        <p>Yes. Every CloakID persona comes with a real US phone number that can place and receive real calls and SMS — nothing virtual, nothing fake.</p>
       </details>
       <details>
-        <summary>What happens when I cancel?</summary>
-        <p>Your numbers are released at the end of the billing period. Releases are permanent &mdash; once a number goes back into the pool, you can't reclaim it, so export anything you want to keep first.</p>
+        <summary>Does CloakID work with iMessage? <i data-lucide="chevron-down" class="chev"></i></summary>
+        <p>CloakID sends and receives standard SMS/MMS over the carrier network, so you can message anyone on any device.</p>
       </details>
       <details>
-        <summary>Is there an Android app?</summary>
-        <p>Not yet. iOS is the launch platform. You can <a href="android.html">join the Android waitlist</a> to hear when it's ready.</p>
+        <summary>Can I cancel anytime? <i data-lucide="chevron-down" class="chev"></i></summary>
+        <p>Yes. Subscriptions are managed through the App Store. Cancel anytime, no questions asked. (Android is coming soon.)</p>
       </details>
       <details>
-        <summary>Does screening block legitimate callers?</summary>
-        <p>Unknown callers are asked to state their reason for calling. Legitimate callers get through; boiler-room autodialers don't. You can whitelist specific numbers per persona.</p>
-      </details>
-      <details>
-        <summary>Can I keep a persona number forever?</summary>
-        <p>As long as your subscription is active and you keep the persona assigned, the number stays with you. There's no rotation or forced churn.</p>
-      </details>
-      <details>
-        <summary>Do you see my messages?</summary>
-        <p>Messages transit our infrastructure to reach the carrier. We don't sell them, and there's no ad pipeline reading them. Specifics on storage will live in the <a href="security.html">security writeup</a> when it's ready.</p>
-      </details>
-      <details>
-        <summary>How's this different from a second SIM?</summary>
-        <p>A second SIM gives you one extra line, tied to your device, visible to your carrier. CloakID gives you several personas, swap-able and disposable, without touching your real line or SIM.</p>
+        <summary>What happens when I delete my account? <i data-lucide="chevron-down" class="chev"></i></summary>
+        <p>Your personas, call logs, messages, voicemail, and contacts are deleted from CloakID, and your phone numbers are released the same day.</p>
       </details>
     </div>
   </div>
 </section>
 
-<!-- ================== FINAL CTA ================== -->
-<section class="final">
-  <div class="final-inner">
-    <h3>Ready to hand out a number you can take back?</h3>
-    <a class="btn-primary" href="https://apps.apple.com/us/app/cloakid/id6761379232">Get CloakID</a>
+<!-- FINAL CTA -->
+<section id="download" class="sec final">
+  <div class="wrap">
+    <div class="reveal">
+      <img src="images/cloakid-icon-black.png" alt="CloakID" style="width:60px;height:60px;border-radius:14px;margin:0 auto 24px;">
+      <h2>Take your number back.</h2>
+      <p>Download CloakID and create your first persona in under a minute. Your real number will thank you.</p>
+      <div class="hero-cta">
+        <a href="https://apps.apple.com/us/app/cloakid/id6761379232" class="badge" aria-label="Download CloakID on the App Store">
+          <img src="images/app-store-badge-black.svg" alt="Download on the App Store">
+        </a>
+        <a href="android.html" class="btn btn-ghost"><i data-lucide="smartphone" class="ic"></i> Android — join the waitlist</a>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- ================== FOOTER ================== -->
-<footer class="foot">
-  <div class="foot-inner">
-    <div class="foot-cols">
-      <div class="foot-col">
-        <h4>Product</h4>
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <a class="brand" href="index.html"><img src="images/cloakid-icon-black.png" alt="CloakID" style="width:26px;height:26px;border-radius:6px;"><span>CloakID</span></a>
+        <p>Real phone numbers for every part of your life. Calls screened, spam filtered, your real number kept to yourself.</p>
+      </div>
+      <div>
+        <h5>Product</h5>
         <ul>
-          <li><a href="pricing.html">Pricing</a></li>
-          <li><a href="security.html">Security</a></li>
-          <li><a href="https://apps.apple.com/us/app/cloakid/id6761379232">Download</a></li>
-          <li><a href="android.html">Android waitlist</a></li>
+          <li><a href="#how">How it works</a></li>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#security">Security</a></li>
+          <li><a href="#pricing">Pricing</a></li>
         </ul>
       </div>
-      <div class="foot-col">
-        <h4>Company</h4>
+      <div>
+        <h5>Company</h5>
         <ul>
           <li><a href="about.html">About</a></li>
-          <li><a href="contact.html">Contact</a></li>
           <li><a href="support.html">Support</a></li>
+          <li><a href="contact.html">Contact</a></li>
         </ul>
       </div>
-      <div class="foot-col">
-        <h4>Legal</h4>
+      <div>
+        <h5>Legal</h5>
         <ul>
-          <li><a href="terms-of-service.html">Terms</a></li>
-          <li><a href="privacy-policy.html">Privacy</a></li>
-          <li><a href="sms-disclosure.html">SMS disclosure</a></li>
-          <li><a href="abuse.html">Report abuse</a></li>
-          <li><a href="delete-account.html">Delete account</a></li>
+          <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="terms-of-service.html">Terms of Service</a></li>
+          <li><a href="sms-disclosure.html">SMS Disclosure</a></li>
+          <li><a href="delete-account.html">Delete Account</a></li>
         </ul>
       </div>
-      <div class="foot-col"></div>
     </div>
-    <div class="foot-meta">
-      <a class="foot-mark" href="index.html">
-        <img src="images/cloakid-icon-black.png" alt="" />
-        <span>&copy; 2026 Niobium LLC &middot; iOS 16+ &middot; US only</span>
-      </a>
-      <span class="foot-status">All systems normal</span>
-    </div>
+    <div class="foot-base wrap" style="padding-left:0;padding-right:0;">© 2026 Niobium LLC · CloakID is a product of Niobium LLC.</div>
   </div>
 </footer>
 
+<script>
+  lucide.createIcons();
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.1, rootMargin: '0px 0px -6% 0px' });
+  reveals.forEach(el => io.observe(el));
+  // Safety net: never leave anything hidden
+  setTimeout(() => reveals.forEach(el => el.classList.add('in')), 1600);
+</script>
 </body>
 </html>
