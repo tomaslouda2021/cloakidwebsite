@@ -1,9 +1,24 @@
 {
   "cleanUrls": true,
   "rewrites": [
-    { "source": "/p/:path*", "destination": "https://api.cloakid.app/p/:path*" },
-    { "source": "/leak-tracker", "destination": "/leak-tracker.html" },
-    { "source": "/android", "destination": "/android.html" },
-    { "source": "/.netlify/functions/verify", "destination": "/api/verify" }
+    {
+      "source": "/p/:path*",
+      "destination": "https://api.cloakid.app/p/:path*"
+    },
+    {
+      "source": "/leak-tracker",
+      "destination": "/leak-tracker.html"
+    },
+    {
+      "source": "/.netlify/functions/verify",
+      "destination": "/api/verify"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/android",
+      "destination": "https://play.google.com/store/apps/details?id=com.cloakidmobile",
+      "permanent": false
+    }
   ]
 }
