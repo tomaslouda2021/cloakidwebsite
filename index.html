@@ -152,14 +152,19 @@
   .float-chip b { display: block; font-size: 13px; font-weight: 600; }
   .chip-block { background: #FDECEC; color: #C0392B; }
   .chip-allow { background: #E6F4EC; color: var(--ok); }
-  .chip-a { top: 64px; left: -34px; }
-  .chip-b { bottom: 96px; right: -40px; }
+  .chip-a { top: 47%; left: -34px; }
+  .chip-b { top: 33%; right: -40px; }
   @media (max-width: 560px) { .chip-a { left: 0; } .chip-b { right: 0; } }
   @media (max-width: 380px) {
     .float-chip { padding: 9px 11px; }
-    .chip-a { top: 40px; }
-    .chip-b { bottom: 70px; }
   }
+
+  /* Full phone mockups (own bezel) — used instead of the CSS phone frame */
+  .device { display: block; height: auto; width: 100%; filter: drop-shadow(0 26px 46px rgba(20,23,27,.16)); }
+  .phone-stage .device { width: 300px; max-width: 82%; }
+  .problem-phone .device { width: 250px; }
+  .fimg .device { width: 264px; }
+  .step .device { width: 78%; max-width: 280px; margin: 0 auto; }
 
   /* ---------- Trust strip ---------- */
   .strip { border-top: 1px solid var(--line-soft); border-bottom: 1px solid var(--line-soft); background: var(--paper-2); }
@@ -342,19 +347,14 @@
     </div>
 
     <div class="phone-stage reveal">
-      <div class="phone">
-        <div class="island"></div>
-        <div class="phone-screen">
-          <img src="images/screen-hero-activity.png" alt="CloakID activity feed showing screened calls and messages">
-        </div>
-      </div>
+      <img class="device" src="images/device-activity.png" alt="CloakID activity feed showing screened calls and messages">
       <div class="float-chip chip-a">
         <span class="ci chip-block"><i data-lucide="shield-off"></i></span>
-        <div><small>Unknown caller</small><b>Spam blocked</b></div>
+        <div><b>Call blocked</b><small>Didn't match purpose</small></div>
       </div>
       <div class="float-chip chip-b">
         <span class="ci chip-allow"><i data-lucide="phone-incoming"></i></span>
-        <div><small>Delivery driver</small><b>Allowed through</b></div>
+        <div><b>Call allowed</b><small>Matched purpose</small></div>
       </div>
     </div>
   </div>
@@ -382,10 +382,7 @@
         <p class="big">You hand the same ten digits to every form, dealership, dating app, and delivery driver. From there it spreads to <b>data brokers, lead lists, and spam dialers</b> &mdash; and once it's out, there is no way to take it back.</p>
       </div>
       <div class="problem-phone reveal">
-        <div class="phone" style="width:248px;">
-          <div class="island"></div>
-          <div class="phone-screen"><img src="images/onboard-1-everyone.png" alt="Everyone has your number — every caller funnels to your one line"></div>
-        </div>
+        <img class="device" src="images/device-everyone.png" alt="Everyone has your number — every caller funnels to your one line">
       </div>
     </div>
   </div>
@@ -401,19 +398,19 @@
     </div>
     <div class="steps">
       <div class="step reveal">
-        <div class="scr"><img src="images/screen-hero-personas.png" alt="Personas list"></div>
+        <img class="device" src="images/device-personas.png" alt="Personas list">
         <div class="num">01</div>
         <h3>Create a persona</h3>
         <p>Pick an area code and get a real US number in seconds. Name it Work, Dating, Deliveries — whatever fits.</p>
       </div>
       <div class="step reveal">
-        <div class="scr"><img src="images/screen-hero-screening.png" alt="Call screening"></div>
+        <img class="device" src="images/device-share.png" alt="Share a persona's number by link or QR">
         <div class="num">02</div>
         <h3>Hand it out instead</h3>
         <p>Give the persona's number to anyone who asks. Your real number stays on your phone, every time.</p>
       </div>
       <div class="step reveal">
-        <div class="scr"><img src="images/onboard-4-allowed.png" alt="Real caller allowed through"></div>
+        <img class="device" src="images/device-allowed.png" alt="Real caller allowed through">
         <div class="num">03</div>
         <h3>Let it screen</h3>
         <p>Unknown callers state who they are. Only the ones that make sense for that persona ever ring through.</p>
@@ -438,10 +435,7 @@
         </ul>
       </div>
       <div class="fimg">
-        <div class="phone" style="width:262px;">
-          <div class="island"></div>
-          <div class="phone-screen"><img src="images/onboard-2-separate.png" alt="A separate number for every situation"></div>
-        </div>
+        <img class="device" src="images/device-personas.png" alt="A number for every part of your life — your personas">
       </div>
     </div>
 
@@ -457,10 +451,7 @@
         </ul>
       </div>
       <div class="fimg">
-        <div class="phone" style="width:262px;">
-          <div class="island"></div>
-          <div class="phone-screen"><img src="images/onboard-3-blocked.png" alt="Spam call blocked by screening"></div>
-        </div>
+        <img class="device" src="images/device-blocked.png" alt="Spam call blocked by screening">
       </div>
     </div>
 
