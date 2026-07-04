@@ -51,6 +51,11 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Privacy Policy — CloakID by Niobium LLC">
 <meta name="twitter:description" content="Privacy Policy for CloakID digital identity management platform by Niobium LLC">
+<!-- Vercel Web Analytics -->
+<script>
+  window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+</script>
+<script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
 
@@ -288,6 +293,31 @@
       'transport_type': 'beacon'
     });
   });
+</script>
+<script>
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest ? e.target.closest('a') : null;
+    if (!a || !window.va) return;
+    var href = a.getAttribute('href') || '';
+    var page = location.pathname || '/';
+    if (href.indexOf('apps.apple.com') > -1) { va('event', {name: 'store_click', data: {store: 'apple', page: page}}); }
+    else if (href.indexOf('play.google.com') > -1) { va('event', {name: 'store_click', data: {store: 'google', page: page}}); }
+    else if (href.indexOf('app.cloakid.app') > -1) { va('event', {name: 'webapp_click', data: {page: page}}); }
+    else if (href.charAt(0) === '#' && href.length > 1) { va('event', {name: 'section_nav', data: {target: href, page: page}}); }
+    else if (href.indexOf('http') !== 0 && href.indexOf('.html') > -1) { va('event', {name: 'page_nav', data: {target: href.replace('.html', ''), page: page}}); }
+  }, true);
+  (function () {
+    if (location.pathname !== '/' && location.pathname.indexOf('index') === -1) return;
+    var sent = {};
+    window.addEventListener('scroll', function () {
+      var h = document.documentElement.scrollHeight - window.innerHeight;
+      if (h <= 0) return;
+      var d = window.scrollY / h * 100;
+      [50, 90].forEach(function (m) {
+        if (!sent[m] && d >= m && window.va) { sent[m] = 1; va('event', {name: 'scroll_depth', data: {percent: m, page: '/'}}); }
+      });
+    }, {passive: true});
+  })();
 </script>
 </body>
 </html>
