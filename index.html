@@ -1,10 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18298734595"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-18298734595');
+</script>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CloakID — Give out a number, not your number.</title>
-<meta name="description" content="CloakID gives you real US phone numbers for every part of your life. Every call is screened before it rings, and your real number never leaves your phone.">
+<meta name="description" content="CloakID is a second phone number app with real US numbers for work, dating, selling, and more. Every call is screened before it rings - your real number stays private.">
 <link rel="icon" type="image/png" href="images/cloakid-icon-black.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -305,6 +314,50 @@
     html { scroll-behavior: auto; }
   }
 </style>
+
+<link rel="canonical" href="https://www.cloakid.app/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="CloakID">
+<meta property="og:title" content="CloakID — Give out a number, not your number.">
+<meta property="og:description" content="CloakID is a second phone number app with real US numbers for work, dating, selling, and more. Every call is screened before it rings - your real number stays private.">
+<meta property="og:url" content="https://www.cloakid.app/">
+<meta property="og:image" content="https://www.cloakid.app/images/cloakid-icon-black.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CloakID — Give out a number, not your number.">
+<meta name="twitter:description" content="CloakID is a second phone number app with real US numbers for work, dating, selling, and more. Every call is screened before it rings - your real number stays private.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://www.cloakid.app/#org",
+      "name": "CloakID",
+      "legalName": "Niobium LLC",
+      "url": "https://www.cloakid.app/",
+      "logo": "https://www.cloakid.app/images/cloakid-icon-black.png",
+      "sameAs": [
+        "https://apps.apple.com/us/app/cloakid/id6761379232",
+        "https://play.google.com/store/apps/details?id=com.cloakidmobile",
+        "https://x.com/CloakIDapp"
+      ]
+    },
+    {
+      "@type": "MobileApplication",
+      "name": "CloakID",
+      "operatingSystem": "iOS, Android",
+      "applicationCategory": "UtilitiesApplication",
+      "url": "https://www.cloakid.app/",
+      "description": "Second phone number app with real US numbers and call screening. Your real number stays private.",
+      "offers": [
+        {"@type": "Offer", "name": "Personal", "price": "19.99", "priceCurrency": "USD"},
+        {"@type": "Offer", "name": "Executive", "price": "49.99", "priceCurrency": "USD"}
+      ],
+      "publisher": {"@id": "https://www.cloakid.app/#org"}
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -637,6 +690,18 @@
   reveals.forEach(el => io.observe(el));
   // Safety net: never leave anything hidden
   setTimeout(() => reveals.forEach(el => el.classList.add('in')), 1600);
+</script>
+<script>
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest ? e.target.closest('a[href*="apps.apple.com"], a[href*="play.google.com"]') : null;
+    if (!a) return;
+    gtag('event', 'conversion', {
+      'send_to': 'AW-18298734595/iVl6CKaK1cocEIOQwpVE',
+      'value': 1.0,
+      'currency': 'USD',
+      'transport_type': 'beacon'
+    });
+  });
 </script>
 </body>
 </html>
