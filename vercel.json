@@ -6,15 +6,16 @@
       "destination": "https://api.cloakid.app/p/:path*"
     },
     {
-      "source": "/leak-tracker",
-      "destination": "/leak-tracker.html"
-    },
-    {
       "source": "/.netlify/functions/verify",
       "destination": "/api/verify"
     }
   ],
   "redirects": [
+    {
+      "source": "/leak-tracker",
+      "destination": "/",
+      "permanent": false
+    },
     {
       "source": "/android",
       "destination": "https://play.google.com/store/apps/details?id=com.cloakidmobile&referrer=utm_source%3Dcloakid_site%26utm_medium%3Dweb%26utm_campaign%3Dandroid_redirect",
