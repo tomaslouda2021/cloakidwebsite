@@ -5,15 +5,15 @@
 
 :root {
   /* Brand palette */
-  --bg:            #FFFFFF;
-  --bg-panel:      #FAFAFB;
-  --line:          #E5E7EB;
-  --line-strong:   #D1D5DB;
-  --ink:           #0B0D10;
-  --ink-muted:     #5A6472;
-  --cyan:          #6BD3E6;
-  --cyan-ink:      #0EAFC8;
-  --lime:          #C8F062;
+  --bg:            #FBFAF8;
+  --bg-panel:      #F4F2EE;
+  --line:          rgba(20,23,27,0.10);
+  --line-strong:   rgba(20,23,27,0.18);
+  --ink:           #14171B;
+  --ink-muted:     #6B7078;
+  --cyan:          #5FC9DC;
+  --cyan-ink:      #0B6E7C;
+  --lime:          var(--cyan);
   --lavender:      #C4B5F0;
   --lavender-ink:  #6B55C9;
   --danger:        #E53935;
@@ -108,24 +108,25 @@ p  { margin: 0; }
   position: sticky; top: 0; z-index: 20;
   display: grid; grid-template-columns: auto 1fr auto;
   align-items: center;
-  height: 64px;
+  height: 68px;
   padding: 0 32px;
-  border-bottom: 1px solid var(--line);
-  background: var(--bg);
+  border-bottom: 1px solid var(--line-soft);
+  background: rgba(251,250,248,0.78);
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
   gap: 24px;
 }
 .brand {
   display: inline-flex; align-items: center; gap: 10px;
-  font-size: 16px; font-weight: 700; letter-spacing: -0.015em;
+  font-size: 18px; font-weight: 600; letter-spacing: -0.02em;
   color: var(--ink);
   text-decoration: none;
 }
-.brand-mark { height: 22px; width: auto; display: block; }
+.brand-mark { height: 28px; width: auto; display: block; border-radius: 7px; }
 .brand-word { line-height: 1; }
-.nav-links { justify-self: center; display: flex; gap: 28px; }
+.nav-links { justify-self: center; display: flex; gap: 34px; }
 .nav-links a {
   text-decoration: none;
-  font-size: 14px; font-weight: 500;
+  font-size: 14.5px; font-weight: 500;
   color: var(--ink-muted);
   letter-spacing: -0.005em;
   transition: color .15s ease;
@@ -135,8 +136,8 @@ p  { margin: 0; }
 .nav-cta {
   justify-self: end;
   display: inline-flex; align-items: center;
-  background: var(--cyan);
-  color: var(--ink);
+  background: var(--ink);
+  color: #fff;
   text-decoration: none;
   font-size: 14px; font-weight: 500;
   letter-spacing: -0.005em;
@@ -157,8 +158,8 @@ p  { margin: 0; }
 /* ============ BUTTONS ============ */
 .btn-primary {
   display: inline-flex; align-items: center; justify-content: center;
-  background: var(--cyan);
-  color: var(--ink);
+  background: var(--ink);
+  color: #fff;
   text-decoration: none;
   font-size: 14px; font-weight: 500;
   letter-spacing: -0.005em;
