@@ -33,8 +33,8 @@
   --accent-soft:   rgba(107, 211, 230, 0.14);
 
   /* Type */
-  --font:      'Red Hat Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-  --font-mono: ui-monospace, 'SF Mono', Menlo, monospace;
+  --font:      'Geist', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --font-mono: 'Geist Mono', ui-monospace, 'SF Mono', Menlo, monospace;
 
   /* Type scale */
   --fs-micro: 13px;
