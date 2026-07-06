@@ -118,6 +118,20 @@
     align-items: center;
     margin-top: 20px;
   }
+  .cta-badges {
+    display: flex; gap: 14px;
+    flex-wrap: wrap;
+    align-items: center; justify-content: center;
+    margin-top: 22px;
+  }
+  .cta-badges .store-badge { display: inline-flex; line-height: 0; }
+  .cta-badges .store-badge img { display: block; height: 46px; width: auto; }
+  .cta-seepricing {
+    display: inline-block; margin-top: 14px;
+    font-size: 14px; font-weight: 500;
+    color: var(--ink-muted); text-decoration: none;
+  }
+  .cta-seepricing:hover { color: var(--ink); text-decoration: underline; }
   @media (max-width: 900px) {
     .about-grid { grid-template-columns: 1fr 1fr; }
     .commitments { grid-template-columns: 1fr; }
@@ -228,17 +242,15 @@
       <div class="mission-card" style="text-align: center;">
         <h2>Ready to take your number back?</h2>
         <p style="margin: 0 0 8px;">7-day free trial. Cancel anytime in the App Store or Google Play before the trial ends and you won't be charged.</p>
-        <div class="cta-row-wrap" style="justify-content: center;">
-          <a href="https://apps.apple.com/us/app/cloakid/id6761379232" class="appstore-link" aria-label="Download on the App Store">
-            <img src="images/app-store-badge-black.svg" alt="Download on the App Store" onerror="this.src='https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg'" style="height: 48px;">
+        <div class="cta-badges">
+          <a href="https://apps.apple.com/us/app/cloakid/id6761379232" class="store-badge" aria-label="Download CloakID on the App Store">
+            <img src="images/app-store-badge-black.svg" alt="Download on the App Store" onerror="this.src='https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg'">
           </a>
-          <a href="https://play.google.com/store/apps/details?id=com.cloakidmobile&referrer=utm_source%3Dcloakid_site%26utm_medium%3Dweb%26utm_campaign%3Dsite_badge" class="googleplay-link" aria-label="Get it on Google Play">
-            <img src="images/google-play-badge-black.png" alt="Get it on Google Play" style="height: 48px;">
-          </a>
-          <a href="pricing.html" class="btn-ghost">
-            <span class="dot"></span>See pricing <span class="arr">→</span>
+          <a href="https://play.google.com/store/apps/details?id=com.cloakidmobile&referrer=utm_source%3Dcloakid_site%26utm_medium%3Dweb%26utm_campaign%3Dsite_badge" class="store-badge" aria-label="Get CloakID on Google Play">
+            <img src="images/google-play-badge-black.png" alt="Get it on Google Play">
           </a>
         </div>
+        <a href="pricing.html" class="cta-seepricing">See pricing &rarr;</a>
       </div>
     </div>
 
