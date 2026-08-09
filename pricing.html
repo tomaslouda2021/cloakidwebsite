@@ -79,7 +79,7 @@
           <li>Voicemail with transcription</li>
           <li>QR &amp; vCard sharing</li>
         </ul>
-        <a class="plan-cta" href="https://buy.stripe.com/9B628qapBad7a236212Nq00">Get Principal</a>
+        <a class="plan-cta" href="https://buy.stripe.com/9B628qapBad7a236212Nq00" data-plan="principal" data-value="99">Get Principal</a>
         <p class="plan-trial">Billed monthly via Stripe. Cancel anytime.</p>
       </div>
       <div class="plan-card">
@@ -95,7 +95,7 @@
           <li>Priority call screening</li>
           <li>Priority support</li>
         </ul>
-        <a class="plan-cta" href="https://buy.stripe.com/4gM5kCdBN0Cx6PR9ed2Nq01">Get Executive</a>
+        <a class="plan-cta" href="https://buy.stripe.com/4gM5kCdBN0Cx6PR9ed2Nq01" data-plan="executive" data-value="2400">Get Executive</a>
         <p class="plan-trial">$2,400 billed annually via Stripe. Monthly at $249 &mdash; <a href="contact.html">write us</a>.</p>
       </div>
       <div class="plan-card">
@@ -110,7 +110,7 @@
           <li>Concierge onboarding for every member</li>
           <li>One invoice for the whole household</li>
         </ul>
-        <a class="plan-cta" href="contact.html">Talk to us</a>
+        <a class="plan-cta" href="contact.html" data-plan="office" data-value="600">Talk to us</a>
         <p class="plan-trial">Also for executive teams &mdash; one contract, billed to the company.</p>
       </div>
     </div>
@@ -289,6 +289,19 @@
       'currency': 'USD',
       'transport_type': 'beacon'
     });
+  });
+</script>
+<script>
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest ? e.target.closest('a.plan-cta[data-plan]') : null;
+    if (!a) return;
+    gtag('event', 'conversion', {
+      'send_to': 'AW-18298734595/1PZWCKuN0N4cEIOQwpVE',
+      'value': parseFloat(a.getAttribute('data-value')) || 99.0,
+      'currency': 'USD',
+      'transport_type': 'beacon'
+    });
+    if (window.va) { va('event', {name: 'plan_cta_click', data: {plan: a.getAttribute('data-plan')}}); }
   });
 </script>
 <script>
