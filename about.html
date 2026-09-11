@@ -158,6 +158,8 @@
   window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
 </script>
 <script defer src="/_vercel/insights/script.js"></script>
+<link rel="stylesheet" href="site-navigation.css">
+<script defer src="site-navigation.js"></script>
 </head>
 <body>
 
@@ -170,9 +172,20 @@
   <div class="nav-links">
     <a href="/#how">How it works</a>
     <a href="/#features">Features</a>
-    <a href="/#security">Security</a>
-    <a href="/#pricing">Pricing</a>
+    <a href="security.html">Security</a>
+    <a href="pricing.html">Pricing</a>
   </div>
+  <details class="mobile-menu">
+    <summary aria-label="Site navigation">Menu</summary>
+    <div class="mobile-menu-links">
+      <a href="/#how">How it works</a>
+      <a href="/#features">Features</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="security.html">Security</a>
+      <a href="support.html">Support</a>
+      <a href="/#download">Download the app</a>
+    </div>
+  </details>
   <a class="nav-cta" href="https://app.cloakid.app">Get CloakID</a>
 </nav>
 
@@ -193,7 +206,7 @@
     <div class="mission-card">
       <h2>Our mission</h2>
       <p>Your personal phone number is sensitive information. It shouldn't end up in a spam database because you signed up for a newsletter, listed something online, or filled out a form at the gym.</p>
-      <p>CloakID gives you real US phone numbers you can hand out without consequence — and one you keep private. Incoming calls get screened before your phone rings, and the people you've approved always get through.</p>
+      <p>CloakID gives you separate US numbers for different parts of your life. Set screening rules for unknown callers and let approved contacts bypass the questions, while keeping your personal caller ID separate.</p>
       <p>We're a small, independent team that shipped our first version in 2026 and spent the year rebuilding it around real users. Today CloakID is live on the App Store and Google Play.</p>
     </div>
 
@@ -204,15 +217,15 @@
       <div class="about-grid">
         <div class="about-card">
           <h3>Real phone numbers</h3>
-          <p>Each persona gets a real, carrier-grade US number. It works for calls, SMS, MMS, and voicemail — not a VoIP fallback or a call-forwarding trick that breaks when you need it most.</p>
+          <p>Each persona gets a real US number through Telnyx, with calls, SMS/MMS, and voicemail in one app. These are internet-based numbers; some services may not accept them for verification.</p>
         </div>
         <div class="about-card">
           <h3>Screening before it rings</h3>
-          <p>Unknown callers hit a short screen based on the persona they're calling. Spam, surveys, and unwanted outreach get filtered. Your phone only rings for calls that make sense.</p>
+          <p>Unknown callers hit a short screen based on the persona they're calling. Spam, surveys, and unwanted outreach get filtered. You can review the outcome and adjust your rules.</p>
         </div>
         <div class="about-card">
           <h3>Approved callers bypass</h3>
-          <p>People you approve — family, friends, colleagues — skip the screen entirely. You stay reachable to the humans who matter, and protected from everyone else.</p>
+          <p>People you approve — family, friends, colleagues — skip the screen entirely. You decide which contacts should skip the questions.</p>
         </div>
       </div>
     </div>
@@ -220,7 +233,7 @@
     <!-- ===== Who uses CloakID ===== -->
     <div class="section-block">
       <h2>Who this is built for.</h2>
-      <p class="lede-premium">CloakID is used by people whose phone number showing up in the wrong place has real consequences. Executives handling M&amp;A. Attorneys with adverse parties. Founders with cap-table exposure. People in public life. We don't publish logos; that's the point.</p>
+      <p class="lede-premium">CloakID is built for people whose work makes them easy to find: founders sharing a number with investors, executives handling press inquiries, and professionals separating clients from family. Executive includes a setup call with you or your assistant to organize those numbers and their screening rules.</p>
     </div>
 
     <!-- ===== Commitment ===== -->
@@ -229,11 +242,11 @@
       <p class="lede">Privacy tools should work. These are the rules we run CloakID by.</p>
       <ul class="commitments">
         <li><span><strong>Honest product:</strong> no fake compliance claims, no enterprise theater, no dark patterns.</span></li>
-        <li><span><strong>Your data is yours:</strong> we don't sell it, rent it, or feed it to advertisers. Ever.</span></li>
-        <li><span><strong>No ads:</strong> no ads in the app, no sponsored contacts, no upsell popups.</span></li>
+        <li><span><strong>Your data is yours:</strong> we do not sell account or communications data. Our privacy policy explains the providers that process it.</span></li>
+        <li><span><strong>No ads:</strong> no ads in the app or sponsored contacts.</span></li>
         <li><span><strong>Continuous improvement:</strong> regular releases driven by what users actually ask for.</span></li>
-        <li><span><strong>Fair pricing:</strong> transparent monthly plans. No hidden fees.</span></li>
-        <li><span><strong>Clean exits:</strong> cancel anytime in the App Store, delete your account in the app, and all data goes with it.</span></li>
+        <li><span><strong>Fair pricing:</strong> published monthly and annual charges, with applicable tax shown at checkout.</span></li>
+        <li><span><strong>Clean exits:</strong> cancel future renewals through your billing provider and request account deletion in the app. Our deletion page explains retention exceptions.</span></li>
       </ul>
     </div>
 
@@ -241,7 +254,7 @@
     <div class="section-block">
       <div class="mission-card" style="text-align: center;">
         <h2>Ready to take your number back?</h2>
-        <p style="margin: 0 0 8px;">Cancel anytime in the App Store or Google Play.</p>
+        <p style="margin: 0 0 8px;">Create an account, subscribe through Stripe, then sign in to the app. Cancel future renewals from your profile.</p>
         <div class="cta-badges">
           <a href="https://apps.apple.com/us/app/cloakid/id6761379232" class="store-badge" aria-label="Download CloakID on the App Store">
             <img src="images/app-store-badge-black.svg" alt="Download on the App Store" onerror="this.src='https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg'">
@@ -292,9 +305,9 @@
     <div class="foot-meta">
       <a class="foot-mark" href="index.html">
         <img src="images/cloakid-icon-black.png" alt="" />
-        <span>&copy; 2026 Niobium LLC &middot; iOS 16+ &middot; US only</span>
+        <span>&copy; 2026 Niobium LLC &middot; iPhone &amp; Android &middot; US only</span>
       </a>
-      <span class="foot-status">All systems normal</span>
+      <a href="support.html">Get support</a>
     </div>
   </div>
 </footer>

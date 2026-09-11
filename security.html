@@ -35,6 +35,8 @@
   window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
 </script>
 <script defer src="/_vercel/insights/script.js"></script>
+<link rel="stylesheet" href="site-navigation.css">
+<script defer src="site-navigation.js"></script>
 </head>
 <body>
 
@@ -47,9 +49,20 @@
   <div class="nav-links">
     <a href="/#how">How it works</a>
     <a href="/#features">Features</a>
-    <a href="/#security">Security</a>
-    <a href="/#pricing">Pricing</a>
+    <a href="security.html">Security</a>
+    <a href="pricing.html">Pricing</a>
   </div>
+  <details class="mobile-menu">
+    <summary aria-label="Site navigation">Menu</summary>
+    <div class="mobile-menu-links">
+      <a href="/#how">How it works</a>
+      <a href="/#features">Features</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="security.html">Security</a>
+      <a href="support.html">Support</a>
+      <a href="/#download">Download the app</a>
+    </div>
+  </details>
   <a class="nav-cta" href="https://app.cloakid.app">Get CloakID</a>
 </nav>
 
@@ -58,7 +71,7 @@
   <div class="page-hero-inner">
     <span class="eyebrow">Security posture</span>
     <h1>Security at <span class="muted">CloakID.</span></h1>
-    <p>A short, honest summary of what we can say publicly today. The full technical writeup is in progress &mdash; we'd rather say less than say things we can't defend against the implementation.</p>
+    <p>How your number is protected, how screening data is processed, and what remains after a call or account deletion.</p>
   </div>
 </section>
 
@@ -67,31 +80,52 @@
   <aside class="sec-toc">
     <h3>Contents</h3>
     <ul>
-      <li><a href="#scope">What we sell</a></li>
-      <li><a href="#carriers">Carrier relationships</a></li>
-      <li><a href="#device">On the device</a></li>
-      <li><a href="#disclosure">Disclosure</a></li>
-      <li><a href="#writeup">Full writeup</a></li>
+      <li><a href="#scope">Privacy boundaries</a></li>
+      <li><a href="#storage">Storage &amp; keys</a></li>
+      <li><a href="#processors">Service providers</a></li>
+      <li><a href="#retention">Data retention</a></li>
+      <li><a href="#device">Account &amp; device access</a></li>
+      <li><a href="#disclosure">Report a security issue</a></li>
     </ul>
   </aside>
 
   <article class="sec-article">
-    <h2 id="scope">What we sell, and what we don't</h2>
-    <p>CloakID sells subscriptions for US phone numbers with call screening and SMS. We don't sell data. There is no ad SDK in the app, and no data-broker pipeline reading from our systems.</p>
+    <h2 id="scope">What stays private</h2>
+    <p>Calls and messages you place through CloakID use a persona’s number instead of your personal caller ID. We still need your real mobile number for your account and sign-in. We do not sell your account or communications data.</p>
+    <p>CloakID is not an anonymous or end-to-end encrypted phone network. Carriers handle calls and messages, and our screening providers process caller speech. An allowed call is a screening outcome, not proof of the caller’s identity. Avoid sharing sensitive information solely because a caller passed screening.</p>
 
-    <h2 id="carriers">Carrier relationships</h2>
-    <p>CloakID provisions US phone numbers through Telnyx, a licensed US carrier. Inbound calls and SMS enter through Telnyx and reach your device; outbound calls and SMS leave through the same path. Telnyx sees the numbers they provision and the call detail records required for billing and regulatory compliance. They do not receive your CloakID account identity.</p>
-    <p>Deleting a persona releases its phone number back to the carrier pool. Releases are permanent &mdash; the same number cannot be reclaimed.</p>
+    <h2 id="storage">Storage and encryption keys</h2>
+    <p>Your account phone number uses application-level Fernet encryption, with a separate hash for lookup. Voicemail audio is encrypted before it is stored in Amazon S3, with an additional layer of S3 encryption. Voicemail transcription text is encrypted in the database. Other app records, including screening transcripts, should not be assumed to have the same field-level encryption.</p>
+    <p>These keys are managed by CloakID’s server environment. The service can decrypt protected data when needed to operate your account or play a voicemail. This is server-managed encryption, not encryption with a key that only you hold.</p>
+    <p>App and website connections to the public API use HTTPS. Ordinary carrier calls and SMS/MMS do not provide end-to-end encryption through CloakID.</p>
 
-    <h2 id="device">On the device</h2>
-    <p>The iOS app stores local state in the iOS keychain and the app sandbox. Biometric unlock is optional and configured per-device.</p>
+    <h2 id="processors">Who processes your data</h2>
+    <ul>
+      <li><strong>Telnyx:</strong> provisions numbers, handles calls and SMS/MMS, delivers sign-in codes, and processes voicemail. It receives phone numbers, communication content, and routing metadata needed for delivery.</li>
+      <li><strong>Deepgram and OpenAI:</strong> process screening audio, transcripts, and relevant persona context for transcription and screening. Telnyx transcription is also used in supported call flows and as a fallback.</li>
+      <li><strong>AWS and our database hosting provider:</strong> host service data and stored media. Voicemail audio is stored in S3.</li>
+      <li><strong>Firebase and Sentry:</strong> support push notifications and error reporting.</li>
+      <li><strong>Stripe:</strong> handles new subscriptions and payment details. Apple handles grandfathered renewals. CloakID receives billing status, not your full card details.</li>
+      <li><strong>Phone-validation services:</strong> Telnyx number lookup and configured signup checks help assess numbers and prevent abuse.</li>
+    </ul>
+    <p>The <a href="privacy-policy.html">Privacy Policy</a> describes these providers and the website’s separate analytics and advertising measurement. Provider records have their own retention practices; we do not promise that deleting something in CloakID immediately erases every provider copy.</p>
 
-    <h2 id="disclosure">Disclosure</h2>
-    <p>If you believe you have found a security issue, please reach us through the <a href="contact.html">contact page</a>. Coordinated disclosure is welcome.</p>
+    <h2 id="retention">What we keep, and for how long</h2>
+    <ul>
+      <li><strong>Screening:</strong> live audio is processed for transcription. Recorded screening segments, when used, are scheduled for deletion after processing, with cleanup for leftover provider recordings. Screening transcripts and call outcomes can remain in your account’s call history.</li>
+      <li><strong>Voicemail:</strong> audio is stored for playback and transcripts for reading. You can delete individual voicemails in the app. Media and account-record deletion are separate processes.</li>
+      <li><strong>Public demo:</strong> a scheduled cleanup removes caller numbers and words from demo call records once they are older than 24 hours. Demo rate-limit counters can last up to 26 hours. Provider retention is separate, and failed cleanup is retried.</li>
+      <li><strong>Account deletion:</strong> removes the account and associated app records and requests number release. Message-media cleanup runs separately. Stored media, backups, billing records, and provider records may persist beyond account deletion; see the <a href="delete-account.html">deletion page</a>.</li>
+      <li><strong>Trial-abuse prevention:</strong> for trial accounts that never subscribed, a one-way phone-number hash may remain for up to 180 days after deletion to prevent repeat trials.</li>
+    </ul>
+    <p>We do not promise a single deletion deadline for every data category. Contact <a href="mailto:privacy@cloakid.app">privacy@cloakid.app</a> for a specific retention or deletion request.</p>
 
-    <h2 id="writeup">Full writeup &mdash; in progress</h2>
-    <p>We're deliberately not publishing specifics about server-side encryption, key management, retention windows, or the complete list of third-party processors until we can describe each one as it actually exists in the system today. Those sections will live here when the writeup is ready.</p>
-    <p>If there's a specific question you need answered before that, the <a href="contact.html">contact page</a> is the fastest path.</p>
+    <h2 id="device">Account and device access</h2>
+    <p>Sign-in verifies your mobile number. Mobile credentials use platform secure storage, and biometric unlock is optional. Your operating system handles biometric verification; CloakID does not receive your fingerprint or face template.</p>
+    <p>Screening is automated. Authorized support or abuse investigations may require access to relevant account records. App data access and internal administration are protected by authentication and access controls. These protections are not a claim of independent security certification.</p>
+
+    <h2 id="disclosure">Report a security issue</h2>
+    <p>Email <a href="mailto:privacy@cloakid.app">privacy@cloakid.app</a> with a description and reproduction steps. Please omit passwords, sign-in codes, payment details, and other people’s communication content. We can coordinate a suitable way to share sensitive evidence if needed.</p>
   </article>
 </div>
 
@@ -138,9 +172,9 @@
     <div class="foot-meta">
       <a class="foot-mark" href="index.html">
         <img src="images/cloakid-icon-black.png" alt="" />
-        <span>&copy; 2026 Niobium LLC &middot; iOS 16+ &middot; US only</span>
+        <span>&copy; 2026 Niobium LLC &middot; iPhone &amp; Android &middot; US only</span>
       </a>
-      <span class="foot-status">All systems normal</span>
+      <a href="support.html">Get support</a>
     </div>
   </div>
 </footer>

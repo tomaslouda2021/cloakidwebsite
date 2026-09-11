@@ -135,6 +135,8 @@
   window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
 </script>
 <script defer src="/_vercel/insights/script.js"></script>
+<link rel="stylesheet" href="site-navigation.css">
+<script defer src="site-navigation.js"></script>
 </head>
 <body>
 
@@ -147,9 +149,20 @@
   <div class="nav-links">
     <a href="/#how">How it works</a>
     <a href="/#features">Features</a>
-    <a href="/#security">Security</a>
-    <a href="/#pricing">Pricing</a>
+    <a href="security.html">Security</a>
+    <a href="pricing.html">Pricing</a>
   </div>
+  <details class="mobile-menu">
+    <summary aria-label="Site navigation">Menu</summary>
+    <div class="mobile-menu-links">
+      <a href="/#how">How it works</a>
+      <a href="/#features">Features</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="security.html">Security</a>
+      <a href="support.html">Support</a>
+      <a href="/#download">Download the app</a>
+    </div>
+  </details>
   <a class="nav-cta" href="https://app.cloakid.app">Get CloakID</a>
 </nav>
 
@@ -168,7 +181,7 @@
     <a href="#quickstart" class="quick-card">
       <div class="quick-icon">→</div>
       <h3 class="quick-title">Quick Start</h3>
-      <p class="quick-body">Get set up in under 2 minutes.</p>
+      <p class="quick-body">Account, subscription, and first number.</p>
     </a>
     <a href="#faq" class="quick-card">
       <div class="quick-icon">?</div>
@@ -193,15 +206,15 @@
     <div class="step-card">
       <div class="step-num">1</div>
       <div>
-        <h3 class="step-title">Download the app</h3>
-        <p class="step-body">Get CloakID on the App Store or Google Play. Sign up with your real phone number — we'll verify it once, then keep it hidden forever.</p>
+        <h3 class="step-title">Create your account and choose a plan</h3>
+        <p class="step-body"><a href="https://app.cloakid.app">Create your account</a> with your US mobile number, then <a href="pricing.html#start">subscribe through Stripe</a> using the same number. Download the iPhone or Android app and sign in.</p>
       </div>
     </div>
     <div class="step-card">
       <div class="step-num">2</div>
       <div>
         <h3 class="step-title">Create your first persona</h3>
-        <p class="step-body">Tap Personas → "+". Choose a template or start blank. Pick an area code, confirm, and your new real US number is ready in seconds.</p>
+        <p class="step-body">Tap Personas → "+". Choose a template or start blank, then pick an available US area code and follow the provisioning steps.</p>
       </div>
     </div>
     <div class="step-card">
@@ -215,7 +228,7 @@
       <div class="step-num">4</div>
       <div>
         <h3 class="step-title">Share the number</h3>
-        <p class="step-body">Tap "Share" to show a QR code, send a vCard, or text it from the persona. Your real number never leaves your phone.</p>
+        <p class="step-body">Tap "Share" to show a QR code, send a vCard, or text it from the persona. Recipients receive your persona’s number, not your personal caller ID.</p>
       </div>
     </div>
   </div>
@@ -233,11 +246,11 @@
     <div class="faq">
       <details>
         <summary>Do I need to verify my real phone number?</summary>
-        <p>Yes, we verify once at signup to prevent abuse. After that, your real number is hashed and never shared with anyone you call.</p>
+        <p>Yes. We verify your US mobile number for sign-in and abuse prevention. Your account number is stored using encryption and a separate lookup hash. Calls and messages placed through CloakID use your persona’s number.</p>
       </details>
       <details>
         <summary>How do refunds and cancellations work?</summary>
-        <p>You can cancel anytime in your App Store or Google Play subscription settings; your access continues until the end of the current billing period. Refunds for App Store and Google Play purchases are requested from and issued by Apple or Google under their refund policies. If you need help, contact support@cloakid.app and we'll point you to the right place.</p>
+        <p>New subscriptions are billed through Stripe. Cancel future renewals from Profile → Manage subscription in the app. For a refund request, email <a href="mailto:billing@cloakid.app">billing@cloakid.app</a>. Cancellation does not itself issue a refund. For an older Apple purchase, request refunds from Apple.</p>
       </details>
     </div>
 
@@ -245,16 +258,24 @@
     <div class="faq">
       <details>
         <summary>Are CloakID numbers real US phone numbers?</summary>
-        <p>Yes. Every persona gets a real US number that can send and receive real calls and SMS from any carrier. Nothing virtual or fake.</p>
+        <p>Yes. CloakID numbers are real US internet-based phone numbers provided through Telnyx. They support calls, SMS/MMS, and voicemail, subject to carrier and recipient-service restrictions.</p>
       </details>
       <details>
         <summary>Can I pick my own area code?</summary>
-        <p>Yes. During persona creation, enter a 3-digit area code. If a number isn't available, we'll pick the closest geographic match.</p>
+        <p>Yes. Choose from available US area codes during setup. Availability changes; you may need to choose another area code.</p>
       </details>
       <details>
         <summary>What are temporary personas?</summary>
-        <p>Disposable 7-day numbers for short-term situations — selling something online, contractors, quick signups. When they expire, the number is permanently released.</p>
+        <p>Temporary numbers are for 7-day use and count toward your plan’s total number allowance. Follow the expiry and upgrade notices in the app. A released number cannot be recovered.</p>
       </details>
+    </div>
+
+    <div class="faq-group-title">Compatibility &amp; availability</div>
+    <div class="faq">
+      <details><summary>Which devices and countries are supported?</summary><p>CloakID is available on iPhone (iOS 16 or later) and Android. Service is US-only and requires a US mobile number. Check the store listing for device compatibility. International calling and use abroad are not promised; check with support before relying on them.</p></details>
+      <details><summary>Can I use iMessage or receive bank verification codes?</summary><p>CloakID uses SMS/MMS, not iMessage. Banks and other services decide whether to accept internet-based numbers for verification; delivery is not guaranteed. Keep an accepted number or another authentication method for important accounts.</p></details>
+      <details><summary>Can I bring my existing number?</summary><p>The app provisions new numbers and does not offer a self-serve number-porting flow. Contact support before planning a transfer or canceling an existing phone service.</p></details>
+      <details><summary>Can I use CloakID for emergency calls?</summary><p>Use your mobile carrier’s native phone service for 911. Do not rely on CloakID as your emergency calling service or as a replacement for your primary mobile service.</p></details>
     </div>
 
     <div class="faq-group-title">Calls &amp; Screening</div>
@@ -265,23 +286,23 @@
       </details>
       <details>
         <summary>Can I make outbound calls?</summary>
-        <p>Yes — from any persona, with that persona's number as caller ID. Your real number is never exposed.</p>
+        <p>Yes. Calls placed through CloakID use your persona’s number as caller ID. Calls made separately from your personal phone line use that line’s caller ID.</p>
       </details>
       <details>
         <summary>Does screening work for SMS too?</summary>
-        <p>SMS goes straight through — we don't intercept text messages. You'll see every message your persona receives.</p>
+        <p>AI call screening applies to voice calls, not SMS. Messages are handled separately and may be affected by carrier filtering, blocked senders, or delivery restrictions.</p>
       </details>
     </div>
 
-    <div class="faq-group-title">Billing &amp; Account</div>
+    <div id="billing" class="faq-group-title">Billing &amp; Account</div>
     <div class="faq">
       <details>
         <summary>How do I cancel my subscription?</summary>
-        <p>Cancel through the App Store (Settings → Apple ID → Subscriptions) or Google Play (Play Store → Subscriptions). You keep access until the end of your billing period.</p>
+        <p>Open the app’s side menu → Profile → Manage subscription. For Stripe subscriptions, this opens the billing portal, where you can cancel future renewals, update your payment method, and view invoices. Access continues through your paid period. If your account still renews through Apple, manage that subscription in iPhone Settings → your name → Subscriptions. New Google Play subscriptions are not available. Contact support about any historical Google purchase.</p>
       </details>
       <details>
         <summary>How do I delete my account?</summary>
-        <p>Open the app → side menu → Profile → Delete Account. Everything is permanently deleted and numbers are released. Full instructions on the <a href="delete-account.html" style="color: var(--brand); text-decoration: underline;">delete account page</a>.</p>
+        <p>Cancel your subscription first, then open the app → side menu → Profile → Delete Account. Read what is removed and what may remain on the <a href="delete-account.html" style="color: var(--brand); text-decoration: underline;">delete account page</a>.</p>
       </details>
     </div>
   </div>
@@ -313,14 +334,14 @@
         <div class="trouble-icon">⚠</div>
         <h3 class="trouble-title">SMS not sending</h3>
       </div>
-      <p class="trouble-body">Some carriers filter outbound SMS from new numbers. Wait 24 hours — most temporary blocks clear automatically. Contact us if it persists.</p>
+      <p class="trouble-body">Check the destination number, your connection, and the app’s delivery status. Carriers may filter messages or reject internet-based numbers. Contact support with the time and error shown if delivery keeps failing; avoid repeatedly resending.</p>
     </div>
     <div class="trouble-card">
       <div class="trouble-head">
         <div class="trouble-icon">⚠</div>
         <h3 class="trouble-title">Billing issues</h3>
       </div>
-      <p class="trouble-body">If you were charged unexpectedly, contact support@cloakid.app with your email and we'll sort it out immediately.</p>
+      <p class="trouble-body">If you were charged unexpectedly, contact support@cloakid.app with your receipt and a description of the issue. Never send card details or sign-in codes.</p>
     </div>
   </div>
 </section>
@@ -372,9 +393,9 @@
     <div class="foot-meta">
       <a class="foot-mark" href="index.html">
         <img src="images/cloakid-icon-black.png" alt="" />
-        <span>&copy; 2026 Niobium LLC &middot; iOS 16+ &middot; US only</span>
+        <span>&copy; 2026 Niobium LLC &middot; iPhone &amp; Android &middot; US only</span>
       </a>
-      <span class="foot-status">All systems normal</span>
+      <a href="support.html">Get support</a>
     </div>
   </div>
 </footer>

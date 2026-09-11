@@ -13,7 +13,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Delete Your Account — CloakID</title>
-<meta name="description" content="How to permanently delete your CloakID account and all associated data.">
+<meta name="description" content="How to delete your CloakID account, cancel billing, and understand data-retention exceptions.">
 <link rel="icon" type="image/png" href="images/cloakid-icon-black.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -123,17 +123,19 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="CloakID">
 <meta property="og:title" content="Delete Your Account — CloakID">
-<meta property="og:description" content="How to permanently delete your CloakID account and all associated data.">
+<meta property="og:description" content="How to delete your CloakID account, cancel billing, and understand data-retention exceptions.">
 <meta property="og:url" content="https://www.cloakid.app/delete-account">
 <meta property="og:image" content="https://www.cloakid.app/images/cloakid-icon-black.png">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Delete Your Account — CloakID">
-<meta name="twitter:description" content="How to permanently delete your CloakID account and all associated data.">
+<meta name="twitter:description" content="How to delete your CloakID account, cancel billing, and understand data-retention exceptions.">
 <!-- Vercel Web Analytics -->
 <script>
   window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
 </script>
 <script defer src="/_vercel/insights/script.js"></script>
+<link rel="stylesheet" href="site-navigation.css">
+<script defer src="site-navigation.js"></script>
 </head>
 <body>
 
@@ -146,9 +148,20 @@
   <div class="nav-links">
     <a href="/#how">How it works</a>
     <a href="/#features">Features</a>
-    <a href="/#security">Security</a>
-    <a href="/#pricing">Pricing</a>
+    <a href="security.html">Security</a>
+    <a href="pricing.html">Pricing</a>
   </div>
+  <details class="mobile-menu">
+    <summary aria-label="Site navigation">Menu</summary>
+    <div class="mobile-menu-links">
+      <a href="/#how">How it works</a>
+      <a href="/#features">Features</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="security.html">Security</a>
+      <a href="support.html">Support</a>
+      <a href="/#download">Download the app</a>
+    </div>
+  </details>
   <a class="nav-cta" href="https://app.cloakid.app">Get CloakID</a>
 </nav>
 
@@ -171,7 +184,7 @@
         <div class="delete-icon brand">↓</div>
         <h2 class="delete-title">How to delete from the app</h2>
       </div>
-      <p class="delete-lede">You can delete your account directly from the CloakID app in just a few taps:</p>
+      <p class="delete-lede">Before deleting your account, cancel future subscription renewals from Profile → Manage subscription and save anything you need. Delete individual voicemails in the app if you also want their stored audio removed. Then follow these steps:</p>
       <ol class="ol-steps">
         <li><span class="num">1</span>Open the <strong>CloakID</strong> app on your device</li>
         <li><span class="num">2</span>Tap the <strong>menu icon</strong> (top-left corner) to open the side menu</li>
@@ -187,18 +200,18 @@
     <div class="delete-card">
       <div class="delete-head">
         <div class="delete-icon danger">×</div>
-        <h2 class="delete-title">What data is permanently deleted</h2>
+        <h2 class="delete-title">What is removed from your account</h2>
       </div>
-      <p class="delete-lede">When you delete your account, the following is <strong>permanently deleted and cannot be recovered:</strong></p>
+      <p class="delete-lede">Deleting your account removes the following app records. Stored media and provider records are handled separately, as explained below:</p>
       <ul class="deleted-grid">
         <li>Your user account &amp; profile</li>
-        <li>All personas &amp; phone numbers</li>
+        <li>Persona records; phone-number release is requested</li>
         <li>Call history &amp; call logs</li>
         <li>All SMS &amp; MMS messages</li>
         <li>Contacts &amp; approved callers</li>
-        <li>Voicemail recordings</li>
+        <li>Voicemail entries in your call history</li>
         <li>Push notification settings</li>
-        <li>Subscription &amp; billing records</li>
+        <li>Local subscription profile; provider billing records are separate</li>
       </ul>
     </div>
 
@@ -208,7 +221,14 @@
         <div class="delete-icon warn">!</div>
         <h2 class="delete-title">Data retention</h2>
       </div>
-      <p class="delete-body">No user data is retained after account deletion. All phone numbers are immediately released back to the telephony provider and <strong>cannot be recovered</strong>. This action is permanent and irreversible.</p>
+      <p class="delete-body">Account deletion is permanent. Released numbers cannot be recovered. Number release and media cleanup depend on separate provider operations, so they may not finish at the moment your account is removed.</p>
+    </div>
+
+    <div class="delete-card">
+      <h2 class="delete-title">What may remain</h2>
+      <p class="delete-body">Message media is scheduled for cleanup. Stored voicemail audio, backups, and provider records may remain after app records are deleted. Delete individual voicemails before account deletion, or contact <a href="mailto:privacy@cloakid.app">privacy@cloakid.app</a> about remaining stored media.</p>
+      <p class="delete-body">Billing, security, and abuse-prevention records may be retained for accounting, disputes, fraud prevention, or legal obligations. A one-way phone-number hash may be retained for up to 180 days for trial accounts that never subscribed. See the <a href="privacy-policy.html#retention">Privacy Policy</a> for retention details.</p>
+      <p class="delete-body"><strong>Account deletion does not replace subscription cancellation.</strong> Cancel through Stripe, or Apple for a grandfathered Apple subscription, before deleting your account. Contact <a href="mailto:billing@cloakid.app">billing@cloakid.app</a> if you have already deleted it and need billing help.</p>
     </div>
 
     <!-- Need help -->
@@ -217,7 +237,7 @@
         <div class="delete-icon brand">?</div>
         <h2 class="delete-title">Need help?</h2>
       </div>
-      <p class="delete-body" style="margin-bottom: 20px;">If you can't access the app or need assistance deleting your account, email us with the address associated with your account and we'll process your request.</p>
+      <p class="delete-body" style="margin-bottom: 20px;">If you can't access the app or need assistance deleting your account, email support and describe the request. We will verify account ownership before taking action. Never send a sign-in code, password, or payment card details.</p>
       <a href="mailto:support@cloakid.app" class="btn-primary">
         support@cloakid.app <span class="arr">→</span>
       </a>
@@ -261,9 +281,9 @@
     <div class="foot-meta">
       <a class="foot-mark" href="index.html">
         <img src="images/cloakid-icon-black.png" alt="" />
-        <span>&copy; 2026 Niobium LLC &middot; iOS 16+ &middot; US only</span>
+        <span>&copy; 2026 Niobium LLC &middot; iPhone &amp; Android &middot; US only</span>
       </a>
-      <span class="foot-status">All systems normal</span>
+      <a href="support.html">Get support</a>
     </div>
   </div>
 </footer>

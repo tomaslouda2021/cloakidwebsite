@@ -1,0 +1,17 @@
+/* Shared small-screen navigation. Native details works without JavaScript. */
+.mobile-menu { display: none; position: relative; margin: 0; border: 0; }
+.mobile-menu summary { display: flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 10px; font: 500 14px/1.4 Geist, system-ui, sans-serif; cursor: pointer; list-style: none; border: 0; }
+.mobile-menu summary::-webkit-details-marker { display: none; }
+.mobile-menu summary::after { content: none; }
+.mobile-menu-links { position: fixed; top: 68px; left: 16px; right: 16px; width: auto; padding: 8px; border: 1px solid #d8dcde; border-radius: 12px; background: #fff; color: #14171b; box-shadow: 0 12px 24px #14171b20; z-index: 30; }
+.mobile-menu-links a { display: flex; align-items: center; min-height: 44px; padding: 8px 12px; border-radius: 6px; font: 500 15px/1.5 Geist, system-ui, sans-serif; text-decoration: none; }
+.mobile-menu-links a:hover { background: #e6f0f1; }
+.mobile-menu :focus-visible { outline: 3px solid #0b6e7c; outline-offset: 2px; }
+@media (max-width: 860px) {
+  .nav .nav-links { display: none; }
+  .nav .mobile-menu { display: block; justify-self: end; }
+  .nav { gap: 10px; }
+}
+@media (max-width: 360px) {
+  .nav .brand-word, .nav .brand span { display: none; }
+}

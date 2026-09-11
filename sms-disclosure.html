@@ -56,6 +56,8 @@
   window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
 </script>
 <script defer src="/_vercel/insights/script.js"></script>
+<link rel="stylesheet" href="site-navigation.css">
+<script defer src="site-navigation.js"></script>
 </head>
 <body>
 
@@ -68,9 +70,20 @@
   <div class="nav-links">
     <a href="/#how">How it works</a>
     <a href="/#features">Features</a>
-    <a href="/#security">Security</a>
-    <a href="/#pricing">Pricing</a>
+    <a href="security.html">Security</a>
+    <a href="pricing.html">Pricing</a>
   </div>
+  <details class="mobile-menu">
+    <summary aria-label="Site navigation">Menu</summary>
+    <div class="mobile-menu-links">
+      <a href="/#how">How it works</a>
+      <a href="/#features">Features</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="security.html">Security</a>
+      <a href="support.html">Support</a>
+      <a href="/#download">Download the app</a>
+    </div>
+  </details>
   <a class="nav-cta" href="https://app.cloakid.app">Get CloakID</a>
 </nav>
 
@@ -266,9 +279,9 @@
     <div class="foot-meta">
       <a class="foot-mark" href="index.html">
         <img src="images/cloakid-icon-black.png" alt="" />
-        <span>&copy; 2026 Niobium LLC &middot; iOS 16+ &middot; US only</span>
+        <span>&copy; 2026 Niobium LLC &middot; iPhone &amp; Android &middot; US only</span>
       </a>
-      <span class="foot-status">All systems normal</span>
+      <a href="support.html">Get support</a>
     </div>
   </div>
 </footer>

@@ -56,6 +56,8 @@
   window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
 </script>
 <script defer src="/_vercel/insights/script.js"></script>
+<link rel="stylesheet" href="site-navigation.css">
+<script defer src="site-navigation.js"></script>
 </head>
 <body>
 
@@ -68,9 +70,20 @@
   <div class="nav-links">
     <a href="/#how">How it works</a>
     <a href="/#features">Features</a>
-    <a href="/#security">Security</a>
-    <a href="/#pricing">Pricing</a>
+    <a href="security.html">Security</a>
+    <a href="pricing.html">Pricing</a>
   </div>
+  <details class="mobile-menu">
+    <summary aria-label="Site navigation">Menu</summary>
+    <div class="mobile-menu-links">
+      <a href="/#how">How it works</a>
+      <a href="/#features">Features</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="security.html">Security</a>
+      <a href="support.html">Support</a>
+      <a href="/#download">Download the app</a>
+    </div>
+  </details>
   <a class="nav-cta" href="https://app.cloakid.app">Get CloakID</a>
 </nav>
 
@@ -87,7 +100,7 @@
 <section class="section">
   <div class="prose">
 
-    <p class="meta"><strong>Effective Date:</strong> January 1, 2026 &nbsp;·&nbsp; <strong>Last Updated:</strong> August 1, 2026</p>
+    <p class="meta"><strong>Effective Date:</strong> January 1, 2026 &nbsp;·&nbsp; <strong>Last Updated:</strong> September 11, 2026</p>
 
     <p>Niobium LLC ("we," "our," or "us") operates CloakID, a privacy-first phone identity management platform. This Privacy Policy explains how we collect, use, disclose, and protect your information when you use our services.</p>
 
@@ -95,7 +108,7 @@
 
     <h3>Information You Provide</h3>
     <ul>
-      <li><strong>Account Information:</strong> Your name, email address, phone number, and password when you create an account. Your phone number is stored encrypted and is the primary identifier for your account.</li>
+      <li><strong>Account Information:</strong> Your mobile number for sign-in, and the name, email address, or other profile information you provide. Your account phone number is stored using encryption and a separate lookup hash.</li>
       <li><strong>Profile Information:</strong> Professional details and preferences you add to your personas, including persona names and AI context descriptions.</li>
       <li><strong>Contacts:</strong> Phone numbers and names of contacts you add within the app for caller management purposes.</li>
       <li><strong>Communications:</strong> Messages and feedback you send to our support team.</li>
@@ -106,7 +119,7 @@
       <li><strong>Usage Data:</strong> Features used, personas created, call outcomes (allowed, blocked, sent to voicemail), and interaction patterns within the app.</li>
       <li><strong>Device Information:</strong> Device type, operating system, and a device-level identifier (push notification token) used to deliver push notifications to your device.</li>
       <li><strong>User ID:</strong> An internal identifier linked to your account, used to authenticate and personalize your experience.</li>
-      <li><strong>Purchase History:</strong> Your subscription plan, billing status, and subscription provider (Apple, Google, or Stripe). We do not store payment card numbers or bank account details — payment processing is handled entirely by Apple, Google, or Stripe outside our app.</li>
+      <li><strong>Purchase History:</strong> Your subscription plan, billing status, and billing-provider identifiers. New subscriptions are processed by Stripe; Apple handles grandfathered renewals. Historical store purchase records may also be retained. We do not store your full payment card details.</li>
       <li><strong>Log Data:</strong> IP address, access times, and API request logs for security and troubleshooting purposes.</li>
     </ul>
 
@@ -114,9 +127,9 @@
     <p>When you receive calls through CloakID:</p>
     <ul>
       <li><strong>Caller phone numbers</strong> are collected, logged, and associated with your account to provide call history and screening decisions.</li>
-      <li><strong>Caller audio</strong> during the screening phase of an inbound call is streamed in real time to Deepgram, Inc. for speech-to-text transcription. This transcription is used to make a call screening decision. The audio stream itself is not stored by CloakID.</li>
-      <li><strong>Call transcripts</strong> generated during screening are sent to OpenAI (GPT-4) to determine whether to allow, block, or send a call to voicemail. Transcripts are processed in real time and are not stored in your account after the call ends.</li>
-      <li><strong>Voicemail recordings</strong> left by callers are downloaded from our telephony provider, encrypted, and stored securely on Amazon Web Services (AWS) S3. Voicemail transcriptions are also encrypted and stored so you can read them in the app. You can delete voicemails at any time.</li>
+      <li><strong>Caller audio</strong> during screening is processed for transcription through Deepgram or Telnyx, depending on the call flow. Live streams are processed in real time. Where recorded screening segments are used, they are scheduled for deletion after processing, with cleanup for leftover provider recordings.</li>
+      <li><strong>Call transcripts</strong> generated during screening and relevant persona context are processed by OpenAI to help decide whether to allow, block, challenge, or send a call to voicemail. Screening transcripts can be stored with call history after the call ends. They are not automatically deleted at the end of every customer call.</li>
+      <li><strong>Voicemail recordings</strong> left by callers are downloaded from our telephony provider, encrypted, and stored securely on Amazon Web Services (AWS) S3. Voicemail transcriptions are encrypted and stored in the database so you can read them in the app. You can delete voicemails at any time.</li>
       <li><strong>Call metadata</strong> — including timestamps, duration, and screening decisions — is stored and linked to your account.</li>
     </ul>
 
@@ -124,7 +137,7 @@
     <p>With your explicit permission, CloakID can write your virtual phone numbers into your device's native Contacts app. This allows your persona numbers to appear in iOS Focus filters and other device features. CloakID reads your device contacts only to check whether a persona number has already been saved, to avoid duplicates. Your device contacts are never uploaded to our servers.</p>
 
     <h3>Biometric Data</h3>
-    <p>When you enable biometric authentication (Face ID / Touch ID), biometric identifiers are stored securely on your device using iOS Keychain or Android Keystore. This data is never transmitted to our servers and is automatically invalidated if you change your device's biometric enrollment.</p>
+    <p>When you enable biometric unlock, your device’s operating system verifies your face or fingerprint. CloakID does not receive or store your biometric template. App credentials use platform secure storage; biometric templates are managed by the operating system.</p>
 
     <h3>Diagnostics and Crash Reporting</h3>
     <p>We use Sentry to collect crash reports and performance data when the app encounters errors. This data may include your user ID, device information, and details about what the app was doing when the error occurred. This information is used solely to identify and fix bugs and improve app stability.</p>
@@ -148,15 +161,15 @@
     <p>To keep CloakID and the phone network safe, we use account and usage information &mdash; such as call and message volume, account provisioning and number-change activity, spam and fraud signals from our telephony provider and screening tools, and reports submitted by call or message recipients &mdash; to detect and act on prohibited use. We do not proactively monitor the content of your communications for this purpose. When we investigate a specific abuse report, we may review relevant account records, including call logs, message history, and account details, to confirm what occurred and take appropriate action consistent with our Terms of Service. We never sell your information, and we do not use the content of your communications for advertising.</p>
 
     <h2>Third-Party Service Providers</h2>
-    <p>We share data with the following third-party providers solely to operate the CloakID service. These providers are not permitted to use your data for their own marketing or advertising purposes.</p>
+    <p>The following providers process data to operate the CloakID service. Their services have their own terms and retention practices. Website measurement providers are described separately under Website Analytics and Cookies.</p>
     <ul>
-      <li><strong>Telnyx:</strong> Our telephony provider. Phone numbers, call routing, SMS delivery, and voicemail recording are handled by Telnyx. Caller phone numbers and call metadata are transmitted to Telnyx as part of normal call processing.</li>
-      <li><strong>Deepgram, Inc.:</strong> Caller audio during call screening is streamed to Deepgram for real-time speech-to-text transcription. Audio is not stored by Deepgram beyond the active call session under our agreement.</li>
-      <li><strong>OpenAI:</strong> Call screening transcripts are sent to OpenAI's GPT-4 API to generate a screening decision. No personally identifiable information beyond the transcript and your persona's context description is included.</li>
-      <li><strong>Amazon Web Services (AWS):</strong> Encrypted voicemail recordings and transcripts are stored in AWS S3.</li>
+      <li><strong>Telnyx:</strong> Our telephony provider. Phone numbers, call routing, SMS delivery, and voicemail recording are handled by Telnyx. Phone numbers, communication content, and routing metadata are processed by Telnyx as needed to deliver the service.</li>
+      <li><strong>Deepgram, Inc.:</strong> Caller audio is processed for speech-to-text transcription. Provider retention is governed by the applicable service configuration and terms; we do not promise zero provider retention.</li>
+      <li><strong>OpenAI:</strong> Screening transcripts and relevant persona and caller context are processed to generate a screening decision. This content may contain personal information supplied by you or the caller.</li>
+      <li><strong>Amazon Web Services (AWS):</strong> Hosts service infrastructure and media, including encrypted voicemail audio in S3. App records and transcription text are also stored with our database hosting provider.</li>
       <li><strong>Firebase (Google):</strong> We use Firebase Cloud Messaging (FCM) to deliver push notifications to your device. Your device's push notification token is shared with Google/Firebase for this purpose.</li>
       <li><strong>Sentry:</strong> Crash reports and performance data are sent to Sentry for error monitoring and app stability. This data may include your user ID and device context.</li>
-      <li><strong>Apple / Google / Stripe:</strong> Subscription and billing verification. We receive confirmation of your purchase but never your payment card details.</li>
+      <li><strong>Stripe / Apple:</strong> Stripe handles new purchases and Apple handles grandfathered renewals. Historical Apple or Google purchase records may be used for support and verification. We receive billing status and purchase identifiers, not your full payment card details.</li>
       <li><strong>IPQualityScore / Twilio:</strong> Used at account registration to validate your phone number. Caller phone numbers may also be looked up via Telnyx's Number Lookup service during call screening to detect spam or VOIP numbers.</li>
     </ul>
 
@@ -182,7 +195,7 @@
     </div>
 
     <h2>Information Sharing and Disclosure</h2>
-    <p>We do not sell, trade, or rent your personal information to third parties. We do not share your data with advertising networks or data brokers. We may share your information only in these circumstances:</p>
+    <p>We do not sell account or communications data or share it with data brokers. Website interaction data is processed for measurement as described below. We may also share information in these circumstances:</p>
     <ul>
       <li><strong>Service Providers:</strong> As described above, with providers who help us operate CloakID (telephony, transcription, AI screening, cloud storage, push notifications, error monitoring, and billing).</li>
       <li><strong>Legal Requirements:</strong> When required by law, court order, or to protect the rights, property, or safety of Niobium LLC, our users, or the public.</li>
@@ -193,10 +206,10 @@
     <h2>Data Security</h2>
     <p>We implement industry-standard security measures to protect your information, including:</p>
     <ul>
-      <li>Encryption of phone numbers and voicemail data at rest (Fernet encryption)</li>
-      <li>Encryption of all data in transit (TLS)</li>
+      <li>Application-level encryption for account phone numbers and voicemail audio and transcription text (Fernet encryption)</li>
+      <li>HTTPS for app and website connections to the public API; carrier calls and SMS/MMS are not end-to-end encrypted</li>
       <li>Voicemail recordings stored encrypted in AWS S3</li>
-      <li>Regular security audits and vulnerability assessments</li>
+      <li>Security checks during development and maintenance; no independent certification is claimed here</li>
       <li>Access controls and multi-factor authentication for internal systems</li>
     </ul>
     <p>However, no method of transmission over the internet is 100% secure, and we cannot guarantee absolute security.</p>
@@ -212,8 +225,11 @@
     </ul>
     <p>To exercise these rights, contact us at privacy@cloakid.app.</p>
 
-    <h2>Data Retention</h2>
-    <p>We retain your information for as long as your account is active or as needed to provide services. Voicemail recordings are retained until you delete them. Call logs are retained for account history purposes. After account deletion, we may retain certain information as required by law or for legitimate business purposes, after which it is permanently deleted.</p>
+    <h2 id="retention">Data Retention</h2>
+    <p>Account records, messages, call history, and screening transcripts may remain while your account is active. Voicemail audio and transcription text are stored so you can access them in the app; individual voicemails can be deleted.</p>
+    <p>Deleting your account removes your profile and associated app records and requests release of your phone numbers. Media cleanup is separate: message media is scheduled for cleanup, and stored audio, backups, or provider copies may remain beyond deletion of app records. Contact privacy@cloakid.app about removal of remaining stored media.</p>
+    <p>Billing, security, and abuse-prevention records may be retained for accounting, dispute resolution, fraud prevention, or legal obligations. For trial accounts that never subscribed, a one-way phone-number hash may be retained for up to 180 days after deletion to prevent repeat trials. Service providers may retain records under their own requirements. We do not promise immediate deletion of every copy or one retention deadline for all categories.</p>
+    <p>Public demo call records are scheduled for removal of caller numbers and words after 24 hours. Rate-limit counters may remain for up to 26 hours. Provider records are separate. See <a href="security.html#retention">Security</a> and <a href="delete-account.html">Account deletion</a> for more detail.</p>
 
     <h2>Children's Privacy</h2>
     <p>CloakID is not intended for users under 18 years of age. We do not knowingly collect information from children under 18. If you believe we have inadvertently collected information from a minor, please contact us at privacy@cloakid.app.</p>
@@ -224,8 +240,9 @@
     <h2>California Privacy Rights</h2>
     <p>California residents have additional rights under the California Consumer Privacy Act (CCPA), including the right to know what personal information is collected, the right to request deletion, and the right to opt out of the sale of personal information. We do not sell personal information. For more information or to exercise your rights, contact us at privacy@cloakid.app.</p>
 
-    <h2>Cookie Policy</h2>
-    <p>Our website uses cookies and similar technologies to enhance your experience and analyze usage. You can manage cookie preferences through your browser settings. The CloakID mobile app does not use browser cookies.</p>
+    <h2>Website Analytics and Cookies</h2>
+    <p>The marketing website uses Vercel Web Analytics and Google Ads measurement to understand page visits, navigation, store-link clicks, and checkout-link clicks. Google’s tag may use cookies or similar technologies and process device or network information. These website interactions are separate from the content of your calls and messages. A checkout-link click does not mean a purchase was completed.</p>
+    <p>You can restrict cookies through your browser settings. The native mobile app does not use browser cookies. See <a href="https://policies.google.com/privacy">Google’s Privacy Policy</a> and <a href="https://vercel.com/docs/analytics/privacy-policy">Vercel’s analytics privacy information</a> for provider details.</p>
 
     <h2>Changes to This Policy</h2>
     <p>We may update this Privacy Policy periodically. We will notify you of material changes via email or through the app. Continued use of CloakID after changes take effect constitutes acceptance of the updated policy.</p>
@@ -277,9 +294,9 @@
     <div class="foot-meta">
       <a class="foot-mark" href="index.html">
         <img src="images/cloakid-icon-black.png" alt="" />
-        <span>&copy; 2026 Niobium LLC &middot; iOS 16+ &middot; US only</span>
+        <span>&copy; 2026 Niobium LLC &middot; iPhone &amp; Android &middot; US only</span>
       </a>
-      <span class="foot-status">All systems normal</span>
+      <a href="support.html">Get support</a>
     </div>
   </div>
 </footer>

@@ -59,7 +59,7 @@
   .mono { font-family: 'Geist Mono', ui-monospace, monospace; }
 
   /* Hero punchline — the swap is the aha */
-  .punch { color: var(--accent); font-weight: 700; position: relative; white-space: nowrap; }
+  .punch { color: var(--accent); font-weight: 700; position: relative; }
   .punch::after {
     content: ""; position: absolute; left: 0; right: 0; bottom: 0.06em; height: 5px;
     background: var(--accent); opacity: 0.28; border-radius: 3px;
@@ -110,6 +110,11 @@
   .nav-links a:hover { color: var(--ink); }
   .nav-cta { display: flex; align-items: center; gap: 16px; }
   @media (max-width: 860px) { .nav-links { display: none; } }
+
+  .purchase-note { margin-top: 18px; font-size: 14px; line-height: 1.6; color: var(--ink-2); }
+  .purchase-note a, .faq p a, .vow p a, .hero .lede a { text-decoration: underline; text-underline-offset: 3px; }
+  :focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
+  section[id] { scroll-margin-top: 88px; }
 
   /* ---------- Hero ---------- */
   .hero { padding: 84px 0 72px; position: relative; overflow: hidden; }
@@ -363,6 +368,8 @@
   window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
 </script>
 <script defer src="/_vercel/insights/script.js"></script>
+<link rel="stylesheet" href="site-navigation.css">
+<script defer src="site-navigation.js"></script>
 </head>
 <body>
 
@@ -379,6 +386,17 @@
       <a href="#security">Security</a>
       <a href="#pricing">Pricing</a>
     </nav>
+  <details class="mobile-menu">
+    <summary aria-label="Site navigation">Menu</summary>
+    <div class="mobile-menu-links">
+      <a href="/#how">How it works</a>
+      <a href="/#features">Features</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="security.html">Security</a>
+      <a href="support.html">Support</a>
+      <a href="/#download">Download the app</a>
+    </div>
+  </details>
     <div class="nav-cta">
       <a href="https://app.cloakid.app" class="btn btn-primary">Get CloakID</a>
     </div>
@@ -389,14 +407,14 @@
 <section class="hero">
   <div class="wrap hero-grid">
     <div class="reveal">
-      <span class="eyebrow">Privacy-first phone numbers</span>
+      <span class="eyebrow">Phone privacy for public-facing lives</span>
       <h1 style="margin-top:22px;">Give out a number.<br><span class="punch">Not your number.</span></h1>
-      <p class="lede">Real phone numbers you hand out instead of your own. Spam gets screened. Your real number stays private.</p>
+      <p class="lede">Separate numbers for your work, press, and personal life. CloakID screens unknown callers against rules you set, so you can be reachable without giving out your personal number.</p>
       <div class="hero-cta">
-        <a href="https://apps.apple.com/us/app/cloakid/id6761379232" class="badge" aria-label="Download CloakID on the App Store"><img src="images/app-store-badge-black.svg" alt="Download on the App Store"></a>
-        <a href="https://play.google.com/store/apps/details?id=com.cloakidmobile&referrer=utm_source%3Dcloakid_site%26utm_medium%3Dweb%26utm_campaign%3Dsite_badge" class="badge" aria-label="Get CloakID on Google Play"><img src="images/google-play-badge-black.png" alt="Get it on Google Play"></a>
-        <a href="#how" class="btn btn-ghost">See how it works <i data-lucide="arrow-down" class="ic"></i></a>
+        <a href="https://app.cloakid.app" class="btn btn-primary">Create your account</a>
+        <a href="#pricing" class="btn btn-ghost">Compare plans <i data-lucide="arrow-down" class="ic"></i></a>
       </div>
+      <p class="purchase-note">Plans from $99/month. Create an account, choose a plan, then use CloakID on <a href="#download">iPhone or Android</a>. US mobile number required.</p>
       <div class="hero-trust">
         <span><span class="dot"></span> Real US numbers</span>
         <span><span class="dot"></span> Encrypted &amp; private</span>
@@ -407,7 +425,7 @@
       <p class="lede" style="margin-top:26px;font-size:1rem;">
         Rather hear it than read about it? <a href="tel:+15129885374"><b>Call the demo line: (512)&nbsp;988-5374</b></a>
         &mdash; no signup, no app. Say your name and why you're calling, and you'll be screened like any other caller.
-        Your number and what you say are deleted 24 hours later.
+        Demo call records are scheduled for removal of your number and words after 24 hours. <a href="security.html#retention">How demo data is handled</a>.
       </p>
     </div>
 
@@ -429,9 +447,9 @@
 <section class="strip">
   <div class="wrap">
     <div class="strip-grid">
-      <div><div class="k">8</div><div class="v">Personas per account</div></div>
-      <div><div class="k">&lt;1s</div><div class="v">To screen a call</div></div>
-      <div><div class="k">AES-128</div><div class="v">Encryption at rest</div></div>
+      <div><div class="k">5 or 8</div><div class="v">Numbers, depending on plan</div></div>
+      <div><div class="k">Your rules</div><div class="v">Screening for each number</div></div>
+      <div><div class="k">US</div><div class="v">Numbers for calls &amp; texts</div></div>
       <div><div class="k">0</div><div class="v">Times we sell your data</div></div>
     </div>
   </div>
@@ -443,8 +461,8 @@
     <div class="problem-grid">
       <div class="reveal">
         <span class="eyebrow">The problem</span>
-        <h2 style="margin-top:18px;">Your number is the most reused password you'll ever have.</h2>
-        <p class="big">You hand the same ten digits to every form, dealership, dating app, and delivery driver. From there it spreads to <b>data brokers, lead lists, and spam dialers</b> &mdash; and once it's out, there is no way to take it back.</p>
+        <h2 style="margin-top:18px;">Being reachable shouldn't mean being reachable by everyone.</h2>
+        <p class="big">An investor introduction, a press inquiry, a contractor, a school form. When they all lead to the same number, every part of your life competes for your attention. Give each one its own line, with its own rules for who gets through.</p>
       </div>
       <div class="problem-phone reveal">
         <img class="device" src="images/device-everyone.png" alt="Everyone has your number — every caller funnels to your one line">
@@ -459,26 +477,26 @@
     <div class="sec-head center reveal">
       <span class="eyebrow center">How it works</span>
       <h2>Three steps to a quieter phone.</h2>
-      <p>Set it up once. CloakID handles the rest in the background.</p>
+      <p>Start with an account and a plan. Then decide who each number is for.</p>
     </div>
     <div class="steps">
       <div class="step reveal">
         <img class="device" src="images/device-personas.png" alt="Personas list">
         <div class="num">01</div>
         <h3>Create a persona</h3>
-        <p>Pick an area code and get a real US number in seconds. Name it Work, Dating, Deliveries — whatever fits.</p>
+        <p>Choose an available US area code. Name the number Work, Press, or Family and describe the callers you expect.</p>
       </div>
       <div class="step reveal">
         <img class="device" src="images/device-share.png" alt="Share a persona's number by link or QR">
         <div class="num">02</div>
         <h3>Hand it out instead</h3>
-        <p>Give the persona's number to anyone who asks. Your real number stays on your phone, every time.</p>
+        <p>Give the persona's number to anyone who asks. Recipients see that number instead of your personal number.</p>
       </div>
       <div class="step reveal">
         <img class="device" src="images/device-allowed.png" alt="Real caller allowed through">
         <div class="num">03</div>
         <h3>Let it screen</h3>
-        <p>Unknown callers state who they are. Only the ones that make sense for that persona ever ring through.</p>
+        <p>Unknown callers state who they are and why they are calling. Your rules help route the call to you, voicemail, or a block.</p>
       </div>
     </div>
   </div>
@@ -492,11 +510,11 @@
       <div class="ftext">
         <span class="eyebrow">Personas</span>
         <h3>A number for every part of your life.</h3>
-        <p>Keep work, family, dating, and one-off transactions completely separate — each with its own real US line that you control.</p>
+        <p>Give colleagues, journalists, family, and service providers different ways to reach you. Each number has its own screening rules, messages, and call history.</p>
         <ul class="flist">
-          <li><span class="tick"><i data-lucide="check"></i></span> Up to eight active personas at once</li>
-          <li><span class="tick"><i data-lucide="check"></i></span> Drag to reorder, pause, or retire any line</li>
-          <li><span class="tick"><i data-lucide="check"></i></span> Spin up a temporary number for a single sale</li>
+          <li><span class="tick"><i data-lucide="check"></i></span> 5 active numbers on Principal; 8 on Executive</li>
+          <li><span class="tick"><i data-lucide="check"></i></span> Set the purpose and screening rules for each line</li>
+          <li><span class="tick"><i data-lucide="check"></i></span> Use a 7-day number within your plan’s total allowance</li>
         </ul>
       </div>
       <div class="fimg">
@@ -507,12 +525,12 @@
     <div class="frow flip reveal">
       <div class="ftext">
         <span class="eyebrow">Screening</span>
-        <h3>Every call screened before it rings.</h3>
-        <p>Unknown callers are asked who they are and why they're calling. CloakID matches the answer to the persona — and only then decides whether your phone should ever light up.</p>
+        <h3>A screening assistant for unknown callers.</h3>
+        <p>CloakID asks unknown callers who they are and why they are calling, then evaluates the response against your rules. Approved callers can skip screening. Screening can make mistakes; you can review outcomes and adjust your rules.</p>
         <ul class="flist">
-          <li><span class="tick"><i data-lucide="check"></i></span> Spam and scam dialers never reach you</li>
-          <li><span class="tick"><i data-lucide="check"></i></span> Real callers get through in under a second</li>
-          <li><span class="tick"><i data-lucide="check"></i></span> See exactly why each call was handled</li>
+          <li><span class="tick"><i data-lucide="check"></i></span> Screen unwanted calls before deciding whether to ring</li>
+          <li><span class="tick"><i data-lucide="check"></i></span> Let approved callers bypass the questions</li>
+          <li><span class="tick"><i data-lucide="check"></i></span> Review call outcomes in your activity feed</li>
         </ul>
       </div>
       <div class="fimg">
@@ -529,12 +547,12 @@
       <div>
         <div class="mi"><i data-lucide="timer"></i></div>
         <h4>Temporary numbers</h4>
-        <p>Selling something online? Spin up a disposable number, then release it when you're done — no trail.</p>
+        <p>Use a 7-day number for a short project or a one-off transaction. Released numbers cannot be recovered; releasing a number does not erase past communications.</p>
       </div>
       <div>
         <div class="mi"><i data-lucide="eye-off"></i></div>
         <h4>Your real number stays private</h4>
-        <p>No one you call from CloakID ever sees your real number. Not dealerships, not strangers. Ever.</p>
+        <p>Calls placed through CloakID show your persona’s caller ID. Send messages in CloakID to use that number instead of your personal line.</p>
       </div>
     </div>
 
@@ -546,24 +564,24 @@
   <div class="wrap sec">
     <div class="sec-head reveal">
       <span class="eyebrow">Security</span>
-      <h2>Built to forget.</h2>
-      <p>A privacy product is only as good as what it refuses to keep. We designed CloakID so there's as little to lose as possible.</p>
+      <h2>Privacy you can understand.</h2>
+      <p>Know what stays private, what is stored, and which providers help deliver your calls.</p>
     </div>
     <div class="vow">
       <div class="reveal">
         <div class="vi"><i data-lucide="lock"></i></div>
-        <h4>Encrypted at rest &amp; in transit</h4>
-        <p>Your phone numbers, call recordings, and voicemail are encrypted. Screening runs automatically &mdash; no human at CloakID listens to your calls &mdash; and call audio is deleted once it's handled.</p>
+        <h4>Protected account data</h4>
+        <p>Account phone numbers and stored voicemail audio use encryption. Screening transcripts can remain in call history. Carrier calls and SMS are not end-to-end encrypted. <a href="security.html#storage">Read about storage and access</a>.</p>
       </div>
       <div class="reveal">
         <div class="vi"><i data-lucide="ban"></i></div>
-        <h4>Never sold, never shared</h4>
-        <p>We don't sell your data, share it with brokers, or build an advertising profile. That's not our business model — your subscription is.</p>
+        <h4>No data selling</h4>
+        <p>Your subscription pays for CloakID. We do not sell your account or communications data. Telephony, transcription, AI, and hosting providers process data to run the service. <a href="security.html#processors">See who processes it</a>.</p>
       </div>
       <div class="reveal">
         <div class="vi"><i data-lucide="trash-2"></i></div>
-        <h4>Delete and walk away</h4>
-        <p>Close your account and your personas, call logs, and messages are deleted from CloakID &mdash; and your numbers are released the same day.</p>
+        <h4>Control your account</h4>
+        <p>Cancel billing and request account deletion from your profile. Account records, media, and provider records have different deletion processes. <a href="delete-account.html">See what deletion covers</a>.</p>
       </div>
     </div>
   </div>
@@ -579,17 +597,17 @@
     </div>
     <div class="plans reveal">
       <div class="plan featured">
-        <span class="tag">Most popular</span>
+        <span class="tag">Principal</span>
         <div class="pname">Principal</div>
         <div class="pdesc">For one protected person</div>
         <div class="amt">$99<span>/mo</span></div>
         <ul class="plist">
-          <li><span class="tick"><i data-lucide="check"></i></span> Private numbers for work, press, and personal life</li>
+          <li><span class="tick"><i data-lucide="check"></i></span> Up to 5 numbers for work, press, and personal life</li>
           <li><span class="tick"><i data-lucide="check"></i></span> AI call screening &amp; voicemail</li>
           <li><span class="tick"><i data-lucide="check"></i></span> Real SMS &amp; outbound calls</li>
           <li><span class="tick"><i data-lucide="check"></i></span> QR &amp; vCard sharing</li>
         </ul>
-        <a href="https://buy.stripe.com/9B628qapBad7a236212Nq00" class="btn btn-primary">Get Principal</a>
+        <a href="pricing.html#start" class="btn btn-primary">Choose Principal</a>
       </div>
       <div class="plan">
         <div class="pname">Executive</div>
@@ -598,13 +616,14 @@
         <ul class="plist">
           <li><span class="tick"><i data-lucide="check"></i></span> Up to 8 numbers — everything in Principal</li>
           <li><span class="tick"><i data-lucide="check"></i></span> Concierge onboarding with you or your assistant</li>
-          <li><span class="tick"><i data-lucide="check"></i></span> Priority call screening</li>
+          <li><span class="tick"><i data-lucide="check"></i></span> Screening rules for every number</li>
           <li><span class="tick"><i data-lucide="check"></i></span> Priority support</li>
         </ul>
-        <a href="https://buy.stripe.com/4gM5kCdBN0Cx6PR9ed2Nq01" class="btn btn-ghost">Get Executive</a>
+        <a href="pricing.html#start" class="btn btn-ghost">Choose Executive</a>
+        <p class="purchase-note">$2,400 charged annually, plus applicable tax.</p>
       </div>
     </div>
-    <div class="price-fine">Billed securely via Stripe &middot; Cancel anytime &middot; <a href="pricing.html">Office plans for households and teams</a></div>
+    <div class="price-fine">Billed via Stripe &middot; Cancel future renewals anytime &middot; <a href="pricing.html">Compare allowances and Office plans</a></div>
   </div>
 </section>
 
@@ -618,19 +637,19 @@
     <div class="faq reveal">
       <details open>
         <summary>Are these real phone numbers? <i data-lucide="chevron-down" class="chev"></i></summary>
-        <p>Yes. Every CloakID persona comes with a real US phone number that can place and receive real calls and SMS — nothing virtual, nothing fake.</p>
+        <p>Yes. CloakID provisions real US phone numbers through Telnyx for calls, SMS/MMS, and voicemail. They are internet-based phone numbers, so some verification services may not accept them.</p>
       </details>
       <details>
         <summary>Does CloakID work with iMessage? <i data-lucide="chevron-down" class="chev"></i></summary>
-        <p>CloakID sends and receives standard SMS/MMS over the carrier network, so you can message anyone on any device.</p>
+        <p>CloakID numbers do not use iMessage. Send and receive SMS/MMS in the CloakID app. You can text iPhone and Android users when their carrier supports delivery; your personal iMessage number stays separate.</p>
       </details>
       <details>
         <summary>Can I cancel anytime? <i data-lucide="chevron-down" class="chev"></i></summary>
-        <p>Yes. Billing runs through Stripe and you can cancel anytime from your account, no questions asked. Access continues until the end of the period you paid for.</p>
+        <p>Yes. Open the app’s side menu → Profile → Manage subscription to cancel future renewals in Stripe. Access continues through your paid period. <a href="support.html#billing">Billing help</a> includes instructions for legacy Apple subscriptions.</p>
       </details>
       <details>
         <summary>What happens when I delete my account? <i data-lucide="chevron-down" class="chev"></i></summary>
-        <p>Your personas, call logs, messages, voicemail, and contacts are deleted from CloakID, and your phone numbers are released the same day.</p>
+        <p>Deletion removes your account and associated app records and requests release of your numbers. Stored media and certain billing or abuse-prevention records may remain beyond account deletion. Cancel your subscription first and read the <a href="delete-account.html">deletion details</a>.</p>
       </details>
     </div>
   </div>
@@ -642,7 +661,10 @@
     <div class="reveal">
       <img src="images/cloakid-icon-black.png" alt="CloakID" style="width:60px;height:60px;border-radius:14px;margin:0 auto 24px;">
       <h2>Take your number back.</h2>
-      <p>Download CloakID and create your first persona in under a minute. Your real number will thank you.</p>
+      <p>Create your account, choose a plan, then sign in to the app with the same US mobile number. Already subscribed? Download the app below.</p>
+      <div class="hero-cta">
+        <a href="https://app.cloakid.app" class="btn btn-primary">Create your account</a>
+      </div>
       <div class="hero-cta">
         <a href="https://apps.apple.com/us/app/cloakid/id6761379232" class="badge" aria-label="Download CloakID on the App Store">
           <img src="images/app-store-badge-black.svg" alt="Download on the App Store">
@@ -666,8 +688,8 @@
         <ul>
           <li><a href="#how">How it works</a></li>
           <li><a href="#features">Features</a></li>
-          <li><a href="#security">Security</a></li>
-          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="security.html">Security</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
         </ul>
       </div>
       <div>
@@ -685,6 +707,7 @@
           <li><a href="terms-of-service.html">Terms of Service</a></li>
           <li><a href="sms-disclosure.html">SMS Disclosure</a></li>
           <li><a href="delete-account.html">Delete Account</a></li>
+          <li><a href="abuse.html">Report abuse</a></li>
         </ul>
       </div>
     </div>
@@ -693,7 +716,7 @@
 </footer>
 
 <script>
-  lucide.createIcons();
+  if (window.lucide) lucide.createIcons();
   // Scroll reveal
   const reveals = document.querySelectorAll('.reveal');
   const io = new IntersectionObserver((entries) => {

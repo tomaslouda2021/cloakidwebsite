@@ -56,6 +56,8 @@
   window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
 </script>
 <script defer src="/_vercel/insights/script.js"></script>
+<link rel="stylesheet" href="site-navigation.css">
+<script defer src="site-navigation.js"></script>
 </head>
 <body>
 
@@ -68,9 +70,20 @@
   <div class="nav-links">
     <a href="/#how">How it works</a>
     <a href="/#features">Features</a>
-    <a href="/#security">Security</a>
-    <a href="/#pricing">Pricing</a>
+    <a href="security.html">Security</a>
+    <a href="pricing.html">Pricing</a>
   </div>
+  <details class="mobile-menu">
+    <summary aria-label="Site navigation">Menu</summary>
+    <div class="mobile-menu-links">
+      <a href="/#how">How it works</a>
+      <a href="/#features">Features</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="security.html">Security</a>
+      <a href="support.html">Support</a>
+      <a href="/#download">Download the app</a>
+    </div>
+  </details>
   <a class="nav-cta" href="https://app.cloakid.app">Get CloakID</a>
 </nav>
 
@@ -89,7 +102,7 @@
     <article class="prose">
 
       <p><strong>Effective Date:</strong> January 1, 2026<br>
-      <strong>Last Updated:</strong> August 1, 2026</p>
+      <strong>Last Updated:</strong> September 11, 2026</p>
 
       <p>These Terms of Service ("Terms") govern your use of CloakID, a digital identity management platform operated by Niobium LLC ("we," "our," or "us"). By accessing or using CloakID, you agree to be bound by these Terms.</p>
 
@@ -169,11 +182,11 @@
       <h2>5. Billing and Payment Terms</h2>
 
       <h3>Subscription Plans</h3>
-      <p>CloakID offers auto-renewing subscription plans: CloakID Principal ($99/month, or $990/year) and CloakID Executive ($2,400/year, or $249/month). Custom Office plans are available by agreement. By selecting a plan, you agree to pay the associated fees. Prices exclude applicable sales tax, which is added at checkout. Subscriptions purchased before August 2026 through the App Store or Google Play continue at their original price under their store's billing terms.</p>
+      <p>CloakID offers auto-renewing subscription plans: CloakID Principal ($99/month, or $990/year) and CloakID Executive ($2,400/year, or $249/month). Custom Office plans are available by agreement. By selecting a plan, you agree to pay the associated fees. Prices exclude applicable sales tax, which is added at checkout. Grandfathered Apple subscriptions may continue under Apple’s billing terms. New subscriptions are sold through Stripe; Google Play acquisition is disabled.</p>
 
       <h3>Payment Processing</h3>
       <ul>
-        <li>Payments are processed securely by Stripe. Legacy subscriptions purchased through the App Store or Google Play remain billed through Apple or Google under their billing terms.</li>
+        <li>Payments are processed securely by Stripe. Grandfathered Apple renewals remain subject to Apple’s billing terms. Historical store purchases and refunds are handled by the original billing provider.</li>
         <li>Payment is charged at confirmation of purchase.</li>
         <li>Your subscription automatically renews for the same period and price unless cancelled before the end of the current period.</li>
         <li>Prices are subject to change with reasonable notice; material changes will take effect only at the next renewal.</li>
@@ -181,8 +194,8 @@
 
       <h3>Cancellations</h3>
       <ul>
-        <li>You can manage or cancel your subscription at any time from your CloakID account (Settings &rarr; Manage billing). Legacy App Store or Google Play subscriptions are managed in the respective store's account settings.</li>
-        <li>Cancellations take effect at the end of your current billing period; you keep access until then.</li>
+        <li>You can manage or cancel your subscription at any time in the app (side menu &rarr; Profile &rarr; Manage subscription). Grandfathered Apple subscriptions are managed in Apple’s subscription settings.</li>
+        <li>Cancellations take effect at the end of your current billing period; you keep access until then. Cancel your subscription before deleting your CloakID account. Account deletion is not a substitute for cancellation with your billing provider.</li>
         <li>For subscriptions billed by Stripe, contact support@cloakid.app with any billing questions. Refunds for legacy subscriptions purchased through the App Store or Google Play are requested from and issued by Apple or Google under their respective refund policies.</li>
       </ul>
 
@@ -290,9 +303,9 @@
     <div class="foot-meta">
       <a class="foot-mark" href="index.html">
         <img src="images/cloakid-icon-black.png" alt="" />
-        <span>&copy; 2026 Niobium LLC &middot; iOS 16+ &middot; US only</span>
+        <span>&copy; 2026 Niobium LLC &middot; iPhone &amp; Android &middot; US only</span>
       </a>
-      <span class="foot-status">All systems normal</span>
+      <a href="support.html">Get support</a>
     </div>
   </div>
 </footer>
