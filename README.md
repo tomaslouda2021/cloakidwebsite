@@ -2,16 +2,19 @@
 
 Static HTML site deployed through the existing Vercel/GitHub integration. Preserve `vercel.json`, including the persona-sharing rewrite and Android redirect. No application build is required.
 
-## Verified content baseline — September 11, 2026
+## Verified content baseline — September 13, 2026
 
-- Principal: $99/month, up to 5 active numbers, including at most 1 temporary number; 400 call minutes and 750 SMS in the calendar-month usage display.
-- Executive: $2,400/year ($200/month equivalent), or $249/month by inquiry; up to 8 active numbers, including at most 2 temporary numbers; 1,500 call minutes and 1,500 SMS.
+- Personal: $14.99/month, up to 3 active numbers including at most 1 temporary; 200 connected minutes, 400 outgoing SMS parts, 2 replacement numbers per billing period.
+- Pro: $34.99/month, up to 6 active numbers including at most 2 temporary; 600 minutes, 1,000 outgoing SMS parts, 3 replacements per billing period.
+- Executive: $249/month or $2,400/year, contact-sales only (not sold in the app); up to 15 numbers including at most 3 temporary; 2,000 minutes, 4,000 outgoing SMS parts, 6 replacements. Page: `executive.html`.
+- Office: custom agreement, not a self-serve team-administration product.
+- Allowances are per subscription billing period (not calendar month); minutes = connected calls in and out; SMS = outgoing parts only (MMS = 3); in-progress calls are never cut at a limit.
+- Personal and Pro are bought in the iPhone app (Apple In-App Purchase) or at app.cloakid.app (Stripe). Android uses the web checkout. Same price on both rails. Plan CTAs on this site link to app.cloakid.app, not to Stripe Payment Links.
 - Temporary numbers count within the total allowance, not in addition to it.
-- New purchases use Stripe. Apple renewals are grandfathered; Google acquisition is disabled. Historical store refunds remain with the original provider.
-- Office is a custom agreement, not a self-serve team-administration product.
 - iPhone and Android listings are live. iPhone requires iOS 16+. US mobile number required; service is US-only.
-- Create the account first, then use the same mobile number at Stripe checkout. Profile → Manage subscription opens billing management in the app.
+- Profile → Manage subscription opens billing management in the app (Apple or Stripe depending on where the plan was bought).
 
+Source of truth for prices and limits: `GET https://api.cloakid.app/api/billing/plans/` (the same catalog the app reads).
 Compare facts to `CloakIDV2/backend/core/plans.py`, `backend/core/subscription_limits.py`, `backend/api/views/user_views.py`, `mobile/src/screens/settings/ProfileScreen.js`, and `docs/BILLING_ARCHITECTURE.md` before changing published allowances or billing instructions.
 
 ## Privacy wording

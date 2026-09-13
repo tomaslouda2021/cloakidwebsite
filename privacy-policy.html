@@ -119,7 +119,7 @@
       <li><strong>Usage Data:</strong> Features used, personas created, call outcomes (allowed, blocked, sent to voicemail), and interaction patterns within the app.</li>
       <li><strong>Device Information:</strong> Device type, operating system, and a device-level identifier (push notification token) used to deliver push notifications to your device.</li>
       <li><strong>User ID:</strong> An internal identifier linked to your account, used to authenticate and personalize your experience.</li>
-      <li><strong>Purchase History:</strong> Your subscription plan, billing status, and billing-provider identifiers. New subscriptions are processed by Stripe; Apple handles grandfathered renewals. Historical store purchase records may also be retained. We do not store your full payment card details.</li>
+      <li><strong>Purchase History:</strong> Your subscription plan, billing status, and billing-provider identifiers. Subscriptions are processed by Apple (iPhone in-app purchase) or Stripe (web and Android). Historical store purchase records may also be retained. We do not store your full payment card details.</li>
       <li><strong>Log Data:</strong> IP address, access times, and API request logs for security and troubleshooting purposes.</li>
     </ul>
 
@@ -169,7 +169,7 @@
       <li><strong>Amazon Web Services (AWS):</strong> Hosts service infrastructure and media, including encrypted voicemail audio in S3. App records and transcription text are also stored with our database hosting provider.</li>
       <li><strong>Firebase (Google):</strong> We use Firebase Cloud Messaging (FCM) to deliver push notifications to your device. Your device's push notification token is shared with Google/Firebase for this purpose.</li>
       <li><strong>Sentry:</strong> Crash reports and performance data are sent to Sentry for error monitoring and app stability. This data may include your user ID and device context.</li>
-      <li><strong>Stripe / Apple:</strong> Stripe handles new purchases and Apple handles grandfathered renewals. Historical Apple or Google purchase records may be used for support and verification. We receive billing status and purchase identifiers, not your full payment card details.</li>
+      <li><strong>Stripe / Apple:</strong> Apple handles purchases made in the iPhone app; Stripe handles purchases made on the web and Android. Historical Apple or Google purchase records may be used for support and verification. We receive billing status and purchase identifiers, not your full payment card details.</li>
       <li><strong>IPQualityScore / Twilio:</strong> Used at account registration to validate your phone number. Caller phone numbers may also be looked up via Telnyx's Number Lookup service during call screening to detect spam or VOIP numbers.</li>
     </ul>
 
