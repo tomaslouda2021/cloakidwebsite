@@ -136,6 +136,22 @@
     .hero h1 { font-size: clamp(30px, 8.4vw, 40px); }
   }
 
+  /* ---------- Live demo ---------- */
+  .demo { padding-bottom: 64px; }
+  .demo-card { background: var(--accent-soft); border: 1px solid var(--line); border-radius: var(--radius); padding: 36px; display: grid; grid-template-columns: 1fr 1fr; gap: 32px 48px; }
+  .demo h2 { margin-top: 16px; font-size: clamp(28px, 3.5vw, 40px); max-width: 14em; }
+  .demo p { color: var(--ink-2); margin-top: 18px; line-height: 1.6; }
+  .demo .demo-instructions { margin-top: 0; }
+  .demo .btn { margin-top: 22px; justify-content: center; flex-wrap: wrap; gap: 0 6px; }
+  .demo .demo-note { font-size: 14px; margin-top: 12px; }
+  .demo .demo-privacy { grid-column: 1 / -1; border-top: 1px solid var(--line); padding-top: 18px; margin-top: 0; font-size: 13px; }
+  .demo-privacy a, .research-note a { text-decoration: underline; text-underline-offset: 3px; }
+  .research-note { margin-top: 24px; padding-top: 22px; border-top: 1px solid var(--line); font-size: 15px; line-height: 1.65; color: var(--ink-2); }
+  @media (max-width: 720px) {
+    .demo-card { grid-template-columns: 1fr; padding: 24px; gap: 24px; }
+    .demo .btn { width: 100%; }
+  }
+
   /* ---------- Phone frame ---------- */
   .phone-stage { display: flex; justify-content: center; position: relative; }
   .phone {
@@ -413,7 +429,7 @@
       <p class="lede">Separate numbers for your work, press, and personal life. CloakID screens unknown callers against rules you set, so you can be reachable without giving out your personal number.</p>
       <div class="hero-cta">
         <a href="https://app.cloakid.app" class="btn btn-primary">Create your account</a>
-        <a href="#pricing" class="btn btn-ghost">Compare plans <i data-lucide="arrow-down" class="ic"></i></a>
+        <a href="#demo" class="btn btn-ghost">Try the live demo <i data-lucide="arrow-down" class="ic"></i></a>
       </div>
       <p class="purchase-note">Plans from $14.99/month. Create an account, choose a plan, then use CloakID on <a href="#download">iPhone or Android</a>. US mobile number required.</p>
       <div class="hero-trust">
@@ -422,12 +438,6 @@
         <span><span class="dot"></span> Cancel anytime</span>
       </div>
 
-      <!-- DEMO LINE — live number, anyone can call, no account needed -->
-      <p class="lede" style="margin-top:26px;font-size:1rem;">
-        Rather hear it than read about it? <a href="tel:+15129885374"><b>Call the demo line: (512)&nbsp;988-5374</b></a>
-        &mdash; no signup, no app. Say your name and why you're calling, and you'll be screened like any other caller.
-        Demo call records are scheduled for removal of your number and words after 24 hours. <a href="security.html#retention">How demo data is handled</a>.
-      </p>
     </div>
 
     <div class="phone-stage reveal">
@@ -440,6 +450,26 @@
         <span class="ci chip-allow"><i data-lucide="phone-incoming"></i></span>
         <div><b>Call allowed</b><small>Matched purpose</small></div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- LIVE DEMO -->
+<section id="demo" class="demo" aria-labelledby="demo-heading">
+  <div class="wrap">
+    <div class="demo-card">
+      <div>
+        <span class="eyebrow">Try the live line</span>
+        <h2 id="demo-heading">Hear what happens before your phone rings.</h2>
+        <p>An unfamiliar number doesn’t tell you why someone is calling. CloakID asks, then checks the answer against the rules for that line.</p>
+      </div>
+      <div>
+        <p class="demo-instructions"><strong>You play the caller.</strong> Give a made-up name and a reason for calling. Hear whether your call would go through, go to voicemail, or be blocked.</p>
+        <p>Then call again with a different reason. Same number, different request. On your own CloakID line, you set the rules.</p>
+        <a href="tel:+15129885374" class="btn btn-primary">Call the demo: <span>(512)&nbsp;988-5374</span></a>
+        <p class="demo-note">No account or app needed. Your carrier’s calling rates may apply.</p>
+      </div>
+      <p class="demo-privacy">Use fictional details for the demo. Caller numbers and words are scheduled for removal from demo call records after 24 hours. <a href="security.html#retention">How demo data is handled</a>.</p>
     </div>
   </div>
 </section>
@@ -464,6 +494,7 @@
         <span class="eyebrow">The problem</span>
         <h2 style="margin-top:18px;">Being reachable shouldn't mean being reachable by everyone.</h2>
         <p class="big">An investor introduction, a press inquiry, a contractor, a school form. When they all lead to the same number, every part of your life competes for your attention. Give each one its own line, with its own rules for who gets through.</p>
+        <p class="research-note"><strong>Your next quote request doesn’t need your everyday number.</strong> Researchers submitted forms on 105 health-insurance lead websites, using a different phone number for each. They documented third-party data sharing and repeated marketing calls. <a href="https://arxiv.org/html/2604.06759v1">Read the independent study</a>.</p>
       </div>
       <div class="problem-phone reveal">
         <img class="device" src="images/device-everyone.png" alt="Everyone has your number — every caller funnels to your one line">
